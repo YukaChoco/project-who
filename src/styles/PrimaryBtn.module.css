@@ -1,0 +1,21 @@
+.PrimaryBtn{
+    display: inline-block;
+    width: 346px;
+    max-width: 100%;
+    padding: 15px 10px;
+    background-color: #fff;
+    font-size: 1.125rem;
+    border: 1px solid;
+    border-color: #969696;
+    border-radius: 45px;
+    color: #6F80BF;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.PrimaryBtn:focus,
+.PrimaryBtn:hover{
+    background-color: #6F80BF;
+    border-color: #969696;
+    color: #fff;
+}
