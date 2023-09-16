@@ -7,7 +7,7 @@ import { Button } from '@mui/material'
 interface Props {
     text: string;
     onClick?: () => void;
-  }
+}
 
 export default function SecondaryBtn(props: Props) {
   return (

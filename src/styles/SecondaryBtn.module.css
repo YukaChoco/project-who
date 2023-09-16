@@ -1,19 +1,10 @@
 .SecondaryBtn{
     display: inline-block;
-    width: 346px;
-    max-width: 100%;
-    padding: 15px 10px;
+    width: 88%;
     font-size: 1.125rem;
     border: 1px solid;
     border-radius: 45px;
     color: #fff;
     text-decoration: none;
-    margin-bottom: 20px;
-}
-
-.SecondaryBtn:focus,
-.SecondaryBtn:hover{
-    background-color: #fff;
-    border-color: #fff;
-    color: #6F80BF;
+    margin: 5px 0;
 }

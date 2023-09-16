@@ -1,0 +1,23 @@
+.ColorPicker_background{
+    position: relative;
+    text-align: center;
+    background-color: #F4F5FC;
+    border-radius: 5px;
+    width:88%;
+    height: 64px;
+    margin: 5px 0;
+}
+
+.ColorPicker_background p{
+    font-size: 14px;
+    margin: 20px 0 20px 5px;
+    float: left;
+    left: 0;
+}
+
+.ColorPicker_background input{
+    float: left;
+    position: absolute;
+    right: 0;
+    margin: 20px;
+}

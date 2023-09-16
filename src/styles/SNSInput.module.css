@@ -1,0 +1,34 @@
+.SNSInput{
+    width: 92%;
+    max-width: 100%;
+}
+
+.SNSInput_background{
+    text-align: center;
+    background-color: #F4F5FC;
+    border-radius: 5px;
+    width:88%;
+    height: 125px;
+    margin: 5px 0;
+}
+
+.SNSSelect{
+    float: left;
+    left: 0;
+    margin: 5px 10px 0 10px;
+    width: 42%;
+    background-color: white;
+}
+
+.PlusIcon{
+    float: left;
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    height: 40px;
+    width: 40px;
+}
+
+.SelectIconContainer{
+    position: relative;
+}
