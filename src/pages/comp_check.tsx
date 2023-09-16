@@ -1,13 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Login.module.css'
+import styles from '@/styles/Comp_check.module.css'
 import SinpleButton from '@/conponents/SimpleButton'
 import ShareButton from '@/conponents/ShareButton'
 
+import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
+
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Login() {
+export default function Comp_check() {
   return (
     <>
       <main className={styles.main}>
