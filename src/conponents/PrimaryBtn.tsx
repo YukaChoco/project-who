@@ -4,10 +4,15 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/PrimaryBtn.module.css'
 import { Button } from '@mui/material'
 
-export default function PrimaryBtn(props) {
+interface Props {
+  text: string;
+  onClick?: () => void;
+}
+
+export default function PrimaryBtn(props: Props) {
   return (
     <>
-        <Button variant="outlined" className={styles.PrimaryBtn}>{props.text}</Button>
+      <Button variant="outlined" className={styles.PrimaryBtn}>{props.text}</Button>
     </>
   )
 }

@@ -12,7 +12,7 @@ export default function Login() {
     <>
       <main className={styles.main}>
         <div>
-          <PrimaryBtn text="ログイン" />
+          <PrimaryBtn text="ログイン" onClick={()=>console.log('PrimaryBtn Clicked')}/>
           <SecondaryBtn text="新規登録"/>
         </div>
       </main>
