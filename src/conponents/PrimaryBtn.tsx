@@ -5,14 +5,14 @@ import styles from '@/styles/PrimaryBtn.module.css'
 import { Button } from '@mui/material'
 
 interface Props {
-  text: string;
-  onClick?: () => void;
+    text: string;
+    onClick?: () => void;
 }
 
 export default function PrimaryBtn(props: Props) {
   return (
     <>
-      <Button variant="outlined" className={styles.PrimaryBtn}>{props.text}</Button>
+        <Button variant="outlined" className={styles.PrimaryBtn} onClick={props.onClick}>{props.text}</Button>
     </>
   )
 }
