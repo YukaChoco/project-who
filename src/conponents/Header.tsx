@@ -10,13 +10,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import styles from '@/styles/Header.module.css'
 
 interface Props {
-    onClick_search?: () => void;
-    onClick_menu?: () => void;
-    onClick_edit?: () => void;
-    onClick_register?: () => void;
+  onClick_search?: () => void;
+  onClick_menu?: () => void;
+  onClick_edit?: () => void;
+  onClick_register?: () => void;
+  useSearchIcon?:  boolean;
 }
 
-export default function Header(props:Props) {
+export default function Header(props: Props) {
   return (
     <Box sx={{ flexGrow: 1 }} className={styles.Header_container}>
       <AppBar position="static" className={styles.Header_bar}>
@@ -25,14 +26,17 @@ export default function Header(props:Props) {
             Who!
           </Typography>
           {/* 1.検索とメニューアイコン */}
-          {/* <IconButton
-            size="large"
-            color="inherit"
-            className={styles.Header_icon}
-            onClick={props.onClick_search}
+          {
+            (props.onClick_search !== null) &&
+            <IconButton
+              size="large"
+              color="inherit"
+              className={styles.Header_icon}
+              onClick={props.onClick_search}
             >
-            <SearchIcon />
+              <SearchIcon />
             </IconButton>
+          }
 
           <IconButton
             size="large"
@@ -41,13 +45,13 @@ export default function Header(props:Props) {
             aria-label="menu"
             className={styles.Header_icon}
             onClick={props.onClick_menu}
-            >
+          >
             <MenuIcon />
-          </IconButton> */}
+          </IconButton>
 
 
-        {/* 2.メニューアイコンのみ */}
-        {/* <IconButton
+          {/* 2.メニューアイコンのみ */}
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
