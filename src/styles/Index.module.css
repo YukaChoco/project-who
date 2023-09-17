@@ -2,7 +2,13 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  background-color: gray;
+  background-color: #6F80BF;
+}
+
+.link {
+  width: 100vw;
+  margin: 20px;
+  background-color: #6F80BF;
 }
 
 .description {

@@ -2,11 +2,13 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Index.module.css'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Index() {
-  const cardid = "card-test"
+export default function Detail() {
+  const router = useRouter();
+  const cardid = router.query.cardid as string;
   return (
     <>
       <Head>
@@ -16,6 +18,7 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        ここは{cardid}のページです
         <Link href="/" className={styles.link}>ホーム</Link>
         <Link href="/cards" className={styles.link}>名刺一覧</Link>
         <Link href="/mycards" className={styles.link}>自分の名刺一覧</Link>
