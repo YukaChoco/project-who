@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Login.module.css'
+import styles from '@/styles/TestKotaro.module.css'
 import DisplayText from '@/conponents/DisplayText'
 import { Details } from '@/types/Details'
 
@@ -27,10 +27,8 @@ export default function TestDisplay() {
   return (
     <>
       <main className={styles.main}>
-        <div className={styles.center}>
-          <h1>Test</h1>
-          <DisplayText title="title" detail="detail" />
-        </div>
+        <DisplayText title="氏名" detail="小林虎太郎" />
+        <DisplayText title="氏名" detail="小林虎太郎" />
       </main>
     </>
   )
