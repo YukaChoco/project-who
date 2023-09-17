@@ -19,7 +19,7 @@ export default function Index() {
     x: "chocolatbrown",
     instagram: "yuka__matcha",
     others: "https://my-portfolio-yukachoco.vercel.app",
-    urlEnabled: false,
+    urlEnabled: true,
     textColor: "#A56A7F",
     bgColor: "#F4EBEF",
     onClickHandler: () => { },
