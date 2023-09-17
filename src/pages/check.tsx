@@ -12,7 +12,6 @@ export default function Home() {
   return (
     <>
       <main className={styles.main}>
-        <div className={styles.center}>
           
           <DisplayCard 
             id={"1"}
@@ -21,14 +20,13 @@ export default function Home() {
             x={"yakinikuumai"}
             instagram={"yakiyaki"}
             others={"xxx"}
-            urlEnabled={false}
-            textColor= {"#000"}
+            urlEnabled={true}
+            textColor= {"#0FF"}
             bgColor={"#FFF"}
-            onClickHandler={()=>{}}
+            onClickHandler={()=>{console.log('card clicked')}}
             />
 
             <MakeNewCard/>
-        </div>
       </main>
     </>
   )
