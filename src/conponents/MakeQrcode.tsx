@@ -11,7 +11,7 @@ const QRCode: FC<QRCodeProps> = (props) => {
   return (
     <QRCodeCanvas
       value={props.url}
-      size={128}
+      size={200}
       bgColor={"#FFF"}
       fgColor={"#000"}
       level={"L"}
@@ -20,8 +20,8 @@ const QRCode: FC<QRCodeProps> = (props) => {
         src: "/favicon.ico",
         x: undefined,
         y: undefined,
-        height: 24,
-        width: 24,
+        height: 60,
+        width: 60,
         excavate: true,
       }}
     />

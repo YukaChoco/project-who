@@ -7,6 +7,7 @@ import Header from '@/conponents/Header'
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import DisplayCard from '@/conponents/Card'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
+import QRCode from '@/conponents/MakeQrcode'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,7 +37,10 @@ export default function Detail() {
       <main className={styles.main}>
         <div className={styles.list}>
           <Header useMenuIcon />
-          <QrCode2Icon className={styles.qrcode} />
+          <div className={styles.qrcode}>
+            <QRCode url={`https://whooo.netlify.app/share/$%7Bdata.id%7D`}/>
+            </div>
+          
           <div className={styles.swipe}>
             <svg width="107" height="60" viewBox="0 0 107 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M53.5 0L106.761 59.25H0.239437L53.5 0Z" fill="#DCDBE8" />
