@@ -14,6 +14,7 @@ export default function Login() {
         <div className={styles.center}>
           <h1>LoginPage</h1>
           <SinpleButton />
+          <ShareButton onClick={()=>console.log('ShareBtn Clicked')}/>
         </div>
       </main>
     </>
