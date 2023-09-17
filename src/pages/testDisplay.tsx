@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export default function TestDisplay() {
-  const datas: Details = [
+  const datas: Details[] = [
     {
       title: "title1",
       detail: "details1"
@@ -28,7 +28,7 @@ export default function TestDisplay() {
     <>
       <main className={styles.main}>
         <DisplayText title="氏名" detail="小林虎太郎" />
-        <DisplayText title="氏名" detail="小林虎太郎" />
+        <DisplayText title={datas[0].title} detail={datas[0].detail} />
       </main>
     </>
   )
