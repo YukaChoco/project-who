@@ -1,0 +1,23 @@
+.main {
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fff;
+  padding-top: 58px;
+}
+
+.cardlist {
+  margin-top: 15px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.returnbutton { 
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  margin-bottom: 15px;
+}
