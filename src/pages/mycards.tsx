@@ -7,20 +7,21 @@ import Card from '@/conponents/Card'
 import DisplayCard from '@/conponents/Card'
 import MakeNewCard from '@/conponents/NewCard'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
+import router from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Index() {
   const data = {
     id: "id",
-    name: "焼肉 太郎",
-    organization: "焼肉ムキムキクラブ",
+    name: "ゆうか",
+    organization: "watnow",
     x: "chocolatbrown",
     instagram: "yuka__matcha",
     others: "https://my-portfolio-yukachoco.vercel.app",
     urlEnabled: false,
-    textColor: "string",
-    bgColor: "string",
+    textColor: "#A56A7F",
+    bgColor: "#F4EBEF",
     onClickHandler: () => { },
   }
   return (
@@ -37,21 +38,13 @@ export default function Index() {
 
         <div className={styles.cardlist}>
           <DisplayCard
-            id={"1"}
-            name={"焼肉太郎"}
-            organization={"焼肉モリモリクラブ"}
-            x={"yakinikuumai"}
-            instagram={"yakiyaki"}
-            others={"xxx"}
-            urlEnabled={false}
-            textColor={"#000"}
-            bgColor={"#FFF"}
-            onClickHandler={() => { }}
+            {...data}
+            onClickHandler={() => router.push("/make/card")}
           />
           <MakeNewCard />
         </div>
         <div className={styles.returnbutton}>
-          <PrimaryBtn text={'ホームに戻る'} />
+          <PrimaryBtn text={'ホームに戻る'} onClick={()=>router.push("/cards")}/>
         </div>
       </main>
     </>
