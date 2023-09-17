@@ -23,7 +23,6 @@ export default function Login() {
             setMode(newAlignment);
         }
     };
-    console.log(mode);
 
     return (
         <>
