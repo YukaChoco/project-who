@@ -15,7 +15,6 @@ export default function SwitchButton(props: Props) {
   return (
     <>
       <ToggleButtonGroup
-        color="primary"
         value={props.value}
         exclusive
         fullWidth
