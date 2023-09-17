@@ -2,10 +2,10 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from '@/firebase'
 import { getAuth, signInWithPopup, GoogleAuthProvider ,onAuthStateChanged } from "firebase/auth";
 
-import addUserData from './addUserData'
+import AddUserDataComp from './addUserDataComp'
 
 
-export default async function firebaseLogin() {  
+export default async function FirebaseLogin() {  
   const provider = new GoogleAuthProvider();
   
   
@@ -40,12 +40,12 @@ export default async function firebaseLogin() {
         // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid;
         const docData = {
-          id: uid,
+          userid: uid,
           fileld:{
             name: "test_add_name",
           }
         };
-        addUserData(docData);
+        AddUserDataComp(docData);
       } else {
         // User is signed out
         // ...
