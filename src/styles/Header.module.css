@@ -1,0 +1,11 @@
+.Header_container{
+    width: 100%;
+}
+
+.Header_bar{
+    background-color: #6F80BF;
+}
+
+.Header_icon{
+    margin: 0 3px 0 0;
+}
