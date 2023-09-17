@@ -14,9 +14,12 @@
     gap: 10px;
 }
 
-.returnbutton {
+.returnbutton { 
+    width: 100%;
     position: absolute;
+    text-align: center;
     bottom: 0;
+    margin-bottom: 15px;
     /* width: 300px;
     left: 50%;
     transform: translateX(-50%); */
