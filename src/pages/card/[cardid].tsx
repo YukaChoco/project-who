@@ -20,11 +20,15 @@ export default function Detail() {
     x: "chocolatbrown",
     instagram: "yuka__matcha",
     others: "https://my-portfolio-yukachoco.vercel.app",
-    urlEnabled: false,
-    textColor: "string",
-    bgColor: "string",
+    urlEnabled: true,
+    textColor: "#895546",
+    bgColor: "#0f0981",
     onClickHandler: () => { },
   }
+
+  const xURL = `https://twitter.com/${data.x}`;
+  const InstagramUrl = `https://instagram.com/${data.instagram}`;
+
   return (
     <>
       <Head>
@@ -35,27 +39,24 @@ export default function Detail() {
       </Head>
 
       <main className={styles.main}>
-        <Header useSearchIcon　useMenuIcon/>
+        <Header useSearchIcon useMenuIcon />
         <div className={styles.card_container}>
           <div className={styles.card}>
-            <Card id={data.id} name={data.name} organization={data.organization} x={data.x} instagram={data.instagram} others={data.others} urlEnabled={data.urlEnabled} textColor={data.textColor} bgColor={data.bgColor} onClickHandler={() => console.log('完了')}/>
+            <Card id={data.id} name={data.name} organization={data.organization} x={data.x} instagram={data.instagram} others={data.others} urlEnabled={data.urlEnabled} textColor={data.textColor} bgColor={data.bgColor} onClickHandler={() => console.log('完了')} />
           </div>
         </div>
         <div className={styles.info}>
           <div className={styles.infoitem1}>
-          <DisplayText title="氏名" detail={data.name}/ >
+            <DisplayText title="氏名" detail={data.name} />
           </div>
           <div className={styles.infoitem}>
-          <DisplayText title="X" detail={data.x}/>
+            <DisplayText title="X" detail={data.x} url={xURL}/>
           </div>
           <div className={styles.infoitem}>
-          <DisplayText title="Instagram" detail={data.instagram}/>
+            <DisplayText title="Instagram" detail={data.instagram} url={InstagramUrl}/>
           </div>
           <div className={styles.infoitem}>
-          <DisplayText title="Facebook" detail="@"/>
-          </div>
-          <div className={styles.infoitem}>
-          <DisplayText title="Qiita" detail=""/>
+            <DisplayText title="orgnization" detail={data.organization}/>
           </div>
         </div>
       </main>
