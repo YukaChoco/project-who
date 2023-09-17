@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Index.module.css'
 import Link from 'next/link'
+import Header from '@/conponents/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,6 +17,12 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <Header
+          useSearchIcon
+          useMenuIcon
+          onClick_edit={() => { }}
+          onClick_register={() => { }}
+        />
         <Link href="/" className={styles.link}>ホーム</Link>
         <Link href="/cards" className={styles.link}>名刺一覧</Link>
         <Link href="/mycards" className={styles.link}>自分の名刺一覧</Link>
