@@ -1,0 +1,37 @@
+.cards {
+    display: flex;
+    flex-flow: column;
+    width: 346px;
+    height: 200px;
+}
+
+.belong {
+    position: absolute;
+    font-size: 12px;
+    color: grey;
+}
+
+.username {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    font-size: 20px;
+}
+
+.wrap {
+    position: absolute;
+    flex-flow: column;
+    align-items: flex-start;
+    margin-top: 130px;
+}
+
+/* .x{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.instgram{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+} */

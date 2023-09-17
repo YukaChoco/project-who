@@ -5,6 +5,8 @@ export interface Cards {
   x: string;
   instagram: string;
   others: string;
+  urlEnabled: boolean;
   textColor: "#0FF";
   bgColor: "#FFF";
+  onClickHandler: ()=>void;
 }
