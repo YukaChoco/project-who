@@ -3,15 +3,15 @@ import { db } from '@/firebase'
 
 
 interface Props {
-  id: string;
+  userid: string;
   fileld:{
     name: string;
   }
 }
 
-export default async function addUserData(docData:Props) {
+export default async function AddUserDataComp(docData:Props) {
 
-  await setDoc(doc(db, "users", docData.id), {});
+  await setDoc(doc(db, "users", docData.userid), {});
 }
 
 

@@ -27,7 +27,7 @@ export default function TestDisplay() {
   return (
     <>
       <main className={styles.main}>
-        <DisplayText title="氏名" detail="小林虎太郎" />
+        <DisplayText title="氏名" detail="小林虎太郎" url="akasatana"/>
         <DisplayText title={datas[0].title} detail={datas[0].detail} />
       </main>
     </>
