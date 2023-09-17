@@ -10,13 +10,8 @@ import styles from '@/styles/Drawer.module.css'
 
 type Anchor = 'right';
 
-interface Props {
-    onClick_createName?: () => void;
-    onClick_memo?: () => void;
-    onClick_upgrade?: () => void;
-}
 
-export default function Drawer(props:Props) {
+export default function Drawer() {
   const [state, setState] = React.useState({
     right: false,
   });
@@ -45,17 +40,17 @@ export default function Drawer(props:Props) {
       <List className={styles.drawer}>
           <ListItem key={'名刺の作成'} disablePadding>
             <ListItemButton>
-              <ListItemText primary={'　名刺の作成　'} className={styles.drawer_item} onClick={props.onClick_createName}/>
+              <a href="http://localhost:3000/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} className={styles.drawer_item} /></a>
             </ListItemButton>
           </ListItem>
           <ListItem key={'アカウントメモの追加'} disablePadding>
             <ListItemButton>
-              <ListItemText primary={'　アカウントメモの追加　'} className={styles.drawer_item} onClick={props.onClick_memo}/>
+            <a href="http://localhost:3000/make/card"><ListItemText primary={'　アカウントメモの追加　'} className={styles.drawer_item} /></a>
             </ListItemButton>
           </ListItem>
           <ListItem key={'￥Up grade'} disablePadding>
             <ListItemButton>
-              <ListItemText primary={'　￥Up grade　'} className={styles.drawer_item} onClick={props.onClick_upgrade}/>
+            <a href="http://localhost:3000/upgrade"><ListItemText primary={'　￥Up grade　　　　　　'} className={styles.drawer_item} /></a>
             </ListItemButton>
           </ListItem>
       </List>

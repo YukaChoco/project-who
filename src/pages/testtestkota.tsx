@@ -14,11 +14,7 @@ export default function TestDisplay() {
   return (
     <>
       <main className={styles.main}>
-        <Drawer
-        onClick_createName={() => console.log('名刺作成')}
-        onClick_memo={() => console.log('アカウントメモの追加')}
-        onClick_upgrade={() => console.log('課金なう')}
-        />
+        <Drawer />
       </main>
     </>
   )
