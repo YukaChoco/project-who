@@ -15,7 +15,7 @@ export default function Detail() {
   const router = useRouter();
   const cardid = router.query.cardid as string;
   const data = {
-    id: "id",
+    id: "id-test",
     name: "ゆうか",
     organization: "watnow",
     x: "chocolatbrown",
@@ -38,7 +38,7 @@ export default function Detail() {
         <div className={styles.list}>
           <Header useMenuIcon />
           <div className={styles.qrcode}>
-            <QRCode url={`https://whooo.netlify.app/share/$%7Bdata.id%7D`}/>
+            <QRCode url={`https://whooo.netlify.app/share/${data.id}`}/>
             </div>
           
           <div className={styles.swipe}>
