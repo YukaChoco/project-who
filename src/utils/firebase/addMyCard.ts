@@ -18,8 +18,8 @@ export default async function AddMyCard() {
         const docData = {
           userid: uid,
             field:{
-              mycardid:"これ",
-              name:"test",
+              mycardid:"おねがい",
+              name:"おねがい",
               x:"test",
               Instagram:"test",
               others:"test",

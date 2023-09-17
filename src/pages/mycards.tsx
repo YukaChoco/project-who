@@ -8,6 +8,7 @@ import DisplayCard from '@/conponents/Card'
 import MakeNewCard from '@/conponents/NewCard'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
 import router from 'next/router'
+import AddMyCard from '@/utils/firebase/addMyCard'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -39,7 +40,10 @@ export default function Index() {
         <div className={styles.cardlist}>
           <DisplayCard
             {...data}
-            onClickHandler={() => router.push("/make/card")}
+            onClickHandler={() => {
+              AddMyCard()
+              router.push("/make/card")
+            }}
           />
           <MakeNewCard />
         </div>
