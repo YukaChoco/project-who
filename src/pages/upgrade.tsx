@@ -18,8 +18,8 @@ export default function Index() {
         <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
       <main className={styles.main}>
+      <Header />
         <div>
           <h2　className={styles.text}>これ以降の機能は課金してね💖</h2>
         </div>

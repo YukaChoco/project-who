@@ -10,6 +10,7 @@
   }
 
   .text{
+    margin-top: 50px;
     height: 40vh;
     display: flex;
 	justify-content: center;
