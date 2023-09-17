@@ -6,7 +6,7 @@ import addUserData from './addUserDataComp'
 import AddMyCardComp from "./addMyCaredComp";
 import AddtoCardsComp from "./addtoCardscomp";
 import firestore from "./firestore";
-import getMyCardsComp from "./getMycardIdComp";
+import getMyCardIdComp from "./getMyCardIdComp";
 
 
 export default async function getMyCards() {  
@@ -20,7 +20,7 @@ export default async function getMyCards() {
         const docData = {
           userid: uid,
         };
-        getMyCardsComp(docData);
+        getMyCardIdComp(docData);
         
       } else {
         // User is signed out
