@@ -3,26 +3,20 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Login.module.css'
 import SinpleButton from '@/conponents/SimpleButton'
-import get from '@/utils/firebase/firestore'
-import setUserData from '@/utils/firebase/setUserData'
-import AddMyCard from '@/utils/firebase/addMyCard'
-import FirebaseLogin from '@/utils/firebase/firebaseLogin'
+import ShareButton from '@/conponents/ShareButton'
 
 const inter = Inter({ subsets: ['latin'] })
 
-
 export default function Login() {
-
-  return(
+  return (
     <>
       <main className={styles.main}>
         <div className={styles.center}>
           <h1>LoginPage</h1>
-          <button onClick={()=>FirebaseLogin()}>Login</button>
-          
+          <SinpleButton />
+          <ShareButton onClick={()=>console.log('ShareBtn Clicked')}/>
         </div>
       </main>
     </>
   )
- 
 }

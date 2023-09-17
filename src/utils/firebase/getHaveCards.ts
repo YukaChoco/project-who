@@ -5,9 +5,11 @@ import { getAuth, signInWithPopup, GoogleAuthProvider ,onAuthStateChanged } from
 import addUserData from './addUserDataComp'
 import AddMyCardComp from "./addMyCaredComp";
 import AddtoCardsComp from "./addtoCardscomp";
+import firestore from "./firestore";
+import getHaveCardsComp from "./getHaveCardIdComp";
 
 
-export default async function AddMyCard() {  
+export default async function getHaveCards() {  
 
     //現在ログインしているユーザーを取得する
     onAuthStateChanged(auth, (user) => {
@@ -17,20 +19,9 @@ export default async function AddMyCard() {
         const uid = user.uid;
         const docData = {
           userid: uid,
-            field:{
-              mycardid:"これ",
-              name:"test",
-              x:"test",
-              Instagram:"test",
-              others:"test",
-              organizatiton:"test",
-              text_color:"test",
-              bg_color:"test",
-              }
         };
-        AddMyCardComp(docData);
-        AddtoCardsComp(docData);
-        console.log(uid)
+        getHaveCardsComp(docData);
+        
       } else {
         // User is signed out
         // ...

@@ -35,9 +35,6 @@ export default function Input() {
     setBgColor(event.target.value);
   }
 
-  //hundleTextColorついか
-  console.log(textColor);
-
   return (
     <>
       <main className={styles.main}>
