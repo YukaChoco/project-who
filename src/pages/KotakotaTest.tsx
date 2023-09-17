@@ -18,6 +18,8 @@ export default function Input() {
           onClick_edit={() => console.log('編集完了')}
           onClick_register={() => console.log('登録')}
         />
+        aiu
+        a
       </main>
     </>
   )

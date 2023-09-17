@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Index.module.css'
+import styles from '@/styles/upgrade.module.css'
+import Header from '@/conponents/Header'
+import PrimaryBtn from '@/conponents/PrimaryBtn'
+import SecondaryBtn from '@/conponents/SecondaryBtn'
 import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -15,17 +18,15 @@ export default function Index() {
         <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
       <main className={styles.main}>
-        <Link href="/" className={styles.link}>ホーム</Link>
-        <Link href="/cards" className={styles.link}>名刺一覧</Link>
-        <Link href="/mycards" className={styles.link}>自分の名刺一覧</Link>
-        <Link href={`/card/${cardid}`} className={styles.link}>名刺詳細</Link>
-        <Link href={'/make/card'} className={styles.link}>名刺作成</Link>
-        <Link href={'/make/mycard'} className={styles.link}>他人の名刺作成</Link>
-        <Link href={`/share?id=${cardid}`} className={styles.link}>名刺交換</Link>
-        <Link href={'/upgrade'} className={styles.link}>課金</Link>
-        <Link href={'/warning'} className={styles.link}>警告</Link>
-        <Link href={'/error'} className={styles.link}>エラー</Link>
+        <div>
+          <h2　className={styles.text}>これ以降の機能は課金してね💖</h2>
+        </div>
+        <div className={styles.Btn_wrapper}>
+        <Link href="/warning"><SecondaryBtn text="課金して始める" onClick={() => console.log('PrimaryBtn Clicked')}/></Link>
+        <Link href="/cards"><PrimaryBtn text="戻る" onClick={() => console.log('PrimaryBtn Clicked')}/></Link>
+        </div>
       </main>
     </>
   )
