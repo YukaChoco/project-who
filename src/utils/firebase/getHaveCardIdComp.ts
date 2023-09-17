@@ -6,11 +6,12 @@ interface Props {
   userid: string;
 }
 
-export default async function get(docData:Props) {
+export default async function getHaveCardsComp(docData:Props) {
 const querySnapshot = await getDocs(collection(db, "users", docData.userid,"have_cards"));
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, " => ", doc.data());
+  
 });
 
 }
@@ -27,7 +28,3 @@ querySnapshot.forEach((doc) => {
 //   console.log(docSnap);
 
 // }
-
-
-
-

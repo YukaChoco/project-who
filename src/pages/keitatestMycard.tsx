@@ -6,8 +6,7 @@ import SinpleButton from '@/conponents/SimpleButton'
 import get from '@/utils/firebase/firestore'
 import setUserData from '@/utils/firebase/setUserData'
 import AddMyCard from '@/utils/firebase/addMyCard'
-import FirebaseLogin from '@/utils/firebase/firebaseLogin'
-
+import AddHaveCard from '@/utils/firebase/addHaveCard'
 const inter = Inter({ subsets: ['latin'] })
 
 
@@ -18,7 +17,10 @@ export default function Login() {
       <main className={styles.main}>
         <div className={styles.center}>
           <h1>LoginPage</h1>
-          <button onClick={()=>FirebaseLogin()}>Login</button>
+          {/* <button onClick={()=>AddHaveCard()}>add</button> */}
+
+          {/* 自分のカード作成してuserのmy_cardsに追加とcardsに追加 */}
+          <button onClick={()=>AddMyCard()}>addMy</button> 
           
         </div>
       </main>

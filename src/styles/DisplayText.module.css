@@ -1,0 +1,17 @@
+.DisplayText_background{
+    width:88%;
+    height: 64px;
+    padding: 5px;
+    padding-left: 15px;
+}
+
+.DisplayText_title{
+    font-size: 12px;
+    padding: 2px 0px;
+}
+
+.DisplayText_detail{
+    height: 50%;
+    padding: 4px 0px;
+    font-size: 16px;
+}
