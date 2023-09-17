@@ -11,7 +11,18 @@ import PrimaryBtn from '@/conponents/PrimaryBtn'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Index() {
-  const cardid = "card-test"
+  const data = {
+    id: "id",
+    name: "焼肉 太郎",
+    organization: "焼肉ムキムキクラブ",
+    x: "chocolatbrown",
+    instagram: "yuka__matcha",
+    others: "https://my-portfolio-yukachoco.vercel.app",
+    urlEnabled: false,
+    textColor: "string",
+    bgColor: "string",
+    onClickHandler: () => { },
+  }
   return (
     <>
       <Head>
