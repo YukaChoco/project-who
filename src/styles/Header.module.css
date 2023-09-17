@@ -1,5 +1,8 @@
 .Header_container{
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .Header_bar{
@@ -8,4 +11,8 @@
 
 .Header_icon{
     margin: 0 3px 0 0;
+}
+
+.Header_margin{
+    margin-top: 64px;
 }

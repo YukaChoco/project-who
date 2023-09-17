@@ -5,10 +5,9 @@ import Header from '@/conponents/Header'
 
 
 const inter = Inter({ subsets: ['latin'] })
-
 export default function Input() {
-  const [bool, setBool] = useState(true);
-  const [bool2, setBool2] = useState(true);
+//   const [bool, setBool] = useState(true);
+//   const [bool2, setBool2] = useState(true);
   return (
     <>
 
@@ -18,12 +17,8 @@ export default function Input() {
           onClick_menu={() => console.log('menuBtn Clicked')}
           onClick_edit={() => console.log('編集完了')}
           onClick_register={() => console.log('登録')}
-          useSearchIcon={bool}
         />
-
-        <button onClick={() => setBool(!bool)}>click</button>
-        <button onClick={() => setBool2(!bool2)}>click</button>
-        <button onClick={() => setBool(!bool)}>click</button>
+        <div className={styles.aa}></div>
       </main>
     </>
   )

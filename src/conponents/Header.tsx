@@ -14,20 +14,20 @@ interface Props {
   onClick_menu?: () => void;
   onClick_edit?: () => void;
   onClick_register?: () => void;
-  useSearchIcon?:  boolean;
 }
 
 export default function Header(props: Props) {
   return (
+    <div>
     <Box sx={{ flexGrow: 1 }} className={styles.Header_container}>
       <AppBar position="static" className={styles.Header_bar}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Who!
+            <a href="./">Who!</a>
           </Typography>
-          {/* 1.検索とメニューアイコン */}
+          {/* 1.検索アイコン */}
           {
-            (props.onClick_search !== null) &&
+            (props.onClick_search != null) &&
             <IconButton
               size="large"
               color="inherit"
@@ -38,7 +38,10 @@ export default function Header(props: Props) {
             </IconButton>
           }
 
-          <IconButton
+          {/* 2.メニューアイコン */}
+          {
+            (props.onClick_menu != null) &&
+            <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -48,29 +51,23 @@ export default function Header(props: Props) {
           >
             <MenuIcon />
           </IconButton>
+          }
 
+          {/* 3.編集完了ボタン */}
+          {
+            (props.onClick_edit != null) &&
+          <Button color="inherit" onClick={props.onClick_edit}>編集完了</Button>
+          }
 
-          {/* 2.メニューアイコンのみ */}
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            className={styles.Header_icon}
-            onClick={props.onClick_menu}
-          >
-            <MenuIcon />
-          </IconButton> */}
-
-
-          {/* 3.編集完了 */}
-          {/* <Button color="inherit" onClick={props.onClick_edit}>編集完了</Button> */}
-
-
-          {/* 4.登録 */}
-          {/* <Button color="inherit" onClick={props.onClick_register}>登録</Button> */}
+          {/* 4.登録ボタン */}
+          {
+            (props.onClick_register != null) &&
+          <Button color="inherit" onClick={props.onClick_register}>登録</Button>
+        }
         </Toolbar>
       </AppBar>
     </Box>
+    <div className={styles.Header_margin}></div>
+    </div>
   );
 }
