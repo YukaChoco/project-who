@@ -16,7 +16,7 @@ export default function DisplayCard(props: Cards) {
   return (
     <Card className={styles.cards} sx={{ backgroundColor: `${props.bgColor}` }} onClick={onClick}>
       <CardContent>
-        <Typography className={styles.belong}>
+        <Typography className={styles.belong} sx={{ color: `${props.textColor}` }}>
           {props.organization}
         </Typography>
 
@@ -29,10 +29,10 @@ export default function DisplayCard(props: Cards) {
       {/* リンク遷移 */}
       <CardActions disableSpacing className={styles.wrap}>
         {props.x &&
-          <Button size="small" onClick={() => router.push(xURL)}>@{props.x}</Button>
+          <Button size="small" onClick={() => router.push(xURL)} sx={{ color: `${props.textColor}` }}>@{props.x}</Button>
         }
         {props.instagram &&
-          <Button size="small" onClick={() => router.push(InstagramUrl)} >@{props.instagram}</Button>
+          <Button size="small" onClick={() => router.push(InstagramUrl)} sx={{ color: `${props.textColor}` }}>@{props.instagram}</Button>
         }
       </CardActions>
     </Card >
