@@ -10,10 +10,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import styles from '@/styles/Header.module.css'
 
 interface Props {
-  onClick_search?: () => void;
-  onClick_menu?: () => void;
-  onClick_edit?: () => void;
-  onClick_register?: () => void;
+    useSearchIcon?: boolean;
+    useMenuIcon?: boolean;
+    onClick_edit?: () => void;
+    onClick_register?: () => void;
 }
 
 export default function Header(props: Props) {
@@ -23,31 +23,30 @@ export default function Header(props: Props) {
       <AppBar position="static" className={styles.Header_bar}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <a href="./">Who!</a>
+            <a href="http://localhost:3000/cards">Who!</a>
           </Typography>
           {/* 1.検索アイコン */}
           {
-            (props.onClick_search != null) &&
+            (props.useSearchIcon) &&
             <IconButton
               size="large"
               color="inherit"
               className={styles.Header_icon}
-              onClick={props.onClick_search}
             >
-              <SearchIcon />
+              <a href="http://localhost:3000/upgrade"><SearchIcon /></a>
             </IconButton>
           }
 
           {/* 2.メニューアイコン */}
           {
-            (props.onClick_menu != null) &&
+            (props.useMenuIcon) &&
             <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
             className={styles.Header_icon}
-            onClick={props.onClick_menu}
+            onClick={() => console.log('menuBtn Clicked')}
           >
             <MenuIcon />
           </IconButton>
