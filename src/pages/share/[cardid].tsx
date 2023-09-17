@@ -44,7 +44,7 @@ export default function Detail() {
           </div>
           <DisplayCard
             {...data}
-            onClickHandler={() => router.push("/make/card")}
+            onClickHandler={() => {}}
           />
         </div>
         <div className={styles.returnbutton}>
