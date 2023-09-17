@@ -6,7 +6,7 @@ import addUserData from './addUserDataComp'
 import AddMyCardComp from "./addMyCaredComp";
 import AddtoCardsComp from "./addtoCardscomp";
 import firestore from "./firestore";
-import getHaveCardsComp from "./getHavecardIdComp";
+import getHaveCardsComp from "./getHaveCardIdComp";
 
 
 export default async function getHaveCards() {  
