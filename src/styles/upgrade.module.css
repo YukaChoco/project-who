@@ -1,15 +1,15 @@
 .main {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    min-height: 100vh;
-    background-color: #fff;
-  }
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  background-color: #fff;
+}
 
-  .text{
+.text{
     margin-top: 50px;
     height: 40vh;
     display: flex;
@@ -17,7 +17,7 @@
 	align-items: center;
   }
 
-  .Btn_wrapper{
-    width: 100%;
-    text-align: center;
-  }
+.Btn_wrapper {
+  width: 100%;
+  text-align: center;
+}
