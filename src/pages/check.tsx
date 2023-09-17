@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import type { Cards } from '@/types/Cards'
 import DisplayCard from '@/conponents/Card'
+import MakeNewCard from '@/conponents/NewCard'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,10 +22,12 @@ export default function Home() {
             instagram={"yakiyaki"}
             others={"xxx"}
             urlEnabled={false}
-            textColor= {"#0FF"}
+            textColor= {"#000"}
             bgColor={"#FFF"}
             onClickHandler={()=>{}}
             />
+
+            <MakeNewCard/>
         </div>
       </main>
     </>
