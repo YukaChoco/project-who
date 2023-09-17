@@ -1,14 +1,30 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Index.module.css'
+import styles from '@/styles/card-detail.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Header from '@/conponents/Header'
+import Card from '@/conponents/Card'
+import DisplayText from '@/conponents/DisplayText'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Detail() {
   const router = useRouter();
   const cardid = router.query.cardid as string;
+  const data = {
+    id: "id",
+    name: "焼肉 太郎",
+    organization: "焼肉ムキムキクラブ",
+    x: "chocolatbrown",
+    instagram: "yuka__matcha",
+    others: "https://my-portfolio-yukachoco.vercel.app",
+    urlEnabled: false,
+    textColor: "string",
+    bgColor: "string",
+    onClickHandler: () => { },
+  }
   return (
     <>
       <Head>
@@ -17,18 +33,31 @@ export default function Detail() {
         <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main className={styles.main}>
-        ここは{cardid}のページです
-        <Link href="/" className={styles.link}>ホーム</Link>
-        <Link href="/cards" className={styles.link}>名刺一覧</Link>
-        <Link href="/mycards" className={styles.link}>自分の名刺一覧</Link>
-        <Link href={`/card/${cardid}`} className={styles.link}>名刺詳細</Link>
-        <Link href={'/make/card'} className={styles.link}>名刺作成</Link>
-        <Link href={'/make/mycard'} className={styles.link}>他人の名刺作成</Link>
-        <Link href={`/share?id=${cardid}`} className={styles.link}>名刺交換</Link>
-        <Link href={'/upgrade'} className={styles.link}>課金</Link>
-        <Link href={'/warning'} className={styles.link}>警告</Link>
-        <Link href={'/error'} className={styles.link}>エラー</Link>
+        <Header useSearchIcon　useMenuIcon/>
+        <div className={styles.card_container}>
+          <div className={styles.card}>
+            <Card id={data.id} name={data.name} organization={data.organization} x={data.x} instagram={data.instagram} others={data.others} urlEnabled={data.urlEnabled} textColor={data.textColor} bgColor={data.bgColor} onClickHandler={() => console.log('完了')}/>
+          </div>
+        </div>
+        <div className={styles.info}>
+          <div className={styles.infoitem1}>
+          <DisplayText title="氏名" detail={data.name}/ >
+          </div>
+          <div className={styles.infoitem}>
+          <DisplayText title="X" detail={data.x}/>
+          </div>
+          <div className={styles.infoitem}>
+          <DisplayText title="Instagram" detail={data.instagram}/>
+          </div>
+          <div className={styles.infoitem}>
+          <DisplayText title="Facebook" detail="@"/>
+          </div>
+          <div className={styles.infoitem}>
+          <DisplayText title="Qiita" detail=""/>
+          </div>
+        </div>
       </main>
     </>
   )
