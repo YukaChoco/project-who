@@ -4,15 +4,16 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { ToggleButtonProps } from '@mui/material/ToggleButton';
 
 type Props = {
-    leftName?: string;
-    rightName?: string;
-    value?: string;
-    onChange?: ToggleButtonProps['onChange']
+  leftName: string;
+  rightName: string;
+  value: string;
+  onChange?: ToggleButtonProps['onChange']
 }
 
-export default function SwitchButton(props:Props) {
-    
-    return (
+export default function SwitchButton(props: Props) {
+
+  return (
+    <>
       <ToggleButtonGroup
         color="primary"
         value={props.value}
@@ -20,14 +21,16 @@ export default function SwitchButton(props:Props) {
         fullWidth
         onChange={props.onChange}
         aria-label="Platform"
-        sx={{
-            height: 20,
-            width: "100%",
+        sx={{//ここでCSSあてるか、module.cssのファイルを使ってあてるか
+          height: 20,
+          width: '100%',
+          padding: '12px',
         }}
       >
-        <ToggleButton value="leftName">{props.leftName}</ToggleButton>
-        <ToggleButton value="rigntName">{props.rightName}</ToggleButton>
+        <ToggleButton value={props.leftName}>{props.leftName}</ToggleButton>
+        <ToggleButton value={props.rightName}>{props.rightName}</ToggleButton>
 
       </ToggleButtonGroup>
-    );
-  }
+    </>
+  );
+}
