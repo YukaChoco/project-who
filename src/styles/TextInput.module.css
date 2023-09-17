@@ -1,9 +1,8 @@
-.NameInput{
+.TextInput{
     width: 95%;
-    max-width: 100%;
 }
 
-.NameInput_background{
+.TextInput_background{
     text-align: center;
     background-color: #F4F5FC;
     border-radius: 5px;

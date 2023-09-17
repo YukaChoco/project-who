@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/TestKotaro.module.css'
-import NameInput from '@/conponents/NameInput'
+import TextInput from '@/conponents/TextInput'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
 import SecondaryBtn from '@/conponents/SecondaryBtn'
 import ColorPicker from '@/conponents/ColorPicker'
@@ -27,6 +27,14 @@ export default function Input() {
     setOrganization(event.target.value);
   }
 
+  function hundleTextColor(event: React.ChangeEvent<HTMLInputElement>) {
+    setTextColor(event.target.value);
+  }
+
+  function hundleBgColor(event: React.ChangeEvent<HTMLInputElement>) {
+    setBgColor(event.target.value);
+  }
+
   //hundleTextColorついか
   console.log(textColor);
 
@@ -35,23 +43,23 @@ export default function Input() {
       <main className={styles.main}>
         <PrimaryBtn text="ログイン" onClick={() => console.log('PrimaryBtn Clicked')} />
         <SecondaryBtn text="新規登録" onClick={() => console.log('Secondarybtn Clicked')} />
-        <NameInput
+        <TextInput
           text="氏名"
           value={name}
           onChange={hundleName}
         />
-        <NameInput
+        <TextInput
           text="X"
           value={x}
           onChange={hundleX}
         />
-        <NameInput
+        <TextInput
           text="所属団体"
           value={organization}
           onChange={hundleOrganization}
         />
-        <ColorPicker text="文字色" />
-        <ColorPicker text="背景色" />
+        <ColorPicker text="文字色" value={textColor} onChange={hundleTextColor}/>
+        <ColorPicker text="背景色" value={bgColor} onChange={hundleBgColor}/>
       </main>
     </>
   )

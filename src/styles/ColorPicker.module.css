@@ -1,5 +1,4 @@
 .ColorPicker_background{
-    position: relative;
     text-align: center;
     background-color: #F4F5FC;
     border-radius: 5px;
@@ -9,8 +8,10 @@
 }
 
 .ColorPicker_background p{
-    font-size: 14px;
-    margin: 20px 0 20px 5px;
+    position: absolute;
+    font-size: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     float: left;
     left: 0;
 }
@@ -19,5 +20,18 @@
     float: left;
     position: absolute;
     right: 0;
-    margin: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    background-color: #F4F5FC;
+}
+
+.ColorPicker_container{
+    position: relative;
+    margin: 0 auto;
+    width: 88%;
+    height: 100%;
 }
