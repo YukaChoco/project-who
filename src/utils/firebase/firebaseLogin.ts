@@ -1,20 +1,14 @@
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from '@/firebase'
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider ,onAuthStateChanged } from "firebase/auth";
 
 import addUserData from './addUserData'
 
 
-export default async function firebaseLogin() {
-  const docData = {
-    id: "test_add_id5",
-    fileld:{
-      name: "test_add_name",
-    }
-  };
+export default async function firebaseLogin() {  
   const provider = new GoogleAuthProvider();
   
-  addUserData(docData);
+  
   await signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -36,6 +30,26 @@ export default async function firebaseLogin() {
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
+    });
+
+
+    //現在ログインしているユーザーを取得する
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        const docData = {
+          id: uid,
+          fileld:{
+            name: "test_add_name",
+          }
+        };
+        addUserData(docData);
+      } else {
+        // User is signed out
+        // ...
+      }
     });
 }
 
