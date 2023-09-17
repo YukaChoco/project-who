@@ -3,8 +3,6 @@ import Image from 'next/image'
 import * as React from 'react';
 import { Inter } from 'next/font/google'
 import styles from '@/styles/YuipiSwitch.module.css'
-import SinpleButton from '@/conponents/SimpleButton'
-import getCards from '@/hooks/getCards'
 import SwitchButton from '@/conponents/SwitchButton'
 import { useState } from 'react';
 
