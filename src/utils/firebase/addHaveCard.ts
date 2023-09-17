@@ -3,11 +3,10 @@ import { auth, db } from '@/firebase'
 import { getAuth, signInWithPopup, GoogleAuthProvider ,onAuthStateChanged } from "firebase/auth";
 
 import addUserData from './addUserDataComp'
-import AddMyCardComp from "./addMyCaredComp";
-import AddtoCardsComp from "./addtoCardscomp";
+import AddHaveCardComp from "./addHaveCaredComp";
 
 
-export default async function AddMyCard() {  
+export default async function AddHaveCard() {  
 
     //現在ログインしているユーザーを取得する
     onAuthStateChanged(auth, (user) => {
@@ -17,20 +16,10 @@ export default async function AddMyCard() {
         const uid = user.uid;
         const docData = {
           userid: uid,
-            field:{
-              mycardid:"これ",
-              name:"test",
-              x:"test",
-              Instagram:"test",
-              others:"test",
-              organizatiton:"test",
-              text_color:"test",
-              bg_color:"test",
-              }
+          havecardid:"これ",
         };
-        AddMyCardComp(docData);
-        AddtoCardsComp(docData);
-        console.log(uid)
+        AddHaveCardComp(docData);
+        console.log(docData.havecardid)
       } else {
         // User is signed out
         // ...
