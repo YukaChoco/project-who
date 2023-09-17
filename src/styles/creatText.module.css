@@ -1,0 +1,32 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.card{
+  margin-top: 0;
+}
+
+.swith{
+  width: 100%;
+  margin: 0.725em;
+}
+.space{
+  margin:0.75em
+}
+
+
+.preview{
+  width: 100%;
+  align-items: left;
+  margin-top: 1em;
+  padding-left: 1em;
+  font-size: small;
+
+}

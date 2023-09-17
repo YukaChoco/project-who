@@ -16,3 +16,8 @@
 .Header_margin{
     margin-top: 64px;
 }
+
+.font{
+    font-family: 'Kiwi Maru', serif;
+  font-family: 'Lemon', cursive;
+}
