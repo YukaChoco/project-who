@@ -1,12 +1,29 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Index.module.css'
+import styles from '@/styles/Mycards.module.css'
 import Link from 'next/link'
+import Header from '@/conponents/Header'
+import Card from '@/conponents/Card'
+import DisplayCard from '@/conponents/Card'
+import MakeNewCard from '@/conponents/NewCard'
+import PrimaryBtn from '@/conponents/PrimaryBtn'
+import router from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Index() {
-  const cardid = "card-test"
+  const data = {
+    id: "id",
+    name: "ゆうか",
+    organization: "watnow",
+    x: "chocolatbrown",
+    instagram: "yuka__matcha",
+    others: "https://my-portfolio-yukachoco.vercel.app",
+    urlEnabled: true,
+    textColor: "#A56A7F",
+    bgColor: "#F4EBEF",
+    onClickHandler: () => { },
+  }
   return (
     <>
       <Head>
@@ -16,16 +33,19 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Link href="/" className={styles.link}>ホーム</Link>
-        <Link href="/cards" className={styles.link}>名刺一覧</Link>
-        <Link href="/mycards" className={styles.link}>自分の名刺一覧</Link>
-        <Link href={`/card/${cardid}`} className={styles.link}>名刺詳細</Link>
-        <Link href={'/make/card'} className={styles.link}>名刺作成</Link>
-        <Link href={'/make/mycard'} className={styles.link}>他人の名刺作成</Link>
-        <Link href={`/share?id=${cardid}`} className={styles.link}>名刺交換</Link>
-        <Link href={'/upgrade'} className={styles.link}>課金</Link>
-        <Link href={'/warning'} className={styles.link}>警告</Link>
-        <Link href={'/error'} className={styles.link}>エラー</Link>
+        {/* <Link href="/" className={styles.link}>ホーム</Link> */}
+        <Header useMenuIcon />
+
+        <div className={styles.cardlist}>
+          <DisplayCard
+            {...data}
+            onClickHandler={() => router.push("/make/card")}
+          />
+          <MakeNewCard />
+        </div>
+        <div className={styles.returnbutton}>
+          <PrimaryBtn text={'ホームに戻る'} onClick={()=>router.push("/cards")}/>
+        </div>
       </main>
     </>
   )
