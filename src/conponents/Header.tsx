@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styles from '@/styles/Header.module.css'
+import Head from 'next/head';
 
 interface Props {
   useSearchIcon?: boolean;
@@ -19,11 +20,17 @@ interface Props {
 export default function Header(props: Props) {
   return (
     <div>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com"  />
+        <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&family=Lemon&display=swap" rel="stylesheet" />
+      </Head>
+
       <Box sx={{ flexGrow: 1 }} className={styles.Header_container}>
         <AppBar position="static" className={styles.Header_bar} sx={{ height: '58px' }}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <a href="http://localhost:3000/cards">Who!</a>
+              <a href="http://localhost:3000/cards" className={styles.font}>Who!</a>
             </Typography>
             {/* 1.検索アイコン */}
             {
