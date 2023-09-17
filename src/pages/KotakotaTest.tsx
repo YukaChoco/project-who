@@ -12,7 +12,12 @@ export default function Input() {
     <>
 
       <main className={styles.main}>
-            <Header />
+            <Header
+            onClick_search={() => console.log('searchBtn Clicked')}
+            onClick_menu={() => console.log('menuBtn Clicked')}
+            onClick_edit={() => console.log('編集完了')}
+            onClick_register={() => console.log('登録')}
+            />
         </main>
     </>
   )

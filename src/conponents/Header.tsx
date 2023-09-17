@@ -9,9 +9,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styles from '@/styles/Header.module.css'
 
+interface Props {
+    onClick_search?: () => void;
+    onClick_menu?: () => void;
+    onClick_edit?: () => void;
+    onClick_register?: () => void;
+}
 
-
-export default function Header() {
+export default function Header(props:Props) {
   return (
     <Box sx={{ flexGrow: 1 }} className={styles.Header_container}>
       <AppBar position="static" className={styles.Header_bar}>
@@ -20,14 +25,23 @@ export default function Header() {
             Who!
           </Typography>
           {/* 1.検索とメニューアイコン */}
-          {/* <IconButton size="large" color="inherit" className={styles.Header_icon}><SearchIcon /></IconButton>
+          {/* <IconButton
+            size="large"
+            color="inherit"
+            className={styles.Header_icon}
+            onClick={props.onClick_search}
+            >
+            <SearchIcon />
+            </IconButton>
+
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="menu"
             className={styles.Header_icon}
-          >
+            onClick={props.onClick_menu}
+            >
             <MenuIcon />
           </IconButton> */}
 
@@ -39,17 +53,18 @@ export default function Header() {
             color="inherit"
             aria-label="menu"
             className={styles.Header_icon}
+            onClick={props.onClick_menu}
           >
             <MenuIcon />
           </IconButton> */}
 
 
           {/* 3.編集完了 */}
-          {/* <Button color="inherit">編集完了</Button> */}
+          {/* <Button color="inherit" onClick={props.onClick_edit}>編集完了</Button> */}
 
 
           {/* 4.登録 */}
-          {/* <Button color="inherit">登録</Button> */}
+          {/* <Button color="inherit" onClick={props.onClick_register}>登録</Button> */}
         </Toolbar>
       </AppBar>
     </Box>
