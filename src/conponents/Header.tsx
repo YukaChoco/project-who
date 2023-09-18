@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styles from '@/styles/Header.module.css'
 import Head from 'next/head';
+import Drawer from '@/conponents/Drawer'
 
 interface Props {
   useSearchIcon?: boolean;
@@ -48,16 +49,7 @@ export default function Header(props: Props) {
             {/* 2.メニューアイコン */}
             {
               (props.useMenuIcon) &&
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                className={styles.Header_icon}
-                onClick={() => console.log('menuBtn Clicked')}
-              >
-                <MenuIcon />
-              </IconButton>
+              <><Drawer /></>
             }
 
             {/* 3.編集完了ボタン */}
