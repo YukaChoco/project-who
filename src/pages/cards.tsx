@@ -7,6 +7,7 @@ import DisplayCard from '@/conponents/Card'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
 import router from 'next/router'
 import { GetCards } from '@/types/GetCards'
+import ShareButton from '@/conponents/ShareButton'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -89,9 +90,8 @@ export default function Index() {
         <div className={styles.cardlist}>
           {display}
         </div>
-        <div className={styles.returnbutton}>
-          <PrimaryBtn text={'ホームに戻る'} onClick={() => router.push("/cards")} />
-        </div>
+        
+        <ShareButton id="68nUIBWcWlpw2sJV3wGh"/>
       </main>
     </>
   )
