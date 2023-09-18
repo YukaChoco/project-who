@@ -37,22 +37,21 @@ export default function Drawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List className={styles.drawer}>
-        <ListItem key={'名刺の作成'} disablePadding>
-          <ListItemButton>
-            <a href="http://localhost:3000/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} className={styles.drawer_item} /></a>
-          </ListItemButton>
-        </ListItem>
-        <ListItem key={'アカウントメモの追加'} disablePadding>
-          <ListItemButton>
-            <a href="http://localhost:3000/make/card"><ListItemText primary={'　アカウントメモの追加　'} className={styles.drawer_item} /></a>
-          </ListItemButton>
-        </ListItem>
-        <ListItem key={'￥Up grade'} disablePadding>
-          <ListItemButton>
-            <a href="http://localhost:3000/upgrade"><ListItemText primary={'　￥Up grade　　　　　　'} className={styles.drawer_item} /></a>
-          </ListItemButton>
-        </ListItem>
+      <List className={styles.drawer}>sablePadding>
+            <ListItemButton>
+              <a href="https://whooo.netlify.app/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} className={styles.drawer_item} /></a>
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={'アカウントメモの追加'} disablePadding>
+            <ListItemButton>
+            <a href="https://whooo.netlify.app/make/card"><ListItemText primary={'　アカウントメモの追加　'} className={styles.drawer_item} /></a>
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={'￥Up grade'} disablePadding>
+            <ListItemButton>
+            <a href="https://whooo.netlify.app/upgrade"><ListItemText primary={'　￥Up grade　　　　　　'} className={styles.drawer_item} /></a>
+            </ListItemButton>
+          </ListItem>
       </List>
     </Box>
   );
