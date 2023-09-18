@@ -31,7 +31,7 @@ export default function Header(props: Props) {
         <AppBar position="static" className={styles.Header_bar} sx={{ height: '58px' }}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <a href="http://localhost:3000/cards" className={styles.font}>Who!</a>
+              <a href="https://whooo.netlify.app/cards" className={styles.font}>Who!</a>
             </Typography>
             {/* 1.検索アイコン */}
             {
