@@ -60,7 +60,7 @@ export default function Detail() {
             <DisplayText title="orgnization" detail={data.organization}/>
           </div>
         </div>
-        <ShareButton text="https://whooo.netlify.app/share/id=ida-iu-eo-"/>
+        <ShareButton id="68nUIBWcWlpw2sJV3wGh"/>
       </main>
     </>
   )
