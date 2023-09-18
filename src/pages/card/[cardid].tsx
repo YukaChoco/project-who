@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import Header from '@/conponents/Header'
 import Card from '@/conponents/Card'
 import DisplayText from '@/conponents/DisplayText'
+import ShareButton from '@/conponents/ShareButton'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -59,6 +60,7 @@ export default function Detail() {
             <DisplayText title="orgnization" detail={data.organization}/>
           </div>
         </div>
+        <ShareButton text="https://whooo.netlify.app/share/id=ida-iu-eo-"/>
       </main>
     </>
   )

@@ -2,15 +2,20 @@ import * as React from 'react';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import styles from '@/styles/Login.module.css'
 import IconButton from '@mui/material/IconButton';
+import router from 'next/router';
 
 interface Props {
-    onClick: () => void
+    // onClick?: () => void;
+    // onClickHandler?: ()=>void;
+    // urlEnabled?: boolean;
+    text:string;
 }
 
 export default function ShareButton(props: Props) {
+    // const onClick = props.urlEnabled ? props.onClickHandler : () => { };
+    // const URL = props.urlEnabled ? `${props.text}` : '';
     return (
         <IconButton
-            onClick={props.onClick}
             size='large'
             sx={{
                 position: 'fixed',
@@ -20,7 +25,7 @@ export default function ShareButton(props: Props) {
                 color: "white",
                 ":hover": { background: "#6F80BF" },
             }}>
-            <ShareOutlinedIcon fontSize="large" />
+            <ShareOutlinedIcon fontSize="large" onClick={() => router.push(props.text)}/>
         </IconButton>
 
 
