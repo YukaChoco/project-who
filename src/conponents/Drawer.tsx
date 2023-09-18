@@ -6,7 +6,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import IconButton from '@mui/material/IconButton';
 import styles from '@/styles/Drawer.module.css'
+import MenuIcon from '@mui/icons-material/Menu';
 
 type Anchor = 'right';
 
@@ -18,18 +20,18 @@ export default function Drawer() {
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event &&
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
+      (event: React.KeyboardEvent | React.MouseEvent) => {
+        if (
+          event &&
+          event.type === 'keydown' &&
+          ((event as React.KeyboardEvent).key === 'Tab' ||
+            (event as React.KeyboardEvent).key === 'Shift')
+        ) {
+          return;
+        }
 
-      setState({ ...state, [anchor]: open });
-    };
+        setState({ ...state, [anchor]: open });
+      };
 
   const list = (anchor: Anchor) => (
     <Box
@@ -40,17 +42,17 @@ export default function Drawer() {
       <List className={styles.drawer}>
           <ListItem key={'名刺の作成'} disablePadding>
             <ListItemButton>
-              <a href="http://localhost:3000/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} className={styles.drawer_item} /></a>
+              <a href="https://whooo.netlify.app/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} className={styles.drawer_item} /></a>
             </ListItemButton>
           </ListItem>
           <ListItem key={'アカウントメモの追加'} disablePadding>
             <ListItemButton>
-            <a href="http://localhost:3000/make/card"><ListItemText primary={'　アカウントメモの追加　'} className={styles.drawer_item} /></a>
+            <a href="https://whooo.netlify.app/make/card"><ListItemText primary={'　アカウントメモの追加　'} className={styles.drawer_item} /></a>
             </ListItemButton>
           </ListItem>
           <ListItem key={'￥Up grade'} disablePadding>
             <ListItemButton>
-            <a href="http://localhost:3000/upgrade"><ListItemText primary={'　￥Up grade　　　　　　'} className={styles.drawer_item} /></a>
+            <a href="https://whooo.netlify.app/upgrade"><ListItemText primary={'　￥Up grade　　　　　　'} className={styles.drawer_item} /></a>
             </ListItemButton>
           </ListItem>
       </List>
@@ -58,10 +60,20 @@ export default function Drawer() {
   );
 
   return (
-    <div >
-      {([ 'right'] as const).map((anchor) => (
+    <div>
+      {(['right'] as const).map((anchor) => (
         <React.Fragment key={anchor} >
-          <Button onClick={toggleDrawer(anchor, true)}>めにゅー</Button>
+          <IconButton
+          onClick={toggleDrawer(anchor, true)}
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                className={styles.Header_icon}
+                // onClick={() => console.log('menuBtn Clicked')}
+              >
+                <MenuIcon />
+              </IconButton>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}

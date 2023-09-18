@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styles from '@/styles/Header.module.css'
 import Head from 'next/head';
+import Drawer from '@/conponents/Drawer'
 
 interface Props {
   useSearchIcon?: boolean;
@@ -31,7 +32,7 @@ export default function Header(props: Props) {
         <AppBar position="static" className={styles.Header_bar} sx={{ height: '58px' }}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <a href="http://localhost:3000/cards" className={styles.font}>Who!</a>
+              <a href="https://whooo.netlify.app/cards" className={styles.font}>Who!</a>
             </Typography>
             {/* 1.検索アイコン */}
             {
@@ -41,23 +42,14 @@ export default function Header(props: Props) {
                 color="inherit"
                 className={styles.Header_icon}
               >
-                <a href="http://localhost:3000/upgrade"><SearchIcon /></a>
+                <a href="https://whooo.netlify.app/upgrade"><SearchIcon /></a>
               </IconButton>
             }
 
             {/* 2.メニューアイコン */}
             {
               (props.useMenuIcon) &&
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                className={styles.Header_icon}
-                onClick={() => console.log('menuBtn Clicked')}
-              >
-                <MenuIcon />
-              </IconButton>
+              <><Drawer /></>
             }
 
             {/* 3.編集完了ボタン */}
