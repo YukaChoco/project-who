@@ -38,9 +38,9 @@ export default function Detail() {
         <div className={styles.list}>
           <Header useMenuIcon />
           <div className={styles.qrcode}>
-            <QRCode url={`https://whooo.netlify.app/share/${data.id}`}/>
-            </div>
-          
+            <QRCode url={`https://whooo.netlify.app/card/${data.id}`} />
+          </div>
+
           <div className={styles.swipe}>
             <svg width="107" height="60" viewBox="0 0 107 60" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M53.5 0L106.761 59.25H0.239437L53.5 0Z" fill="#DCDBE8" />
@@ -48,11 +48,12 @@ export default function Detail() {
           </div>
           <DisplayCard
             {...data}
-            onClickHandler={() => {}}
+            onClickHandler={() => { }}
           />
         </div>
+        <div style={{ height: '50px' }} />
         <div className={styles.returnbutton}>
-          <PrimaryBtn text={'ホームに戻る'} onClick={()=>router.push("/cards")}/>
+          <PrimaryBtn text={'ホームに戻る'} onClick={() => router.push("/cards")} />
         </div>
 
       </main>
