@@ -15,15 +15,15 @@ export default function Detail() {
   const router = useRouter();
   const cardid = router.query.cardid as string;
   const data = {
-    id: "id",
-    name: "焼肉 太郎",
-    organization: "焼肉ムキムキクラブ",
-    x: "chocolatbrown",
-    instagram: "yuka__matcha",
-    others: "https://my-portfolio-yukachoco.vercel.app",
+    id: "2",
+    name: "こたろう",
+    organization: "watnow",
+    x: "id",
+    instagram: "kkkk",
+    others: "https://my-portfolio-yukachoco.vercel.app/",
     urlEnabled: true,
-    textColor: "#895546",
-    bgColor: "#0f0981",
+    textColor: "#def190",
+    bgColor: "#124c6b",
     onClickHandler: () => { },
   }
 
