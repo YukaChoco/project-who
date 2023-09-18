@@ -7,6 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import styles from '@/styles/Drawer.module.css'
+import MenuIcon from '@mui/icons-material/Menu';
 
 type Anchor = 'right';
 
@@ -61,7 +62,9 @@ export default function Drawer() {
     <div >
       {([ 'right'] as const).map((anchor) => (
         <React.Fragment key={anchor} >
-          <Button onClick={toggleDrawer(anchor, true)}>めにゅー</Button>
+          <Button onClick={toggleDrawer(anchor, true)} className={styles.button}>
+            <MenuIcon className={styles.menuicon}/>
+          </Button>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}

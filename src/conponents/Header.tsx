@@ -10,6 +10,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styles from '@/styles/Header.module.css'
 import Head from 'next/head';
+import Drawer from './Drawer';
+import { Anchor } from '@mui/icons-material';
 
 interface Props {
   useSearchIcon?: boolean;
@@ -56,7 +58,8 @@ export default function Header(props: Props) {
                 className={styles.Header_icon}
                 onClick={() => console.log('menuBtn Clicked')}
               >
-                <MenuIcon />
+                <Drawer/>
+                {/* <MenuIcon /> */}
               </IconButton>
             }
 
