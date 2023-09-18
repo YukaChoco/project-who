@@ -6,7 +6,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import IconButton from '@mui/material/IconButton';
 import styles from '@/styles/Drawer.module.css'
+import MenuIcon from '@mui/icons-material/Menu';
 
 type Anchor = 'right';
 
@@ -37,7 +39,8 @@ export default function Drawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List className={styles.drawer}>sablePadding>
+      <List className={styles.drawer}>
+          <ListItem key={'名刺の作成'} disablePadding>
             <ListItemButton>
               <a href="https://whooo.netlify.app/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} className={styles.drawer_item} /></a>
             </ListItemButton>
@@ -57,10 +60,20 @@ export default function Drawer() {
   );
 
   return (
-    <div >
+    <div>
       {(['right'] as const).map((anchor) => (
         <React.Fragment key={anchor} >
-          <Button onClick={toggleDrawer(anchor, true)}>めにゅー</Button>
+          <IconButton
+          onClick={toggleDrawer(anchor, true)}
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                className={styles.Header_icon}
+                // onClick={() => console.log('menuBtn Clicked')}
+              >
+                <MenuIcon />
+              </IconButton>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
