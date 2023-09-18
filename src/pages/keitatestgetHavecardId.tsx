@@ -10,7 +10,7 @@ import AddHaveCard from '@/utils/firebase/addHaveCard'
 const inter = Inter({ subsets: ['latin'] })
 import firestore from '@/utils/firebase/firestore'
 import getHaveCards from '@/utils/firebase/getHaveCards'
-
+import getMyCards from '@/utils/firebase/getMyCards'
 
 export default function Login() {
   const docData = {
@@ -26,7 +26,7 @@ export default function Login() {
           
 
           {/*　userのhave_cardsに追加 */}
-          <button onClick={()=>getHaveCards()}>get</button>
+          <button onClick={()=>getMyCards()}>get</button>
 
           
           
