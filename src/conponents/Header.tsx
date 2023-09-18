@@ -41,7 +41,7 @@ export default function Header(props: Props) {
                 color="inherit"
                 className={styles.Header_icon}
               >
-                <a href="http://localhost:3000/upgrade"><SearchIcon /></a>
+                <a href="https://whooo.netlify.app/upgrade"><SearchIcon /></a>
               </IconButton>
             }
 
