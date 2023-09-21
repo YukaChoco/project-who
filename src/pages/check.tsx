@@ -21,8 +21,8 @@ export default function Home() {
             instagram={"yakiyaki"}
             others={"xxx"}
             urlEnabled={true}
-            textColor= {"#0FF"}
-            bgColor={"#FFF"}
+            textColor= {"#6338f1"}
+            bgColor={"#c8fc29"}
             onClickHandler={()=>{console.log('card clicked')}}
             />
 
