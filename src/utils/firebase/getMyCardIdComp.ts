@@ -6,7 +6,7 @@ interface Props {
   userid: string;
 }
 
-export default async function getMyCardsComp(docData:Props) {
+export default async function getMyCardIdComp(docData:Props) {
 const querySnapshot = await getDocs(collection(db, "users", docData.userid,"my_cards"));
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots

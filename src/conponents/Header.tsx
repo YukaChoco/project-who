@@ -11,6 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import styles from '@/styles/Header.module.css'
 import Head from 'next/head';
 import Drawer from '@/conponents/Drawer'
+import Link from 'next/link'
 
 interface Props {
   useSearchIcon?: boolean;
@@ -32,7 +33,7 @@ export default function Header(props: Props) {
         <AppBar position="static" className={styles.Header_bar} sx={{ height: '58px' }}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <a href="https://whooo.netlify.app/cards" className={styles.font}>Who!</a>
+              <Link href="/cards" className={styles.font}>Who!</Link>
             </Typography>
             {/* 1.検索アイコン */}
             {
@@ -42,7 +43,7 @@ export default function Header(props: Props) {
                 color="inherit"
                 className={styles.Header_icon}
               >
-                <a href="https://whooo.netlify.app/upgrade"><SearchIcon /></a>
+                <Link href="/upgrade"><SearchIcon /></Link>
               </IconButton>
             }
 
