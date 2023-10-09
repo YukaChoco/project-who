@@ -70,7 +70,7 @@ export default function Index() {
       <DisplayCard
         key={data.id}
         {...data}
-        onClickHandler={() => router.push("/card/data.id")}
+        onClickHandler={() => router.push(`/card/${data.id}`)}
       />
     );
   })

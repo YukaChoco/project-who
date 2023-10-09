@@ -3,20 +3,16 @@
   flex-direction: column;
   align-items: center;
   justify-items: center;
-  padding: 0;
-  margin: 0;
+  padding-top: 58px;
   min-height: 100vh;
   background-color: #fff;
 }
 
 .card{
   margin-top: 0;
+  margin-bottom: 24px;
 }
 
-.swith{
-  width: 100%;
-  margin: 0.725em;
-}
 .space{
   margin:0.75em
 }
@@ -28,5 +24,4 @@
   margin-top: 1em;
   padding-left: 1em;
   font-size: small;
-
 }
