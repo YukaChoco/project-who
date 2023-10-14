@@ -11,8 +11,15 @@ export default function DisplayText(props: Details) {
         <p>{props.title}</p>
       </div>
       <div className={styles.detail}>
-        @<Link href={props.url || '/'}>{props.detail}</Link>
+        @
+        {
+          props.url
+            ?
+            <Link href={props.url}>{props.detail}</Link>
+            :
+            <span>{props.detail}</span>
+        }
       </div>
-    </div>
+    </div >
   )
 }
