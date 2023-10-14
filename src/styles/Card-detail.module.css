@@ -1,34 +1,18 @@
 .main {
-    justify-content: space-between;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #fff;
-    padding-top: 58px;
-    margin: 0;
-  }
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 58px;
+  padding: 0px 20px;
+  background-color: #fff;
+  color: black;
+}
 
-  .card{
-    display: inline-block;
-  }
+.card {
+  margin-top: 15px 0px;
+}
 
-  .card_container{
-    margin: 30px 0;
-    text-align:  center;
-  }
-
-  .info{
-    width: 75%;
-    margin: 0 auto;
-  }
-
-  .infoitem1{
-    background-color:
-    #F4F5FC;
-    margin-bottom: 10px;
-  }
-
-  .infoitem{
-    background-color:
-    #F4F5FC;
-    border-bottom:1px solid ;
-  }
+.infoitem {
+  background-color: #F4F5FC;
+  border-radius: 5px;
+  margin-top: 15px;
+}
