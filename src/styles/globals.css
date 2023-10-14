@@ -69,7 +69,8 @@ body {
 body {
   color: rgb(var(--foreground-rgb));
   background-color: white;
-  margin-top: 60px;
+  margin: 80px 22px 0px 22px;
+  min-height: 100vh;
 }
 
 a {
