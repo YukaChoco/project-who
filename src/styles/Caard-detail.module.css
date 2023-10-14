@@ -1,0 +1,34 @@
+.main {
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fff;
+    padding-top: 58px;
+    margin: 0;
+  }
+
+  .card{
+    display: inline-block;
+  }
+
+  .card_container{
+    margin: 30px 0;
+    text-align:  center;
+  }
+
+  .info{
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .infoitem1{
+    background-color:
+    #F4F5FC;
+    margin-bottom: 10px;
+  }
+
+  .infoitem{
+    background-color:
+    #F4F5FC;
+    border-bottom:1px solid ;
+  }
