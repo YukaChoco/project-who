@@ -10,7 +10,7 @@ import router from 'next/router';
 
 export default function DisplayCard(props: Cards) {
   const onClick = props.urlEnabled ? props.onClickHandler : () => { };
-  const xURL = props.urlEnabled ? `s://twhttpitter.com/${props.x}` : '';
+  const xURL = props.urlEnabled ? `https://twitter.com/${props.x}` : '';
   const InstagramUrl = props.urlEnabled ? `https://instagram.com/${props.instagram}` : '';
 
   return (
