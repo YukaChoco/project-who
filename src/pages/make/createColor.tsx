@@ -22,30 +22,30 @@ export default function Input() {
   const [textColor, setTextColor] = useState<string>('');
   const [bgColor, setBgColor] = useState<string>('');
 
-  function hundleName(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleName(event: React.ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
   }
 
-  function hundleX(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleX(event: React.ChangeEvent<HTMLInputElement>) {
     setX(event.target.value);
   }
-  function hundleOrganization(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleOrganization(event: React.ChangeEvent<HTMLInputElement>) {
     setOrganization(event.target.value);
   }
 
-  function hundleTextColor(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleTextColor(event: React.ChangeEvent<HTMLInputElement>) {
     setTextColor(event.target.value);
   }
 
-  function hundleBgColor(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleBgColor(event: React.ChangeEvent<HTMLInputElement>) {
     setBgColor(event.target.value);
   }
 
-  function hundleinstagram(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleinstagram(event: React.ChangeEvent<HTMLInputElement>) {
     setInstagram(event.target.value);
   }
 
-  // function hundleother(event: React.ChangeEvent<HTMLInputElement>) {
+  // function handleother(event: React.ChangeEvent<HTMLInputElement>) {
   //   setOthers(event.target.value);
   // }
 
@@ -99,8 +99,8 @@ export default function Input() {
                     if (mode=="デザイン") {
                       return(
                         <div>
-                          <ColorPicker text="文字色" value={textColor} onChange={hundleTextColor} />
-                          <ColorPicker text="背景色" value={bgColor} onChange={hundleBgColor} />
+                          <ColorPicker text="文字色" value={textColor} onChange={handleTextColor} />
+                          <ColorPicker text="背景色" value={bgColor} onChange={handleBgColor} />
 
                           <div className={styles.space} />
                           <SecondaryBtn text="編集完了" onClick={() => console.log('Secondarybtn Clicked')} />
@@ -112,27 +112,27 @@ export default function Input() {
                           <TextInput
                             text="氏名"
                             value={name}
-                            onChange={hundleName}
+                            onChange={handleName}
                           />
                           <TextInput
                             text="instagram"
                             value={instagram}
-                            onChange={hundleinstagram}
+                            onChange={handleinstagram}
                           />
                           <TextInput
                             text="X"
                             value={x}
-                            onChange={hundleX}
+                            onChange={handleX}
                           />
                           {/* <TextInput
                             text="その他"
                             value={others}
-                            onChange={hundleother}
+                            onChange={handleother}
                           /> */}
                           <TextInput
                             text="所属団体"
                             value={organization}
-                            onChange={hundleOrganization}
+                            onChange={handleOrganization}
                           />
                           <div className={styles.space}/>
                           <SecondaryBtn text="編集完了" onClick={() => console.log('Secondarybtn Clicked')} />
