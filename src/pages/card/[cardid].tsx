@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/card-detail.module.css'
-import Link from 'next/link'
+import styles from '@/styles/Card-detail.module.css'
 import { useRouter } from 'next/router'
 import Header from '@/conponents/Header'
 import Card from '@/conponents/Card'
