@@ -67,7 +67,7 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: black;
   background-color: white;
   margin: 80px 22px 0px 22px;
   min-height: 100vh;
