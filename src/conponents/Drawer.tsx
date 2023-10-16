@@ -9,6 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import styles from '@/styles/Drawer.module.css'
 import MenuIcon from '@mui/icons-material/Menu';
+import Link from 'next/link'
 
 type Anchor = 'right';
 
@@ -42,17 +43,17 @@ export default function Drawer() {
       <List className={styles.drawer}>
           <ListItem key={'名刺の作成'} disablePadding>
             <ListItemButton>
-              <a href="https://whooo.netlify.app/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} className={styles.drawer_item} /></a>
+              <Link href="/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} className={styles.drawer_item} /></Link>
             </ListItemButton>
           </ListItem>
           <ListItem key={'アカウントメモの追加'} disablePadding>
             <ListItemButton>
-            <a href="https://whooo.netlify.app/make/card"><ListItemText primary={'　アカウントメモの追加　'} className={styles.drawer_item} /></a>
+            <Link href="/make/card"><ListItemText primary={'　アカウントメモの追加　'} className={styles.drawer_item} /></Link>
             </ListItemButton>
           </ListItem>
           <ListItem key={'￥Up grade'} disablePadding>
             <ListItemButton>
-            <a href="https://whooo.netlify.app/upgrade"><ListItemText primary={'　￥Up grade　　　　　　'} className={styles.drawer_item} /></a>
+            <Link href="/upgrade"><ListItemText primary={'　￥Up grade　　　　　　'} className={styles.drawer_item} /></Link>
             </ListItemButton>
           </ListItem>
       </List>
