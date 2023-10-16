@@ -1,9 +1,14 @@
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth, db } from '@/firebase'
+import { db } from '@/firebase'
 import { doc, getDoc, getDocs } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth();
+const user = auth.currentUser;
+
 interface Props {
   userid: string
 }
@@ -16,7 +21,7 @@ async function getHaveCardsComp(docData: Props) {
 }
 export default async function getHaveCardIds() {
   return new Promise<string[]>(async (resolve, reject) => {
-    onAuthStateChanged(auth, async (user) => {
+
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
@@ -24,6 +29,7 @@ export default async function getHaveCardIds() {
         const docData = {
           userid: uid,
         }
+        console.log(uid)
         const fetchedIds: string[] = await getHaveCardsComp(docData)
         resolve(fetchedIds);
       } else {
@@ -31,5 +37,4 @@ export default async function getHaveCardIds() {
         resolve([]);
       }
     });
-  });
-}
+  }
