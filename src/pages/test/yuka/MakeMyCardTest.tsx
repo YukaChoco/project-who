@@ -1,15 +1,29 @@
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import router from 'next/router';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Inter } from 'next/font/google'
 import styles from '@/styles/upgrade.module.css'
 import Header from '@/conponents/Header'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
 import makeMyCard from '@/utils/ok/makeMyCard'
 import type { CardData } from '@/types/CardData'
+import getCurrentUserId from '@/utils/ok/getCurrentUserId';
+import addMyCardId from '@/utils/ok/addMyCardId';
+import useCurrentUserId from '@/utils/ok/getCurrentUserId';
+import { auth } from '@/firebase';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function MakeMyCardTest() {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      console.log(uid)
+    } else {
+      console.log('not user')
+    }
+  });
 
   const handleButton = async () => {
     console.log('button clicked');
@@ -36,7 +50,7 @@ export default function MakeMyCardTest() {
       <main className={styles.main}>
         <Header />
         <div>
-          <h2 className={styles.text}>MakeMyCardTest</h2>
+          {/* <h2 className={styles.text}>{userId}</h2> */}
         </div>
         <div style={{ width: '100%' }}>
           <PrimaryBtn text={'Button'} onClick={() => handleButton()} />
