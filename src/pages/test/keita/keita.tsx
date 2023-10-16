@@ -1,8 +1,8 @@
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Login.module.css'
-import getHaveCardIds from '@/utils/firebase/getHaveCardIds'
+import getHaveCardIds from '@/utils/ok/getHaveCardIds'
 import { useEffect, useState } from 'react'
-import getMyCardIds from '@/utils/firebase/getMyCardIds'
+import getMyCardIds from '@/utils/ok/getMyCardIds'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Login() {
