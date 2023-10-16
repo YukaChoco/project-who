@@ -4,7 +4,6 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from '@/firebase'
 import { doc, getDoc, getDocs } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
-
 interface Props {
   userid: string
 }
@@ -15,13 +14,9 @@ async function getHaveCardsComp(docData: Props) {
   const ids = userdata['have_card_ids']
   return ids
 }
-
-export default function getMyCardIds() {
-  const [ids, setIds] = useState(null)
-
-  useEffect(() => {
-    //ログイン状態確認
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+export default async function getHaveCardIds() {
+  return new Promise<string[]>(async (resolve, reject) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
@@ -29,16 +24,12 @@ export default function getMyCardIds() {
         const docData = {
           userid: uid,
         }
-        const fetchedIds: any = await getHaveCardsComp(docData)
-        setIds(fetchedIds)
+        const fetchedIds: string[] = await getHaveCardsComp(docData)
+        resolve(fetchedIds);
       } else {
         // User is signed out
-        // ...
+        resolve([]);
       }
-    })
-    return unsubscribe
-  }, [])
-  return {
-    ids,
-  }
+    });
+  });
 }
