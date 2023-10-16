@@ -1,6 +1,6 @@
 .PrimaryBtn{
     display: inline-block;
-    width: 88%;
+    width: 100%;
     background-color: #fff;
     font-size: 1.125rem;
     border: 1.5px solid;
@@ -8,7 +8,6 @@
     border-radius: 45px;
     color: #6F80BF;
     text-decoration: none;
-    margin: 5px 0;
 }
 
 .PrimaryBtn:focus,

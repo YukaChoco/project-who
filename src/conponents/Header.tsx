@@ -6,7 +6,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import styles from '@/styles/Header.module.css'
 import Head from 'next/head';
@@ -25,7 +24,7 @@ export default function Header(props: Props) {
     <div>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com"  />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&family=Lemon&display=swap" rel="stylesheet" />
       </Head>
 
@@ -35,7 +34,6 @@ export default function Header(props: Props) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <Link href="/cards" className={styles.font}>Who!</Link>
             </Typography>
-            {/* 1.検索アイコン */}
             {
               (props.useSearchIcon) &&
               <IconButton
@@ -47,19 +45,16 @@ export default function Header(props: Props) {
               </IconButton>
             }
 
-            {/* 2.メニューアイコン */}
             {
               (props.useMenuIcon) &&
               <><Drawer /></>
             }
 
-            {/* 3.編集完了ボタン */}
             {
               (props.onClick_edit != null) &&
               <Button color="inherit" onClick={props.onClick_edit}>編集完了</Button>
             }
 
-            {/* 4.登録ボタン */}
             {
               (props.onClick_register != null) &&
               <Button color="inherit" onClick={props.onClick_register}>登録</Button>

@@ -1,15 +1,10 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/card-detail.module.css'
-import Link from 'next/link'
+import styles from '@/styles/Card-detail.module.css'
 import { useRouter } from 'next/router'
 import Header from '@/conponents/Header'
 import Card from '@/conponents/Card'
 import DisplayText from '@/conponents/DisplayText'
 import ShareButton from '@/conponents/ShareButton'
-
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Detail() {
   const router = useRouter();
@@ -39,28 +34,24 @@ export default function Detail() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <Header useSearchIcon useMenuIcon />
-        <div className={styles.card_container}>
-          <div className={styles.card}>
-            <Card id={data.id} name={data.name} organization={data.organization} x={data.x} instagram={data.instagram} others={data.others} urlEnabled={data.urlEnabled} textColor={data.textColor} bgColor={data.bgColor} onClickHandler={() => console.log('完了')} />
-          </div>
+
+        <div className={styles.card}>
+          <Card id={data.id} name={data.name} organization={data.organization} x={data.x} instagram={data.instagram} others={data.others} urlEnabled={data.urlEnabled} textColor={data.textColor} bgColor={data.bgColor} onClickHandler={() => console.log('完了')} />
         </div>
-        <div className={styles.info}>
-          <div className={styles.infoitem1}>
+
+        <div>
+          <div className={styles.infoitem}>
             <DisplayText title="氏名" detail={data.name} />
           </div>
           <div className={styles.infoitem}>
-            <DisplayText title="X" detail={data.x} url={xURL}/>
-          </div>
-          <div className={styles.infoitem}>
-            <DisplayText title="Instagram" detail={data.instagram} url={InstagramUrl}/>
-          </div>
-          <div className={styles.infoitem}>
-            <DisplayText title="orgnization" detail={data.organization}/>
+            <DisplayText title="X" detail={data.x} url={xURL} isSNSId />
+            <DisplayText title="Instagram" detail={data.instagram} url={InstagramUrl} isSNSId />
+            <DisplayText title="orgnization" detail={data.organization} />
           </div>
         </div>
-        <ShareButton id="68nUIBWcWlpw2sJV3wGh"/>
+        <ShareButton id="68nUIBWcWlpw2sJV3wGh" />
       </main>
     </>
   )

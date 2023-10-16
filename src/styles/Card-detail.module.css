@@ -1,0 +1,18 @@
+.main {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 58px;
+  padding: 0px 20px;
+  background-color: #fff;
+  color: black;
+}
+
+.card {
+  margin-top: 15px 0px;
+}
+
+.infoitem {
+  background-color: #F4F5FC;
+  border-radius: 5px;
+  margin-top: 15px;
+}

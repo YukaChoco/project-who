@@ -1,17 +1,23 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
+import router from 'next/router';
 import styles from '@/styles/upgrade.module.css'
 import Header from '@/conponents/Header'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
-import AddHaveCard from '@/utils/firebase/addHaveCard'
+import makeHaveCard from '@/utils/ok/makeHaveCard'
+import type { OthersCardData } from '@/types/CardData'
 
-const inter = Inter({ subsets: ['latin'] })
+export default function MakeHaveCardTest() {
 
-export default function YukaFunctionTest() {
-
-  const handleButton = () => {
+  const handleButton = async () => {
     console.log('button clicked');
-    AddHaveCard()
+    const data: OthersCardData = {
+      name: "deketa!!!!",
+      organization: "test",
+      x: "test",
+      instagram: "test",
+    }
+    await makeHaveCard(data);
+    router.push('/cards');
   }
 
   return (
@@ -25,7 +31,7 @@ export default function YukaFunctionTest() {
       <main className={styles.main}>
         <Header />
         <div>
-          <h2 className={styles.text}>test</h2>
+          <h2 className={styles.text}>MakeHaveCardTest</h2>
         </div>
         <div style={{ width: '100%' }}>
           <PrimaryBtn text={'Button'} onClick={() => handleButton()} />
