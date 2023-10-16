@@ -19,22 +19,28 @@ export default function Index() {
       <main className={styles.main}>
         <h1 className={styles.logo}>Who!</h1>
 
-        <SecondaryBtn
-          text='ログイン'
-          onClick={async () => {
-            await FirebaseLogin()
-            router.push("/cards");
-          }}
-        />
+        <div className={styles.container}>
+          <div className={styles.button}>
+            <SecondaryBtn
+              text='ログイン'
+              onClick={async () => {
+                await FirebaseLogin()
+                router.push("/cards");
+              }}
+            />
+          </div>
 
-        <PrimaryBtn
-          text='新規登録'
-          onClick={async () => {
-            await FirebaseLogin()
-            router.push("/cards");
-          }}
-        />
-      </main >
+          <div className={styles.button}>
+            <PrimaryBtn
+              text='新規登録'
+              onClick={async () => {
+                await FirebaseLogin()
+                router.push("/cards");
+              }}
+            />
+          </div>
+        </div>
+      </main>
     </>
   )
 }

@@ -3,12 +3,25 @@
   height: 100vh;
   background-color: #6F80BF;
   margin: 0px;
+  padding: 0px 20px;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .logo {
-  color: aliceblue;
+  color: white;
   font-family: 'Kiwi Maru', serif;
   font-family: 'Lemon', cursive;
   font-size: 4rem;
+}
+
+.container {
+  width: 100%;
+}
+
+.button {
+  padding: 20px 0px;
 }
