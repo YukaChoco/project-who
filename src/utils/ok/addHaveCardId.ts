@@ -2,7 +2,7 @@ import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { auth, db } from '@/firebase'
 import { onAuthStateChanged } from "firebase/auth";
 
-export default async function addHaveCardId(haveCardId: string) {
+export default async function addHaveCardId(userId: string, haveCardId: string) {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
