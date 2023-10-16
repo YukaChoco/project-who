@@ -92,7 +92,7 @@ export default function Input() {
                 <div className={styles.swith}>
                   <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment}/>
                 </div>
-                  
+
                 <div className={styles.change}>
                 {
                   (() => {
