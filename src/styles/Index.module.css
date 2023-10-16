@@ -1,101 +1,14 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  background-color: #6F80BF;
+  margin: 0px;
+  position: fixed;
+}
+
 .logo {
-  display: flex;
   color: aliceblue;
   font-family: 'Kiwi Maru', serif;
   font-family: 'Lemon', cursive;
   font-size: 4rem;
-  padding-top: 40%;
-}
-
-.PrimaryBtn {
-  display: inline-block;
-  width: 88%;
-  background-color: #fff;
-  font-size: 1.125rem;
-  border: 1.5px solid;
-  border-color: #969696;
-  border-radius: 45px;
-  color: #6F80BF;
-  text-decoration: none;
-  margin: 5px 0;
-  padding: 0.725rem;
-}
-
-.PrimaryBtn:focus,
-.PrimaryBtn:hover {
-  border: 1.5px solid;
-  border-color: #969696;
-}
-
-.SecondaryBtn {
-  display: inline-block;
-  width: 88%;
-  font-size: 1.125rem;
-  border: 1.5px solid;
-  border-radius: 45px;
-  color: #fff;
-  background-color: #6F80BF;
-  border-color: #fff;
-  text-decoration: none;
-  margin: 5px 0;
-  padding: 0.725rem;
-}
-
-.SecondaryBtn:focus,
-.SecondaryBtn:hover {
-  border: 1.5px solid;
-  color: #6F80BF;
-  background-color: #fff;
-  border-color: #fff;
-}
-
-.btwaku {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 0.725rem;
-}
-
-.waku {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  flex-direction: column;
-  margin-bottom: 10%;
-
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #6F80BF;
-  padding-top: 58px;
-  margin: -80px -22px 0px -22px;
-}
-
-.link {
-  width: 100vw;
-  margin: 20px;
-  background-color: #6F80BF;
-}
-
-.description {
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
-  font-size: 0.85rem;
-  max-width: var(--max-width);
-  width: 100%;
-  z-index: 2;
-  font-family: var(--font-mono);
-}
-
-.body {
-  margin: 0px;
 }
