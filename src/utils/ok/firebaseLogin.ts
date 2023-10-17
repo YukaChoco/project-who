@@ -1,45 +1,50 @@
-import { auth } from '@/firebase'
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from '@/firebase'
+import { getAuth, signInWithPopup, GoogleAuthProvider ,onAuthStateChanged } from "firebase/auth";
 
-import addUser from './addUser'
+import addUser from "./addUser";
 
-export default async function firebaseLogin() {
+export default async function FirebaseLogin() {  
   const provider = new GoogleAuthProvider();
-
+  
+  
   await signInWithPopup(auth, provider)
     .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      if (credential) {
-        addUser(result.user.uid)
+      console.log(result.user.displayName)
+      if(credential){
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
       }
     }).catch((error) => {
-      console.error(error)
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+
+
+    //現在ログインしているユーザーを取得する
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        addUser(uid);
+      } else {
+        // User is signed out
+        // ...
+      }
     });
 }
-
-
-
-
-// import { auth } from '@/firebase'
-// import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
-// import addUser from './addUser'
-
-// export default async function FirebaseLogin() {
-//   const provider = new GoogleAuthProvider();
-
-//   await signInWithPopup(auth, provider)
-//     .then().catch((error) => {
-//       console.error(error)
-//     });
-
-//   onAuthStateChanged(auth, (user) => {
-//     if (user) {
-//       const uid = user.uid;
-//       addUser(uid);
-//     } else {
-//     }
-//   });
-// }
 
 
 
