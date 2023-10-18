@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import Head from 'next/head'
 import styles from '@/styles/Index.module.css'
-import FirebaseLogin from '@/utils/firebase/firebaseLogin'
+import firebaseLogin from '@/utils/ok/firebaseLogin'
 import PrimaryBtn from '@/conponents/PrimaryBtn';
 import SecondaryBtn from '@/conponents/SecondaryBtn';
 import { useRouter } from 'next/router';
@@ -24,7 +24,7 @@ export default function Index() {
             <SecondaryBtn
               text='ログイン'
               onClick={async () => {
-                await FirebaseLogin()
+                await firebaseLogin()
                 router.push("/cards");
               }}
             />
@@ -34,7 +34,7 @@ export default function Index() {
             <PrimaryBtn
               text='新規登録'
               onClick={async () => {
-                await FirebaseLogin()
+                await firebaseLogin()
                 router.push("/cards");
               }}
             />

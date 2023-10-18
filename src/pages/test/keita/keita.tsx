@@ -1,25 +1,30 @@
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Login.module.css'
-import getHaveCardIds from '@/utils/ok/getHaveCardIds'
 import { useEffect, useState } from 'react'
 import getMyCardIds from '@/utils/ok/getMyCardIds'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '@/firebase'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Login() {
+ 
   const [ids, setIds] = useState<string[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const getIds = await getMyCardIds();
-        setIds(getIds);
-      } catch (error) {
-        // Handle any potential errors here
-        console.error(error);
-      }
-    };
-
-    fetchData();
+    
+    
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const uid = user.uid;
+          console.log(uid)
+            const getIds = await getMyCardIds(uid);
+            setIds(getIds);
+            console.log(getIds)
+         } else {
+          console.log('not user')
+        }
+      });
+  
   }, []);
 
   if (ids) {
