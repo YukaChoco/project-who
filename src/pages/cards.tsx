@@ -4,12 +4,12 @@ import styles from '@/styles/AllCards.module.css'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import router from 'next/router'
-import { GetCards } from '@/types/GetCards'
+import { CardData } from '@/types/CardData'
 import ShareButton from '@/conponents/ShareButton'
 
 export default function Index() {
 
-  const [datas, setDatas] = useState<GetCards[]>([
+  const [datas, setDatas] = useState<CardData[]>([
     {
       id: "1",
       name: "ゆうか",
@@ -17,10 +17,8 @@ export default function Index() {
       x: "chocolatbrown",
       instagram: "yuka__matcha",
       others: "https://my-portfolio-yukachoco.vercel.app/",
-      urlEnabled: true,
       textColor: "#A56A7F",
       bgColor: "#F4EBEF",
-      onClickHandler: () => { },
     },
     {
       id: "2",
@@ -29,10 +27,8 @@ export default function Index() {
       x: "id",
       instagram: "kkkk",
       others: "https://my-portfolio-yukachoco.vercel.app/",
-      urlEnabled: true,
       textColor: "#def190",
       bgColor: "#124c6b",
-      onClickHandler: () => { },
     },
     {
       id: "3",
@@ -41,10 +37,8 @@ export default function Index() {
       x: "xdesu",
       instagram: "jkfla;",
       others: "https://my-portfolio-yukachoco.vercel.app/",
-      urlEnabled: true,
       textColor: "#6e6e6d",
       bgColor: "#fad0c9",
-      onClickHandler: () => { },
     },
     {
       id: "4",
@@ -53,10 +47,8 @@ export default function Index() {
       x: "aaaaaaaa",
       instagram: "ffjkdjkfjd",
       others: "https://my-portfolio-yukachoco.vercel.app/",
-      urlEnabled: true,
       textColor: "#6338f1",
       bgColor: "#c8fc29",
-      onClickHandler: () => { },
     },
 
   ])
@@ -66,6 +58,7 @@ export default function Index() {
       <DisplayCard
         key={data.id}
         {...data}
+        urlEnabled
         onClickHandler={() => router.push("/card/data.id")}
       />
     );

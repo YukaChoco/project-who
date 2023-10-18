@@ -5,7 +5,7 @@ export default async function addHaveCardId(userId: string, haveCardId: string) 
 
   const docRef = doc(db, "users", userId);
   updateDoc(docRef, {
-    have_card_ids: arrayUnion(haveCardId)
+    haveCardIds: arrayUnion(haveCardId)
   });
   return true;
 }

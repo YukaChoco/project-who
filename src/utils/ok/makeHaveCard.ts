@@ -1,13 +1,13 @@
 import addCardData from "./addCardData";
 import addHaveCardId from "./addHaveCardId";
-import type { CardData, OthersCardData } from "@/types/CardData";
+import type { MakeMyCardData, MakeOthersCardData } from "@/types/CardData";
 
-export default async function makeHaveCard(docData: OthersCardData) {
-  const cardData: CardData = {
+export default async function makeHaveCard(userId: string, docData: MakeOthersCardData) {
+  const cardData: MakeMyCardData = {
     ...docData,
-    text_color: '#000',
-    bg_color: '#FFF',
+    textColor: '#000',
+    bgColor: '#FFF',
   }
   const newCardId = await addCardData(cardData);
-  addHaveCardId(newCardId);
+  addHaveCardId(userId, newCardId);
 }

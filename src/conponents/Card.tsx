@@ -3,12 +3,17 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Cards } from '@/types/Cards';
 import styles from '@/styles/Cards.module.css'
 import { getURL } from '@/utils/ok/getURL';
 import Link from 'next/link';
+import type { CardData } from '@/types/CardData';
 
-export default function DisplayCard(props: Cards) {
+interface Props extends CardData {
+  urlEnabled: boolean;
+  onClickHandler: () => void;
+}
+
+export default function DisplayCard(props: Props) {
   const onClick = props.urlEnabled ? props.onClickHandler : () => { };
   return (
     <Card className={styles.cards} sx={{ backgroundColor: `${props.bgColor}`, color: `${props.textColor}` }} onClick={onClick}>
@@ -16,11 +21,9 @@ export default function DisplayCard(props: Cards) {
         <Typography className={styles.belong} >
           {props.organization}
         </Typography>
-        {/* <div className={styles.usernameWrap}> */}
         <Typography className={styles.username} >
           {props.name}
         </Typography>
-        {/* </div> */}
       </CardContent>
 
       <CardActions disableSpacing className={styles.urlContainer}>
