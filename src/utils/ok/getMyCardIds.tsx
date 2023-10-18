@@ -1,13 +1,15 @@
-import { Inter } from 'next/font/google'
-const inter = Inter({ subsets: ['latin'] })
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth, db } from '@/firebase'
-import { doc, getDoc, getDocs } from 'firebase/firestore'
-import React, { useEffect, useState } from 'react'
+import { db } from '@/firebase'
+import { doc, getDoc } from 'firebase/firestore'
+
+interface GetData {
+  myMainCardId: string;
+  haveCardIds: string[];
+  myCardIds: string[];
+}
 
 export default async function getMyCardIds(userid: string) {
   const querySnapshot = await getDoc(doc(db, 'users', userid))
-  const userdata: any = querySnapshot.data()
-  const ids: string[] = userdata['my_card_ids']
-  return ids
+  const fetchIds: GetData = querySnapshot.data() as GetData;
+  const ids: string[] = fetchIds.myCardIds;
+  return ids;
 }

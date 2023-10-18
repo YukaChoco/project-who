@@ -1,8 +1,8 @@
 import { doc, addDoc, collection } from "firebase/firestore";
 import { db } from '@/firebase'
-import type { CardData } from "@/types/CardData";
+import type { MakeMyCardData } from "@/types/CardData";
 
-export default async function addCardData(docData: CardData) {
+export default async function addCardData(docData: MakeMyCardData) {
 
   const docRef = await addDoc(collection(db, "cards"), docData);
 

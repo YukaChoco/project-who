@@ -1,13 +1,6 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Cards } from '@/types/Cards';
-import styles from '@/styles/Cards.module.css'
 import DisplayCard from './Card';
+import router from 'next/router'
 
 export default function MakeNewCard() {
     return (
@@ -18,10 +11,10 @@ export default function MakeNewCard() {
             x=""
             instagram=""
             others=""
-            urlEnabled={false}
+            urlEnabled={true}
             textColor="#969696"
-            bgColor="#FFF"
-            onClickHandler={() => { }}
+            bgColor="#F7F7F7"
+            onClickHandler={() => router.push("/make/mycard")}
         />
     )
 }
