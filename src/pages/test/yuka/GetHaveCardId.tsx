@@ -7,7 +7,7 @@ import styles from '@/styles/upgrade.module.css'
 import Header from '@/conponents/Header'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
 import makeMyCard from '@/utils/ok/makeMyCard'
-import type { CardData } from '@/types/CardData'
+import type { MakeMyCardData } from '@/types/CardData'
 import { auth } from '@/firebase';
 import getHaveCardIds from '@/utils/ok/getHaveCardIds';
 
@@ -33,15 +33,16 @@ export default function GetHaveCardId() {
 
   const handleButton = async () => {
     console.log('button clicked');
-    const data: CardData = {
+    const data: MakeMyCardData = {
       name: "deketa",
       organization: "test",
       x: "test",
       instagram: "test",
-      text_color: "test",
-      bg_color: "test",
+      textColor: "test",
+      bgColor: "test",
+      others: 'test',
     }
-    await makeMyCard(data);
+    await makeMyCard('uid', data);
     router.push('/mycards');
   }
 

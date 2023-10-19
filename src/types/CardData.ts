@@ -1,5 +1,6 @@
 export interface CardData {
   id: string;
+  authorId: string;
   name: string;
   organization: string;
   x: string;
@@ -9,6 +10,7 @@ export interface CardData {
   bgColor: string;
 }
 
-export interface MakeMyCardData extends Omit<CardData, 'id'> { }
+export interface MakeMyCardData extends Omit<CardData, 'id' | 'authorId'> { }
+export interface MakeOthersCardData extends Omit<CardData, 'id' | 'authorId' | 'textColor' | 'bgColor'> { }
 
-export interface MakeOthersCardData extends Omit<CardData, 'id' | 'textColor' | 'bgColor'> { }
+export interface GetCardData extends Omit<CardData, 'id'> { }

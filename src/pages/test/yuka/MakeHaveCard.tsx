@@ -20,22 +20,6 @@ export default function Index() {
   const router = useRouter();
   const { userId, loading } = useUser();
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      if (userId) {
-        // await makeHaveCard(userId,
-        //   {
-        //     name: "ゆうか",
-        //     organization: "立命館大学",
-        //     x: "chocolatbrown",
-        //     instagram: "yuka__matcha",
-        //     others: "https://my-portfolio-yukachoco.vercel.app/",
-        //   });
-        console.log('add Card')
-      }
-    };
-    fetchUsers();
-  }, [userId])
 
   if (loading) {
     <>
@@ -49,60 +33,7 @@ export default function Index() {
     </>
   }
 
-  const [datas, setDatas] = useState<CardData[]>([
-    {
-      id: "1",
-      name: "ゆうか",
-      organization: "立命館大学",
-      x: "chocolatbrown",
-      instagram: "yuka__matcha",
-      others: "https://my-portfolio-yukachoco.vercel.app/",
-      textColor: "#A56A7F",
-      bgColor: "#F4EBEF",
-    },
-    {
-      id: "2",
-      name: "こたろう",
-      organization: "watnow",
-      x: "id",
-      instagram: "kkkk",
-      others: "https://my-portfolio-yukachoco.vercel.app/",
-      textColor: "#def190",
-      bgColor: "#124c6b",
-    },
-    {
-      id: "3",
-      name: "ゆいぴ",
-      organization: "夢の世界",
-      x: "xdesu",
-      instagram: "jkfla;",
-      others: "https://my-portfolio-yukachoco.vercel.app/",
-      textColor: "#6e6e6d",
-      bgColor: "#fad0c9",
-    },
-    {
-      id: "4",
-      name: "けいた",
-      organization: "watnow",
-      x: "aaaaaaaa",
-      instagram: "ffjkdjkfjd",
-      others: "https://my-portfolio-yukachoco.vercel.app/",
-      textColor: "#6338f1",
-      bgColor: "#c8fc29",
-    },
 
-  ])
-
-  const display = datas.map((data) => {
-    return (
-      <DisplayCard
-        key={data.id}
-        {...data}
-        urlEnabled
-        onClickHandler={() => router.push("/card/data.id")}
-      />
-    );
-  })
   if (!userId) return;
   return (
     <>
@@ -124,9 +55,6 @@ export default function Index() {
           })}>
           add
         </button>
-        <div className={styles.cardlist}>
-          {display}
-        </div>
 
         <ShareButton id="68nUIBWcWlpw2sJV3wGh" />
       </main >
