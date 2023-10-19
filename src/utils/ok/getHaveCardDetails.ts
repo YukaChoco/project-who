@@ -5,6 +5,8 @@ import type { CardData } from '@/types/CardData'
 export default async function getHaveCardDetails(userId: string) {
   const haveCardIds = await getHaveCardIds(userId);
 
+  if (!haveCardIds) return [];
+
   const fetchedDetails = await Promise.all(haveCardIds.map(async (id) => {
     const fetchedDetail = await getCardData(id);
     if (fetchedDetail) return fetchedDetail;
