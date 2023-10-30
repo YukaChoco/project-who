@@ -10,7 +10,7 @@ interface Props {
 export default function ShareButton(props: Props) {
     return (
         <IconButton
-            onClick={() => router.push(`https://whooo.netlify.app/share/${props.id}`)}
+            onClick={() => router.push('/share')}
             size='large'
             sx={{
                 position: 'fixed',
