@@ -2,7 +2,6 @@ import { db } from '@/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 
 interface GetData {
-  myMainCardId: string;
   haveCardIds: string[];
   myCardIds: string[];
 }

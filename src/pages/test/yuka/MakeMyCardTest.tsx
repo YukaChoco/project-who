@@ -8,9 +8,6 @@ import Header from '@/conponents/Header'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
 import makeMyCard from '@/utils/ok/makeMyCard'
 import type { CardData } from '@/types/CardData'
-import getCurrentUserId from '@/utils/ok/getCurrentUserId';
-import addMyCardId from '@/utils/ok/addMyCardId';
-import useCurrentUserId from '@/utils/ok/getCurrentUserId';
 import { auth } from '@/firebase';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -32,10 +29,13 @@ export default function MakeMyCardTest() {
       organization: "test",
       x: "test",
       instagram: "test",
-      text_color: "test",
-      bg_color: "test",
+      textColor: "test",
+      bgColor: "test",
+      id: '',
+      authorId: '',
+      others: ''
     }
-    await makeMyCard(data);
+    await makeMyCard('uid', data);
     router.push('/mycards');
   }
 

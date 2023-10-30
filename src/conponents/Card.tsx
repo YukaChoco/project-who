@@ -10,7 +10,7 @@ import type { CardData } from '@/types/CardData';
 
 interface Props extends CardData {
   urlEnabled: boolean;
-  onClickHandler: () => void;
+  onClickHandler?: () => void;
 }
 
 export default function DisplayCard(props: Props) {
@@ -31,7 +31,7 @@ export default function DisplayCard(props: Props) {
           <Link href={getURL('x', props.id)}>X@{props.x}</Link>
         }
         {props.instagram &&
-          <Link href={getURL('instagram', props.id)}>Instagram@{props.x}</Link>
+          <Link href={getURL('instagram', props.id)}>Instagram@{props.instagram}</Link>
         }
       </CardActions>
     </Card >
