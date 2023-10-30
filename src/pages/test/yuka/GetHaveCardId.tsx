@@ -32,7 +32,6 @@ export default function GetHaveCardId() {
   const show = ids.map((id) => <p key={id}>{id}</p>);
 
   const handleButton = async () => {
-    console.log('button clicked');
     const data: MakeMyCardData = {
       name: "deketa",
       organization: "test",
@@ -40,7 +39,6 @@ export default function GetHaveCardId() {
       instagram: "test",
       textColor: "test",
       bgColor: "test",
-      others: 'test',
     }
     await makeMyCard('uid', data);
     router.push('/mycards');

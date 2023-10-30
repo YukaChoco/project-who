@@ -11,10 +11,10 @@ export default function useUser() {
       if (user) {
         const uid = user.uid;
         setUserId(uid);
-        console.log(uid);
+        setLoading(false);
       } else {
         setUserId(null);
-        console.log('not user');
+        setLoading(false);
       }
     });
   }, []);

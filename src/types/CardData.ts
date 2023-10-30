@@ -5,12 +5,12 @@ export interface CardData {
   organization: string;
   x: string;
   instagram: string;
-  others: string;
   textColor: string;
   bgColor: string;
+  protected: boolean;
 }
 
-export interface MakeMyCardData extends Omit<CardData, 'id' | 'authorId'> { }
-export interface MakeOthersCardData extends Omit<CardData, 'id' | 'authorId' | 'textColor' | 'bgColor'> { }
+export interface MakeMyCardData extends Pick<CardData, 'name' | 'organization' | 'x' | 'instagram' | 'textColor' | 'bgColor'> { }
+export interface MakeOthersCardData extends Pick<CardData, 'name' | 'organization' | 'x' | 'instagram'> { }
 
 export interface GetCardData extends Omit<CardData, 'id'> { }

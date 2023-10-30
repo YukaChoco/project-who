@@ -51,7 +51,6 @@ export default function Index() {
             organization: "立命館大学",
             x: "twitter test",
             instagram: "insta test",
-            others: "",
           })}>
           add
         </button>

@@ -8,7 +8,7 @@ import Card from '@/conponents/Card'
 import DisplayText from '@/conponents/DisplayText'
 import ShareButton from '@/conponents/ShareButton'
 import type { CardData } from '@/types/CardData'
-import getCardData from '@/utils/ok/getCardData'
+import getCardDetils from '@/utils/ok/getCardDetils'
 import { getURL } from '@/utils/ok/getURL'
 
 export default function Index() {
@@ -22,8 +22,7 @@ export default function Index() {
   useEffect(() => {
     const fetchUsers = async () => {
       if (userId && cardid) {
-        const cardData = await getCardData(cardid);
-        console.log(cardData)
+        const cardData = await getCardDetils(cardid);
         setCardData(cardData);
       }
     };

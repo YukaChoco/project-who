@@ -23,6 +23,7 @@ export default function Index() {
         setCardDatas(haveCardDetails);
       }
     };
+
     fetchUsers();
   }, [userId])
 
@@ -63,7 +64,7 @@ export default function Index() {
           {display}
         </div>
 
-        <ShareButton id="68nUIBWcWlpw2sJV3wGh" />
+        <ShareButton />
       </main>
     </>
   )

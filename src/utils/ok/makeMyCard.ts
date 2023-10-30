@@ -6,6 +6,7 @@ export default async function makeMyCard(userId: string, docData: MakeMyCardData
   const cardData = {
     ...docData,
     authorId: userId,
+    protected: false,
   }
   const newCardId = await addCardData(cardData);
   addMyCardId(userId, newCardId);
