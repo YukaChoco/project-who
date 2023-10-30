@@ -3,12 +3,12 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import styles from '@/styles/Cards.module.css'
+import styles from '@/styles/Card.module.css'
 import { getURL } from '@/utils/ok/getURL';
 import Link from 'next/link';
-import type { CardData } from '@/types/CardData';
+import type { GetCardData } from '@/types/CardData';
 
-interface Props extends CardData {
+interface Props extends GetCardData {
   urlEnabled: boolean;
   onClickHandler?: () => void;
 }
@@ -28,10 +28,10 @@ export default function DisplayCard(props: Props) {
 
       <CardActions disableSpacing className={styles.urlContainer}>
         {props.x &&
-          <Link href={getURL('x', props.id)}>X@{props.x}</Link>
+          <Link href={getURL('x', props.x)}>X@{props.x}</Link>
         }
         {props.instagram &&
-          <Link href={getURL('instagram', props.id)}>Instagram@{props.instagram}</Link>
+          <Link href={getURL('instagram', props.instagram)}>Instagram@{props.instagram}</Link>
         }
       </CardActions>
     </Card >

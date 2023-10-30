@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/creatText.module.css'
+import styles from '@/styles/MakeMyCard.module.css'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import SwitchButton from '@/conponents/SwitchButton'
@@ -75,18 +75,14 @@ export default function Input() {
               />
 
 
-              <main className={styles.main}>
+              <main>
 
-                <div className={styles.preview}>
-                  <p>プレビュー</p>
-                </div>
+                <p>プレビュー</p>
 
 
-                <div className={styles.card}>
-                  <DisplayCard id={""} name={name} organization={organization} x={x} instagram={instagram} others={""} urlEnabled={false} textColor={textColor} bgColor={bgColor} onClickHandler={function (): void {
-                    throw new Error('Function not implemented.')
-                  }} />
-                </div>
+                <DisplayCard  name={name} organization={organization} x={x} instagram={instagram}  urlEnabled={false} textColor={textColor} bgColor={bgColor} onClickHandler={function (): void {
+                  throw new Error('Function not implemented.')
+                }} />
 
                 <div className={styles.change}>
                 {
