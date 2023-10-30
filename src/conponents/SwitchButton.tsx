@@ -24,6 +24,7 @@ export default function SwitchButton(props: Props) {
           height: 20,
           width: '100%',
           padding: '12px',
+          margin: '0px 20px',
         }}
       >
         <ToggleButton value={props.leftName}>{props.leftName}</ToggleButton>

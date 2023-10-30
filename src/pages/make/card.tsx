@@ -4,8 +4,8 @@ import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import { useState } from 'react'
 import TextInput from '@/conponents/TextInput'
-import SecondaryBtn from '@/conponents/SecondaryBtn'
-import SwithButton from '@/conponents/SwitchButton'
+// import SecondaryBtn from '@/conponents/SecondaryBtn'
+// import SwithButton from '@/conponents/SwitchButton'
 
 export default function Index() {
   const hundleOnClickEdit = () => {
@@ -67,26 +67,28 @@ export default function Index() {
           }} />
         </div>
 
-        <TextInput
-          text="氏名"
-          value={name}
-          onChange={hundleName}
-        />
-        <TextInput
-          text="instagram"
-          value={instagram}
-          onChange={hundleinstagram}
-        />
-        <TextInput
-          text="X"
-          value={x}
-          onChange={hundleX}
-        />
-        <TextInput
-          text="所属団体"
-          value={organization}
-          onChange={hundleOrganization}
-        />
+        <div className={styles.input}>
+          <TextInput
+            text="氏名"
+            value={name}
+            onChange={hundleName}
+          />
+          <TextInput
+            text="instagram"
+            value={instagram}
+            onChange={hundleinstagram}
+          />
+          <TextInput
+            text="X"
+            value={x}
+            onChange={hundleX}
+          />
+          <TextInput
+            text="所属団体"
+            value={organization}
+            onChange={hundleOrganization}
+          />
+        </div>
         <div className={styles.space} />
 
       </main >
