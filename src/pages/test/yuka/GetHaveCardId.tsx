@@ -7,33 +7,38 @@ import styles from '@/styles/upgrade.module.css'
 import Header from '@/conponents/Header'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
 import makeMyCard from '@/utils/ok/makeMyCard'
-import type { CardData } from '@/types/CardData'
+import type { MakeMyCardData } from '@/types/CardData'
 import { auth } from '@/firebase';
+import getHaveCardIds from '@/utils/ok/getHaveCardIds';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function MakeMyCardTest() {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      console.log(uid)
-    } else {
-      console.log('not user')
-    }
-  });
+export default function GetHaveCardId() {
+  const [ids, setIds] = useState<string[]>([])
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log(uid);
+        const haveCardIds = await getHaveCardIds(uid);
+        setIds(haveCardIds)
+      } else {
+        console.log('not user')
+      }
+    });
+  }, [])
+
+  const show = ids.map((id) => <p key={id}>{id}</p>);
 
   const handleButton = async () => {
-    console.log('button clicked');
-    const data: CardData = {
+    const data: MakeMyCardData = {
       name: "deketa",
       organization: "test",
       x: "test",
       instagram: "test",
       textColor: "test",
       bgColor: "test",
-      id: '',
-      authorId: '',
-      others: ''
     }
     await makeMyCard('uid', data);
     router.push('/mycards');
@@ -50,7 +55,7 @@ export default function MakeMyCardTest() {
       <main className={styles.main}>
         <Header />
         <div>
-          {/* <h2 className={styles.text}>{userId}</h2> */}
+          <h2 className={styles.text}>{show}</h2>
         </div>
         <div style={{ width: '100%' }}>
           <PrimaryBtn text={'Button'} onClick={() => handleButton()} />

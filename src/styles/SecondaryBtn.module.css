@@ -1,14 +1,13 @@
 .SecondaryBtn{
     display: inline-block;
-    width: 88%;
+    width: 100%;
     font-size: 1.125rem;
     border: 1.5px solid;
     border-radius: 45px;
     color: #fff;
     background-color:  #6F80BF;
-    border-color: #6F80BF;
+    border-color: #969696;
     text-decoration: none;
-    margin: 5px 0;
 }
 
 .SecondaryBtn:focus,
@@ -16,5 +15,5 @@
     border: 1.5px solid;
     color: #fff;
     background-color:  #6F80BF;
-    border-color: #6F80BF;
+    border-color: #969696;
 }

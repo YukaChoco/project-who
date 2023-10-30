@@ -4,19 +4,20 @@ import styles from '@/styles/upgrade.module.css'
 import Header from '@/conponents/Header'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
 import makeHaveCard from '@/utils/ok/makeHaveCard'
-import type { OthersCardData } from '@/types/CardData'
+import type { MakeOthersCardData } from '@/types/CardData'
 
 export default function MakeHaveCardTest() {
 
   const handleButton = async () => {
     console.log('button clicked');
-    const data: OthersCardData = {
+    const data: MakeOthersCardData = {
       name: "deketa!!!!",
       organization: "test",
       x: "test",
       instagram: "test",
+      others: ''
     }
-    await makeHaveCard(data);
+    await makeHaveCard('uid', data);
     router.push('/cards');
   }
 

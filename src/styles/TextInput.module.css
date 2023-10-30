@@ -1,12 +1,11 @@
-.TextInput{
-    width: 95%;
+.TextInput {
+    width: 100%;
 }
 
-.TextInput_background{
+.TextInput_background {
     text-align: center;
     background-color: #F4F5FC;
     border-radius: 5px;
-    width:100%;
-    height: 64px;
-    margin: 5px 0;
+    width: 100%;
+    padding: 5px;
 }

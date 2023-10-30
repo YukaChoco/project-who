@@ -1,10 +1,8 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Share.module.css'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Header from '@/conponents/Header'
-import QrCode2Icon from '@mui/icons-material/QrCode2';
 import DisplayCard from '@/conponents/Card'
 import PrimaryBtn from '@/conponents/PrimaryBtn'
 import QRCode from '@/conponents/MakeQrcode'
@@ -46,10 +44,10 @@ export default function Detail() {
               <path d="M53.5 0L106.761 59.25H0.239437L53.5 0Z" fill="#DCDBE8" />
             </svg>
           </div>
-          <DisplayCard
+          {/* <DisplayCard
             {...data}
             onClickHandler={() => { }}
-          />
+          /> */}
         </div>
         <div style={{ height: '50px' }} />
         <div className={styles.returnbutton}>

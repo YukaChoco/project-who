@@ -1,37 +1,19 @@
-.ColorPicker_background{
-    text-align: center;
+.container {
     background-color: #F4F5FC;
     border-radius: 5px;
-    width:100%;
-    height: 64px;
-    margin: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
-.ColorPicker_background p{
-    position: absolute;
-    font-size: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    float: left;
-    left: 0;
+.container label {
+    font-size: 0.8rem;
+    padding: 20px;
 }
 
-.ColorPicker_background input{
-    float: left;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+.container input {
     width: 36px;
     height: 40px;
+    margin: auto 20px;
     border: none;
-    cursor: pointer;
-    background-color: #F4F5FC;
-}
-
-.ColorPicker_container{
-    position: relative;
-    margin: 0 auto;
-    width: 88%;
-    height: 100%;
 }

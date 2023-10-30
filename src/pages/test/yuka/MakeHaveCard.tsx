@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import styles from '@/styles/AllCards.module.css'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
+import router from 'next/router'
+import { CardData } from '@/types/CardData'
 import ShareButton from '@/conponents/ShareButton'
+import { useRouter } from 'next/router'
+import Card from '@/conponents/Card'
+import DisplayText from '@/conponents/DisplayText'
 import useUser from '@/hooks/useUser'
 import getHaveCardDetails from '@/utils/ok/getHaveCardDetails'
-import type { CardData } from '@/types/CardData'
+import makeHaveCard from '@/utils/ok/makeHaveCard'
 
 
 export default function Index() {
@@ -16,16 +20,6 @@ export default function Index() {
   const router = useRouter();
   const { userId, loading } = useUser();
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      if (userId) {
-        const haveCardDetails = await getHaveCardDetails(userId);
-        setCardDatas(haveCardDetails);
-      }
-    };
-
-    fetchUsers();
-  }, [userId])
 
   if (loading) {
     <>
@@ -39,16 +33,8 @@ export default function Index() {
     </>
   }
 
-  const display = cardDatas.map((data) => {
-    return (
-      <DisplayCard
-        key={data.id}
-        {...data}
-        onClickHandler={() => router.push(`/card/${data.id}`)}
-      />
-    );
-  })
 
+  if (!userId) return;
   return (
     <>
       <Head>
@@ -59,12 +45,18 @@ export default function Index() {
       <main>
         <Header useMenuIcon />
 
-        <div className={styles.cardlist}>
-          {display}
-        </div>
+        <button onClick={() => makeHaveCard(userId,
+          {
+            name: "まこ",
+            organization: "立命館大学",
+            x: "twitter test",
+            instagram: "insta test",
+          })}>
+          add
+        </button>
 
-        <ShareButton />
-      </main>
+        <ShareButton id="68nUIBWcWlpw2sJV3wGh" />
+      </main >
     </>
   )
 }
