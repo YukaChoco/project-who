@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import useUser from '@/hooks/useUser'
-import styles from '@/styles/Card-detail.module.css'
+import styles from '@/styles/CardDetail.module.css'
 import { useRouter } from 'next/router'
 import Header from '@/conponents/Header'
 import Card from '@/conponents/Card'
@@ -31,10 +31,6 @@ export default function Index() {
 
   if (loading) {
     <>
-      <Head>
-        <title>Who!</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <main>
         <h1>Loading...</h1>
       </main>
@@ -45,8 +41,7 @@ export default function Index() {
     return (
       <>
         <Head>
-          <title>Who!</title>
-          <link rel="icon" href="/favicon.ico" />
+          <title>{cardData.name}の名刺-Who!</title>
         </Head>
 
         <main>
