@@ -4,7 +4,7 @@ import styles from '@/styles/Mycards.module.css'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import MakeNewCard from '@/conponents/NewCard'
-import PrimaryBtn from '@/conponents/PrimaryBtn'
+import PrimaryButton from '@/conponents/PrimaryButton'
 import router from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -38,7 +38,7 @@ export default function Index() {
           />
           <MakeNewCard />
         </div>
-        <PrimaryBtn text={'ホームに戻る'} onClick={() => router.push("/cards")} />
+        <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
       </main>
     </>
   )

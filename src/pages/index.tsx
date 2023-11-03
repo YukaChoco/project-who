@@ -2,8 +2,8 @@
 import Head from 'next/head'
 import styles from '@/styles/Index.module.css'
 import firebaseLogin from '@/utils/ok/firebaseLogin'
-import PrimaryBtn from '@/conponents/PrimaryBtn';
-import SecondaryBtn from '@/conponents/SecondaryBtn';
+import PrimaryButton from '@/conponents/PrimaryButton';
+import SecondaryButton from '@/conponents/SecondaryButton';
 import { useRouter } from 'next/router';
 
 export default function Index() {
@@ -21,7 +21,7 @@ export default function Index() {
 
         <div className={styles.container}>
           <div className={styles.button}>
-            <SecondaryBtn
+            <SecondaryButton
               text='ログイン'
               onClick={async () => {
                 await firebaseLogin()
@@ -31,7 +31,7 @@ export default function Index() {
           </div>
 
           <div className={styles.button}>
-            <PrimaryBtn
+            <PrimaryButton
               text='新規登録'
               onClick={async () => {
                 await firebaseLogin()

@@ -3,8 +3,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Share.module.css'
 import { useRouter } from 'next/router'
 import Header from '@/conponents/Header'
-import DisplayCard from '@/conponents/Card'
-import PrimaryBtn from '@/conponents/PrimaryBtn'
+import PrimaryButton from '@/conponents/PrimaryButton'
 import QRCode from '@/conponents/MakeQrcode'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -51,7 +50,7 @@ export default function Detail() {
         </div>
         <div style={{ height: '50px' }} />
         <div className={styles.returnbutton}>
-          <PrimaryBtn text={'ホームに戻る'} onClick={() => router.push("/cards")} />
+          <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
         </div>
 
       </main>

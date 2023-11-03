@@ -2,7 +2,7 @@ import Head from 'next/head'
 import router from 'next/router';
 import styles from '@/styles/upgrade.module.css'
 import Header from '@/conponents/Header'
-import PrimaryBtn from '@/conponents/PrimaryBtn'
+import PrimaryButton from '@/conponents/PrimaryButton'
 import makeHaveCard from '@/utils/ok/makeHaveCard'
 import type { MakeOthersCardData } from '@/types/CardData'
 
@@ -35,7 +35,7 @@ export default function MakeHaveCardTest() {
           <h2 className={styles.text}>MakeHaveCardTest</h2>
         </div>
         <div style={{ width: '100%' }}>
-          <PrimaryBtn text={'Button'} onClick={() => handleButton()} />
+          <PrimaryButton text={'Button'} onClick={() => handleButton()} />
         </div>
       </main>
     </>
