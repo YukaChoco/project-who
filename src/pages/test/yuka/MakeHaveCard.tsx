@@ -55,7 +55,7 @@ export default function Index() {
           add
         </button>
 
-        <ShareButton id="68nUIBWcWlpw2sJV3wGh" />
+        <ShareButton />
       </main >
     </>
   )

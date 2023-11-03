@@ -66,7 +66,7 @@ export default function Index() {
               <DisplayText title="Instagram" detail={cardData.instagram} url={getURL("instagram", cardData.instagram)} isSNSId />
             </div>
           </div>
-          <ShareButton id="68nUIBWcWlpw2sJV3wGh" />
+          <ShareButton />
         </main>
       </>
     )
