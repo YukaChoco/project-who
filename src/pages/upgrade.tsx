@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/upgrade.module.css'
 import Header from '@/conponents/Header'
-import PrimaryBtn from '@/conponents/PrimaryBtn'
-import SecondaryBtn from '@/conponents/SecondaryBtn'
+import PrimaryButton from '@/conponents/PrimaryButton'
+import SecondaryButton from '@/conponents/SecondaryButton'
 import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -23,9 +23,9 @@ export default function Index() {
         <div>
           <h2 className={styles.text}>これ以降の機能は課金してね💖</h2>
         </div>
-        <div className={styles.Btn_wrapper}>
-          <Link href="/warning"><SecondaryBtn text="課金して始める" onClick={() => console.log('PrimaryBtn Clicked')} /></Link>
-          <Link href="/cards"><PrimaryBtn text="戻る" onClick={() => console.log('PrimaryBtn Clicked')} /></Link>
+        <div className={styles.Button_wrapper}>
+          <Link href="/warning"><SecondaryButton text="課金して始める" onClick={() => console.log('PrimaryButton Clicked')} /></Link>
+          <Link href="/cards"><PrimaryButton text="戻る" onClick={() => console.log('PrimaryButton Clicked')} /></Link>
         </div>
       </main>
     </>

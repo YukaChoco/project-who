@@ -5,7 +5,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Inter } from 'next/font/google'
 import styles from '@/styles/upgrade.module.css'
 import Header from '@/conponents/Header'
-import PrimaryBtn from '@/conponents/PrimaryBtn'
+import PrimaryButton from '@/conponents/PrimaryButton'
 import makeMyCard from '@/utils/ok/makeMyCard'
 import type { MakeMyCardData } from '@/types/CardData'
 import { auth } from '@/firebase';
@@ -58,7 +58,7 @@ export default function GetHaveCardId() {
           <h2 className={styles.text}>{show}</h2>
         </div>
         <div style={{ width: '100%' }}>
-          <PrimaryBtn text={'Button'} onClick={() => handleButton()} />
+          <PrimaryButton text={'Button'} onClick={() => handleButton()} />
         </div>
       </main>
     </>
