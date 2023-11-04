@@ -28,15 +28,17 @@ export default function Detail() {
   }, [userId])
 
   if (!cardData && loading) {
-    ;<>
-      <Head>
-        <title>Who!</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <h1>Loading...</h1>
-      </main>
-    </>
+    return (
+      <>
+        <Head>
+          <title>Who!</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main>
+          <h1>Loading...</h1>
+        </main>
+      </>
+    );
   }
 
   const display = cardData.map((data) => {
@@ -64,7 +66,7 @@ export default function Detail() {
             </div>
 
           </div>
-          
+
           <div className={styles.returnbutton}>
             <PrimaryBtn
               text={'ホームに戻る'}
