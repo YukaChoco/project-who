@@ -10,6 +10,7 @@
 }
 
 .username {
+    min-height: 2.4rem;
     text-align: center;
     margin: 20px 0px;
     width: 100%;

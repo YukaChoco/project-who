@@ -20,7 +20,7 @@ export default function SwitchButton(props: Props) {
         fullWidth
         onChange={props.onChange}
         aria-label="Platform"
-        sx={{//ここでCSSあてるか、module.cssのファイルを使ってあてるか
+        sx={{
           height: 20,
           width: '100%',
           padding: '12px',

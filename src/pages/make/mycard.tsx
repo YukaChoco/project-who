@@ -122,6 +122,7 @@ const hundleOnClickEdit = () => {
                 </div>
 
 
+
                 <div className={styles.card}>
                   <DisplayCard name={name} organization={organization} x={x} instagram={instagram}  urlEnabled={false} textColor={textColor} bgColor={bgColor} onClickHandler={function (): void {
                     throw new Error('Function not implemented.')
@@ -164,3 +165,4 @@ const hundleOnClickEdit = () => {
             </>
           )
         }
+        
