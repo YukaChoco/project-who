@@ -1,7 +1,7 @@
 import styles from '@/styles/creatText.module.css'
 import { useState } from 'react'
-import PrimaryBtn from '@/conponents/PrimaryBtn'
-import SecondaryBtn from '@/conponents/SecondaryBtn'
+import PrimaryButton from '@/conponents/PrimaryButton'
+import SecondaryButton from '@/conponents/SecondaryButton'
 
 
 interface Props {
@@ -12,8 +12,8 @@ export default function EditCompleted(props: Props) {
 
   return (
     <>
-            <PrimaryBtn text="編集に戻る" onClick={props.setMode} />
-            <SecondaryBtn text="保存して終了" onClick={() => console.log('作成完了！')} />
+            <PrimaryButton text="編集に戻る" onClick={props.setMode} />
+            <SecondaryButton text="保存して終了" onClick={() => console.log('作成完了！')} />
         <div className={styles.space} />
     </>
   )

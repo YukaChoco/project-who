@@ -103,7 +103,7 @@ export default function Input() {
                           <ColorPicker text="背景色" value={bgColor} onChange={handleBgColor} />
 
                           <div className={styles.space} />
-                          <SecondaryBtn text="編集完了" onClick={() => console.log('Secondarybtn Clicked')} />
+                          <SecondaryButton text="編集完了" onClick={() => console.log('Secondarybtn Clicked')} />
                         </div>
                       );
                     } else {
