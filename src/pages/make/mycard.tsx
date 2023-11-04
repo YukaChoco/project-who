@@ -12,7 +12,6 @@ import EditComplete from '@/conponents/EditComplete'
 import makemycard from '@/utils/ok/makeMyCard'
 import type { CardData } from '@/types/CardData'
 import getCardDetils from '@/utils/ok/getCardDetils'
-import EditCompleted from '@/conponents/EditComplete'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -155,7 +154,7 @@ const hundleOnClickEdit = () => {
                     } else{
                       return(
                       <div className={styles.editBtn}>
-                        <EditCompleted 
+                        <EditComplete 
                           handleReturned={()=>{}} //ここでsetModeとかを使ってみてください
                           handleCompleted={()=>{}}
                         />

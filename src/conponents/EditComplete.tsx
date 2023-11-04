@@ -2,13 +2,12 @@ import Box from '@mui/material/Box';
 import PrimaryButton from '@/conponents/PrimaryButton'
 import SecondaryButton from '@/conponents/SecondaryButton'
 
-
 interface EditCompletedProps {
   handleReturned: () => void;
   handleCompleted: () => void;
 }
 
-export default function EditCompleted({
+export default function EditComplete({
   handleReturned = () => { },
   handleCompleted = () => { },
 }: EditCompletedProps) {
