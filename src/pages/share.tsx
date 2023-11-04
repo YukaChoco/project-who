@@ -27,7 +27,7 @@ export default function Detail() {
     fetchUsers()
   }, [userId])
 
-  if (!cardData && loading) {
+  if (loading) {
     return (
       <>
         <Head>
