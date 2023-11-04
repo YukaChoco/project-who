@@ -60,7 +60,7 @@ export default function Index() {
 
   const showButtons = () => {
     if (cardData?.authorId === userId) { // 名刺作成者
-      return (<SecondaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/card?cardId=${cardId}`)} />);
+      return (<SecondaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType === CardType.My ? 'mycard' : 'card'}?cardId=${cardId}`)} />);
     } else if (cardType === CardType.Have) { // カード登録済みのユーザ
       return (<SecondaryButton text='登録済み' disabled />);
     } else if (isLoginUser) { //ログインユーザ
