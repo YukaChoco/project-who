@@ -2,7 +2,7 @@ import getHaveCardIdsByUserId from './getHaveCardIdsByUserId'
 import getCardDetils from './getCardDetils'
 import type { CardData } from '@/types/CardData'
 
-export default async function getHaveCardDetails(userId: string) {
+export default async function getHaveCardDetailsByUserId(userId: string) {
   const haveCardIds = await getHaveCardIdsByUserId(userId);
 
   if (!haveCardIds) return null;

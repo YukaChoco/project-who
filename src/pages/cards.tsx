@@ -6,9 +6,8 @@ import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import ShareButton from '@/conponents/ShareButton'
 import useUser from '@/hooks/useUser'
-import getHaveCardDetails from '@/utils/ok/getHaveCardDetails'
+import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId'
 import type { CardData } from '@/types/CardData'
-
 
 export default function Index() {
   const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
@@ -19,7 +18,7 @@ export default function Index() {
   useEffect(() => {
     const fetchUsers = async () => {
       if (userId) {
-        const haveCardDetails = await getHaveCardDetails(userId);
+        const haveCardDetails = await getHaveCardDetailsByUserId(userId);
         setCardDatas(haveCardDetails);
       }
     };
