@@ -16,9 +16,10 @@ import addHaveCardId from '@/utils/ok/addHaveCardId'
 
 export default function Index() {
   const router = useRouter();
-  const cardid = router.query.cardid as string;
+  const cardId = router.query.cardid as string;
 
   const [cardData, setCardData] = useState<CardData | null>(null);
+  const [cardType, setCardType] = useState<'have' | 'my' | 'undefined'>('undefined');
   const [registerLoading, setRegistertLoading] = useState<boolean>(false);
 
   const { userId, loading } = useUser();
@@ -26,22 +27,22 @@ export default function Index() {
   const isLoginUser = userId !== null;
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      if (userId && cardid) {
-        const cardData = await getCardDetils(cardid);
+    const fetchCardDetails = async () => {
+      if (cardId) {
+        const cardData = await getCardDetils(cardId);
         setCardData(cardData);
+        //loading false
       }
     };
-    fetchUsers();
-  }, [cardid, userId])
+    fetchCardDetails();
+  }, [cardId])
 
   const handleRegisterButton = async () => {
     if (userId) {
       setRegistertLoading(true);
-      console.log(cardid)
-      const result = await addHaveCardId(userId, cardid);
+      const result = await addHaveCardId(userId, cardId);
       if (result) {
-        console.log('登録しました');
+        setCardType('have');
       }
       else {
         console.error('登録に失敗しました');
@@ -51,15 +52,50 @@ export default function Index() {
     }
   }
 
+  const showButtons = () => {
+    if (cardData?.authorId === userId) {
+      return (<SecondaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/card?cardId=${cardId}`)} />);
+    } else if (cardType == 'have') {
+      return (<SecondaryButton text='登録済み' disabled />);
+    } else {
+      return (
+        <>
+          <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} disabled={!isLoginUser} />
+          {
+            !isLoginUser && (
+              <>
+                <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
+                <Typography sx={{ textAlign: 'center' }}>※名刺の登録にはログインが必要です</Typography>
+              </>
+            )
+          }
+        </>
+      )
+    }
+  }
+
   if (loading || registerLoading) {
-    <>
-      <main>
-        <h1>Loading...</h1>
-      </main>
-    </>
+    return (
+      <>
+        <main>
+          <h1>Loading...</h1>
+        </main>
+      </>
+    )
   }
 
   if (cardData) {
+    if (cardData.protected && cardType !== 'have') {
+      return (
+        <main className='error'>
+          <Header useSearchIcon useMenuIcon />
+          <div>
+            <h1>この名刺は閲覧できません</h1>
+            <p>※この名刺は本人が作成した名刺ではないため、作成者しか閲覧できません。</p>
+          </div>
+        </main>
+      )
+    }
     return (
       <>
         <Head>
@@ -85,18 +121,20 @@ export default function Index() {
           </div>
 
           <div className={styles.container}>
-            <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} disabled={!isLoginUser} />
-            {!isLoginUser && (
-              <>
-                <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
-                <Typography sx={{ textAlign: 'center' }}>※名刺の登録にはログインが必要です</Typography>
-              </>
-            )}
+            {showButtons()}
           </div>
 
           <ShareButton id="68nUIBWcWlpw2sJV3wGh" />
         </main>
       </>
     )
+  } else {
+    return (
+      <main className='error'>
+        <Header useSearchIcon useMenuIcon />
+        <h1>存在しない名刺です</h1>
+      </main>
+    )
   }
+
 }
