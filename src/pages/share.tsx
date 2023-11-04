@@ -42,6 +42,8 @@ export default function Detail() {
     );
   }
 
+  if (!cardData) return (<></>)//cardDataがnullの時のエラー処理
+
   const display = cardData.map((data) => {
     return <DisplayCard key={data.id} {...data} urlEnabled />
   })
