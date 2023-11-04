@@ -1,20 +1,28 @@
-import styles from '@/styles/creatText.module.css'
-import { useState } from 'react'
+import Box from '@mui/material/Box';
 import PrimaryButton from '@/conponents/PrimaryButton'
 import SecondaryButton from '@/conponents/SecondaryButton'
 
 
-interface Props {
-    setMode: () => void;
+interface EditCompletedProps {
+  handleReturned: () => void;
+  handleCompleted: () => void;
 }
 
-export default function EditCompleted(props: Props) {
-
+export default function EditCompleted({
+  handleReturned = () => { },
+  handleCompleted = () => { },
+}: EditCompletedProps) {
+  const containerStyles = {
+    margin: '15px 0px'
+  }
   return (
-    <>
-            <PrimaryButton text="編集に戻る" onClick={props.setMode} />
-            <SecondaryButton text="保存して終了" onClick={() => console.log('作成完了！')} />
-        <div className={styles.space} />
-    </>
+    <div>
+      <Box sx={containerStyles}>
+        <PrimaryButton text="編集に戻る" onClick={handleReturned} />
+      </Box>
+      <Box sx={containerStyles}>
+        <SecondaryButton text="保存して終了" onClick={handleCompleted} />
+      </Box>
+    </div>
   )
 }
