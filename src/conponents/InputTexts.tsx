@@ -16,14 +16,14 @@ export default function InputTexts(props: Props) {
   return (
     <>
       <TextInput
+        text="所属団体"
+        value={props.organization}
+        onChange={props.handleOrganization}
+      />
+      <TextInput
         text="氏名"
         value={props.name}
         onChange={props.handleName}
-      />
-      <TextInput
-        text="instagram"
-        value={props.instagram}
-        onChange={props.handleinstagram}
       />
       <TextInput
         text="X"
@@ -31,9 +31,9 @@ export default function InputTexts(props: Props) {
         onChange={props.handleX}
       />
       <TextInput
-        text="所属団体"
-        value={props.organization}
-        onChange={props.handleOrganization}
+        text="instagram"
+        value={props.instagram}
+        onChange={props.handleinstagram}
       />
       <div className={styles.space} />
     </>
