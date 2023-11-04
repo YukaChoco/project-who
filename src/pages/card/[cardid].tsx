@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { CardType } from '@/types/CardType'
 import useUser from '@/hooks/useUser'
 import styles from '@/styles/CardDetail.module.css'
@@ -59,25 +59,24 @@ export default function Index() {
   }
 
   const showButtons = () => {
-    if (cardData?.authorId === userId) {
+    if (cardData?.authorId === userId) { // 名刺作成者
       return (<SecondaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/card?cardId=${cardId}`)} />);
-    } else if (cardType === CardType.Have) {
+    } else if (cardType === CardType.Have) { // カード登録済みのユーザ
       return (<SecondaryButton text='登録済み' disabled />);
-    } else {
-      return (
-        <>
-          <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} disabled={!isLoginUser} />
-          {
-            !isLoginUser && (
-              <>
-                <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
-                <Typography sx={{ textAlign: 'center' }}>※名刺の登録にはログインが必要です</Typography>
-              </>
-            )
-          }
-        </>
-      )
+    } else if (isLoginUser) { //ログインユーザ
+      return (<SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} />);
     }
+    return ( //非ログインユーザ
+      <>
+        <Box sx={{ margin: '15px 0px' }}>
+          <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} disabled />
+        </Box>
+        <Box sx={{ margin: '15px 0px' }}>
+          <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
+          <Typography sx={{ textAlign: 'center' }}>※名刺の登録にはログインが必要です</Typography>
+        </Box>
+      </>
+    )
   }
 
   if (loading || registerLoading) {
