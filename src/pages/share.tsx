@@ -15,7 +15,7 @@ import getMyCardDetails from '@/utils/ok/getMyCardDetails'
 export default function Detail() {
   // const router = useRouter();
   // const cardid = router.query.cardid as string;
-  const [cardData, setCardDatas] = useState<CardData[]>([])
+  const [cardData, setCardDatas] = useState<CardData[] | null>([])
   const { userId, loading } = useUser()
   useEffect(() => {
     const fetchUsers = async () => {
