@@ -13,6 +13,7 @@ import type { CardData } from '@/types/CardData'
 import getCardDetils from '@/utils/ok/getCardDetils'
 import { getURL } from '@/utils/ok/getURL'
 import addHaveCardId from '@/utils/ok/addHaveCardId'
+import getCardType from '@/utils/ok/getCardType'
 
 export default function Index() {
   const router = useRouter();
@@ -29,13 +30,17 @@ export default function Index() {
   useEffect(() => {
     const fetchCardDetails = async () => {
       if (cardId) {
-        const cardData = await getCardDetils(cardId);
-        setCardData(cardData);
+        const fetchCardData = await getCardDetils(cardId);
+        setCardData(fetchCardData);
+        if (userId) {
+          const fetchCardType = await getCardType(userId, cardId);
+          setCardType(fetchCardType);
+        }
         //loading false
       }
     };
     fetchCardDetails();
-  }, [cardId])
+  }, [cardId, userId])
 
   const handleRegisterButton = async () => {
     if (userId) {
