@@ -1,9 +1,9 @@
-import getMyCardIds from './getMyCardIds'
+import getMyCardIdsByUserId from './getMyCardIdsByUserId'
 import getCardDetils from './getCardDetils'
 import type { CardData } from '@/types/CardData'
 
 export default async function getMyCardDetails(userId: string) {
-  const myCardIds = await getMyCardIds(userId);
+  const myCardIds = await getMyCardIdsByUserId(userId);
 
   if (!myCardIds) return [];
 
