@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { Typography } from '@mui/material'
+import { CardType } from '@/types/CardType'
 import useUser from '@/hooks/useUser'
 import styles from '@/styles/CardDetail.module.css'
-import { Typography } from '@mui/material'
 import Header from '@/conponents/Header'
 import Card from '@/conponents/Card'
 import DisplayText from '@/conponents/DisplayText'
@@ -20,7 +21,7 @@ export default function Index() {
   const cardId = router.query.cardid as string;
 
   const [cardData, setCardData] = useState<CardData | null>(null);
-  const [cardType, setCardType] = useState<'have' | 'my' | 'undefined'>('undefined');
+  const [cardType, setCardType] = useState<CardType>(CardType.None);
   const [registerLoading, setRegistertLoading] = useState<boolean>(false);
 
   const { userId, loading } = useUser();
@@ -47,7 +48,7 @@ export default function Index() {
       setRegistertLoading(true);
       const result = await addHaveCardId(userId, cardId);
       if (result) {
-        setCardType('have');
+        setCardType(CardType.My);
       }
       else {
         console.error('登録に失敗しました');
@@ -60,7 +61,7 @@ export default function Index() {
   const showButtons = () => {
     if (cardData?.authorId === userId) {
       return (<SecondaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/card?cardId=${cardId}`)} />);
-    } else if (cardType == 'have') {
+    } else if (cardType === CardType.Have) {
       return (<SecondaryButton text='登録済み' disabled />);
     } else {
       return (
