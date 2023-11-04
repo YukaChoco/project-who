@@ -90,7 +90,7 @@ export default function Index() {
   }
 
   if (cardData) {
-    if (cardData.protected && cardType !== 'have') {
+    if (cardData.protected && cardData.authorId !== userId) {
       return (
         <main className='error'>
           <Header useSearchIcon useMenuIcon />
