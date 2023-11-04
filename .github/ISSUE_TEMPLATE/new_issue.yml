@@ -5,7 +5,7 @@ body:
   - type: input
     id: main-page
     attributes:
-      label: 作業ページ
+      label: 作業ファイル
       placeholder: 例) cards.tsx
     validations:
       required: true
@@ -20,6 +20,13 @@ body:
         3.
         ...
       render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: why-needed
+    attributes:
+      label: 理由
+      multiple: true
     validations:
       required: true
   - type: textarea
