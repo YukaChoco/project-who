@@ -1,19 +1,17 @@
-.SecondaryBtn{
+.PrimaryButton{
     display: inline-block;
     width: 100%;
+    background-color: #fff;
     font-size: 1.125rem;
     border: 1.5px solid;
-    border-radius: 45px;
-    color: #fff;
-    background-color:  #6F80BF;
     border-color: #969696;
+    border-radius: 45px;
+    color: #6F80BF;
     text-decoration: none;
 }
 
-.SecondaryBtn:focus,
-.SecondaryBtn:hover{
+.PrimaryButton:focus,
+.PrimaryButton:hover{
     border: 1.5px solid;
-    color: #fff;
-    background-color:  #6F80BF;
     border-color: #969696;
 }
