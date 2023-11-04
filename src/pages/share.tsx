@@ -4,13 +4,14 @@ import styles from '@/styles/Share.module.css'
 import router, { useRouter } from 'next/router'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
-import PrimaryBtn from '@/conponents/PrimaryBtn'
+import PrimaryButton from '@/conponents/PrimaryButton'
 import QRCode from '@/conponents/QRCode'
 import { useEffect, useState } from 'react'
 import { CardData } from '@/types/CardData'
 import useUser from '@/hooks/useUser'
 import getCardDetils from '@/utils/ok/getCardDetils'
 import getMyCardDetails from '@/utils/ok/getMyCardDetails'
+
 
 export default function Detail() {
   // const router = useRouter();
@@ -68,7 +69,7 @@ export default function Detail() {
           </div>
 
           <div className={styles.returnbutton}>
-            <PrimaryBtn
+            <PrimaryButton
               text={'ホームに戻る'}
               onClick={() => router.push('/cards')}
             />

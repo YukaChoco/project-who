@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/TestKotaro.module.css'
 import TextInput from '@/conponents/TextInput'
-import PrimaryBtn from '@/conponents/PrimaryBtn'
-import SecondaryBtn from '@/conponents/SecondaryBtn'
+import PrimaryButton from '@/conponents/PrimaryButton'
+import SecondaryButton from '@/conponents/SecondaryButton'
 import ColorPicker from '@/conponents/ColorPicker'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -38,8 +38,8 @@ export default function Input() {
   return (
     <>
       <main className={styles.main}>
-        <PrimaryBtn text="ログイン" onClick={() => console.log('PrimaryBtn Clicked')} />
-        <SecondaryBtn text="新規登録" onClick={() => console.log('Secondarybtn Clicked')} />
+        <PrimaryButton text="ログイン" onClick={() => console.log('PrimaryButton Clicked')} />
+        <SecondaryButton text="新規登録" onClick={() => console.log('SecondaryButton Clicked')} />
         <TextInput
           text="氏名"
           value={name}
