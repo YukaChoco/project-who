@@ -6,9 +6,9 @@ interface GetUserFields {
   myCardIds: string[] | undefined;
 }
 
-export default async function getMyCardIds(userid: string) {
-  const querySnapshot = await getDoc(doc(db, 'users', userid))
-  const fetchIds: GetUserFields = querySnapshot.data() as GetUserFields;
+export default async function getMyCardIds(userId: string) {
+  const userFieldsQuery = await getDoc(doc(db, 'users', userId));
+  const fetchIds: GetUserFields = userFieldsQuery.data() as GetUserFields;
   if (fetchIds.myCardIds === undefined) return null;
   const ids = fetchIds.myCardIds;
   return ids;

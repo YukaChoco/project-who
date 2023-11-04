@@ -7,8 +7,8 @@ interface GetUserFields {
 }
 
 export default async function getHaveCardIds(userId: string) {
-  const querySnapshot = await getDoc(doc(db, 'users', userId))
-  const fetchIds: GetUserFields = querySnapshot.data() as GetUserFields
+  const userFieldsQuery = await getDoc(doc(db, 'users', userId));
+  const fetchIds: GetUserFields = userFieldsQuery.data() as GetUserFields;
   if (fetchIds.haveCardIds === undefined) return null;
   const ids = fetchIds.haveCardIds;
   return ids;
