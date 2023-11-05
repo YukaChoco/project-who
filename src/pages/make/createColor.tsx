@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/creatText.module.css'
 import TextInput from '@/conponents/TextInput'
-import PrimaryBtn from '@/conponents/PrimaryBtn'
-import SecondaryBtn from '@/conponents/SecondaryBtn'
+import PrimaryButton from '@/conponents/PrimaryButton'
+import SecondaryButton from '@/conponents/SecondaryButton'
 import ColorPicker from '@/conponents/ColorPicker'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
@@ -103,7 +103,7 @@ export default function Input() {
                           <ColorPicker text="背景色" value={bgColor} onChange={handleBgColor} />
 
                           <div className={styles.space} />
-                          <SecondaryBtn text="編集完了" onClick={() => console.log('Secondarybtn Clicked')} />
+                          <SecondaryButton text="編集完了" onClick={() => console.log('Secondarybtn Clicked')} />
                         </div>
                       );
                     } else {

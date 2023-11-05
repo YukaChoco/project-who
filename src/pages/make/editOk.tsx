@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/creatText.module.css'
 import TextInput from '@/conponents/TextInput'
-import PrimaryBtn from '@/conponents/PrimaryBtn'
-import SecondaryBtn from '@/conponents/SecondaryBtn'
+import PrimaryButton from '@/conponents/PrimaryButton'
+import SecondaryButton from '@/conponents/SecondaryButton'
 import ColorPicker from '@/conponents/ColorPicker'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
@@ -71,8 +71,8 @@ export default function Input() {
 
         <div className={styles.space} />
 
-        <PrimaryBtn text="編集に戻る" onClick={() => console.log('Secondarybtn Clicked')} />
-        <SecondaryBtn text="保存して終了" onClick={() => console.log('Secondarybtn Clicked')} />
+        <PrimaryButton text="編集に戻る" onClick={() => console.log('SecondaryButton Clicked')} />
+        <SecondaryButton text="保存して終了" onClick={() => console.log('SecondaryButton Clicked')} />
         </main>
     </>
 
