@@ -62,6 +62,7 @@ const hundleOnClickEdit = () => {
       bgColor: bgColor,
   };
   console.log(cardData);
+  router.push("/cards");
   if(userId){
     makemycard(userId,cardData);
   }
@@ -93,15 +94,15 @@ const hundleOnClickEdit = () => {
   //   setData((data) => ({ ...data, organization: event.target.value}));
   // }
 
-  function handleTextColor(event: React.ChangeEvent<HTMLInputElement>) {
-    setTextColor(event.target.value);
-    // setData((data) => ({ ...data, textColor:event.target.value}));
-  }
+  // function handleTextColor(event: React.ChangeEvent<HTMLInputElement>) {
+  //   setTextColor(event.target.value);
+  //   setData((data) => ({ ...data, textColor:event.target.value}));
+  // }
 
-  function handleBgColor(event: React.ChangeEvent<HTMLInputElement>) {
-    setBgColor(event.target.value);
-    // setData((data) => ({ ...data, bgColor: event.target.value}));
-  }
+  // function handleBgColor(event: React.ChangeEvent<HTMLInputElement>) {
+  //   setBgColor(event.target.value);
+  //   setData((data) => ({ ...data, bgColor: event.target.value}));
+  // }
 
   // function handleinstagram(event: React.ChangeEvent<HTMLInputElement>) {
   //   setInstagram(event.target.value);
@@ -114,14 +115,11 @@ const hundleOnClickEdit = () => {
                 {...mode === "完了" ? null : { onClick_edit: () => setMode("完了") }}
               />
 
-
               <main className={styles.main}>
 
                 <div className={styles.preview}>
                   <p>プレビュー</p>
                 </div>
-
-
 
                 <div className={styles.card}>
                   <DisplayCard name={name} organization={organization} x={x} instagram={instagram}  urlEnabled={false} textColor={textColor} bgColor={bgColor} onClickHandler={function (): void {
@@ -154,7 +152,7 @@ const hundleOnClickEdit = () => {
                     } else{
                       return(
                       <div className={styles.editBtn}>
-                        <EditComplete setMode={hundleOnClickEdit}/>
+                        <EditComplete setData={hundleOnClickEdit} setMode={() => setMode('入力')}　/>
                       </div>
                       )
                     }
@@ -165,4 +163,3 @@ const hundleOnClickEdit = () => {
             </>
           )
         }
-        

@@ -3,7 +3,7 @@
   justify-items: center;
   min-height: 100vh;
   background-color: #fff;
-  padding-top: 58px;
+  /* padding-top: 58px; */
 }
 
 .change {
@@ -27,6 +27,14 @@
   align-items: center;
 }
 
+.change{
+  width: 100%;
+}
+
 .editBtn {
   margin-top: 10px;
+}
+
+.space{
+  margin-top: 5px;
 }

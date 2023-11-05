@@ -21,10 +21,10 @@ export default function SwitchButton(props: Props) {
         onChange={props.onChange}
         aria-label="Platform"
         sx={{
-          height: 20,
+          height: 30,
           width: '100%',
-          padding: '12px',
-          margin: '0px 20px',
+          margin: '20px 0',
+          // margin: '0px 20px',
         }}
       >
         <ToggleButton value={props.leftName}>{props.leftName}</ToggleButton>

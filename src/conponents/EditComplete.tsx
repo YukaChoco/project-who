@@ -6,6 +6,7 @@ import SecondaryBtn from '@/conponents/SecondaryBtn'
 
 interface Props {
     setMode: () => void;
+    setData: () => void;
 }
 
 export default function EditCompleted(props: Props) {
@@ -13,7 +14,8 @@ export default function EditCompleted(props: Props) {
   return (
     <>
             <PrimaryBtn text="編集に戻る" onClick={props.setMode} />
-            <SecondaryBtn text="保存して終了" onClick={() => console.log('作成完了！')} />
+            <div className={styles.space} />
+            <SecondaryBtn text="保存して終了" onClick={props.setData} />
         <div className={styles.space} />
     </>
   )
