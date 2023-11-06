@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Share.module.css'
 import router, { useRouter } from 'next/router'
 import Header from '@/conponents/Header'
@@ -9,9 +8,8 @@ import QRCode from '@/conponents/QRCode'
 import { useEffect, useState } from 'react'
 import { CardData } from '@/types/CardData'
 import useUser from '@/hooks/useUser'
-import getCardDetils from '@/utils/ok/getCardDetils'
 import getMyCardDetails from '@/utils/ok/getMyCardDetails'
-
+import SecondaryButton from '@/conponents/SecondaryButton'
 
 export default function Detail() {
   // const router = useRouter();
@@ -39,17 +37,40 @@ export default function Detail() {
           <h1>Loading...</h1>
         </main>
       </>
-    );
+    )
   }
 
-  if (!cardData) return (<></>)//cardDataがnullの時のエラー処理
+  if (!cardData)
+    return (
+      <main>
+        <>
+          <h1>自分の名刺がありません</h1>
+          <SecondaryButton
+            text="自分の名刺を作成する"
+            onClick={() => router.push('/make/mycard')}
+          />
+        </>
+      </main>
+    ) //cardDataがnullの時のエラー処理
+
+  if (!userId)
+    return (
+      <main>
+        <>
+          <h1>自分の名刺がありません</h1>
+          <SecondaryButton
+            text="ログインしてください"
+            onClick={() => router.push('/?nextPage=${router.asPath}')}
+          />
+        </>
+      </main>
+    ) //cardDataがnullの時のエラー処理
 
   const display = cardData.map((data) => {
     return <DisplayCard key={data.id} {...data} urlEnabled />
   })
 
   if (cardData[0]) {
-    console.log(cardData[0].id)
     return (
       <>
         <Head>
@@ -62,12 +83,11 @@ export default function Detail() {
           <div className={styles.list}>
             <Header useMenuIcon />
             <div className={styles.qrcode}>
-              <QRCode url={`https://whooo.netlify.app/card/${cardData[0].id}`} />
+              <QRCode
+                url={`https://whooo.netlify.app/card/${cardData[0].id}`}
+              />
             </div>
-            <div className={styles.cardlist}>
-              {display}
-            </div>
-
+            <div className={styles.cardlist}>{display}</div>
           </div>
 
           <div className={styles.returnbutton}>
