@@ -8,6 +8,7 @@ import ShareButton from '@/conponents/ShareButton'
 import useUser from '@/hooks/useUser'
 import getHaveCardDetails from '@/utils/ok/getHaveCardDetails'
 import type { CardData } from '@/types/CardData'
+import SecondaryButton from '@/conponents/SecondaryButton'
 
 
 export default function Index() {
@@ -49,6 +50,32 @@ export default function Index() {
       />
     );
   })
+
+  if (!cardDatas)
+    return (
+      <main>
+        <>
+          <h1>自分の名刺がありません</h1>
+          <SecondaryButton
+            text="自分の名刺を作成する"
+            onClick={() => router.push('/make/mycard')}
+          />
+        </>
+      </main>
+    ) //cardDataがnullの時のエラー処理
+
+  if (!userId)
+    return (
+      <main>
+        <>
+          <h1>自分の名刺がありません</h1>
+          <SecondaryButton
+            text="ログインしてください"
+            onClick={() => router.push('/?nextPage=${router.asPath}')}
+          />
+        </>
+      </main>
+    ) //cardDataがnullの時のエラー処理
 
   return (
     <>
