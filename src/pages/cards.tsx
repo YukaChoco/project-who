@@ -14,6 +14,7 @@ export default function Index() {
   const [cardDatas, setCardDatas] = useState<CardData[]>([]);
 
   const router = useRouter();
+
   const { userId, loading } = useUser();
 
   useEffect(() => {
@@ -23,7 +24,6 @@ export default function Index() {
         setCardDatas(haveCardDetails);
       }
     };
-
     fetchUsers();
   }, [userId])
 
