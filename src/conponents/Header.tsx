@@ -10,14 +10,19 @@ import Head from 'next/head';
 import Drawer from '@/conponents/Drawer'
 import Link from 'next/link'
 
-interface Props {
+interface HeaderProps {
   useSearchIcon?: boolean;
   useMenuIcon?: boolean;
   onClick_edit?: () => void;
   onClick_register?: () => void;
 }
 
-export default function Header(props: Props) {
+export default function Header({
+  useSearchIcon = false,
+  useMenuIcon = false,
+  onClick_edit = undefined,
+  onClick_register = undefined,
+}: HeaderProps) {
   const barStyle = {
     width: '100%',
     position: 'fixed',
@@ -50,7 +55,7 @@ export default function Header(props: Props) {
             <Link href="/cards">Who!</Link>
           </Typography>
           {
-            (props.useSearchIcon) &&
+            (useSearchIcon) &&
             <IconButton
               size="large"
               color="inherit"
@@ -61,18 +66,17 @@ export default function Header(props: Props) {
           }
 
           {
-            (props.useMenuIcon) &&
-            <><Drawer /></>
+            (useMenuIcon) && <Drawer />
           }
 
           {
-            (props.onClick_edit != null) &&
-            <Button color="inherit" onClick={props.onClick_edit}>編集完了</Button>
+            (onClick_edit !== undefined) &&
+            <Button color="inherit" onClick={onClick_edit}>編集完了</Button>
           }
 
           {
-            (props.onClick_register != null) &&
-            <Button color="inherit" onClick={props.onClick_register}>登録</Button>
+            (onClick_register !== undefined) &&
+            <Button color="inherit" onClick={onClick_register}>登録</Button>
           }
         </Toolbar>
       </AppBar>
