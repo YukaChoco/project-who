@@ -10,6 +10,16 @@ export default function Drawer() {
     right: false,
   });
 
+  const drawerStyle = {
+    backgroundColor: '#3A3737',
+    height: '100vh',
+    opacity: '0.8',
+  }
+  const itemModules = {
+    color: 'white',
+    borderBottom: '1px solid white',
+  }
+
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
       (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -31,20 +41,20 @@ export default function Drawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List className={styles.drawer}>
+      <List sx={drawerStyle}>
         <ListItem key={'名刺の作成'} disablePadding>
           <ListItemButton>
-            <Link href="/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} className={styles.drawer_item} /></Link>
+            <Link href="/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} sx={itemModules} /></Link>
           </ListItemButton>
         </ListItem>
         <ListItem key={'アカウントメモの追加'} disablePadding>
           <ListItemButton>
-            <Link href="/make/card"><ListItemText primary={'　アカウントメモの追加　'} className={styles.drawer_item} /></Link>
+            <Link href="/make/card"><ListItemText primary={'　アカウントメモの追加　'} sx={itemModules} /></Link>
           </ListItemButton>
         </ListItem>
         <ListItem key={'￥Up grade'} disablePadding>
           <ListItemButton>
-            <Link href="/upgrade"><ListItemText primary={'　￥Up grade　　　　　　'} className={styles.drawer_item} /></Link>
+            <Link href="/upgrade"><ListItemText primary={'　￥Up grade　　　　　　'} sx={itemModules} /></Link>
           </ListItemButton>
         </ListItem>
       </List>
@@ -61,8 +71,6 @@ export default function Drawer() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            className={styles.Header_icon}
-          // onClick={() => console.log('menuBtn Clicked')}
           >
             <MenuIcon />
           </IconButton>
