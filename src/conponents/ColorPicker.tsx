@@ -1,6 +1,5 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import styles from '@/styles/ColorPicker.module.css'
+import { Box } from '@mui/material';
 
 interface Props {
   text: string;
@@ -9,12 +8,39 @@ interface Props {
 }
 
 export default function ColorPicker(props: Props) {
+  const containerStyle = {
+    backgroundColor: '#F4F5FC',
+    borderRadius: '5px',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+  }
+  const labelStyle = {
+    fontSize: '0.8rem',
+    padding: '20px',
+  }
+  const inputStyle = {
+    width: '36px',
+    height: '40px',
+    margin: 'auto 20px',
+    border: 'none',
+  }
+
   return (
-    <>
-      <div className={styles.container}>
-        <label htmlFor={`${props.text}`}>{props.text}</label>
-        <input itemID={`${props.text}`} type="color" id="style1" value={props.value} onChange={props.onChange} />
-      </div>
-    </>
+    <Box sx={containerStyle}>
+      <label
+        htmlFor={`${props.text}`}
+        style={labelStyle}
+      >
+        {props.text}
+      </label>
+      <input
+        type="color"
+        id={`${props.text}`}
+        value={props.value}
+        onChange={props.onChange}
+        style={inputStyle}
+      />
+    </Box>
   )
 }
