@@ -2,11 +2,16 @@ import { Box } from '@mui/material';
 import { Details } from '@/types/Details'
 import Link from 'next/link'
 
-interface Props extends Details {
+interface DisplayTextProps extends Details {
   isSNSId?: boolean;
 }
 
-export default function DisplayText(props: Props) {
+export default function DisplayText({
+  title = '',
+  detail = '',
+  url = '',
+  isSNSId = false,
+}: DisplayTextProps) {
   const containerStyle = {
     width: '100%',
     padding: '8px 20px',
@@ -18,17 +23,16 @@ export default function DisplayText(props: Props) {
 
   return (
     <Box sx={containerStyle}>
-      <p style={{ fontSize: '0.7rem' }}>{props.title}</p>
+      <p style={{ fontSize: '0.7rem' }}>{title}</p>
       <Box sx={detailStyle}>
-        {props.isSNSId && '@'}
+        {isSNSId && '@'}
         {
-          props.url
+          url
             ?
-            <Link href={props.url}>{props.detail}</Link>
+            <Link href={url}>{detail}</Link>
             :
-            <span>{props.detail}</span>
+            <span>{detail}</span>
         }
-        {props.isSNSId && '@'}
       </Box>
     </Box>
   )
