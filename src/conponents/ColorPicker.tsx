@@ -1,13 +1,17 @@
 import * as React from 'react';
 import { Box } from '@mui/material';
 
-interface Props {
-  text: string;
+interface ColorPickerProps {
+  labelText: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function ColorPicker(props: Props) {
+export default function ColorPicker({
+  labelText = '色の指定',
+  value = '#FFF',
+  onChange = () => { },
+}: ColorPickerProps) {
   const containerStyle = {
     backgroundColor: '#F4F5FC',
     borderRadius: '5px',
@@ -29,16 +33,16 @@ export default function ColorPicker(props: Props) {
   return (
     <Box sx={containerStyle}>
       <label
-        htmlFor={`${props.text}`}
+        htmlFor={labelText}
         style={labelStyle}
       >
-        {props.text}
+        {labelText}
       </label>
       <input
         type="color"
-        id={`${props.text}`}
-        value={props.value}
-        onChange={props.onChange}
+        id={labelText}
+        value={value}
+        onChange={onChange}
         style={inputStyle}
       />
     </Box>
