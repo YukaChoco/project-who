@@ -8,17 +8,26 @@ import Link from 'next/link';
 import type { CardData } from '@/types/CardData';
 import { Box } from '@mui/material';
 
-interface Props extends CardData {
+interface CardProps
+  extends Pick<CardData, 'organization' | 'name' | 'x' | 'instagram' | 'bgColor' | 'textColor'> {
   urlEnabled: boolean;
   onClickHandler?: () => void;
 }
 
-export default function DisplayCard(props: Props) {
-  const onClick = props.urlEnabled ? props.onClickHandler : () => { };
+export default function DisplayCard({
+  organization = '',
+  name = '',
+  x = '',
+  instagram = '',
+  bgColor = '#FFF',
+  textColor = '#000',
+  urlEnabled = false,
+  onClickHandler = () => { },
+}: CardProps) {
 
   const cardStyle = {
-    backgroundColor: `${props.bgColor}`,
-    color: `${props.textColor}`,
+    backgroundColor: `${bgColor}`,
+    color: `${textColor}`,
     fontSize: '1rem',
     lineHeight: '1.1rem',
     width: '100%',
@@ -49,23 +58,19 @@ export default function DisplayCard(props: Props) {
   return (
     <Card sx={cardStyle} onClick={onClick}>
       <CardContent>
-        <Typography sx={organizatinoStyle} >
-          {props.organization}
-        </Typography>
-        <Typography sx={nameStyle} >
-          {props.name}
-        </Typography>
+        <Typography sx={organizatinoStyle} >{organization}</Typography>
+        <Typography sx={nameStyle} >{name}</Typography>
       </CardContent>
 
       <CardActions disableSpacing sx={SNSUrlContainerStyle}>
         <Box sx={SNSUrlStyle}>
-          {props.x &&
-            <Link href={getURL('x', props.id)}>X@{props.x}</Link>
+          {x &&
+            <Link href={getURL('x', x)}>X@{x}</Link>
           }
         </Box>
         <Box sx={SNSUrlStyle}>
-          {props.instagram &&
-            <Link href={getURL('instagram', props.id)}>Instagram@{props.instagram}</Link>
+          {instagram &&
+            <Link href={getURL('instagram', id)}>Instagram@{instagram}</Link>
           }
         </Box>
       </CardActions>
