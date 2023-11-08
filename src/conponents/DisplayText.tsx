@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import LaunchIcon from '@mui/icons-material/Launch';
 import { Details } from '@/types/Details'
 import Link from 'next/link'
 
@@ -16,22 +17,28 @@ export default function DisplayText({
     width: '100%',
     padding: '8px 20px',
   }
-  const detailStyle = {
-    paddingTop: '4px',
-    paddingLeft: '12px',
+  const detailContainerStyle = {
+    padding: '4px 12px',
+  }
+  const urlStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.2rem',
   }
 
   return (
     <Box sx={containerStyle}>
       <p style={{ fontSize: '0.7rem' }}>{title}</p>
-      <Box sx={detailStyle}>
-        {isSNSId && '@'}
+      <Box sx={detailContainerStyle}>
         {
           url
             ?
-            <Link href={url}>{detail}</Link>
+            <Box sx={urlStyle}>
+              <Link href={url} >{isSNSId && '@'}{detail}</Link>
+              <LaunchIcon sx={{ fontSize: '1rem', height: '100%' }} />
+            </Box>
             :
-            <span>{detail}</span>
+            <span>{isSNSId && '@'}{detail}</span>
         }
       </Box>
     </Box>
