@@ -1,5 +1,5 @@
+import { Box } from '@mui/material';
 import { Details } from '@/types/Details'
-import styles from '@/styles/DisplayText.module.css'
 import Link from 'next/link'
 
 interface Props extends Details {
@@ -7,12 +7,19 @@ interface Props extends Details {
 }
 
 export default function DisplayText(props: Props) {
+  const containerStyle = {
+    width: '100%',
+    padding: '8px 20px',
+  }
+  const detailStyle = {
+    paddingTop: '4px',
+    paddingLeft: '12px',
+  }
+
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
-        <p>{props.title}</p>
-      </div>
-      <div className={styles.detail}>
+    <Box sx={containerStyle}>
+      <p style={{ fontSize: '0.7rem' }}>{props.title}</p>
+      <Box sx={detailStyle}>
         {props.isSNSId && '@'}
         {
           props.url
@@ -21,7 +28,8 @@ export default function DisplayText(props: Props) {
             :
             <span>{props.detail}</span>
         }
-      </div>
-    </div >
+        {props.isSNSId && '@'}
+      </Box>
+    </Box>
   )
 }
