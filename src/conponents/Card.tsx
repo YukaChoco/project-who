@@ -6,7 +6,8 @@ import Typography from '@mui/material/Typography';
 import { getURL } from '@/utils/ok/getURL';
 import Link from 'next/link';
 import type { CardData } from '@/types/CardData';
-import { Box } from '@mui/material';
+import { Box, CardActionArea } from '@mui/material';
+import { SNSType } from '@/types/SNSType';
 
 interface CardProps
   extends Pick<CardData, 'organization' | 'name' | 'x' | 'instagram' | 'bgColor' | 'textColor'> {
@@ -24,28 +25,39 @@ export default function DisplayCard({
   urlEnabled = false,
   onClickHandler = () => { },
 }: CardProps) {
+  const SNSUrl = ({ snsType, snsUserId }: { snsType: SNSType, snsUserId: string }) => {
+    if (!snsUserId) return <></>;
+
+    if (urlEnabled) {
+      return (
+        <Link href={getURL(snsType, snsUserId)}>
+          <Typography>{snsType}@{snsUserId}</Typography>
+        </Link>
+      )
+    }
+    return <Typography>{snsType}@{snsUserId}</Typography>
+  }
 
   const cardStyle = {
     backgroundColor: `${bgColor}`,
     color: `${textColor}`,
-    fontSize: '1rem',
-    lineHeight: '1.1rem',
     width: '100%',
-    padding: '20px',
+    padding: '10px'
   }
   const organizatinoStyle = {
-    minHeight: '2.4rem',
+    padding: '5px',
+    height: '2.4rem',
   }
   const nameStyle = {
+    minHeight: '2.4rem',
     textAlign: 'center',
-    margin: '20px 0px',
     width: '100%',
     fontSize: '1.5rem',
     fontWeight: '600',
+    margin: '30px 0px',
   }
   const SNSUrlContainerStyle = {
-    minHeight: '2.4rem',
-    padding: '0px',
+    height: '2.4rem',
     display: 'grid',
     gridTemplateRows: '1fr 1fr',
     gridTemplateClumns: '1fr',
@@ -54,26 +66,23 @@ export default function DisplayCard({
     minHeight: '1.2rem',
   }
 
-
   return (
-    <Card sx={cardStyle} onClick={onClick}>
-      <CardContent>
-        <Typography sx={organizatinoStyle} >{organization}</Typography>
-        <Typography sx={nameStyle} >{name}</Typography>
-      </CardContent>
+    <Card sx={cardStyle} onClick={onClickHandler}>
+      <CardActionArea>
+        <CardContent>
+          <Typography sx={organizatinoStyle} >{organization}</Typography>
+          <Typography sx={nameStyle} >{name}</Typography>
 
-      <CardActions disableSpacing sx={SNSUrlContainerStyle}>
-        <Box sx={SNSUrlStyle}>
-          {x &&
-            <Link href={getURL('x', x)}>X@{x}</Link>
-          }
-        </Box>
-        <Box sx={SNSUrlStyle}>
-          {instagram &&
-            <Link href={getURL('instagram', id)}>Instagram@{instagram}</Link>
-          }
-        </Box>
-      </CardActions>
+          <Box sx={SNSUrlContainerStyle}>
+            <Box sx={SNSUrlStyle}>
+              <SNSUrl snsType={SNSType.X} snsUserId={x} />
+            </Box>
+            <Box sx={SNSUrlStyle}>
+              <SNSUrl snsType={SNSType.Instagram} snsUserId={instagram} />
+            </Box>
+          </Box>
+        </CardContent>
+      </CardActionArea>
     </Card >
   );
 }
