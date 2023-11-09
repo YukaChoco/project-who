@@ -12,7 +12,7 @@ import SecondaryButton from '@/conponents/SecondaryButton'
 import ShareButton from '@/conponents/ShareButton'
 import type { CardData } from '@/types/CardData'
 import getCardDetils from '@/utils/ok/getCardDetils'
-import { getURL } from '@/utils/ok/getURL'
+import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL'
 import addHaveCardId from '@/utils/ok/addHaveCardId'
 import getCardType from '@/utils/ok/getCardType'
 
@@ -121,8 +121,8 @@ export default function Index() {
             </div>
             <div className={styles.infoitem}>
               <DisplayText title="orgnization" detail={cardData.organization} />
-              <DisplayText title="X" detail={cardData.x} url={getURL("x", cardData.x)} isSNSId />
-              <DisplayText title="Instagram" detail={cardData.instagram} url={getURL("instagram", cardData.instagram)} isSNSId />
+              <DisplayText title="X" detail={cardData.x} url={toXProfileURL(cardData.x)} isSNSId />
+              <DisplayText title="Instagram" detail={cardData.instagram} url={toInstagramProfileURL(cardData.instagram)} isSNSId />
             </div>
           </div>
 
