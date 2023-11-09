@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
+import { Box, TextField } from '@mui/material';
 import styles from '@/styles/TextInput.module.css'
 import type { TextFieldProps } from '@mui/material/TextField';
 import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
@@ -52,9 +52,16 @@ export default function TextInput({
   onChange = () => { },
 }: TextInputProps) {
   const outerTheme = useTheme();
+  const backGroundStyle = {
+    textAlign: 'center',
+    backgroundColor: '#F4F5FC',
+    borderRadius: '5px',
+    width: '100%',
+    padding: '5px',
+  }
   return (
     <>
-      <div className={styles.TextInput_background}>
+      <Box sx={backGroundStyle}>
         {/* textfieldを変えたが何か不都合が起きたとき見比べる用に一応コメントアウトして残してる。いらないなら消しても可 */}
         {/* <TextField className={styles.TextInput} label={props.text} variant="filled"
           sx={{
@@ -68,7 +75,7 @@ export default function TextInput({
           // focused
         /> */}
         <ThemeProvider theme={customTheme(outerTheme)}>
-          <TextField className={styles.TextInput}
+          <TextField
             sx={{
               input: {
                 color: "black",
@@ -81,7 +88,7 @@ export default function TextInput({
             onChange={onChange}
             focused />
         </ThemeProvider>
-      </div>
+      </Box>
     </>
   )
 }
