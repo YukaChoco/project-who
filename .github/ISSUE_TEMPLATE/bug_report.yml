@@ -1,6 +1,6 @@
 name: バグの報告
 description: バグを報告しissueを作成
-title: ""
+title: "sample"
 body:
   - type: input
     id: main-page
@@ -14,7 +14,6 @@ body:
     id: what-happened
     attributes:
       label: どのようなバグですか
-      multiple: true
       description: どのような操作で、どのようなバグが起きた、などを記述してください。
       placeholder: 例) 名刺を押しても画面が遷移しない。
     validations:
@@ -23,6 +22,5 @@ body:
     id: approach
     attributes:
       label: どのような修正が必要ですか
-      multiple: true
       description: 修正箇所がわかる場合は記述してください
       placeholder: 例) 名刺コンポーネントのurlEnabledをtrueにする。

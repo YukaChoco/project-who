@@ -1,6 +1,6 @@
 name: Issueの作成
 description: 必要な修正・付けたい機能などから新たなissueを作成
-title: ""
+title: "sample"
 body:
   - type: input
     id: main-page
@@ -13,7 +13,6 @@ body:
     id: what-needed
     attributes:
       label: 必要な作業内容
-      multiple: true
       value: |
         1.
         2.
@@ -26,13 +25,11 @@ body:
     id: why-needed
     attributes:
       label: 理由
-      multiple: true
     validations:
       required: true
   - type: textarea
     id: description
     attributes:
       label: 補足
-      multiple: true
     validations:
       required: false
