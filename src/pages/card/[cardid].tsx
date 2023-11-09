@@ -22,7 +22,7 @@ export default function Index() {
 
   const [cardData, setCardData] = useState<CardData | null>(null);
   const [cardType, setCardType] = useState<CardType>(CardType.None);
-  const [registerLoading, setRegistertLoading] = useState<boolean>(false);
+  const [isRegisterLoading, setRegistertLoading] = useState<boolean>(false);
 
   const { userId, loading } = useUser();
 
@@ -49,8 +49,10 @@ export default function Index() {
       const result = await addHaveCardId(userId, cardId);
       if (result) {
         setCardType(CardType.My);
+        setRegistertLoading(false);
       }
       else {
+        setRegistertLoading(false);
         console.error('登録に失敗しました');
       }
     } else {
@@ -79,7 +81,7 @@ export default function Index() {
     )
   }
 
-  if (loading || registerLoading) {
+  if (loading || isRegisterLoading) {
     return (
       <>
         <main>
