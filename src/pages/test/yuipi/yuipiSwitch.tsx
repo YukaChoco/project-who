@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import * as React from 'react';
 import { Inter } from 'next/font/google'
-import styles from '@/styles/YuipiSwitch.module.css'
+import styles from '@/styles/test/YuipiSwitch.module.css'
 import SwitchButton from '@/conponents/SwitchButton'
 import { useState } from 'react';
 
