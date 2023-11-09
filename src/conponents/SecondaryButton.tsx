@@ -1,11 +1,14 @@
 import { Button } from '@mui/material'
 
-interface Props {
+interface SecondaryButtonProps {
   text: string;
   onClick?: () => void;
 }
 
-export default function SecondaryButton(props: Props) {
+export default function SecondaryButton({
+  text = '',
+  onClick = () => { },
+}: SecondaryButtonProps) {
   const buttonStyle = {
     display: 'inline-block',
     width: '100%',
@@ -13,7 +16,7 @@ export default function SecondaryButton(props: Props) {
     border: '1.5px solid #fff',
     borderRadius: '45px',
     color: '#fff',
-    backgroundColor: ' #6F80BF',
+    backgroundColor: '#6F80BF',
     textDecoration: 'none',
     ':hover': {
       border: '1.5px solid #fff',
@@ -21,8 +24,6 @@ export default function SecondaryButton(props: Props) {
     },
   }
   return (
-    <>
-      <Button variant="outlined" sx={buttonStyle} onClick={props.onClick}>{props.text}</Button>
-    </>
+    <Button variant="outlined" sx={buttonStyle} onClick={onClick}>{text}</Button>
   )
 }
