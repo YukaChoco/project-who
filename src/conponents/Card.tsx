@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { getURL } from '@/utils/ok/getURL';
@@ -12,7 +11,8 @@ import { SNSType } from '@/types/SNSType';
 interface CardProps
   extends Pick<CardData, 'organization' | 'name' | 'x' | 'instagram' | 'bgColor' | 'textColor'> {
   urlEnabled: boolean;
-  onClickHandler?: () => void;
+  onClickHandler?: () => void; //後に削除
+  link?: string;
 }
 
 export default function DisplayCard({
@@ -24,6 +24,7 @@ export default function DisplayCard({
   textColor = '#000',
   urlEnabled = false,
   onClickHandler = () => { },
+  link = undefined,
 }: CardProps) {
   const SNSUrl = ({ snsType, snsUserId }: { snsType: SNSType, snsUserId: string }) => {
     if (!snsUserId) return <></>;
@@ -66,7 +67,7 @@ export default function DisplayCard({
     minHeight: '1.2rem',
   }
 
-  return (
+  const UnwrappedCard = () => (
     <Card sx={cardStyle} onClick={onClickHandler}>
       <CardActionArea>
         <CardContent>
@@ -85,4 +86,15 @@ export default function DisplayCard({
       </CardActionArea>
     </Card >
   );
+
+  if (link) {
+    return (
+      <Link href={link} style={{ width: '100%' }}>
+        <UnwrappedCard />
+      </Link>
+    )
+  }
+  return (
+    <UnwrappedCard />
+  )
 }

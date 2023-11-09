@@ -45,7 +45,7 @@ export default function Index() {
         key={data.id}
         {...data}
         urlEnabled
-        onClickHandler={() => router.push(`/card/${data.id}`)}
+        link={`/card/${data.id}`}
       />
     );
   })
