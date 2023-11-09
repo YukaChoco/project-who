@@ -1,11 +1,14 @@
 import { Button } from '@mui/material'
 
-interface Props {
+interface PrimaryButtonProps {
   text: string;
   onClick?: () => void;
 }
 
-export default function PrimaryButton(props: Props) {
+export default function PrimaryButton({
+  text = '',
+  onClick = () => { },
+}: PrimaryButtonProps) {
   const buttonStyle = {
     display: 'inline-block',
     width: '100%',
@@ -21,6 +24,6 @@ export default function PrimaryButton(props: Props) {
     },
   }
   return (
-    <Button variant="outlined" sx={buttonStyle} onClick={props.onClick}>{props.text}</Button>
+    <Button variant="outlined" sx={buttonStyle} onClick={onClick}>{text}</Button>
   )
 }
