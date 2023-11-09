@@ -1,7 +1,6 @@
 import * as React from 'react';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { ToggleButtonProps } from '@mui/material/ToggleButton';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import type { ToggleButtonProps } from '@mui/material/ToggleButton';
 
 interface SwitchButtonProps {
   leftName: string;
