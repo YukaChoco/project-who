@@ -4,7 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import styles from '@/styles/Cards.module.css'
-import { getURL } from '@/utils/ok/getURL';
+import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
 import Link from 'next/link';
 import type { CardData } from '@/types/CardData';
 
@@ -28,10 +28,10 @@ export default function DisplayCard(props: Props) {
 
       <CardActions disableSpacing className={styles.urlContainer}>
         {props.x &&
-          <Link href={getURL('x', props.id)}>X@{props.x}</Link>
+          <Link href={toXProfileURL(props.id)}>X@{props.x}</Link>
         }
         {props.instagram &&
-          <Link href={getURL('instagram', props.id)}>Instagram@{props.instagram}</Link>
+          <Link href={toInstagramProfileURL(props.id)}>Instagram@{props.instagram}</Link>
         }
       </CardActions>
     </Card >
