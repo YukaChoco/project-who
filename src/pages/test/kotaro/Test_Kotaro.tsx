@@ -41,22 +41,22 @@ export default function Input() {
         <PrimaryButton text="ログイン" onClick={() => console.log('PrimaryButton Clicked')} />
         <SecondaryButton text="新規登録" onClick={() => console.log('SecondaryButton Clicked')} />
         <TextInput
-          text="氏名"
+          labelText="氏名"
           value={name}
           onChange={hundleName}
         />
         <TextInput
-          text="X"
+          labelText="X"
           value={x}
           onChange={hundleX}
         />
         <TextInput
-          text="所属団体"
+          labelText="所属団体"
           value={organization}
           onChange={hundleOrganization}
         />
-        <ColorPicker text="文字色" value={textColor} onChange={hundleTextColor}/>
-        <ColorPicker text="背景色" value={bgColor} onChange={hundleBgColor}/>
+        <ColorPicker labelText="文字色" value={textColor} onChange={hundleTextColor}/>
+        <ColorPicker labelText="背景色" value={bgColor} onChange={hundleBgColor}/>
       </main>
     </>
   )
