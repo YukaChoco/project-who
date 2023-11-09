@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/TestKotaro.module.css'
+import styles from '@/styles/test/TestKotaro.module.css'
 import Header from '@/conponents/Header'
 
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/TestKotaro.module.css'
+import styles from '@/styles/test/TestKotaro.module.css'
 import TextInput from '@/conponents/TextInput'
 import PrimaryButton from '@/conponents/PrimaryButton'
 import SecondaryButton from '@/conponents/SecondaryButton'
