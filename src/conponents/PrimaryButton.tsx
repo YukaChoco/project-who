@@ -19,7 +19,7 @@ export default function PrimaryButton({
     color: '#6F80BF',
     textDecoration: 'none',
     ':hover': {
-      border: '1.5px solid',
+      border: '1.5px solid #969696',
       backgroundColor: '#DCDBE8',
     },
   }
