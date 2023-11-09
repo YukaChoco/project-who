@@ -50,8 +50,7 @@ export default function Index() {
       if (result) {
         setCardType(CardType.My);
         setRegistertLoading(false);
-      }
-      else {
+      } else {
         setRegistertLoading(false);
         console.error('登録に失敗しました');
       }
