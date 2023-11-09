@@ -10,6 +10,6 @@ export default async function getHaveCardIdsByUserId(userId: string) {
   const userFieldsQuery = await getDoc(doc(db, 'users', userId));
   const fetchUserFields: GetUserFields = userFieldsQuery.data() as GetUserFields;
   if (fetchUserFields.haveCardIds === undefined) return null;
-  const ids = fetchUserFields.haveCardIds;
-  return ids;
+  const haveCardIds = fetchUserFields.haveCardIds;
+  return haveCardIds;
 }
