@@ -1,5 +1,5 @@
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Login.module.css'
+import styles from '@/styles/test/Login.module.css'
 import { useEffect, useState } from 'react'
 import getMyCardIds from '@/utils/ok/getMyCardIds'
 import { onAuthStateChanged } from 'firebase/auth'
