@@ -2,7 +2,7 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { getURL } from '@/utils/ok/getURL';
+import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
 import Link from 'next/link';
 import type { CardData } from '@/types/CardData';
 import { Box, CardActionArea } from '@mui/material';

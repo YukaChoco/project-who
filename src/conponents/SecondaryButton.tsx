@@ -2,13 +2,16 @@ import { Button } from '@mui/material'
 
 interface SecondaryButtonProps {
   text: string;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
 export default function SecondaryButton({
   text = '',
+  disabled = false,
   onClick = () => { },
 }: SecondaryButtonProps) {
+
   const buttonStyle = {
     display: 'inline-block',
     width: '100%',
@@ -24,6 +27,13 @@ export default function SecondaryButton({
     },
   }
   return (
-    <Button variant="outlined" sx={buttonStyle} onClick={onClick}>{text}</Button>
+    <Button
+      variant="outlined"
+      sx={buttonStyle}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {text}
+    </Button>
   )
 }
