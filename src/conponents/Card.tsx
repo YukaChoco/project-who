@@ -63,7 +63,7 @@ export default function DisplayCard({
           <Box sx={SNSUrlStyle}>
             {
               x && (
-                urlEnabled
+                urlEnabled && !link
                   ? (
                     <Link href={toXProfileURL(x)}>
                       <Typography>X@{x}</Typography>
@@ -76,7 +76,7 @@ export default function DisplayCard({
           <Box sx={SNSUrlStyle}>
             {
               instagram && (
-                urlEnabled
+                urlEnabled && !link
                   ? (
                     <Link href={toInstagramProfileURL(instagram)}>
                       <Typography>Instagram@{instagram}</Typography>
