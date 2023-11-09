@@ -1,6 +1,6 @@
 export enum CardType {
-  My = 'my',
-  Have = 'have',
+  My = 'mycard',
+  Have = 'card',
   None = 'none',
   Error = 'error',
 }
