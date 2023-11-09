@@ -2,11 +2,13 @@ import { Button } from '@mui/material'
 
 interface PrimaryButtonProps {
   text: string;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
 export default function PrimaryButton({
   text = '',
+  disabled = false,
   onClick = () => { },
 }: PrimaryButtonProps) {
   const buttonStyle = {
@@ -24,6 +26,13 @@ export default function PrimaryButton({
     },
   }
   return (
-    <Button variant="outlined" sx={buttonStyle} onClick={onClick}>{text}</Button>
+    <Button
+      variant="outlined"
+      sx={buttonStyle}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {text}
+    </Button>
   )
 }

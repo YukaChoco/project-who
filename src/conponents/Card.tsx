@@ -2,11 +2,10 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { getURL } from '@/utils/ok/getURL';
+import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
 import Link from 'next/link';
 import type { CardData } from '@/types/CardData';
-import { Box, CardActionArea } from '@mui/material';
-import { SNSType } from '@/types/SNSType';
+import { Box } from '@mui/material';
 
 interface CardProps
   extends Pick<CardData, 'organization' | 'name' | 'x' | 'instagram' | 'bgColor' | 'textColor'> {
@@ -23,22 +22,9 @@ export default function DisplayCard({
   bgColor = '#FFF',
   textColor = '#000',
   urlEnabled = false,
-  onClickHandler = () => { },
+  onClickHandler = () => { }, //後に削除
   link = undefined,
 }: CardProps) {
-  const SNSUrl = ({ snsType, snsUserId }: { snsType: SNSType, snsUserId: string }) => {
-    if (!snsUserId) return <></>;
-
-    if (urlEnabled) {
-      return (
-        <Link href={getURL(snsType, snsUserId)}>
-          <Typography>{snsType}@{snsUserId}</Typography>
-        </Link>
-      )
-    }
-    return <Typography>{snsType}@{snsUserId}</Typography>
-  }
-
   const cardStyle = {
     backgroundColor: `${bgColor}`,
     color: `${textColor}`,
@@ -69,21 +55,39 @@ export default function DisplayCard({
 
   const UnwrappedCard = () => (
     <Card sx={cardStyle} onClick={onClickHandler}>
-      <CardActionArea>
-        <CardContent>
-          <Typography sx={organizatinoStyle} >{organization}</Typography>
-          <Typography sx={nameStyle} >{name}</Typography>
+      <CardContent>
+        <Typography sx={organizatinoStyle} >{organization}</Typography>
+        <Typography sx={nameStyle} >{name}</Typography>
 
-          <Box sx={SNSUrlContainerStyle}>
-            <Box sx={SNSUrlStyle}>
-              <SNSUrl snsType={SNSType.X} snsUserId={x} />
-            </Box>
-            <Box sx={SNSUrlStyle}>
-              <SNSUrl snsType={SNSType.Instagram} snsUserId={instagram} />
-            </Box>
+        <Box sx={SNSUrlContainerStyle}>
+          <Box sx={SNSUrlStyle}>
+            {
+              x && (
+                urlEnabled && !link
+                  ? (
+                    <Link href={toXProfileURL(x)}>
+                      <Typography>X@{x}</Typography>
+                    </Link>
+                  )
+                  : <Typography>X@{x}</Typography>
+              )
+            }
           </Box>
-        </CardContent>
-      </CardActionArea>
+          <Box sx={SNSUrlStyle}>
+            {
+              instagram && (
+                urlEnabled && !link
+                  ? (
+                    <Link href={toInstagramProfileURL(instagram)}>
+                      <Typography>Instagram@{instagram}</Typography>
+                    </Link>
+                  )
+                  : <Typography>Instagram@{instagram}</Typography>
+              )
+            }
+          </Box>
+        </Box>
+      </CardContent>
     </Card >
   );
 
