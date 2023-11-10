@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import useUser from '@/hooks/useUser'
-import styles from '@/styles/creatText.module.css'
+import styles from '@/styles/creatText.module.css' //名前変える
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import SwitchButton from '@/conponents/SwitchButton'
@@ -11,7 +11,7 @@ import InputTexts from '@/conponents/InputTexts'
 import EditComplete from '@/conponents/EditComplete'
 import makemycard from '@/utils/ok/makeMyCard'
 import type { CardData } from '@/types/CardData'
-import getCardDetils from '@/utils/ok/getCardDetils'
+import PrimaryButton from '@/conponents/PrimaryButton';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,146 +23,116 @@ export default function Input() {
   const [textColor, setTextColor] = useState<string>('');
   const [bgColor, setBgColor] = useState<string>('');
 
-//   const [data, setData] = useState({
-//   name:'',
-//   x:'',
-//   instagram:'',
-//   organization:'',
-//   textColor:'',
-//   bgColor:''
-// });
-const router = useRouter();
-const cardid = router.query.cardid as string;
-const { userId, loading } = useUser();
-const [cardData, setCardData] = useState<CardData | null>(null);
-  useEffect(() => {
-    const fetchUsers = async () => {
-      if (userId && cardid) {
-        const cardData = await getCardDetils(cardid);
-        setCardData(cardData);
-      }
-    };
-    fetchUsers();
-  }, [cardid, userId])
+  const router = useRouter();
+  const { userId, loading } = useUser();
+  const [cardData, setCardData] = useState<CardData | null>(null);
+  const [mode, setMode] = useState<string>('入力');
 
   if (loading) {
-    <>
-      <main>
-        <h1>Loading...</h1>
-      </main>
-    </>
+    return (
+      <>
+        <main>
+          <h1>Loading...</h1>
+        </main>
+      </>
+    )
   }
-const hundleOnClickEdit = () => {
-  const cardData = {
+  if(!userId){ //追加
+    return(
+      <>
+        <main>
+          <p>ログインしてください</p>
+          <PrimaryButton
+              text='ログインこちら'
+              onClick={()=>
+                router.push("/")
+              }
+            />
+        </main>
+      </>
+    )
+  }
+  //userId==NULLのときエラー処理追加
+
+  const hundleOnClickEdit = () => {
+    const cardData = {
       name: name,
       x: x,
       instagram: instagram,
       organization: organization,
       textColor: textColor,
       bgColor: bgColor,
-  };
-  console.log(cardData);
-  router.push("/cards");
-  if(userId){
-    makemycard(userId,cardData);
+    };
+    console.log(cardData);
+    router.push("/mycards");
+    if (userId) { //kesu
+      makemycard(userId, cardData);
+    }
   }
-}
 
-  const [mode, setMode] = useState<string>('入力');
+  
 
   const handleAlignment = (
-      event: React.MouseEvent<HTMLElement>,
-      newAlignment: string | null,
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string | null,
   ) => {
-      if (newAlignment !== null) {
-          setMode(newAlignment);
-      }
+    if (newAlignment !== null) {
+      setMode(newAlignment);
+    }
   };
 
+  return (
+    <>
+      <Header
+        onClick_edit={mode === "完了" ? undefined : () => setMode("完了")}
+      />
 
-  // function handleName(event: React.ChangeEvent<HTMLInputElement>) {
-  //   setName(event.target.value);
-  //   setData((data) => ({ ...data, name: event.target.value }));
-  // }
+      <main className={styles.main}>
 
-  // function handleX(event: React.ChangeEvent<HTMLInputElement>) {
-  //   setX(event.target.value);
-  //   setData((data) => ({ ...data, x:event.target.value}));
-  // }
-  // function handleOrganization(event: React.ChangeEvent<HTMLInputElement>) {
-  //   setOrganization(event.target.value);
-  //   setData((data) => ({ ...data, organization: event.target.value}));
-  // }
+        <div className={styles.preview}>
+          <p>プレビュー</p>
+        </div>
 
-  // function handleTextColor(event: React.ChangeEvent<HTMLInputElement>) {
-  //   setTextColor(event.target.value);
-  //   setData((data) => ({ ...data, textColor:event.target.value}));
-  // }
+        <div className={styles.card}>
+          <DisplayCard name={name} organization={organization} x={x} instagram={instagram} urlEnabled={false} textColor={textColor} bgColor={bgColor} authorId={''} protected={false} />
+        </div>
 
-  // function handleBgColor(event: React.ChangeEvent<HTMLInputElement>) {
-  //   setBgColor(event.target.value);
-  //   setData((data) => ({ ...data, bgColor: event.target.value}));
-  // }
+        <div className={styles.change}>
+          {
+            (() => {
+              if (mode == "デザイン") {
+                return (
+                  <div>
+                    <div className={styles.swith}>
+                      <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} />
+                    </div>
 
-  // function handleinstagram(event: React.ChangeEvent<HTMLInputElement>) {
-  //   setInstagram(event.target.value);
-  //   setData((data) => ({ ...data, instagram: event.target.value}));
-  // }
-
-          return (
-            <>
-              <Header
-                {...mode === "完了" ? null : { onClick_edit: () => setMode("完了") }}
-              />
-
-              <main className={styles.main}>
-
-                <div className={styles.preview}>
-                  <p>プレビュー</p>
-                </div>
-
-                <div className={styles.card}>
-                  <DisplayCard name={name} organization={organization} x={x} instagram={instagram} urlEnabled={false} textColor={textColor} bgColor={bgColor} onClickHandler={function (): void {
-                    throw new Error('Function not implemented.')
-                  } } authorId={''} protected={false} />
-                </div>
-
-                <div className={styles.change}>
-                {
-                  (() => {
-                    if (mode=="デザイン") {
-                      return(
-                        <div>
-                          <div className={styles.swith}>
-                            <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment}/>
-                          </div>
-
-                          <InputColors textColor={textColor} handleTextColor={(event)=>setTextColor(event.target.value)} bgColor={bgColor} handleBgColor={(event)=>setBgColor(event.target.value)}/>
-                        </div>
-                      );
-                    } else if(mode=="入力") {
-                      return (
-                        <div>
-                          <div className={styles.swith}>
-                            <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment}/>
-                          </div>
-                          <InputTexts name={name} handleName={(event)=>setName(event.target.value)} instagram={instagram} handleinstagram={(event)=>setInstagram(event.target.value)} x={x} handleX={(event)=>setX(event.target.value)} organization={organization} handleOrganization={(event)=>setOrganization(event.target.value)}/>
-                        </div>
-                      );
-                    } else{
-                      return(
-                      <div className={styles.editBtn}>
-                        <EditComplete 
-                          handleReturned={()=>{}} //ここでsetModeとかを使ってみてください
-                          handleCompleted={()=>{}}
-                        />
-                      </div>
-                      )
-                    }
-                  })()
-                }
-              </div>
-              </main>
-            </>
-          )
-        }
+                    <InputColors textColor={textColor} handleTextColor={(event) => setTextColor(event.target.value)} bgColor={bgColor} handleBgColor={(event) => setBgColor(event.target.value)} />
+                  </div>
+                );
+              } else if (mode == "入力") {
+                return (
+                  <div>
+                    <div className={styles.swith}>
+                      <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} />
+                    </div>
+                    <InputTexts name={name} handleName={(event) => setName(event.target.value)} instagram={instagram} handleinstagram={(event) => setInstagram(event.target.value)} x={x} handleX={(event) => setX(event.target.value)} organization={organization} handleOrganization={(event) => setOrganization(event.target.value)} />
+                  </div>
+                );
+              } else {
+                return (
+                  <div className={styles.editBtn}>
+                    <EditComplete
+                      handleReturned={() => setMode('入力')}
+                      handleCompleted={hundleOnClickEdit}
+                    />
+                  </div>
+                )
+              }
+            })()
+          }
+        </div>
+      </main>
+    </>
+  )
+}
