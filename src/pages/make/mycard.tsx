@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import useUser from '@/hooks/useUser'
-import styles from '@/styles/creatText.module.css' //名前変える
+import styles from '@/styles/MycardCreatePage.module.css' //名前変える
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import SwitchButton from '@/conponents/SwitchButton'
