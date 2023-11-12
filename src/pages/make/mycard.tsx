@@ -2,12 +2,12 @@ import { Inter } from 'next/font/google'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import useUser from '@/hooks/useUser'
-import styles from '@/styles/MycardCreatePage.module.css' //名前変える
+import styles from '@/styles/MycardCreatePage.module.css'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import SwitchButton from '@/conponents/SwitchButton'
-import InputColors from '@/conponents/InputColors'
-import InputTexts from '@/conponents/InputTexts'
+import EditColors from '@/conponents/EditColors' //名前変えた
+import EditTexts from '@/conponents/EditTexts' //名前変えた
 import EditComplete from '@/conponents/EditComplete'
 import makemycard from '@/utils/ok/makeMyCard'
 import type { CardData } from '@/types/CardData'
@@ -107,7 +107,7 @@ export default function Input() {
                       <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} />
                     </div>
 
-                    <InputColors textColor={textColor} handleTextColor={(event) => setTextColor(event.target.value)} bgColor={bgColor} handleBgColor={(event) => setBgColor(event.target.value)} />
+                    <EditColors textColor={textColor} handleTextColor={(event) => setTextColor(event.target.value)} bgColor={bgColor} handleBgColor={(event) => setBgColor(event.target.value)} />
                   </div>
                 );
               } else if (mode == "入力") {
@@ -116,7 +116,7 @@ export default function Input() {
                     <div className={styles.swith}>
                       <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} />
                     </div>
-                    <InputTexts name={name} handleName={(event) => setName(event.target.value)} instagram={instagram} handleinstagram={(event) => setInstagram(event.target.value)} x={x} handleX={(event) => setX(event.target.value)} organization={organization} handleOrganization={(event) => setOrganization(event.target.value)} />
+                    <EditTexts name={name} handleName={(event) => setName(event.target.value)} instagram={instagram} handleinstagram={(event) => setInstagram(event.target.value)} x={x} handleX={(event) => setX(event.target.value)} organization={organization} handleOrganization={(event) => setOrganization(event.target.value)} />
                   </div>
                 );
               } else {

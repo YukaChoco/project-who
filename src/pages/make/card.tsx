@@ -5,7 +5,7 @@ import styles from '@/styles/CardCreatePage.module.css' //CardCreatePage.~~
 import useUser from '@/hooks/useUser'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
-import InputTexts from '@/conponents/InputTexts'
+import InputTexts from '@/conponents/EditTexts'
 import EditComplete from '@/conponents/EditComplete'
 import makeHaveCard from '@/utils/ok/makeHaveCard'
 
