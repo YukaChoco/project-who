@@ -65,9 +65,8 @@ export default function Input() {
     };
     console.log(cardData);
     router.push("/mycards");
-    if (userId) { //kesu
-      makemycard(userId, cardData);
-    }
+
+    makemycard(userId, cardData);
   }
 
 

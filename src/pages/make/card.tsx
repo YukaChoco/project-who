@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Head from 'next/head'
 import router from 'next/router'
-import styles from '@/styles/CardCreatePage.module.css' //CardCreatePage.~~
+import styles from '@/styles/CardCreatePage.module.css'
 import useUser from '@/hooks/useUser'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
