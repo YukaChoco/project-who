@@ -28,6 +28,8 @@ export default function Index() {
   }, [userId])
 
   if (loading) {
+    console.log("ロード中")
+    return(
     <>
       <Head>
         <title>Who!</title>
@@ -37,9 +39,10 @@ export default function Index() {
         <h1>Loading...</h1>
       </main>
     </>
-  }
+  )}
 
   if (!userId) {
+    console.log("ログインしてない")
     return (
       <main>
         <>

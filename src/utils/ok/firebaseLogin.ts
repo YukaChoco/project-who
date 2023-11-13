@@ -11,7 +11,6 @@ export default async function FirebaseLogin() {
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      console.log(result.user.displayName)
       if (credential) {
         const token = credential.accessToken;
         // The signed-in user info.

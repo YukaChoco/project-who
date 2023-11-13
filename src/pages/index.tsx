@@ -26,8 +26,10 @@ export default function Index() {
             <SecondaryButton
               text='ログイン'
               onClick={async () => {
+                console.log("ログインするよ")
                 await firebaseLogin()
                 router.push(nextUrl);
+                console.log("次のページへ")
               }}
             />
           </div>
