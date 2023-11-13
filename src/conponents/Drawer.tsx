@@ -41,19 +41,19 @@ export default function Drawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List className={styles.drawer}>
-          <ListItem key={'自分の名刺'} disablePadding>
+          <ListItem key={'名刺の作成'} disablePadding>
             <ListItemButton>
-              <Link href="/mycards"><ListItemText primary={'自分の名刺'} className={styles.drawer_item} /></Link>
+            <Link href="/make/mycard"><ListItemText primary={'　名刺の作成　　　　　　'} className={styles.drawer_item} /></Link>
             </ListItemButton>
           </ListItem>
           <ListItem key={'アカウントメモの追加'} disablePadding>
             <ListItemButton>
-            <Link href="/make/card"><ListItemText primary={'アカウントメモの追加'} className={styles.drawer_item} /></Link>
+            <Link href="/make/card"><ListItemText primary={'　アカウントメモの追加　'} className={styles.drawer_item} /></Link>
             </ListItemButton>
           </ListItem>
           <ListItem key={'￥Up grade'} disablePadding>
             <ListItemButton>
-            <Link href="/upgrade"><ListItemText primary={'￥Up grade'} className={styles.drawer_item} /></Link>
+            <Link href="/upgrade"><ListItemText primary={'　￥Up grade　　　　　　'} className={styles.drawer_item} /></Link>
             </ListItemButton>
           </ListItem>
       </List>
