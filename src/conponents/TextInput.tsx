@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Box, TextField } from '@mui/material';
-import styles from '@/styles/TextInput.module.css'
 import type { TextFieldProps } from '@mui/material/TextField';
 import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
 
@@ -62,21 +61,11 @@ export default function TextInput({
   return (
     <>
       <Box sx={backGroundStyle}>
-        {/* textfieldを変えたが何か不都合が起きたとき見比べる用に一応コメントアウトして残してる。いらないなら消しても可 */}
-        {/* <TextField className={styles.TextInput} label={props.text} variant="filled"
-          sx={{
-            input: {
-              color: "black",
-              background: "#F4F5FC"
-            }
-          }}
-          value={props.value}
-          onChange={props.onChange}
-          // focused
-        /> */}
         <ThemeProvider theme={customTheme(outerTheme)}>
           <TextField
             sx={{
+              width: '100%',
+              padding: '0px 15px',
               input: {
                 color: "black",
                 background: "#F4F5FC"

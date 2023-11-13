@@ -1,23 +1,22 @@
-"use client";
-
 import { QRCodeCanvas } from "qrcode.react";
-import { FC } from "react";
 
 interface QRCodeProps {
   url: string;
 }
 
-const QRCode: FC<QRCodeProps> = (props) => {
+export default function QRCode({
+  url = 'https://whooo.netlify.app/cards',
+}: QRCodeProps) {
   return (
     <QRCodeCanvas
-      value={props.url}
+      value={url}
       size={200}
       bgColor={"#FFF"}
       fgColor={"#000"}
       level={"L"}
       includeMargin={false}
       imageSettings={{
-        src: "/favicon.ico",
+        src: '',
         x: undefined,
         y: undefined,
         height: 60,
@@ -27,5 +26,3 @@ const QRCode: FC<QRCodeProps> = (props) => {
     />
   );
 };
-
-export default QRCode;
