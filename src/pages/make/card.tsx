@@ -8,6 +8,7 @@ import DisplayCard from '@/conponents/Card'
 import InputTexts from '@/conponents/EditTexts'
 import EditComplete from '@/conponents/EditComplete'
 import makeHaveCard from '@/utils/ok/makeHaveCard'
+import PrimaryButton from '@/conponents/PrimaryButton';
 
 export default function Index() {
   const [mode, setMode] = useState<string>('入力');
@@ -29,7 +30,14 @@ export default function Index() {
   if (!userId) {
     return (
       <main>
+        <Header />
         <h1>ログインしてください</h1>
+        <PrimaryButton
+          text='ログインこちら'
+          onClick={() =>
+            router.push(`/?nextPage=${router.asPath}`)
+          }
+        />
       </main>
     )
   }
@@ -37,7 +45,7 @@ export default function Index() {
   const Preview = () => (
     <div className={styles.preview}>
       <p>プレビュー</p>
-      <DisplayCard name={name} organization={organization} x={x} instagram={instagram} urlEnabled={false} authorId={''} protected={false} textColor='#000' bgColor='#FFF' />
+      <DisplayCard name={name} organization={organization} x={x} instagram={instagram} urlEnabled={false} textColor='#000' bgColor='#FFF' />
     </div>
   )
 

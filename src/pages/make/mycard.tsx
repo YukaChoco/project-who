@@ -6,8 +6,8 @@ import styles from '@/styles/MycardCreatePage.module.css'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import SwitchButton from '@/conponents/SwitchButton'
-import EditColors from '@/conponents/EditColors' //名前変えた
-import EditTexts from '@/conponents/EditTexts' //名前変えた
+import EditColors from '@/conponents/EditColors'
+import EditTexts from '@/conponents/EditTexts'
 import EditComplete from '@/conponents/EditComplete'
 import makemycard from '@/utils/ok/makeMyCard'
 import type { CardData } from '@/types/CardData'
@@ -37,22 +37,22 @@ export default function Input() {
       </>
     )
   }
-  if(!userId){ //追加
-    return(
+  if (!userId) {
+    return (
       <>
         <main>
+          <Header />
           <p>ログインしてください</p>
           <PrimaryButton
-              text='ログインこちら'
-              onClick={()=>
-                router.push("/")
-              }
-            />
+            text='ログインこちら'
+            onClick={() =>
+              router.push(`/?nextPage=${router.asPath}`)
+            }
+          />
         </main>
       </>
     )
   }
-  //userId==NULLのときエラー処理追加
 
   const hundleOnClickEdit = () => {
     const cardData = {
