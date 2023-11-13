@@ -28,7 +28,6 @@ export default function SwitchButton({
           height: 30,
           width: '100%',
           margin: '20px 0',
-          // margin: '0px 20px',
         }}
       >
         <ToggleButton value={leftName}>{leftName}</ToggleButton>

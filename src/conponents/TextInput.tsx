@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Box, TextField } from '@mui/material';
-import styles from '@/styles/TextInput.module.css'
 import type { TextFieldProps } from '@mui/material/TextField';
 import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
 
@@ -63,7 +62,7 @@ export default function TextInput({
     <>
       <Box sx={backGroundStyle}>
         <ThemeProvider theme={customTheme(outerTheme)}>
-          <TextField className={styles.TextInput}
+          <TextField
             sx={{
               input: {
                 color: "black",

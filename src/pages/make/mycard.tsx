@@ -70,7 +70,6 @@ export default function Input() {
     }
   }
 
-  
 
   const handleAlignment = (
     event: React.MouseEvent<HTMLElement>,
@@ -94,7 +93,7 @@ export default function Input() {
         </div>
 
         <div className={styles.card}>
-          <DisplayCard name={name} organization={organization} x={x} instagram={instagram} urlEnabled={false} textColor={textColor} bgColor={bgColor} authorId={''} protected={false} />
+          <DisplayCard name={name} organization={organization} x={x} instagram={instagram} urlEnabled={false} textColor={textColor} bgColor={bgColor} />
         </div>
 
         <div className={styles.change}>
@@ -116,7 +115,7 @@ export default function Input() {
                     <div className={styles.swith}>
                       <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} />
                     </div>
-                    <EditTexts name={name} handleName={(event) => setName(event.target.value)} instagram={instagram} handleinstagram={(event) => setInstagram(event.target.value)} x={x} handleX={(event) => setX(event.target.value)} organization={organization} handleOrganization={(event) => setOrganization(event.target.value)} />
+                    <EditTexts name={name} handleName={(event) => setName(event.target.value)} instagram={instagram} handleInstagram={(event) => setInstagram(event.target.value)} x={x} handleX={(event) => setX(event.target.value)} organization={organization} handleOrganization={(event) => setOrganization(event.target.value)} />
                   </div>
                 );
               } else {
