@@ -8,7 +8,7 @@ import QRCode from '@/conponents/QRCode'
 import { useEffect, useState } from 'react'
 import { CardData } from '@/types/CardData'
 import useUser from '@/hooks/useUser'
-import getMyCardDetails from '@/utils/ok/getMyCardDetails'
+import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId'
 import SecondaryButton from '@/conponents/SecondaryButton'
 
 export default function Detail() {
@@ -19,7 +19,7 @@ export default function Detail() {
   useEffect(() => {
     const fetchUsers = async () => {
       if (userId) {
-        const cardData = await getMyCardDetails(userId)
+        const cardData = await getMyCardDetailsByUserId(userId)
         setCardDatas(cardData)
       }
     }
@@ -40,10 +40,23 @@ export default function Detail() {
     )
   }
 
+  if (!userId)
+  return (
+    <main>
+      <><Header useMenuIcon />
+        <h1>ログインされていません</h1>
+        <SecondaryButton
+          text="ログイン画面へ"
+          onClick={() => router.push('/?nextPage=${router.asPath}')}
+        />
+      </>
+    </main>
+  ) //cardDataがnullの時のエラー処理
+
   if (!cardData)
     return (
       <main>
-        <>
+        <><Header useMenuIcon />
           <h1>自分の名刺がありません</h1>
           <SecondaryButton
             text="自分の名刺を作成する"
@@ -53,18 +66,7 @@ export default function Detail() {
       </main>
     ) //cardDataがnullの時のエラー処理
 
-  if (!userId)
-    return (
-      <main>
-        <>
-          <h1>自分の名刺がありません</h1>
-          <SecondaryButton
-            text="ログインしてください"
-            onClick={() => router.push('/?nextPage=${router.asPath}')}
-          />
-        </>
-      </main>
-    ) //cardDataがnullの時のエラー処理
+ 
 
   const display = cardData.map((data) => {
     return <DisplayCard key={data.id} {...data} urlEnabled />
