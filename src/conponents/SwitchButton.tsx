@@ -25,9 +25,9 @@ export default function SwitchButton({
         onChange={onChange}
         aria-label="Platform"
         sx={{
-          height: 20,
+          height: 30,
           width: '100%',
-          padding: '12px',
+          margin: '20px 0',
         }}
       >
         <ToggleButton value={leftName}>{leftName}</ToggleButton>
