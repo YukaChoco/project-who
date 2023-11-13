@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Mycards.module.css'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
@@ -9,10 +8,8 @@ import router from 'next/router'
 import { useEffect, useState } from 'react'
 import { CardData } from '@/types/CardData'
 import useUser from '@/hooks/useUser'
-import getMyCardDetails from '@/utils/ok/getMyCardDetails'
+import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId'
 import SecondaryButton from '@/conponents/SecondaryButton'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Index() {
   const [cardData, setCardDatas] = useState<CardData[] | null>([])
@@ -20,7 +17,7 @@ export default function Index() {
   useEffect(() => {
     const fetchUsers = async () => {
       if (userId) {
-        const cardData = await getMyCardDetails(userId)
+        const cardData = await getMyCardDetailsByUserId(userId)
         setCardDatas(cardData)
       }
     }
@@ -41,8 +38,21 @@ export default function Index() {
     )
   }
 
+  if (!userId) {
+    return (
+      <main>
+        <>
+          <h1>ログインされていません</h1>
+          <SecondaryButton
+            text="ログインしてください"
+            onClick={() => router.push(`/?nextPage=${router.asPath}`)}
+          />
+        </>
+      </main>
+    )
+  }
 
-  if (!cardData)
+  if (!cardData) {
     return (
       <main>
         <>
@@ -51,32 +61,17 @@ export default function Index() {
             text="自分の名刺を作成する"
             onClick={() => router.push('/make/mycard')}
           />
-<<<<<<< HEAD
-        </>
-=======
           <NewCard />
-        </div>
-        <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
->>>>>>> develop
-      </main>
-    ) //cardDataがnullの時のエラー処理
-
-  if (!userId)
-    return (
-      <main>
-        <>
-          <h1>自分の名刺がありません</h1>
-          <SecondaryButton
-            text="ログインしてください"
-            onClick={() => router.push('/?nextPage=${router.asPath}')}
-          />
+          <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
         </>
       </main>
-    ) //cardDataがnullの時のエラー処理
+    )
+  }
 
   const display = cardData.map((data) => {
     return <DisplayCard key={data.id} {...data} urlEnabled onClickHandler={() => router.push("/make/card")} />
   })
+
 
   if (cardData[0]) {
     return (
@@ -87,11 +82,11 @@ export default function Index() {
         </Head>
         <main className={styles.main}>
           <Header useMenuIcon />
-            <div className={styles.cardlist}>
-              {display}
-            </div>
-            <MakeNewCard />
-     
+          <div className={styles.cardlist}>
+            {display}
+          </div>
+          <NewCard />
+
           <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
         </main>
       </>
