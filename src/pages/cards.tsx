@@ -39,12 +39,11 @@ export default function Index() {
     </>
   }
 
-
-  if (!userId)
+  if (!userId) {
     return (
       <main>
         <>
-        <Header useMenuIcon />
+          <Header />
           <h1>ログインされていません</h1>
           <SecondaryButton
             text="ログイン画面へ"
@@ -52,35 +51,35 @@ export default function Index() {
           />
         </>
       </main>
-    ) //cardDataがnullの時のエラー処理
+    )
+  }
 
-    if (!cardDatas)
+  if (!cardDatas) {
     return (
       <main>
         <>
-        <Header useMenuIcon />
+          <Header useMenuIcon />
           <h1>自分の名刺がありません</h1>
-          
+
           <SecondaryButton
             text="自分の名刺を作成する"
             onClick={() => router.push('/make/mycard')}
           />
         </>
       </main>
-    ) //cardDataがnullの時のエラー処理
+    )
+  }
 
   const display = cardDatas.map((data) => {
     return (
       <DisplayCard
+        urlEnabled={false}
         key={data.id}
         {...data}
         link={`/card/${data.id}`}
       />
     );
   })
-
-  
-
 
   return (
     <>
