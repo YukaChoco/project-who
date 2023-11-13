@@ -58,7 +58,6 @@ export default function Index() {
       <DisplayCard
         key={data.id}
         {...data}
-        urlEnabled
         link={`/card/${data.id}`}
       />
     );
