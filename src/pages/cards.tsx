@@ -48,7 +48,7 @@ export default function Index() {
           <h1>ログインされていません</h1>
           <SecondaryButton
             text="ログイン画面へ"
-            onClick={() => router.push('/?nextPage=${router.asPath}')}
+            onClick={() => router.push(`/?nextPage=${router.asPath}`)}
           />
         </>
       </main>
