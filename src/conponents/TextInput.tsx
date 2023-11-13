@@ -1,11 +1,11 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
+import { Box, TextField } from '@mui/material';
 import styles from '@/styles/TextInput.module.css'
-import { TextFieldProps } from '@mui/material/TextField';
+import type { TextFieldProps } from '@mui/material/TextField';
 import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
 
-interface Props {
-  text: string;
+interface TextInputProps {
+  labelText: string;
   value: string;
   onChange: TextFieldProps['onChange'];
 }
@@ -46,11 +46,22 @@ const customTheme = (outerTheme: Theme) =>
     },
   });
 
-export default function TextInput(props: Props) {
+export default function TextInput({
+  labelText = '',
+  value = '',
+  onChange = () => { },
+}: TextInputProps) {
   const outerTheme = useTheme();
+  const backGroundStyle = {
+    textAlign: 'center',
+    backgroundColor: '#F4F5FC',
+    borderRadius: '5px',
+    width: '100%',
+    padding: '5px',
+  }
   return (
     <>
-      <div className={styles.TextInput_background}>
+      <Box sx={backGroundStyle}>
         <ThemeProvider theme={customTheme(outerTheme)}>
           <TextField className={styles.TextInput}
             sx={{
@@ -59,13 +70,13 @@ export default function TextInput(props: Props) {
                 background: "#F4F5FC"
               }
             }}
-            label={props.text}
+            label={labelText}
             variant="filled"
-            value={props.value}
-            onChange={props.onChange}
+            value={value}
+            onChange={onChange}
             focused />
         </ThemeProvider>
-      </div>
+      </Box>
     </>
   )
 }
