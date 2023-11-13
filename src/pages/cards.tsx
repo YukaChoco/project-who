@@ -6,12 +6,11 @@ import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import ShareButton from '@/conponents/ShareButton'
 import useUser from '@/hooks/useUser'
-import getHaveCardDetails from '@/utils/ok/getHaveCardDetails'
+import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId'
 import type { CardData } from '@/types/CardData'
 
-
 export default function Index() {
-  const [cardDatas, setCardDatas] = useState<CardData[]>([]);
+  const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
 
   const router = useRouter();
   const { userId, loading } = useUser();
@@ -19,7 +18,7 @@ export default function Index() {
   useEffect(() => {
     const fetchUsers = async () => {
       if (userId) {
-        const haveCardDetails = await getHaveCardDetails(userId);
+        const haveCardDetails = await getHaveCardDetailsByUserId(userId);
         setCardDatas(haveCardDetails);
       }
     };
@@ -39,13 +38,28 @@ export default function Index() {
     </>
   }
 
+  if (!cardDatas) {
+    return (
+      <>
+        <Head>
+          <title>名刺一覧 - Who!</title>
+        </Head>
+        <main>
+          <>
+            <h1>名刺が空です</h1>
+          </>
+        </main>
+      </>
+    )
+  }
+
   const display = cardDatas.map((data) => {
     return (
       <DisplayCard
         key={data.id}
         {...data}
         urlEnabled
-        onClickHandler={() => router.push(`/card/${data.id}`)}
+        link={`/card/${data.id}`}
       />
     );
   })
@@ -53,8 +67,7 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>Who!</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>名刺一覧 - Who!</title>
       </Head>
 
       <main>
