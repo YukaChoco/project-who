@@ -52,45 +52,28 @@ export default function Index() {
     )
   }
 
-  if (!cardData) {
-    return (
-      <main>
-        <>
-          <h1>自分の名刺がありません</h1>
-          <SecondaryButton
-            text="自分の名刺を作成する"
-            onClick={() => router.push('/make/mycard')}
-          />
-          <NewCard />
+
+  return (
+    <>
+      <Head>
+        <title>Who!</title>
+      </Head>
+      <main className={styles.main}>
+        <Header useMenuIcon />
+        <div className={styles.cardlist}>
+          {
+            cardData && cardData.map((data) => {
+              return <DisplayCard key={data.id} {...data} urlEnabled={false} onClickHandler={() => router.push("/make/card")} />
+            })
+          }
+        </div>
+        <NewCard />
+
+        <div className={styles.returnHomeButton}>
           <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
-        </>
+        </div>
       </main>
-    )
-  }
-
-  const display = cardData.map((data) => {
-    return <DisplayCard key={data.id} {...data} urlEnabled onClickHandler={() => router.push("/make/card")} />
-  })
-
-
-  if (cardData[0]) {
-    return (
-      <>
-        <Head>
-          <title>Who!</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <main className={styles.main}>
-          <Header useMenuIcon />
-          <div className={styles.cardlist}>
-            {display}
-          </div>
-          <NewCard />
-
-          <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
-        </main>
-      </>
-    )
-  }
+    </>
+  )
 }
 
