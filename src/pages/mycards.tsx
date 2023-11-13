@@ -1,45 +1,79 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Mycards.module.css'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import NewCard from '@/conponents/NewCard'
 import PrimaryButton from '@/conponents/PrimaryButton'
 import router from 'next/router'
-
-const inter = Inter({ subsets: ['latin'] })
+import { useEffect, useState } from 'react'
+import { CardData } from '@/types/CardData'
+import useUser from '@/hooks/useUser'
+import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId'
+import SecondaryButton from '@/conponents/SecondaryButton'
 
 export default function Index() {
-  const data = {
-    id: "id",
-    name: "ゆうか",
-    organization: "watnow",
-    x: "chocolatbrown",
-    instagram: "yuka__matcha",
-    others: "https://my-portfolio-yukachoco.vercel.app",
-    urlEnabled: true,
-    textColor: "#A56A7F",
-    bgColor: "#F4EBEF",
-    onClickHandler: () => { },
+  const [cardData, setCardDatas] = useState<CardData[] | null>([])
+  const { userId, loading } = useUser()
+  useEffect(() => {
+    const fetchUsers = async () => {
+      if (userId) {
+        const cardData = await getMyCardDetailsByUserId(userId)
+        setCardDatas(cardData)
+      }
+    }
+    fetchUsers()
+  }, [userId])
+
+  if (loading) {
+    return (
+      <>
+        <Head>
+          <title>Who!</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main>
+          <h1>Loading...</h1>
+        </main>
+      </>
+    )
   }
+
+  if (!userId) {
+    return (
+      <main>
+        <>
+          <h1>ログインされていません</h1>
+          <SecondaryButton
+            text="ログインしてください"
+            onClick={() => router.push(`/?nextPage=${router.asPath}`)}
+          />
+        </>
+      </main>
+    )
+  }
+
+
   return (
     <>
       <Head>
         <title>Who!</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
         <Header useMenuIcon />
-
         <div className={styles.cardlist}>
-          <DisplayCard
-            {...data}
-            onClickHandler={() => router.push("/make/card")}
-          />
-          <NewCard />
+          {
+            cardData && cardData.map((data) => {
+              return <DisplayCard key={data.id} {...data} urlEnabled={false} onClickHandler={() => router.push("/make/card")} />
+            })
+          }
         </div>
-        <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
+        <NewCard />
+
+        <div className={styles.returnHomeButton}>
+          <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
+        </div>
       </main>
     </>
   )
 }
+
