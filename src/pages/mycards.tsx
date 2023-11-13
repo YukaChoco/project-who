@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Mycards.module.css'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
-import MakeNewCard from '@/conponents/NewCard'
+import NewCard from '@/conponents/NewCard'
 import PrimaryButton from '@/conponents/PrimaryButton'
 import router from 'next/router'
 
@@ -36,7 +36,7 @@ export default function Index() {
             {...data}
             onClickHandler={() => router.push("/make/card")}
           />
-          <MakeNewCard />
+          <NewCard />
         </div>
         <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
       </main>
