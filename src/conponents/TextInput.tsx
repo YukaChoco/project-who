@@ -64,6 +64,8 @@ export default function TextInput({
         <ThemeProvider theme={customTheme(outerTheme)}>
           <TextField
             sx={{
+              width: '100%',
+              padding: '0px 15px',
               input: {
                 color: "black",
                 background: "#F4F5FC"

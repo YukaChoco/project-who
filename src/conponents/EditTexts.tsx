@@ -1,15 +1,14 @@
-import styles from '@/styles/creatText.module.css'
 import TextInput from '@/conponents/TextInput'
 
 interface EditTextsProps {
-  name:string;
-  handleName:(event: React.ChangeEvent<HTMLInputElement>) => void;
-  instagram:string;
-  handleInstagram:(event: React.ChangeEvent<HTMLInputElement>) => void;
-  x:string;
-  handleX:(event: React.ChangeEvent<HTMLInputElement>) => void;
-  organization:string;
-  handleOrganization:(event: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  handleName: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  instagram: string;
+  handleInstagram: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  x: string;
+  handleX: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  organization: string;
+  handleOrganization: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function EditTexts(props: EditTextsProps) {
@@ -35,7 +34,6 @@ export default function EditTexts(props: EditTextsProps) {
         value={props.instagram}
         onChange={props.handleInstagram}
       />
-      <div className={styles.space} />
     </>
   )
 }
