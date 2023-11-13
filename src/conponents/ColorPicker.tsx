@@ -1,22 +1,50 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import styles from '@/styles/ColorPicker.module.css'
+import { Box } from '@mui/material';
 
-interface Props {
-    text: string;
-    value: string;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+interface ColorPickerProps {
+  labelText: string;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function NameInput(props: Props) {
+export default function ColorPicker({
+  labelText = '色の指定',
+  value = '#FFF',
+  onChange = () => { },
+}: ColorPickerProps) {
+  const containerStyle = {
+    backgroundColor: '#F4F5FC',
+    borderRadius: '5px',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+  }
+  const labelStyle = {
+    fontSize: '0.8rem',
+    padding: '20px',
+  }
+  const inputStyle = {
+    width: '36px',
+    height: '40px',
+    margin: 'auto 20px',
+    border: 'none',
+  }
+
   return (
-    <>
-    <div className={styles.ColorPicker_background}>
-      <div className={styles.ColorPicker_container}>
-        <p>{props.text}</p>
-        <input type="color" id="style1" value={props.value} onChange={props.onChange}/>
-      </div>
-    </div>
-    </>
+    <Box sx={containerStyle}>
+      <label
+        htmlFor={labelText}
+        style={labelStyle}
+      >
+        {labelText}
+      </label>
+      <input
+        type="color"
+        id={labelText}
+        value={value}
+        onChange={onChange}
+        style={inputStyle}
+      />
+    </Box>
   )
 }

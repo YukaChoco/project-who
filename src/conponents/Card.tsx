@@ -1,40 +1,104 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Cards } from '@/types/Cards';
-import styles from '@/styles/Cards.module.css'
-import router from 'next/router';
+import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
+import Link from 'next/link';
+import type { CardData } from '@/types/CardData';
+import { Box } from '@mui/material';
 
-export default function DisplayCard(props: Cards) {
-  const onClick = props.urlEnabled ? props.onClickHandler : () => { };
-  const xURL = props.urlEnabled ? `https://twitter.com/${props.x}` : '';
-  const InstagramUrl = props.urlEnabled ? `https://instagram.com/${props.instagram}` : '';
+interface CardProps
+  extends Pick<CardData, 'organization' | 'name' | 'x' | 'instagram' | 'bgColor' | 'textColor'> {
+  urlEnabled: boolean;
+  onClickHandler?: () => void; //後に削除
+  link?: string;
+}
 
-  return (
-    <Card className={styles.cards} sx={{ backgroundColor: `${props.bgColor}` }} onClick={onClick}>
+export default function DisplayCard({
+  organization = '',
+  name = '',
+  x = '',
+  instagram = '',
+  bgColor = '#FFF',
+  textColor = '#000',
+  urlEnabled = false,
+  onClickHandler = () => { }, //後に削除
+  link = undefined,
+}: CardProps) {
+  const cardStyle = {
+    backgroundColor: `${bgColor}`,
+    color: `${textColor}`,
+    width: '100%',
+    padding: '10px'
+  }
+  const organizatinoStyle = {
+    padding: '5px',
+    height: '2.4rem',
+  }
+  const nameStyle = {
+    minHeight: '2.4rem',
+    textAlign: 'center',
+    width: '100%',
+    fontSize: '1.5rem',
+    fontWeight: '600',
+    margin: '30px 0px',
+  }
+  const SNSUrlContainerStyle = {
+    height: '2.4rem',
+    display: 'grid',
+    gridTemplateRows: '1fr 1fr',
+    gridTemplateClumns: '1fr',
+  }
+  const SNSUrlStyle = {
+    minHeight: '1.2rem',
+  }
+
+  const UnwrappedCard = () => (
+    <Card sx={cardStyle} onClick={onClickHandler}>
       <CardContent>
-        <Typography className={styles.belong} sx={{ color: `${props.textColor}` }}>
-          {props.organization}
-        </Typography>
+        <Typography sx={organizatinoStyle} >{organization}</Typography>
+        <Typography sx={nameStyle} >{name}</Typography>
 
-        <Typography className={styles.username} sx={{ color: `${props.textColor}` }}>
-          {props.name}
-        </Typography>
-
+        <Box sx={SNSUrlContainerStyle}>
+          <Box sx={SNSUrlStyle}>
+            {
+              x && (
+                urlEnabled && !link
+                  ? (
+                    <Link href={toXProfileURL(x)}>
+                      <Typography>X@{x}</Typography>
+                    </Link>
+                  )
+                  : <Typography>X@{x}</Typography>
+              )
+            }
+          </Box>
+          <Box sx={SNSUrlStyle}>
+            {
+              instagram && (
+                urlEnabled && !link
+                  ? (
+                    <Link href={toInstagramProfileURL(instagram)}>
+                      <Typography>Instagram@{instagram}</Typography>
+                    </Link>
+                  )
+                  : <Typography>Instagram@{instagram}</Typography>
+              )
+            }
+          </Box>
+        </Box>
       </CardContent>
-
-      {/* リンク遷移 */}
-      <CardActions disableSpacing className={styles.wrap}>
-        {props.x &&
-          <Button size="small" onClick={() => router.push(xURL)} sx={{ color: `${props.textColor}` }}>@{props.x}</Button>
-        }
-        {props.instagram &&
-          <Button size="small" onClick={() => router.push(InstagramUrl)} sx={{ color: `${props.textColor}` }}>@{props.instagram}</Button>
-        }
-      </CardActions>
     </Card >
   );
+
+  if (link) {
+    return (
+      <Link href={link} style={{ width: '100%' }}>
+        <UnwrappedCard />
+      </Link>
+    )
+  }
+  return (
+    <UnwrappedCard />
+  )
 }

@@ -3,34 +3,35 @@
   align-items: center;
   min-height: 100vh;
   background-color: #FFF;
-  padding-top: 58px;
 }
 .list{
   display: flex;
   flex-flow: column;
   align-items: center;
+
 }
 .qrcode {
   display: flex;
   font-size: 300px;
-  margin-top: 100px;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 .swipe{
   position: flex;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 5%;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 5%;
 }
 
 .returnbutton { 
-  width: 100%;
-  margin-bottom: 90px;
+  width: 90%;
   position: fixed;
   text-align: center;
-  bottom: 10px;
-  margin-bottom: 15px;
+  top:90%;
+  left:50%;
+  transform: translate(-50%, -50%);
 }
 
 .link {
@@ -180,6 +181,14 @@
       rgba(var(--tile-end-rgb), 1));
   background-clip: content-box;
 }
+
+.cardlist {
+  margin-bottom: 90px;
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {

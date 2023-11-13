@@ -1,19 +1,15 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Index.module.css'
-import Link from 'next/link'
-import FirebaseLogin from '@/utils/firebase/firebaseLogin'
+import firebaseLogin from '@/utils/ok/firebaseLogin'
+import PrimaryButton from '@/conponents/PrimaryButton';
+import SecondaryButton from '@/conponents/SecondaryButton';
 import { useRouter } from 'next/router';
-import PrimaryBtn from '@/conponents/PrimaryBtn'
-import { Button } from '@mui/material'
-
-const inter = Inter({ subsets: ['latin'] })
-
 
 export default function Index() {
   const router = useRouter();
-  const cardid = "card-test"
+  const nextPage = router.query.nextPage;
+  const nextUrl = typeof nextPage === 'string' ? nextPage : '/cards'
   return (
     <>
       <Head>
@@ -23,30 +19,30 @@ export default function Index() {
       </Head>
 
       <main className={styles.main}>
-
-
         <h1 className={styles.logo}>Who!</h1>
 
-        <div className={styles.waku}>
-          <div className={styles.btwaku}>
-            <button className={styles.PrimaryBtn} onClick={async () => {
-              await FirebaseLogin()
-              router.push("/cards");
-            }}>ログイン</button>
+        <div className={styles.container}>
+          <div className={styles.button}>
+            <SecondaryButton
+              text='ログイン'
+              onClick={async () => {
+                await firebaseLogin()
+                router.push(nextUrl);
+              }}
+            />
           </div>
 
-          <div className={styles.btwaku}>
-            <button className={styles.SecondaryBtn} onClick={async () => {
-              await FirebaseLogin()
-              router.push("/cards");
-            }}>新規登録</button>
+          <div className={styles.button}>
+            <PrimaryButton
+              text='新規登録'
+              onClick={async () => {
+                await firebaseLogin()
+                router.push(nextUrl);
+              }}
+            />
           </div>
-
         </div>
       </main>
-
-
-
     </>
   )
 }
