@@ -8,6 +8,8 @@ import { useRouter } from 'next/router';
 
 export default function Index() {
   const router = useRouter();
+  const nextPage = router.query.nextPage;
+  const nextUrl = typeof nextPage === 'string' ? nextPage : '/cards'
   return (
     <>
       <Head>
@@ -25,7 +27,7 @@ export default function Index() {
               text='ログイン'
               onClick={async () => {
                 await firebaseLogin()
-                router.push("/cards");
+                router.push(nextUrl);
               }}
             />
           </div>
@@ -35,7 +37,7 @@ export default function Index() {
               text='新規登録'
               onClick={async () => {
                 await firebaseLogin()
-                router.push("/cards");
+                router.push(nextUrl);
               }}
             />
           </div>

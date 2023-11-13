@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Mycards.module.css'
 import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
-import MakeNewCard from '@/conponents/NewCard'
+import NewCard from '@/conponents/NewCard'
 import PrimaryButton from '@/conponents/PrimaryButton'
 import router from 'next/router'
 import { useEffect, useState } from 'react'
@@ -51,7 +51,13 @@ export default function Index() {
             text="自分の名刺を作成する"
             onClick={() => router.push('/make/mycard')}
           />
+<<<<<<< HEAD
         </>
+=======
+          <NewCard />
+        </div>
+        <PrimaryButton text={'ホームに戻る'} onClick={() => router.push("/cards")} />
+>>>>>>> develop
       </main>
     ) //cardDataがnullの時のエラー処理
 

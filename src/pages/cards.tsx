@@ -6,13 +6,12 @@ import Header from '@/conponents/Header'
 import DisplayCard from '@/conponents/Card'
 import ShareButton from '@/conponents/ShareButton'
 import useUser from '@/hooks/useUser'
-import getHaveCardDetails from '@/utils/ok/getHaveCardDetails'
+import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId'
 import type { CardData } from '@/types/CardData'
 import SecondaryButton from '@/conponents/SecondaryButton'
 
-
 export default function Index() {
-  const [cardDatas, setCardDatas] = useState<CardData[]>([]);
+  const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
 
   const router = useRouter();
 
@@ -21,7 +20,7 @@ export default function Index() {
   useEffect(() => {
     const fetchUsers = async () => {
       if (userId) {
-        const haveCardDetails = await getHaveCardDetails(userId);
+        const haveCardDetails = await getHaveCardDetailsByUserId(userId);
         setCardDatas(haveCardDetails);
       }
     };
@@ -40,22 +39,28 @@ export default function Index() {
     </>
   }
 
-  const display = cardDatas.map((data) => {
-    return (
-      <DisplayCard
-        key={data.id}
-        {...data}
-        urlEnabled
-        onClickHandler={() => router.push(`/card/${data.id}`)}
-      />
-    );
-  })
 
-  if (!cardDatas)
+  if (!userId)
     return (
       <main>
         <>
+        <Header useMenuIcon />
+          <h1>ログインされていません</h1>
+          <SecondaryButton
+            text="ログイン画面へ"
+            onClick={() => router.push('/?nextPage=${router.asPath}')}
+          />
+        </>
+      </main>
+    ) //cardDataがnullの時のエラー処理
+
+    if (!cardDatas)
+    return (
+      <main>
+        <>
+        <Header useMenuIcon />
           <h1>自分の名刺がありません</h1>
+          
           <SecondaryButton
             text="自分の名刺を作成する"
             onClick={() => router.push('/make/mycard')}
@@ -64,24 +69,24 @@ export default function Index() {
       </main>
     ) //cardDataがnullの時のエラー処理
 
-  if (!userId)
+  const display = cardDatas.map((data) => {
     return (
-      <main>
-        <>
-          <h1>自分の名刺がありません</h1>
-          <SecondaryButton
-            text="ログインしてください"
-            onClick={() => router.push('/?nextPage=${router.asPath}')}
-          />
-        </>
-      </main>
-    ) //cardDataがnullの時のエラー処理
+      <DisplayCard
+        key={data.id}
+        {...data}
+        urlEnabled
+        link={`/card/${data.id}`}
+      />
+    );
+  })
+
+  
+
 
   return (
     <>
       <Head>
-        <title>Who!</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>名刺一覧 - Who!</title>
       </Head>
 
       <main>
