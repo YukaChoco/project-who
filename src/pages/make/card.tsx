@@ -68,7 +68,7 @@ export default function Index() {
 
           <InputTexts
             name={name} handleName={(event) => setName(event.target.value)}
-            instagram={instagram} handleinstagram={(event) => setInstagram(event.target.value)}
+            instagram={instagram} handleInstagram={(event) => setInstagram(event.target.value)}
             x={x} handleX={(event) => setX(event.target.value)}
             organization={organization} handleOrganization={(event) => setOrganization(event.target.value)} />
 
