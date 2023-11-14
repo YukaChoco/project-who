@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Button } from '@mui/material';
 
 interface PrimaryButtonProps {
   text: string;
@@ -6,11 +6,7 @@ interface PrimaryButtonProps {
   onClick?: () => void;
 }
 
-export default function PrimaryButton({
-  text = '',
-  disabled = false,
-  onClick = () => { },
-}: PrimaryButtonProps) {
+export default function PrimaryButton({ text = '', disabled = false, onClick = () => {} }: PrimaryButtonProps) {
   const buttonStyle = {
     display: 'inline-block',
     width: '100%',
@@ -24,15 +20,10 @@ export default function PrimaryButton({
       border: '1.5px solid #969696',
       backgroundColor: '#DCDBE8',
     },
-  }
+  };
   return (
-    <Button
-      variant="outlined"
-      sx={buttonStyle}
-      disabled={disabled}
-      onClick={onClick}
-    >
+    <Button variant='outlined' sx={buttonStyle} disabled={disabled} onClick={onClick}>
       {text}
     </Button>
-  )
+  );
 }

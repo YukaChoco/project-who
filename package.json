@@ -15,6 +15,11 @@
       "pre-commit": "npm run format"
     }
   },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint --fix"
+    ]
+  },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -34,6 +39,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0"
   }
 }

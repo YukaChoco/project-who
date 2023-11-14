@@ -18,9 +18,9 @@ const customTheme = (outerTheme: Theme) =>
       MuiTextField: {
         styleOverrides: {
           root: {
-            '--TextField-brandBorderColor': "#F4F5FC",
-            '--TextField-brandBorderHoverColor': "gray",
-            '--TextField-brandBorderFocusedColor': "gray",
+            '--TextField-brandBorderColor': '#F4F5FC',
+            '--TextField-brandBorderHoverColor': 'gray',
+            '--TextField-brandBorderFocusedColor': 'gray',
             '& label.Mui-focused': {
               color: 'var(--TextField-brandBorderFocusedColor)',
             },
@@ -45,11 +45,7 @@ const customTheme = (outerTheme: Theme) =>
     },
   });
 
-export default function TextInput({
-  labelText = '',
-  value = '',
-  onChange = () => { },
-}: TextInputProps) {
+export default function TextInput({ labelText = '', value = '', onChange = () => {} }: TextInputProps) {
   const outerTheme = useTheme();
   const backGroundStyle = {
     textAlign: 'center',
@@ -57,7 +53,7 @@ export default function TextInput({
     borderRadius: '5px',
     width: '100%',
     padding: '5px',
-  }
+  };
   return (
     <>
       <Box sx={backGroundStyle}>
@@ -67,17 +63,18 @@ export default function TextInput({
               width: '100%',
               padding: '0px 15px',
               input: {
-                color: "black",
-                background: "#F4F5FC"
-              }
+                color: 'black',
+                background: '#F4F5FC',
+              },
             }}
             label={labelText}
-            variant="filled"
+            variant='filled'
             value={value}
             onChange={onChange}
-            focused />
+            focused
+          />
         </ThemeProvider>
       </Box>
     </>
-  )
+  );
 }

@@ -1,17 +1,16 @@
-import { auth } from '@/firebase'
-import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+import { auth } from '@/firebase';
+import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
 
-import addUser from "./addUser";
+import addUser from './addUser';
 
 export default async function FirebaseLogin() {
   const provider = new GoogleAuthProvider();
-
 
   await signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      console.log(result.user.displayName)
+      console.log(result.user.displayName);
       if (credential) {
         const token = credential.accessToken;
         // The signed-in user info.
@@ -19,7 +18,8 @@ export default async function FirebaseLogin() {
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       }
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -29,7 +29,6 @@ export default async function FirebaseLogin() {
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
-
 
   //現在ログインしているユーザーを取得する
   onAuthStateChanged(auth, (user) => {
@@ -44,6 +43,3 @@ export default async function FirebaseLogin() {
     }
   });
 }
-
-
-
