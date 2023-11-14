@@ -1,27 +1,46 @@
+import { Box } from '@mui/material';
+import LaunchIcon from '@mui/icons-material/Launch';
 import { Details } from '@/types/Details'
-import styles from '@/styles/DisplayText.module.css'
 import Link from 'next/link'
 
-interface Props extends Details {
+interface DisplayTextProps extends Details {
   isSNSId?: boolean;
 }
 
-export default function DisplayText(props: Props) {
+export default function DisplayText({
+  title = '',
+  detail = '',
+  url = '',
+  isSNSId = false,
+}: DisplayTextProps) {
+  const containerStyle = {
+    width: '100%',
+    padding: '8px 20px',
+  }
+  const detailContainerStyle = {
+    padding: '4px 12px',
+  }
+  const urlStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.2rem',
+  }
+
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
-        <p>{props.title}</p>
-      </div>
-      <div className={styles.detail}>
-        {props.isSNSId && '@'}
+    <Box sx={containerStyle}>
+      <p style={{ fontSize: '0.7rem' }}>{title}</p>
+      <Box sx={detailContainerStyle}>
         {
-          props.url
+          url
             ?
-            <Link href={props.url}>{props.detail}</Link>
+            <Box sx={urlStyle}>
+              <Link href={url} >{isSNSId && '@'}{detail}</Link>
+              <LaunchIcon sx={{ fontSize: '1rem', height: '100%' }} />
+            </Box>
             :
-            <span>{props.detail}</span>
+            <span>{isSNSId && '@'}{detail}</span>
         }
-      </div>
-    </div >
+      </Box>
+    </Box>
   )
 }

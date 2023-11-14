@@ -8,11 +8,13 @@ import ShareButton from '@/conponents/ShareButton'
 import useUser from '@/hooks/useUser'
 import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId'
 import type { CardData } from '@/types/CardData'
+import SecondaryButton from '@/conponents/SecondaryButton'
 
 export default function Index() {
   const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
 
   const router = useRouter();
+
   const { userId, loading } = useUser();
 
   useEffect(() => {
@@ -22,7 +24,6 @@ export default function Index() {
         setCardDatas(haveCardDetails);
       }
     };
-
     fetchUsers();
   }, [userId])
 
@@ -38,28 +39,44 @@ export default function Index() {
     </>
   }
 
+  if (!userId) {
+    return (
+      <main>
+        <>
+          <Header />
+          <h1>ログインされていません</h1>
+          <SecondaryButton
+            text="ログイン画面へ"
+            onClick={() => router.push(`/?nextPage=${router.asPath}`)}
+          />
+        </>
+      </main>
+    )
+  }
+
   if (!cardDatas) {
     return (
-      <>
-        <Head>
-          <title>名刺一覧 - Who!</title>
-        </Head>
-        <main>
-          <>
-            <h1>名刺が空です</h1>
-          </>
-        </main>
-      </>
+      <main>
+        <>
+          <Header useMenuIcon />
+          <h1>自分の名刺がありません</h1>
+
+          <SecondaryButton
+            text="自分の名刺を作成する"
+            onClick={() => router.push('/make/mycard')}
+          />
+        </>
+      </main>
     )
   }
 
   const display = cardDatas.map((data) => {
     return (
       <DisplayCard
+        urlEnabled={false}
         key={data.id}
         {...data}
-        urlEnabled
-        onClickHandler={() => router.push(`/card/${data.id}`)}
+        link={`/card/${data.id}`}
       />
     );
   })

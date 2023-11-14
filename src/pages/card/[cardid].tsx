@@ -130,7 +130,7 @@ export default function Index() {
             {showButtons()}
           </div>
 
-          <ShareButton id="68nUIBWcWlpw2sJV3wGh" />
+          <ShareButton />
         </main>
       </>
     )

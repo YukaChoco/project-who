@@ -3,11 +3,7 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import IconButton from '@mui/material/IconButton';
 import router from 'next/router';
 
-interface Props {
-    id: string;
-}
-
-export default function ShareButton(props: Props) {
+export default function ShareButton() {
     return (
         <IconButton
             onClick={() => router.push('/share')}
