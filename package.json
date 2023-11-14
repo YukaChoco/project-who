@@ -8,18 +8,19 @@
     "start": "next start",
     "lint": "next lint --dir src",
     "lint-fix": "next lint --fix",
+    "lint:precommit": "eslint 'src/**/*.{ts,tsx}' --max-warnings 0",
+    "fmt:precommit": "prettier -l './**/*.{js,jsx,ts,tsx,json,css}'",
     "export": "next export",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix"
-    ]
+    "src/**/*.{ts,tsx}": "npm run lint:precommit",
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss}": "npm run fmt:precommit"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
