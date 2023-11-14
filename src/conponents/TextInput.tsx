@@ -1,12 +1,10 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import styles from '@/styles/TextInput.module.css'
-import { TextFieldProps } from '@mui/material/TextField';
-import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import { Box, TextField } from '@mui/material';
+import type { TextFieldProps } from '@mui/material/TextField';
 import { createTheme, ThemeProvider, Theme, useTheme } from '@mui/material/styles';
 
-interface Props {
-  text: string;
+interface TextInputProps {
+  labelText: string;
   value: string;
   onChange: TextFieldProps['onChange'];
 }
@@ -20,9 +18,9 @@ const customTheme = (outerTheme: Theme) =>
       MuiTextField: {
         styleOverrides: {
           root: {
-            '--TextField-brandBorderColor': "#F4F5FC",
-            '--TextField-brandBorderHoverColor': "gray",
-            '--TextField-brandBorderFocusedColor': "gray",
+            '--TextField-brandBorderColor': '#F4F5FC',
+            '--TextField-brandBorderHoverColor': 'gray',
+            '--TextField-brandBorderFocusedColor': 'gray',
             '& label.Mui-focused': {
               color: 'var(--TextField-brandBorderFocusedColor)',
             },
@@ -47,38 +45,36 @@ const customTheme = (outerTheme: Theme) =>
     },
   });
 
-export default function TextInput(props: Props) {
+export default function TextInput({ labelText = '', value = '', onChange = () => {} }: TextInputProps) {
   const outerTheme = useTheme();
+  const backGroundStyle = {
+    textAlign: 'center',
+    backgroundColor: '#F4F5FC',
+    borderRadius: '5px',
+    width: '100%',
+    padding: '5px',
+  };
   return (
     <>
-      <div className={styles.TextInput_background}>
-        {/* textfieldを変えたが何か不都合が起きたとき見比べる用に一応コメントアウトして残してる。いらないなら消しても可 */}
-        {/* <TextField className={styles.TextInput} label={props.text} variant="filled"
-          sx={{
-            input: {
-              color: "black",
-              background: "#F4F5FC"
-            }
-          }}
-          value={props.value}
-          onChange={props.onChange}
-          // focused
-        /> */}
-          <ThemeProvider theme={customTheme(outerTheme)}>
-          <TextField className={styles.TextInput}
-           sx={{
+      <Box sx={backGroundStyle}>
+        <ThemeProvider theme={customTheme(outerTheme)}>
+          <TextField
+            sx={{
+              width: '100%',
+              padding: '0px 15px',
               input: {
-                color: "black",
-                background: "#F4F5FC"
-              }
-            }} 
-            label={props.text} 
-            variant="filled" 
-            value={props.value}
-            onChange={props.onChange}
-            focused />
+                color: 'black',
+                background: '#F4F5FC',
+              },
+            }}
+            label={labelText}
+            variant='filled'
+            value={value}
+            onChange={onChange}
+            focused
+          />
         </ThemeProvider>
-      </div>
+      </Box>
     </>
-  )
+  );
 }
