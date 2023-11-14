@@ -14,23 +14,13 @@ interface SNSInputProps {
 
 const PlusIcon = createSvgIcon(
   // credit: plus icon from https://heroicons.com/
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+  <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor'>
+    <path strokeLinecap='round' strokeLinejoin='round' d='M12 4.5v15m7.5-7.5h-15' />
   </svg>,
   'Plus',
 );
 
-
-export default function SNSInput({
-  labelText = '',
-  onClick = () => { },
-}: SNSInputProps) {
+export default function SNSInput({ labelText = '', onClick = () => {} }: SNSInputProps) {
   const [SNS, setSNS] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -41,7 +31,7 @@ export default function SNSInput({
   const inputStyle = {
     width: '100%',
     margin: '0px 20px',
-  }
+  };
   const containerStyle = {
     textAlign: 'center',
     backgroundColor: '#F4F5FC',
@@ -50,17 +40,17 @@ export default function SNSInput({
     height: '125px',
     margin: '5px 0',
     minWidth: 120,
-  }
+  };
   const snsContainerStyle = {
     position: 'relative',
-  }
+  };
   const selectStyle = {
     float: 'left',
     left: '0',
     margin: '5px 10px 0 10px',
     width: '42%',
     backgroundColor: 'white',
-  }
+  };
   const plusIconStyle = {
     float: 'left',
     position: 'absolute',
@@ -68,19 +58,13 @@ export default function SNSInput({
     margin: '10px',
     height: '40px',
     width: '40px',
-  }
+  };
   return (
     <Box sx={containerStyle}>
       <Box sx={snsContainerStyle}>
         <FormControl fullWidth sx={selectStyle}>
-          <InputLabel id="demo-simple-select-label">SNS</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={SNS}
-            label="SNS"
-            onChange={handleChange}
-          >
+          <InputLabel id='demo-simple-select-label'>SNS</InputLabel>
+          <Select labelId='demo-simple-select-label' id='demo-simple-select' value={SNS} label='SNS' onChange={handleChange}>
             <MenuItem value={10}>X</MenuItem>
             <MenuItem value={20}>Instagram</MenuItem>
             <MenuItem value={30}>Facebook</MenuItem>
@@ -89,17 +73,18 @@ export default function SNSInput({
         </FormControl>
         <PlusIcon sx={plusIconStyle} onClick={onClick} />
       </Box>
-      <TextField label="@" variant="filled"
+      <TextField
+        label='@'
+        variant='filled'
         sx={{
           ...inputStyle,
           input: {
-            color: "black",
-            background: "#F4F5FC"
-          }
-        }
-        }
+            color: 'black',
+            background: '#F4F5FC',
+          },
+        }}
         focused
       />
     </Box>
-  )
+  );
 }

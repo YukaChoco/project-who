@@ -6,16 +6,10 @@ interface SwitchButtonProps {
   leftName: string;
   rightName: string;
   value: string;
-  onChange?: ToggleButtonProps['onChange']
+  onChange?: ToggleButtonProps['onChange'];
 }
 
-export default function SwitchButton({
-  leftName = '',
-  rightName = '',
-  value = '',
-  onChange = () => { },
-}: SwitchButtonProps) {
-
+export default function SwitchButton({ leftName = '', rightName = '', value = '', onChange = () => {} }: SwitchButtonProps) {
   return (
     <>
       <ToggleButtonGroup
@@ -23,7 +17,7 @@ export default function SwitchButton({
         exclusive
         fullWidth
         onChange={onChange}
-        aria-label="Platform"
+        aria-label='Platform'
         sx={{
           height: 30,
           width: '100%',
@@ -32,7 +26,6 @@ export default function SwitchButton({
       >
         <ToggleButton value={leftName}>{leftName}</ToggleButton>
         <ToggleButton value={rightName}>{rightName}</ToggleButton>
-
       </ToggleButtonGroup>
     </>
   );

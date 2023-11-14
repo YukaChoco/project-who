@@ -1,17 +1,13 @@
-import { doc, setDoc } from "firebase/firestore";
-import { db } from '@/firebase'
-
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '@/firebase';
 
 interface Props {
   userid: string;
-  fileld:{
+  fileld: {
     name: string;
-  }
+  };
 }
 
-export default async function AddUserDataComp(docData:Props) {
-
-  await setDoc(doc(db, "users", docData.userid), {});
+export default async function AddUserDataComp(docData: Props) {
+  await setDoc(doc(db, 'users', docData.userid), {});
 }
-
-
