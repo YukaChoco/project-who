@@ -16,7 +16,7 @@ js,ts,tsxなどのlinterです。
 キリがいいところやcommit前に以下のコマンドを実行してください  
 出たエラーについては、エラー内容を読んで修正してください。
 ```bash
-mpm run lint-fix
+npm run lint-fix
 ```
 
 ### prettier
