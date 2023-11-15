@@ -3,6 +3,10 @@
 
 ## 開発ツール
 ### pre-commmit
+precommitを実行するために、レポジトリをcloneした際に以下のコマンドを実行してください
+```bash
+npm run prepare
+```
 commit前にeslint,prettierが自動的に実行されます。
 commit時にエラーと出た場合は、以下を参考に修正してください。
 
