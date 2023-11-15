@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import styles from '@/styles/AllCards.module.css';
-import Header from '@/conponents/Header';
+import { useEffect, useState } from 'react';
 import DisplayCard from '@/conponents/Card';
+import Header from '@/conponents/Header';
+import SecondaryButton from '@/conponents/SecondaryButton';
 import ShareButton from '@/conponents/ShareButton';
 import useUser from '@/hooks/useUser';
-import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId';
+import styles from '@/styles/AllCards.module.css';
 import type { CardData } from '@/types/CardData';
-import SecondaryButton from '@/conponents/SecondaryButton';
+import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId';
 
 export default function Index() {
   const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);

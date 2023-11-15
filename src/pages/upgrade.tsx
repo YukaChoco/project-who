@@ -1,15 +1,11 @@
 import Head from 'next/head';
-import { Inter } from 'next/font/google';
-import styles from '@/styles/upgrade.module.css';
+import Link from 'next/link';
 import Header from '@/conponents/Header';
 import PrimaryButton from '@/conponents/PrimaryButton';
 import SecondaryButton from '@/conponents/SecondaryButton';
-import Link from 'next/link';
-
-const inter = Inter({ subsets: ['latin'] });
+import styles from '@/styles/upgrade.module.css';
 
 export default function Index() {
-  const cardid = 'card-test';
   return (
     <>
       <Head>

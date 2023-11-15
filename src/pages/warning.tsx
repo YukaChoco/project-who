@@ -1,14 +1,9 @@
 import Head from 'next/head';
-import { Inter } from 'next/font/google';
-import styles from '@/styles/Warning.module.css';
-import Link from 'next/link';
-import Header from '@/conponents/Header';
 import router from 'next/router';
-
-const inter = Inter({ subsets: ['latin'] });
+import Header from '@/conponents/Header';
+import styles from '@/styles/Warning.module.css';
 
 export default function Index() {
-  const cardid = 'card-test';
   return (
     <>
       <Head>

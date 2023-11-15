@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
-import { Details } from '@/types/Details';
+import { Box } from '@mui/material';
 import Link from 'next/link';
+import { Details } from '@/types/Details';
 
 interface DisplayTextProps extends Details {
   isSNSId?: boolean;

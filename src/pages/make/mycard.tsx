@@ -1,19 +1,15 @@
-import { Inter } from 'next/font/google';
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+import DisplayCard from '@/conponents/Card';
+import EditColors from '@/conponents/EditColors';
+import EditComplete from '@/conponents/EditComplete';
+import EditTexts from '@/conponents/EditTexts';
+import Header from '@/conponents/Header';
+import PrimaryButton from '@/conponents/PrimaryButton';
+import SwitchButton from '@/conponents/SwitchButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/MycardCreatePage.module.css';
-import Header from '@/conponents/Header';
-import DisplayCard from '@/conponents/Card';
-import SwitchButton from '@/conponents/SwitchButton';
-import EditColors from '@/conponents/EditColors';
-import EditTexts from '@/conponents/EditTexts';
-import EditComplete from '@/conponents/EditComplete';
 import makemycard from '@/utils/ok/makeMyCard';
-import type { CardData } from '@/types/CardData';
-import PrimaryButton from '@/conponents/PrimaryButton';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Input() {
   const [name, setName] = useState<string>('');
@@ -25,7 +21,6 @@ export default function Input() {
 
   const router = useRouter();
   const { userId, loading } = useUser();
-  const [cardData, setCardData] = useState<CardData | null>(null);
   const [mode, setMode] = useState<string>('入力');
 
   if (loading) {

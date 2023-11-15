@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import Head from 'next/head';
-import styles from '@/styles/Index.module.css';
-import firebaseLogin from '@/utils/ok/firebaseLogin';
+import { useRouter } from 'next/router';
 import PrimaryButton from '@/conponents/PrimaryButton';
 import SecondaryButton from '@/conponents/SecondaryButton';
-import { useRouter } from 'next/router';
+import styles from '@/styles/Index.module.css';
+import firebaseLogin from '@/utils/ok/firebaseLogin';
 
 export default function Index() {
   const router = useRouter();

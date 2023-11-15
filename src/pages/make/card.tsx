@@ -1,14 +1,14 @@
-import { useState } from 'react';
 import Head from 'next/head';
 import router from 'next/router';
-import styles from '@/styles/CardCreatePage.module.css';
-import useUser from '@/hooks/useUser';
-import Header from '@/conponents/Header';
+import { useState } from 'react';
 import DisplayCard from '@/conponents/Card';
-import InputTexts from '@/conponents/EditTexts';
 import EditComplete from '@/conponents/EditComplete';
-import makeHaveCard from '@/utils/ok/makeHaveCard';
+import InputTexts from '@/conponents/EditTexts';
+import Header from '@/conponents/Header';
 import PrimaryButton from '@/conponents/PrimaryButton';
+import useUser from '@/hooks/useUser';
+import styles from '@/styles/CardCreatePage.module.css';
+import makeHaveCard from '@/utils/ok/makeHaveCard';
 
 export default function Index() {
   const [mode, setMode] = useState<string>('入力');
