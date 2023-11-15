@@ -1,20 +1,20 @@
-import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { Box, Typography } from '@mui/material';
-import { CardType } from '@/types/CardType';
-import useUser from '@/hooks/useUser';
-import styles from '@/styles/CardDetail.module.css';
-import Header from '@/conponents/Header';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Card from '@/conponents/Card';
 import DisplayText from '@/conponents/DisplayText';
+import Header from '@/conponents/Header';
 import SecondaryButton from '@/conponents/SecondaryButton';
 import ShareButton from '@/conponents/ShareButton';
+import useUser from '@/hooks/useUser';
+import styles from '@/styles/CardDetail.module.css';
 import type { CardData } from '@/types/CardData';
-import getCardDetils from '@/utils/ok/getCardDetils';
-import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
+import { CardType } from '@/types/CardType';
 import addHaveCardId from '@/utils/ok/addHaveCardId';
+import getCardDetils from '@/utils/ok/getCardDetils';
 import getCardType from '@/utils/ok/getCardType';
+import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
 
 export default function Index() {
   const router = useRouter();

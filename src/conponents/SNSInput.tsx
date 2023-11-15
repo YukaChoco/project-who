@@ -1,11 +1,11 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
 import { createSvgIcon } from '@mui/material/utils';
+import * as React from 'react';
 
 interface SNSInputProps {
   labelText: string;
@@ -20,7 +20,7 @@ const PlusIcon = createSvgIcon(
   'Plus',
 );
 
-export default function SNSInput({ labelText = '', onClick = () => {} }: SNSInputProps) {
+export default function SNSInput({ onClick = () => {} }: SNSInputProps) {
   const [SNS, setSNS] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {

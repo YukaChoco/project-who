@@ -1,7 +1,7 @@
 .main {
   width: 100vw;
   height: 100vh;
-  background-color: #6F80BF;
+  background-color: #6f80bf;
   margin: 0px;
   padding: 50px 20px;
   position: fixed;
@@ -24,6 +24,6 @@
   height: fit-content;
 }
 
-.button+.button {
+.button + .button {
   padding-top: 20px;
 }

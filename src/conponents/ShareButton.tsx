@@ -1,7 +1,7 @@
-import * as React from 'react';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import IconButton from '@mui/material/IconButton';
 import router from 'next/router';
+import * as React from 'react';
 
 export default function ShareButton() {
   return (

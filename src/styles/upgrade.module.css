@@ -9,13 +9,13 @@
   background-color: #fff;
 }
 
-.text{
-    margin-top: 50px;
-    height: 40vh;
-    display: flex;
-	justify-content: center;
-	align-items: center;
-  }
+.text {
+  margin-top: 50px;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .Button_wrapper {
   width: 100%;
