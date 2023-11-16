@@ -59,7 +59,7 @@ export default function Index() {
         <div className={styles.cardlist}>
           {cardData &&
             cardData.map((data) => {
-              return <DisplayCard key={data.id} {...data} urlEnabled={false} onClickHandler={() => router.push('/make/card')} />;
+              return <DisplayCard key={data.id} {...data} urlEnabled={false} link={`/card/${data.id}`} />;
             })}
         </div>
         <NewCard />
