@@ -33,7 +33,7 @@ export default function Drawer() {
       <List sx={drawerStyle}>
         <ListItem key={'自分の名刺'} disablePadding>
           <ListItemButton>
-            <Link href='/make/mycard'>
+            <Link href='/mycards'>
               <ListItemText primary={'自分の名刺'} sx={itemModules} />
             </Link>
           </ListItemButton>
