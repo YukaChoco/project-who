@@ -20,6 +20,10 @@ export default function PrimaryButton({ text = '', disabled = false, onClick = (
       border: '1.5px solid #969696',
       backgroundColor: '#DCDBE8',
     },
+    ':disabled': {
+      color: '#FFF',
+      backgroundColor: '#C7C7C7',
+    },
   };
   return (
     <Button variant='outlined' sx={buttonStyle} disabled={disabled} onClick={onClick}>

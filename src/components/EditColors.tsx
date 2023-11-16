@@ -1,4 +1,4 @@
-import ColorPicker from '@/conponents/ColorPicker';
+import ColorPicker from '@/components/ColorPicker';
 
 interface EditColorsProps {
   textColor: string;

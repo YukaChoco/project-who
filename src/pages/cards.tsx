@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import DisplayCard from '@/conponents/Card';
-import Header from '@/conponents/Header';
-import SecondaryButton from '@/conponents/SecondaryButton';
-import ShareButton from '@/conponents/ShareButton';
+import DisplayCard from '@/components/Card';
+import Header from '@/components/Header';
+import SecondaryButton from '@/components/SecondaryButton';
+import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/AllCards.module.css';
 import type { CardData } from '@/types/CardData';

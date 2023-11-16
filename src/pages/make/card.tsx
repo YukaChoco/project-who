@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import router from 'next/router';
 import { useState } from 'react';
-import DisplayCard from '@/conponents/Card';
-import EditComplete from '@/conponents/EditComplete';
-import InputTexts from '@/conponents/EditTexts';
-import Header from '@/conponents/Header';
-import PrimaryButton from '@/conponents/PrimaryButton';
+import DisplayCard from '@/components/Card';
+import EditComplete from '@/components/EditComplete';
+import InputTexts from '@/components/EditTexts';
+import Header from '@/components/Header';
+import PrimaryButton from '@/components/PrimaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardCreatePage.module.css';
 import makeHaveCard from '@/utils/ok/makeHaveCard';

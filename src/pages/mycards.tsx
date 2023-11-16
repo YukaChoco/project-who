@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
-import DisplayCard from '@/conponents/Card';
-import Header from '@/conponents/Header';
-import NewCard from '@/conponents/NewCard';
-import PrimaryButton from '@/conponents/PrimaryButton';
-import SecondaryButton from '@/conponents/SecondaryButton';
+import DisplayCard from '@/components/Card';
+import Header from '@/components/Header';
+import NewCard from '@/components/NewCard';
+import PrimaryButton from '@/components/PrimaryButton';
+import SecondaryButton from '@/components/SecondaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/Mycards.module.css';
 import { CardData } from '@/types/CardData';
@@ -15,13 +15,13 @@ export default function Index() {
   const [cardData, setCardDatas] = useState<CardData[] | null>([]);
   const { userId, loading } = useUser();
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchCards = async () => {
       if (userId) {
         const cardData = await getMyCardDetailsByUserId(userId);
         setCardDatas(cardData);
       }
     };
-    fetchUsers();
+    fetchCards();
   }, [userId]);
 
   if (loading) {
@@ -42,6 +42,9 @@ export default function Index() {
     return (
       <main>
         <>
+          <Head>
+            <title>自分の名刺 - Who!</title>
+          </Head>
           <h1>ログインされていません</h1>
           <SecondaryButton text='ログインしてください' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
         </>
@@ -52,14 +55,14 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>Who!</title>
+        <title>自分の名刺 - Who!</title>
       </Head>
       <main className={styles.main}>
         <Header useMenuIcon />
         <div className={styles.cardlist}>
           {cardData &&
             cardData.map((data) => {
-              return <DisplayCard key={data.id} {...data} urlEnabled={false} onClickHandler={() => router.push('/make/card')} />;
+              return <DisplayCard key={data.id} {...data} urlEnabled={false} link={`/card/${data.id}`} />;
             })}
         </div>
         <NewCard />
