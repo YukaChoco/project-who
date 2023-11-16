@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
-import DisplayCard from '@/conponents/Card';
-import Header from '@/conponents/Header';
-import NewCard from '@/conponents/NewCard';
-import PrimaryButton from '@/conponents/PrimaryButton';
-import SecondaryButton from '@/conponents/SecondaryButton';
+import DisplayCard from '@/components/Card';
+import Header from '@/components/Header';
+import NewCard from '@/components/NewCard';
+import PrimaryButton from '@/components/PrimaryButton';
+import SecondaryButton from '@/components/SecondaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/Mycards.module.css';
 import { CardData } from '@/types/CardData';

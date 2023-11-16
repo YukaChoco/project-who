@@ -1,4 +1,4 @@
-import TextInput from '@/conponents/TextInput';
+import TextInput from '@/components/TextInput';
 
 interface EditTextsProps {
   name: string;
