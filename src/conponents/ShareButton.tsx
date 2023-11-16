@@ -14,6 +14,7 @@ export default function ShareButton() {
         right: 40,
         background: '#6F80BF',
         color: 'white',
+        border: '1px solid white',
         ':hover': { background: '#6F80BF' },
       }}
     >
