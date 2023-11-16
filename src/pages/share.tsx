@@ -70,7 +70,6 @@ export default function Detail() {
       <>
         <Head>
           <title>名刺交換画面 - Who!</title>
-          <link rel='icon' href='/favicon.ico' />
         </Head>
         <main className={styles.main}>
           <div className={styles.list}>
