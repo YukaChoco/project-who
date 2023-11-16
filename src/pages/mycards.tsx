@@ -42,6 +42,9 @@ export default function Index() {
     return (
       <main>
         <>
+          <Head>
+            <title>自分の名刺 - Who!</title>
+          </Head>
           <h1>ログインされていません</h1>
           <SecondaryButton text='ログインしてください' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
         </>
@@ -52,7 +55,7 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>Who!</title>
+        <title>自分の名刺 - Who!</title>
       </Head>
       <main className={styles.main}>
         <Header useMenuIcon />
