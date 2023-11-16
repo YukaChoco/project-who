@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import Head from 'next/head';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
@@ -77,7 +78,7 @@ export default function Detail() {
             <div className={styles.qrcode}>
               <QRCode url={`https://whooo.netlify.app/card/${cardData[0].id}`} />
             </div>
-            <div className={styles.cardlist}>{display}</div>
+            <Box sx={{ width: '100%' }}>{display}</Box>
           </div>
 
           <div className={styles.returnbutton}>
