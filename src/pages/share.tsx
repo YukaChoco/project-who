@@ -76,7 +76,7 @@ export default function Detail() {
           <div className={styles.list}>
             <Header useMenuIcon />
             <div className={styles.qrcode}>
-              <QRCode url={`https://whooo.netlify.app/card/${cardData[0].id}`} />
+              <QRCode url={`https://project-who.vercel.app/card/${cardData[0].id}`} />
             </div>
             <Box sx={{ width: '100%' }}>{display}</Box>
           </div>
