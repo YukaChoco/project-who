@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import router from 'next/router';
-import Header from '@/conponents/Header';
+import Header from '@/components/Header';
 import styles from '@/styles/Warning.module.css';
 
 export default function Index() {

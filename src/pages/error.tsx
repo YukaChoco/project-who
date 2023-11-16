@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Header from '@/conponents/Header';
+import Header from '@/components/Header';
 import styles from '@/styles/Index.module.css';
 
 export default function Index() {

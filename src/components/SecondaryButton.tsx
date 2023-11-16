@@ -20,6 +20,10 @@ export default function SecondaryButton({ text = '', disabled = false, onClick =
       border: '1.5px solid #fff',
       backgroundColor: 'rgba(255,255,255,0.2)',
     },
+    ':disabled': {
+      color: '#FFF',
+      backgroundColor: '#C7C7C7',
+    },
   };
   return (
     <Button variant='outlined' sx={buttonStyle} disabled={disabled} onClick={onClick}>

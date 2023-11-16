@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Header from '@/conponents/Header';
-import PrimaryButton from '@/conponents/PrimaryButton';
-import SecondaryButton from '@/conponents/SecondaryButton';
+import Header from '@/components/Header';
+import PrimaryButton from '@/components/PrimaryButton';
+import SecondaryButton from '@/components/SecondaryButton';
 import styles from '@/styles/upgrade.module.css';
 
 export default function Index() {

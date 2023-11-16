@@ -4,7 +4,7 @@ import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
 import * as React from 'react';
-import Drawer from '@/conponents/Drawer';
+import Drawer from '@/components/Drawer';
 
 interface HeaderProps {
   useSearchIcon?: boolean;
