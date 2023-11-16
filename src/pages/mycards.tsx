@@ -15,13 +15,13 @@ export default function Index() {
   const [cardData, setCardDatas] = useState<CardData[] | null>([]);
   const { userId, loading } = useUser();
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchCards = async () => {
       if (userId) {
         const cardData = await getMyCardDetailsByUserId(userId);
         setCardDatas(cardData);
       }
     };
-    fetchUsers();
+    fetchCards();
   }, [userId]);
 
   if (loading) {
