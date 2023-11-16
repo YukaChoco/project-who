@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import PrimaryButton from '@/conponents/PrimaryButton';
-import SecondaryButton from '@/conponents/SecondaryButton';
+import PrimaryButton from '@/components/PrimaryButton';
+import SecondaryButton from '@/components/SecondaryButton';
 import styles from '@/styles/Index.module.css';
 import firebaseLogin from '@/utils/ok/firebaseLogin';
 

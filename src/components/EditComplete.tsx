@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
-import PrimaryButton from '@/conponents/PrimaryButton';
-import SecondaryButton from '@/conponents/SecondaryButton';
+import PrimaryButton from '@/components/PrimaryButton';
+import SecondaryButton from '@/components/SecondaryButton';
 
 interface EditCompletedProps {
   handleReturned: () => void;
