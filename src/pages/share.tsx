@@ -65,26 +65,24 @@ export default function Detail() {
     return <DisplayCard key={data.id} {...data} urlEnabled />;
   });
 
-  if (cardData[0]) {
-    return (
-      <>
-        <Head>
-          <title>名刺交換画面 - Who!</title>
-        </Head>
-        <main className={styles.main}>
-          <div className={styles.list}>
-            <Header useMenuIcon />
-            <div className={styles.qrcode}>
-              <QRCode url={`https://project-who.vercel.app/card/${cardData[0].id}`} />
-            </div>
-            <Box sx={{ width: '100%' }}>{display}</Box>
+  return (
+    <>
+      <Head>
+        <title>名刺交換画面 - Who!</title>
+      </Head>
+      <main className={styles.main}>
+        <div className={styles.list}>
+          <Header useMenuIcon />
+          <div className={styles.qrcode}>
+            <QRCode url={`https://project-who.vercel.app/card/${cardData[0].id}`} />
           </div>
+          <Box sx={{ width: '100%' }}>{display}</Box>
+        </div>
 
-          <div className={styles.returnbutton}>
-            <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
-          </div>
-        </main>
-      </>
-    );
-  }
+        <div className={styles.returnbutton}>
+          <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
+        </div>
+      </main>
+    </>
+  );
 }
