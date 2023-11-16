@@ -15,13 +15,13 @@ export default function Index() {
   const [cardData, setCardDatas] = useState<CardData[] | null>([]);
   const { userId, loading } = useUser();
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchCards = async () => {
       if (userId) {
         const cardData = await getMyCardDetailsByUserId(userId);
         setCardDatas(cardData);
       }
     };
-    fetchUsers();
+    fetchCards();
   }, [userId]);
 
   if (loading) {
@@ -42,6 +42,9 @@ export default function Index() {
     return (
       <main>
         <>
+          <Head>
+            <title>自分の名刺 - Who!</title>
+          </Head>
           <h1>ログインされていません</h1>
           <SecondaryButton text='ログインしてください' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
         </>
@@ -52,14 +55,14 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>Who!</title>
+        <title>自分の名刺 - Who!</title>
       </Head>
       <main className={styles.main}>
         <Header useMenuIcon />
         <div className={styles.cardlist}>
           {cardData &&
             cardData.map((data) => {
-              return <DisplayCard key={data.id} {...data} urlEnabled={false} onClickHandler={() => router.push('/make/card')} />;
+              return <DisplayCard key={data.id} {...data} urlEnabled={false} link={`/card/${data.id}`} />;
             })}
         </div>
         <NewCard />
