@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import styles from '@/styles/EditCard.module.css'
 
 export default function Index() {
   const router = useRouter();
@@ -13,5 +12,5 @@ export default function Index() {
         </div>
       </main>
     </>
-  )
+  );
 }

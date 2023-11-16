@@ -1,4 +1,4 @@
-.alldisplay{
+.alldisplay {
   display: flex;
   /* position: relative; */
   flex-direction: column;
@@ -10,7 +10,7 @@
   background-color: aqua;
 }
 
-.text{
+.text {
   position: absolute;
   left: 0;
   right: 0;
@@ -22,7 +22,7 @@
   width: 200px;
 }
 
-.logo{
+.logo {
   display: flex;
   color: aliceblue;
   font-family: 'Kiwi Maru', serif;
@@ -31,7 +31,7 @@
   padding-top: 40%;
 }
 
-.PrimaryButton{
+.PrimaryButton {
   display: inline-block;
   width: 88%;
   background-color: #fff;
@@ -39,26 +39,26 @@
   border: 1.5px solid;
   border-color: #969696;
   border-radius: 45px;
-  color: #6F80BF;
+  color: #6f80bf;
   text-decoration: none;
   margin: 5px 0;
   padding: 0.725rem;
 }
 
 .PrimaryButton:focus,
-.PrimaryButton:hover{
+.PrimaryButton:hover {
   border: 1.5px solid;
   border-color: #969696;
 }
 
-.SecondaryButton{
+.SecondaryButton {
   display: inline-block;
   width: 88%;
   font-size: 1.125rem;
   border: 1.5px solid;
   border-radius: 45px;
   color: #fff;
-  background-color:  #6F80BF;
+  background-color: #6f80bf;
   border-color: #fff;
   text-decoration: none;
   margin: 5px 0;
@@ -66,39 +66,30 @@
 }
 
 .SecondaryButton:focus,
-.SecondaryButton:hover{
+.SecondaryButton:hover {
   border: 1.5px solid;
-  color: #6F80BF;
-  background-color:  #fff;
+  color: #6f80bf;
+  background-color: #fff;
   border-color: #fff;
 }
 
-.btwaku{
+.btwaku {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   margin-bottom: 0.725rem;
-  
-  
 }
 
-.waku{
+.waku {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   flex-direction: column;
   margin-bottom: 10%;
-  
 }
-
-
-
-
-
-
 
 .main {
   display: flex;
@@ -106,14 +97,14 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  background-color: #6F80BF;
+  background-color: #6f80bf;
   padding-top: 58px;
 }
 
 .link {
   width: 100vw;
   margin: 20px;
-  background-color: #6F80BF;
+  background-color: #6f80bf;
 }
 
 .description {
@@ -160,7 +151,9 @@
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
+  transition:
+    background 200ms,
+    border 200ms;
 }
 
 .card span {
@@ -252,9 +245,7 @@
   inset: 0;
   padding: 1px;
   border-radius: var(--border-radius);
-  background: linear-gradient(to bottom right,
-      rgba(var(--tile-start-rgb), 1),
-      rgba(var(--tile-end-rgb), 1));
+  background: linear-gradient(to bottom right, rgba(var(--tile-start-rgb), 1), rgba(var(--tile-end-rgb), 1));
   background-clip: content-box;
 }
 
@@ -333,9 +324,7 @@
     border-radius: 0;
     border: none;
     border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
-    background: linear-gradient(to bottom,
-        rgba(var(--background-start-rgb), 1),
-        rgba(var(--callout-rgb), 0.5));
+    background: linear-gradient(to bottom, rgba(var(--background-start-rgb), 1), rgba(var(--callout-rgb), 0.5));
     background-clip: padding-box;
     backdrop-filter: blur(24px);
   }
@@ -346,9 +335,7 @@
     inset: auto 0 0;
     padding: 2rem;
     height: 200px;
-    background: linear-gradient(to bottom,
-        transparent 0%,
-        rgb(var(--background-end-rgb)) 40%);
+    background: linear-gradient(to bottom, transparent 0%, rgb(var(--background-end-rgb)) 40%);
     z-index: 1;
   }
 }

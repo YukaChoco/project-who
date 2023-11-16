@@ -1,20 +1,20 @@
-import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import { Box, Typography } from '@mui/material'
-import { CardType } from '@/types/CardType'
-import useUser from '@/hooks/useUser'
-import styles from '@/styles/CardDetail.module.css'
-import Header from '@/conponents/Header'
-import Card from '@/conponents/Card'
-import DisplayText from '@/conponents/DisplayText'
-import SecondaryButton from '@/conponents/SecondaryButton'
-import ShareButton from '@/conponents/ShareButton'
-import type { CardData } from '@/types/CardData'
-import getCardDetils from '@/utils/ok/getCardDetils'
-import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL'
-import addHaveCardId from '@/utils/ok/addHaveCardId'
-import getCardType from '@/utils/ok/getCardType'
+import { Box, Typography } from '@mui/material';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import Card from '@/components/Card';
+import DisplayText from '@/components/DisplayText';
+import Header from '@/components/Header';
+import SecondaryButton from '@/components/SecondaryButton';
+import ShareButton from '@/components/ShareButton';
+import useUser from '@/hooks/useUser';
+import styles from '@/styles/CardDetail.module.css';
+import type { CardData } from '@/types/CardData';
+import { CardType } from '@/types/CardType';
+import addHaveCardId from '@/utils/ok/addHaveCardId';
+import getCardDetils from '@/utils/ok/getCardDetils';
+import getCardType from '@/utils/ok/getCardType';
+import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
 
 export default function Index() {
   const router = useRouter();
@@ -41,7 +41,7 @@ export default function Index() {
       }
     };
     fetchCardDetails();
-  }, [cardId, userId])
+  }, [cardId, userId]);
 
   const handleRegisterButton = async () => {
     if (userId) {
@@ -57,17 +57,21 @@ export default function Index() {
     } else {
       console.error('ログインユーザーではありません');
     }
-  }
+  };
 
   const showButtons = () => {
-    if (cardData?.authorId === userId) { // 名刺作成者
-      return (<SecondaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />);
-    } else if (cardType === CardType.Have) { // カード登録済みのユーザ
-      return (<SecondaryButton text='登録済み' disabled />);
-    } else if (isLoginUser) { //ログインユーザ
-      return (<SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} />);
+    if (cardData?.authorId === userId) {
+      // 名刺作成者
+      return <SecondaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />;
+    } else if (cardType === CardType.Have) {
+      // カード登録済みのユーザ
+      return <SecondaryButton text='登録済み' disabled />;
+    } else if (isLoginUser) {
+      //ログインユーザ
+      return <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} />;
     }
-    return ( //非ログインユーザ
+    return (
+      //非ログインユーザ
       <>
         <Box sx={{ margin: '15px 0px' }}>
           <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} disabled />
@@ -77,8 +81,8 @@ export default function Index() {
           <Typography sx={{ textAlign: 'center' }}>※名刺の登録にはログインが必要です</Typography>
         </Box>
       </>
-    )
-  }
+    );
+  };
 
   if (loading || isRegisterLoading) {
     return (
@@ -87,7 +91,7 @@ export default function Index() {
           <h1>Loading...</h1>
         </main>
       </>
-    )
+    );
   }
 
   if (cardData) {
@@ -100,7 +104,7 @@ export default function Index() {
             <p>※この名刺は本人が作成した名刺ではないため、作成者しか閲覧できません。</p>
           </div>
         </main>
-      )
+      );
     }
     return (
       <>
@@ -117,30 +121,27 @@ export default function Index() {
 
           <div className={styles.container}>
             <div className={styles.infoitem}>
-              <DisplayText title="氏名" detail={cardData.name} />
+              <DisplayText title='氏名' detail={cardData.name} />
             </div>
             <div className={styles.infoitem}>
-              <DisplayText title="orgnization" detail={cardData.organization} />
-              <DisplayText title="X" detail={cardData.x} url={toXProfileURL(cardData.x)} isSNSId />
-              <DisplayText title="Instagram" detail={cardData.instagram} url={toInstagramProfileURL(cardData.instagram)} isSNSId />
+              <DisplayText title='orgnization' detail={cardData.organization} />
+              <DisplayText title='X' detail={cardData.x} url={toXProfileURL(cardData.x)} isSNSId />
+              <DisplayText title='Instagram' detail={cardData.instagram} url={toInstagramProfileURL(cardData.instagram)} isSNSId />
             </div>
           </div>
 
-          <div className={styles.container}>
-            {showButtons()}
-          </div>
+          <div className={styles.container}>{showButtons()}</div>
 
           <ShareButton />
         </main>
       </>
-    )
+    );
   } else {
     return (
       <main className='error'>
         <Header useSearchIcon useMenuIcon />
         <h1>存在しない名刺です</h1>
       </main>
-    )
+    );
   }
-
 }

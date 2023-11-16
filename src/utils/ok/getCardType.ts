@@ -1,4 +1,4 @@
-import { CardType } from '@/types/CardType'
+import { CardType } from '@/types/CardType';
 import getHaveCardIdsByUserId from './getHaveCardIdsByUserId';
 import getMyCardIdsByUserId from './getMyCardIdsByUserId';
 
@@ -14,6 +14,6 @@ const getCardType = async (userId: string, cardId: string): Promise<CardType> =>
   }
 
   return CardType.None;
-}
+};
 
 export default getCardType;

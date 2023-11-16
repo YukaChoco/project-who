@@ -10,7 +10,7 @@ export interface CardData {
   protected: boolean;
 }
 
-export interface MakeMyCardData extends Pick<CardData, 'name' | 'organization' | 'x' | 'instagram' | 'textColor' | 'bgColor'> { }
-export interface MakeOthersCardData extends Pick<CardData, 'name' | 'organization' | 'x' | 'instagram'> { }
+export interface MakeMyCardData extends Pick<CardData, 'name' | 'organization' | 'x' | 'instagram' | 'textColor' | 'bgColor'> {}
+export interface MakeOthersCardData extends Pick<CardData, 'name' | 'organization' | 'x' | 'instagram'> {}
 
-export interface GetCardData extends Omit<CardData, 'id'> { }
+export interface GetCardData extends Omit<CardData, 'id'> {}
