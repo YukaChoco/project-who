@@ -10,7 +10,7 @@ import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardDetail.module.css';
 import type { CardData } from '@/types/CardData';
-import { CardType } from '@/types/CardType';
+import { CARD_TYPE, CardType } from '@/types/CardType';
 import addHaveCardId from '@/utils/ok/addHaveCardId';
 import getCardDetils from '@/utils/ok/getCardDetils';
 import getCardType from '@/utils/ok/getCardType';
@@ -21,7 +21,7 @@ export default function Index() {
   const cardId = router.query.cardid as string;
 
   const [cardData, setCardData] = useState<CardData | null>(null);
-  const [cardType, setCardType] = useState<CardType>(CardType.None);
+  const [cardType, setCardType] = useState<CardType>(CARD_TYPE.None);
   const [isRegisterLoading, setRegistertLoading] = useState<boolean>(false);
 
   const { userId, loading } = useUser();
@@ -48,7 +48,7 @@ export default function Index() {
       setRegistertLoading(true);
       const result = await addHaveCardId(userId, cardId);
       if (result) {
-        setCardType(CardType.My);
+        setCardType(CARD_TYPE.My);
         setRegistertLoading(false);
       } else {
         setRegistertLoading(false);
@@ -63,7 +63,7 @@ export default function Index() {
     if (cardData?.authorId === userId) {
       // 名刺作成者
       return <SecondaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />;
-    } else if (cardType === CardType.Have) {
+    } else if (cardType === CARD_TYPE.Have) {
       // カード登録済みのユーザ
       return <SecondaryButton text='登録済み' disabled />;
     } else if (isLoginUser) {
