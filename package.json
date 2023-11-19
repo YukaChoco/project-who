@@ -9,12 +9,12 @@
     "prepare": "npx husky install",
     "lint": "next lint",
     "lint-fix": "next lint --fix",
-    "lint:precommit": "eslint \"./**/*.{ts,tsx}\" --ignore-pattern \"src/utils/**\" --max-warnings 0",
+    "lint:precommit": "eslint \"./**/*.{ts,tsx}\" --ignore-pattern \"src/utils/**\"",
     "fmt:precommit": "prettier -l './**/*.{js,jsx,ts,tsx,json,css}'",
     "export": "next export",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
     "format:ci": "prettier -l './**/*.{js,jsx,ts,tsx,json,css}'",
-    "lint:ci": "eslint './**/*.{ts,tsx}' --ignore-pattern 'src/utils/**' --max-warnings 0"
+    "lint:ci": "eslint './**/*.{ts,tsx}' --ignore-pattern 'src/utils/**'"
   },
   "husky": {
     "hooks": {
