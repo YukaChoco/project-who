@@ -68,10 +68,7 @@ export default function Index() {
           </div>
         ) : (
           // 名刺が存在しない時
-          <>
-            <h1>自分の名刺がありません</h1>
-            <SecondaryButton text='自分の名刺を作成する' onClick={() => router.push('/make/mycard')} />
-          </>
+          <h1>登録された名刺がありません</h1>
         )}
 
         <ShareButton />
