@@ -51,23 +51,6 @@ export default function Index() {
     );
   }
 
-  if (!cardDatas) {
-    return (
-      <main>
-        <>
-          <Header useMenuIcon />
-          <h1>自分の名刺がありません</h1>
-
-          <SecondaryButton text='自分の名刺を作成する' onClick={() => router.push('/make/mycard')} />
-        </>
-      </main>
-    );
-  }
-
-  const display = cardDatas.map((data) => {
-    return <DisplayCard urlEnabled={false} key={data.id} {...data} link={`/card/${data.id}`} />;
-  });
-
   return (
     <>
       <Head>
@@ -76,8 +59,20 @@ export default function Index() {
 
       <main>
         <Header useMenuIcon />
-
-        <div className={styles.cardlist}>{display}</div>
+        {cardDatas ? (
+          // 名刺が存在する時
+          <div className={styles.cardlist}>
+            {cardDatas.map((data) => {
+              return <DisplayCard urlEnabled={false} key={data.id} {...data} link={`/card/${data.id}`} />;
+            })}
+          </div>
+        ) : (
+          // 名刺が存在しない時
+          <>
+            <h1>自分の名刺がありません</h1>
+            <SecondaryButton text='自分の名刺を作成する' onClick={() => router.push('/make/mycard')} />
+          </>
+        )}
 
         <ShareButton />
       </main>
