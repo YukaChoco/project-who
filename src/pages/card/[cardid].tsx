@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import Card from '@/components/Card';
 import DisplayText from '@/components/DisplayText';
 import Header from '@/components/Header';
+import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
-import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardDetail.module.css';
 import type { CardData } from '@/types/CardData';
@@ -62,7 +62,18 @@ export default function Index() {
   const showButtons = () => {
     if (cardData?.authorId === userId) {
       // 名刺作成者
-      return <SecondaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />;
+      return (
+        <>
+          <Box sx={{ margin: '15px 0px' }}>
+            <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
+          </Box>
+          {cardType === CardType.My && (
+            <Box sx={{ margin: '15px 0px' }}>
+              <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
+            </Box>
+          )}
+        </>
+      );
     } else if (cardType === CardType.Have) {
       // カード登録済みのユーザ
       return <SecondaryButton text='登録済み' disabled />;
@@ -131,8 +142,6 @@ export default function Index() {
           </div>
 
           <div className={styles.container}>{showButtons()}</div>
-
-          <ShareButton />
         </main>
       </>
     );
