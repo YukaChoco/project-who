@@ -15,6 +15,7 @@ import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId';
 export default function Detail() {
   const [cardData, setCardDatas] = useState<CardData[] | null>([]);
   const { userId, loading } = useUser();
+  const isSettingCard = cardData?.length === 0;
   useEffect(() => {
     const fetchCards = async () => {
       if (userId) {
@@ -25,7 +26,7 @@ export default function Detail() {
     fetchCards();
   }, [userId]);
 
-  if (loading) {
+  if (loading || isSettingCard) {
     return (
       <>
         <Head>
