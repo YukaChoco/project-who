@@ -4,7 +4,7 @@ interface QRCodeProps {
   url: string;
 }
 
-export default function QRCode({ url = 'https://whooo.netlify.app/cards' }: QRCodeProps) {
+export default function QRCode({ url = 'https://project-who.vercel.app/cards' }: QRCodeProps) {
   return (
     <QRCodeCanvas
       value={url}

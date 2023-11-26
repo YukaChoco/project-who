@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import Head from 'next/head';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
@@ -14,17 +15,18 @@ import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId';
 export default function Detail() {
   const [cardData, setCardDatas] = useState<CardData[] | null>([]);
   const { userId, loading } = useUser();
+  const isSettingCard = cardData?.length === 0;
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchCards = async () => {
       if (userId) {
         const cardData = await getMyCardDetailsByUserId(userId);
         setCardDatas(cardData);
       }
     };
-    fetchUsers();
+    fetchCards();
   }, [userId]);
 
-  if (loading) {
+  if (loading || isSettingCard) {
     return (
       <>
         <Head>
@@ -64,27 +66,24 @@ export default function Detail() {
     return <DisplayCard key={data.id} {...data} urlEnabled />;
   });
 
-  if (cardData[0]) {
-    return (
-      <>
-        <Head>
-          <title>名刺交換画面 - Who!</title>
-          <link rel='icon' href='/favicon.ico' />
-        </Head>
-        <main className={styles.main}>
-          <div className={styles.list}>
-            <Header useMenuIcon />
-            <div className={styles.qrcode}>
-              <QRCode url={`https://whooo.netlify.app/card/${cardData[0].id}`} />
-            </div>
-            <div className={styles.cardlist}>{display}</div>
+  return (
+    <>
+      <Head>
+        <title>名刺交換画面 - Who!</title>
+      </Head>
+      <main className={styles.main}>
+        <div className={styles.list}>
+          <Header useMenuIcon />
+          <div className={styles.qrcode}>
+            <QRCode url={`${window.location.origin}/card/${cardData[0].id}`} />
           </div>
+          <Box sx={{ width: '100%' }}>{display}</Box>
+        </div>
 
-          <div className={styles.returnbutton}>
-            <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
-          </div>
-        </main>
-      </>
-    );
-  }
+        <div className={styles.returnbutton}>
+          <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
+        </div>
+      </main>
+    </>
+  );
 }

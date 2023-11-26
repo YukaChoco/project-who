@@ -15,10 +15,6 @@
 }
 
 .returnHomeButton {
-  margin-bottom: 20px;
   width: 100%;
-  position: fixed;
-  padding: 0px 20px;
-  left: 0px;
-  bottom: 0px;
+  margin-top: 60px;
 }
