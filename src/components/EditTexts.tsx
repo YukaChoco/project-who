@@ -14,10 +14,10 @@ interface EditTextsProps {
 export default function EditTexts(props: EditTextsProps) {
   return (
     <>
-      <TextInput labelText='所属団体' value={props.organization} onChange={props.handleOrganization} />
-      <TextInput labelText='氏名' value={props.name} onChange={props.handleName} />
-      <TextInput labelText='X' value={props.x} onChange={props.handleX} />
-      <TextInput labelText='instagram' value={props.instagram} onChange={props.handleInstagram} />
+      <TextInput labelText='所属団体' value={props.organization} onChange={props.handleOrganization} placeHolder='○○大学' />
+      <TextInput labelText='氏名' value={props.name} onChange={props.handleName} required placeHolder='小美保 太郎' />
+      <TextInput labelText='XのユーザID' value={props.x} onChange={props.handleX} placeHolder='omihooo' />
+      <TextInput labelText='instagramのユーザID' value={props.instagram} onChange={props.handleInstagram} placeHolder='who_omiho' />
     </>
   );
 }
