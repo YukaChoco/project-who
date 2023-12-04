@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import NewCard from '@/components/NewCard';
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
+import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/Mycards.module.css';
 import { CardData } from '@/types/CardData';
@@ -70,6 +71,8 @@ export default function Index() {
         <div className={styles.returnHomeButton}>
           <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
         </div>
+
+        <ShareButton />
       </main>
     </>
   );
