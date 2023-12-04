@@ -10,8 +10,8 @@ interface EditColorsProps {
 export default function EditColors(props: EditColorsProps) {
   return (
     <>
-      <ColorPicker labelText='文字色' value={props.textColor} onChange={props.handleTextColor} />
-      <ColorPicker labelText='背景色' value={props.bgColor} onChange={props.handleBgColor} />
+      <ColorPicker labelText='文字色' value={props.textColor} onChange={props.handleTextColor} required />
+      <ColorPicker labelText='背景色' value={props.bgColor} onChange={props.handleBgColor} required />
     </>
   );
 }
