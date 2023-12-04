@@ -10,7 +10,6 @@ interface TextInputProps {
   required?: boolean;
   placeHolder?: string;
   disabled?: boolean;
-  defaultValue?: string;
 }
 
 const customTheme = (outerTheme: Theme) =>
