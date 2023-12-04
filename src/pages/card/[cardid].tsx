@@ -67,14 +67,14 @@ export default function Index() {
           <Box sx={{ margin: '15px 0px' }}>
             <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
           </Box>
-          {cardType === CardType.My && (
+          {cardType === CARD_TYPE.My && (
             <Box sx={{ margin: '15px 0px' }}>
               <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
             </Box>
           )}
         </>
       );
-    } else if (cardType === CardType.Have) {
+    } else if (cardType === CARD_TYPE.Have) {
       // カード登録済みのユーザ
       return <SecondaryButton text='登録済み' disabled />;
     } else if (isLoginUser) {
