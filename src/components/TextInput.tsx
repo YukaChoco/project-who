@@ -56,7 +56,6 @@ export default function TextInput({
   required = false,
   placeHolder = '',
   disabled = false,
-  defaultValue = '',
 }: TextInputProps) {
   const outerTheme = useTheme();
   const backGroundStyle = {
@@ -86,7 +85,6 @@ export default function TextInput({
             required={required}
             placeholder={placeHolder}
             disabled={disabled}
-            defaultValue={defaultValue}
             focused
           />
         </ThemeProvider>
