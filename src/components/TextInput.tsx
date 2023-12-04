@@ -23,10 +23,10 @@ const customTheme = (outerTheme: Theme) =>
         styleOverrides: {
           root: {
             '--TextField-brandBorderColor': '#F4F5FC',
-            '--TextField-brandBorderHoverColor': 'gray',
-            '--TextField-brandBorderFocusedColor': 'gray',
+            '--TextField-brandBorderHoverColor': '#969696',
+            '--TextField-brandBorderFocusedColor': '#969696',
             '& label.Mui-focused': {
-              color: 'var(--TextField-brandBorderFocusedColor)',
+              color: 'black',
             },
           },
         },
