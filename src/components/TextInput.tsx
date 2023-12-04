@@ -7,6 +7,10 @@ interface TextInputProps {
   labelText: string;
   value: string;
   onChange: TextFieldProps['onChange'];
+  required?: boolean;
+  placeHolder?: string;
+  disabled?: boolean;
+  defaultValue?: string;
 }
 
 const customTheme = (outerTheme: Theme) =>
@@ -45,7 +49,15 @@ const customTheme = (outerTheme: Theme) =>
     },
   });
 
-export default function TextInput({ labelText = '', value = '', onChange = () => {} }: TextInputProps) {
+export default function TextInput({
+  labelText = '',
+  value = '',
+  onChange = () => {},
+  required = false,
+  placeHolder = '',
+  disabled = false,
+  defaultValue = '',
+}: TextInputProps) {
   const outerTheme = useTheme();
   const backGroundStyle = {
     textAlign: 'center',
@@ -71,6 +83,10 @@ export default function TextInput({ labelText = '', value = '', onChange = () =>
             variant='filled'
             value={value}
             onChange={onChange}
+            required={required}
+            placeholder={placeHolder}
+            disabled={disabled}
+            defaultValue={defaultValue}
             focused
           />
         </ThemeProvider>
