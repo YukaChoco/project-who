@@ -7,6 +7,9 @@ interface TextInputProps {
   labelText: string;
   value: string;
   onChange: TextFieldProps['onChange'];
+  required?: boolean;
+  placeHolder?: string;
+  disabled?: boolean;
 }
 
 const customTheme = (outerTheme: Theme) =>
@@ -19,10 +22,10 @@ const customTheme = (outerTheme: Theme) =>
         styleOverrides: {
           root: {
             '--TextField-brandBorderColor': '#F4F5FC',
-            '--TextField-brandBorderHoverColor': 'gray',
-            '--TextField-brandBorderFocusedColor': 'gray',
+            '--TextField-brandBorderHoverColor': '#969696',
+            '--TextField-brandBorderFocusedColor': '#969696',
             '& label.Mui-focused': {
-              color: 'var(--TextField-brandBorderFocusedColor)',
+              color: 'black',
             },
           },
         },
@@ -45,7 +48,14 @@ const customTheme = (outerTheme: Theme) =>
     },
   });
 
-export default function TextInput({ labelText = '', value = '', onChange = () => {} }: TextInputProps) {
+export default function TextInput({
+  labelText = '',
+  value = '',
+  onChange = () => {},
+  required = false,
+  placeHolder = '',
+  disabled = false,
+}: TextInputProps) {
   const outerTheme = useTheme();
   const backGroundStyle = {
     textAlign: 'center',
@@ -71,6 +81,9 @@ export default function TextInput({ labelText = '', value = '', onChange = () =>
             variant='filled'
             value={value}
             onChange={onChange}
+            required={required}
+            placeholder={placeHolder}
+            disabled={disabled}
             focused
           />
         </ThemeProvider>
