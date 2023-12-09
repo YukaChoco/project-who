@@ -1,9 +1,10 @@
-import getHaveCardIdsByUserId from './getHaveCardIdsByUserId';
+import getCardIdsByUserId from './getCardIdsByUserId';
 import getCardDetils from './getCardDetils';
 import type { CardData } from '@/types/CardData';
+import { CARD_TYPE } from '@/types/CardType';
 
 export default async function getHaveCardDetailsByUserId(userId: string) {
-  const haveCardIds = await getHaveCardIdsByUserId(userId);
+  const haveCardIds = await getCardIdsByUserId(userId, CARD_TYPE.Have);
 
   if (!haveCardIds) return null;
 
