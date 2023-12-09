@@ -10,7 +10,8 @@ import SecondaryButton from '@/components/SecondaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/Share.module.css';
 import { CardData } from '@/types/CardData';
-import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId';
+import { CARD_TYPE } from '@/types/CardType';
+import getCardDetailsByUserId from '@/utils/ok/getCardDetailsByUserId';
 
 export default function Detail() {
   const [cardData, setCardDatas] = useState<CardData[] | null>([]);
@@ -19,7 +20,7 @@ export default function Detail() {
   useEffect(() => {
     const fetchCards = async () => {
       if (userId) {
-        const cardData = await getMyCardDetailsByUserId(userId);
+        const cardData = await getCardDetailsByUserId(userId, CARD_TYPE.My);
         setCardDatas(cardData);
       }
     };

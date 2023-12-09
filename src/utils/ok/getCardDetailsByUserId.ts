@@ -1,15 +1,15 @@
-import getCardIdsByUserId from './getCardIdsByUserId';
-import getCardDetils from './getCardDetils';
 import type { CardData } from '@/types/CardData';
-import { CARD_TYPE } from '@/types/CardType';
+import type { CardType } from '@/types/CardType';
+import getCardDetils from './getCardDetils';
+import getCardIdsByUserId from './getCardIdsByUserId';
 
-export default async function getMyCardDetailsByUserId(userId: string) {
-  const myCardIds = await getCardIdsByUserId(userId, CARD_TYPE.My);
+export default async function getCardDetailsByUserId(userId: string, cardType: CardType) {
+  const cardIds = await getCardIdsByUserId(userId, cardType);
 
-  if (!myCardIds) return null;
+  if (!cardIds) return null;
 
   const fetchedDetails: (CardData | undefined)[] = await Promise.all(
-    myCardIds.map(async (id) => {
+    cardIds.map(async (id) => {
       const fetchedDetail: CardData | null = await getCardDetils(id);
       if (fetchedDetail) return fetchedDetail;
     }),
