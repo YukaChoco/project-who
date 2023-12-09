@@ -1,5 +1,6 @@
+import { CARD_TYPE } from '@/types/CardType';
 import addCardData from './addCardData';
-import addMyCardId from './addMyCardId';
+import addCardId from './addCardId';
 import type { MakeMyCardData } from '@/types/CardData';
 
 export default async function makeMyCard(userId: string, docData: MakeMyCardData) {
@@ -9,5 +10,5 @@ export default async function makeMyCard(userId: string, docData: MakeMyCardData
     protected: false,
   };
   const newCardId = await addCardData(cardData);
-  addMyCardId(userId, newCardId);
+  addCardId(userId, newCardId, CARD_TYPE.My);
 }

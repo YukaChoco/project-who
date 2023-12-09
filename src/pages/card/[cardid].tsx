@@ -11,7 +11,7 @@ import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardDetail.module.css';
 import type { CardData } from '@/types/CardData';
 import { CARD_TYPE, CardType } from '@/types/CardType';
-import addHaveCardId from '@/utils/ok/addHaveCardId';
+import addCardId from '@/utils/ok/addCardId';
 import getCardDetils from '@/utils/ok/getCardDetils';
 import getCardType from '@/utils/ok/getCardType';
 import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
@@ -46,7 +46,7 @@ export default function Index() {
   const handleRegisterButton = async () => {
     if (userId) {
       setRegistertLoading(true);
-      const result = await addHaveCardId(userId, cardId);
+      const result = await addCardId(userId, cardId, CARD_TYPE.Have);
       if (result) {
         setCardType(CARD_TYPE.My);
         setRegistertLoading(false);
