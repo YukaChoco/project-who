@@ -2,7 +2,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase';
 import type { CardFields } from '@/types/Card';
 
-export default async function getCardFields(cardId: string) {
+export default async function getCardFieldsByCardId(cardId: string) {
   const docSnap = await getDoc(doc(db, 'cards', cardId));
 
   if (docSnap.exists()) {
