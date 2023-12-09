@@ -1,31 +1,20 @@
 import { Box } from '@mui/material';
 import Head from 'next/head';
 import router from 'next/router';
-import { useEffect, useState } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
 import PrimaryButton from '@/components/PrimaryButton';
 import QRCode from '@/components/QRCode';
 import SecondaryButton from '@/components/SecondaryButton';
+import useCardDataList from '@/hooks/useCardDataList';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/Share.module.css';
-import { CardData } from '@/types/CardData';
 import { CARD_TYPE } from '@/types/CardType';
-import getCardDatasByUserId from '@/utils/ok/getCardDatasByUserId';
 
 export default function Detail() {
-  const [cardData, setCardDatas] = useState<CardData[] | null>([]);
+  const cardDatas = useCardDataList(CARD_TYPE.My);
   const { userId, loading } = useUser();
-  const isSettingCard = cardData?.length === 0;
-  useEffect(() => {
-    const fetchCards = async () => {
-      if (userId) {
-        const fetchedCardDatas = await getCardDatasByUserId(userId, CARD_TYPE.My);
-        setCardDatas(fetchedCardDatas);
-      }
-    };
-    fetchCards();
-  }, [userId]);
+  const isSettingCard = cardDatas?.length === 0;
 
   if (loading || isSettingCard) {
     return (
@@ -52,7 +41,7 @@ export default function Detail() {
       </main>
     );
 
-  if (!cardData)
+  if (!cardDatas)
     return (
       <main>
         <>
@@ -63,7 +52,7 @@ export default function Detail() {
       </main>
     );
 
-  const display = cardData.map((data) => {
+  const display = cardDatas.map((data) => {
     return <DisplayCard key={data.id} {...data} urlEnabled />;
   });
 
@@ -76,7 +65,7 @@ export default function Detail() {
         <div className={styles.list}>
           <Header useMenuIcon />
           <div className={styles.qrcode}>
-            <QRCode url={`${window.location.origin}/card/${cardData[0].id}`} />
+            <QRCode url={`${window.location.origin}/card/${cardDatas[0].id}`} />
           </div>
           <Box sx={{ width: '100%' }}>{display}</Box>
         </div>

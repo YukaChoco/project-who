@@ -1,32 +1,19 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
 import SecondaryButton from '@/components/SecondaryButton';
 import ShareButton from '@/components/ShareButton';
+import useCardDataList from '@/hooks/useCardDataList';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/AllCards.module.css';
-import type { CardData } from '@/types/CardData';
 import { CARD_TYPE } from '@/types/CardType';
-import getCardDatasByUserId from '@/utils/ok/getCardDatasByUserId';
 
 export default function Index() {
-  const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
-
+  const cardDatas = useCardDataList(CARD_TYPE.Have);
   const router = useRouter();
 
   const { userId, loading } = useUser();
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      if (userId) {
-        const fetchedCardDatas = await getCardDatasByUserId(userId, CARD_TYPE.Have);
-        setCardDatas(fetchedCardDatas);
-      }
-    };
-    fetchUsers();
-  }, [userId]);
 
   if (loading) {
     <>
