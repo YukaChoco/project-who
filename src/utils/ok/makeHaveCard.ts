@@ -1,7 +1,6 @@
 import { CARD_TYPE } from '@/types/CardType';
-import addCardData from './addCardData';
-import addCardId from './addCardId';
 import type { MakeOthersCardData } from '@/types/CardData';
+import createCard from './createCard';
 
 export default async function makeHaveCard(userId: string, docData: MakeOthersCardData) {
   const cardData = {
@@ -11,6 +10,5 @@ export default async function makeHaveCard(userId: string, docData: MakeOthersCa
     bgColor: '#FFF',
     protected: true,
   };
-  const newCardId = await addCardData(cardData);
-  addCardId(userId, newCardId, CARD_TYPE.Have);
+  await createCard(userId, cardData, CARD_TYPE.Have);
 }
