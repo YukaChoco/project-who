@@ -1,7 +1,7 @@
 import getCardIdsByUserId from '@/repository/getCardIdsByUserId';
 import { CardType, CARD_TYPE } from '@/types/CardType';
 
-const getCardType = async (userId: string, cardId: string): Promise<CardType> => {
+const getCardTypeByCardId = async (userId: string, cardId: string): Promise<CardType> => {
   const myCardIds = await getCardIdsByUserId(userId, CARD_TYPE.My);
   if (myCardIds?.includes(cardId)) {
     return CARD_TYPE.My;
@@ -15,4 +15,4 @@ const getCardType = async (userId: string, cardId: string): Promise<CardType> =>
   return CARD_TYPE.None;
 };
 
-export default getCardType;
+export default getCardTypeByCardId;
