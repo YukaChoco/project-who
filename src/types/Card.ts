@@ -13,5 +13,5 @@ export interface CardData extends CardFields {
   id: string;
 }
 
-export interface MakeMyCardData extends Pick<CardFields, 'name' | 'organization' | 'x' | 'instagram' | 'textColor' | 'bgColor'> {}
-export interface MakeOthersCardData extends Pick<CardFields, 'name' | 'organization' | 'x' | 'instagram'> {}
+export interface CreateMyCardData extends Pick<CardFields, 'name' | 'organization' | 'x' | 'instagram' | 'textColor' | 'bgColor'> {}
+export interface CreateHaveCardData extends Pick<CardFields, 'name' | 'organization' | 'x' | 'instagram'> {}
