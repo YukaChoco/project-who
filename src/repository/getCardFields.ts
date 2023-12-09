@@ -1,12 +1,12 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase';
-import type { GetCardData } from '@/types/CardData';
+import type { CardFields } from '@/types/Card';
 
 export default async function getCardFields(cardId: string) {
   const docSnap = await getDoc(doc(db, 'cards', cardId));
 
   if (docSnap.exists()) {
-    const cardFields: GetCardData = docSnap.data() as GetCardData;
+    const cardFields: CardFields = docSnap.data() as CardFields;
     return { id: cardId, ...cardFields };
   } else {
     return null;

@@ -1,5 +1,5 @@
 import createCard from './createCard';
-import type { MakeMyCardData } from '@/types/CardData';
+import type { MakeMyCardData } from '@/types/Card';
 import { CARD_TYPE } from '@/types/CardType';
 
 export default async function makeMyCard(userId: string, docData: MakeMyCardData) {

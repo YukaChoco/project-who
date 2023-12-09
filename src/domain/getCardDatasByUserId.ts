@@ -1,6 +1,6 @@
 import getCardFields from '@/repository/getCardFields';
 import getCardIdsByUserId from '@/repository/getCardIdsByUserId';
-import type { CardData } from '@/types/CardData';
+import type { CardData } from '@/types/Card';
 import type { CardType } from '@/types/CardType';
 
 export default async function getCardDatasByUserId(userId: string, cardType: CardType) {

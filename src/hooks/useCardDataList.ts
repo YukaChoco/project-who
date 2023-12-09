@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useUser from './useUser';
 import getCardDatasByUserId from '@/domain/getCardDatasByUserId';
-import type { CardData } from '@/types/CardData';
+import type { CardData } from '@/types/Card';
 import { CardType } from '@/types/CardType';
 
 export default function useCardDataList(cardType: CardType) {

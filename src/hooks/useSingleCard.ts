@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import useUser from './useUser';
 import getCardType from '@/domain/getCardType';
 import getCardFields from '@/repository/getCardFields';
-import type { CardData } from '@/types/CardData';
+import type { CardData } from '@/types/Card';
 import { CARD_TYPE, CardType } from '@/types/CardType';
 
 export default function useSingleCard(cardId: string) {

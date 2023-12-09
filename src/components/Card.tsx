@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import * as React from 'react';
-import type { CardData } from '@/types/CardData';
+import type { CardData } from '@/types/Card';
 import { toXProfileURL, toInstagramProfileURL } from '@/utils/toSNSProfileURL';
 
 interface CardProps extends Pick<CardData, 'organization' | 'name' | 'x' | 'instagram' | 'bgColor' | 'textColor'> {
