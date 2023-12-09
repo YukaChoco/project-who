@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Card from '@/components/Card';
 import DisplayText from '@/components/DisplayText';
 import Header from '@/components/Header';
@@ -10,41 +10,27 @@ import SecondaryButton from '@/components/SecondaryButton';
 import useSingleCard from '@/hooks/useSingleCard';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardDetail.module.css';
-import { CARD_TYPE, CardType } from '@/types/CardType';
+import { CARD_TYPE } from '@/types/CardType';
 import addCardId from '@/utils/ok/addCardId';
-import getCardType from '@/utils/ok/getCardType';
 import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
 
 export default function Index() {
   const router = useRouter();
   const cardId = router.query.cardid as string;
 
-  const [cardData] = useSingleCard(cardId);
-  const [cardType, setCardType] = useState<CardType>(CARD_TYPE.None);
+  const { cardData, cardType } = useSingleCard(cardId);
   const [isRegisterLoading, setRegistertLoading] = useState<boolean>(false);
 
   const { userId, loading } = useUser();
 
   const isLoginUser = userId !== null;
 
-  useEffect(() => {
-    const fetchCardData = async () => {
-      if (userId) {
-        const fetchCardType = await getCardType(userId, cardId);
-        setCardType(fetchCardType);
-      }
-      //loading false
-    };
-    fetchCardData();
-  }, [cardId, userId]);
-
   const handleRegisterButton = async () => {
     if (userId) {
       setRegistertLoading(true);
       const result = await addCardId(userId, cardId, CARD_TYPE.Have);
       if (result) {
-        setCardType(CARD_TYPE.My);
-        setRegistertLoading(false);
+        window.location.reload();
       } else {
         setRegistertLoading(false);
         console.error('登録に失敗しました');
