@@ -7,7 +7,7 @@ export default async function getCardFields(cardId: string) {
 
   if (docSnap.exists()) {
     const cardFields: CardFields = docSnap.data() as CardFields;
-    return { id: cardId, ...cardFields };
+    return cardFields;
   } else {
     return null;
   }

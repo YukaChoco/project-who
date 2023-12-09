@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useUser from './useUser';
+import getCardData from '@/domain/getCardData';
 import getCardType from '@/domain/getCardType';
-import getCardFields from '@/repository/getCardFields';
 import type { CardData } from '@/types/Card';
 import { CARD_TYPE, CardType } from '@/types/CardType';
 
@@ -12,7 +12,7 @@ export default function useSingleCard(cardId: string) {
 
   useEffect(() => {
     const fetchCardDatas = async () => {
-      const fetchedCardData = await getCardFields(cardId);
+      const fetchedCardData = await getCardData(cardId);
       setCardData(fetchedCardData);
       if (userId) {
         const fetchCardType = await getCardType(userId, cardId);

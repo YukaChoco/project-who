@@ -1,4 +1,4 @@
-import getCardFields from '@/repository/getCardFields';
+import getCardData from '@/domain/getCardData';
 import getCardIdsByUserId from '@/repository/getCardIdsByUserId';
 import type { CardData } from '@/types/Card';
 import type { CardType } from '@/types/CardType';
@@ -10,7 +10,7 @@ export default async function getCardDatasByUserId(userId: string, cardType: Car
 
   const fetchedCardDatas: (CardData | undefined)[] = await Promise.all(
     cardIds.map(async (id) => {
-      const fetchedCardData: CardData | null = await getCardFields(id);
+      const fetchedCardData: CardData | null = await getCardData(id);
       if (fetchedCardData) return fetchedCardData;
     }),
   );
