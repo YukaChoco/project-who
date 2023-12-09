@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import useUser from './useUser';
+import getCardDatasByUserId from '@/domain/getCardDatasByUserId';
 import type { CardData } from '@/types/CardData';
 import { CardType } from '@/types/CardType';
-import getCardDatasByUserId from '@/utils/ok/getCardDatasByUserId';
 
 export default function useCardDataList(cardType: CardType) {
   const [cardDatas, setCardDatas] = useState<CardData[] | null>(null);

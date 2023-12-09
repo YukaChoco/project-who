@@ -1,7 +1,7 @@
+import getCardFields from '@/repository/getCardFields';
+import getCardIdsByUserId from '@/repository/getCardIdsByUserId';
 import type { CardData } from '@/types/CardData';
 import type { CardType } from '@/types/CardType';
-import getCardFields from './getCardFields';
-import getCardIdsByUserId from './getCardIdsByUserId';
 
 export default async function getCardDatasByUserId(userId: string, cardType: CardType) {
   const cardIds = await getCardIdsByUserId(userId, cardType);

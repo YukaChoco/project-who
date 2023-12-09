@@ -9,10 +9,10 @@ import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
 import useSingleCard from '@/hooks/useSingleCard';
 import useUser from '@/hooks/useUser';
+import addCardId from '@/repository/addCardId';
 import styles from '@/styles/CardDetail.module.css';
 import { CARD_TYPE } from '@/types/CardType';
-import addCardId from '@/utils/ok/addCardId';
-import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
+import { toXProfileURL, toInstagramProfileURL } from '@/utils/toSNSProfileURL';
 
 export default function Index() {
   const router = useRouter();

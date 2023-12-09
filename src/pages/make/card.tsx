@@ -6,9 +6,9 @@ import EditComplete from '@/components/EditComplete';
 import InputTexts from '@/components/EditTexts';
 import Header from '@/components/Header';
 import PrimaryButton from '@/components/PrimaryButton';
+import makeHaveCard from '@/domain/makeHaveCard';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardCreatePage.module.css';
-import makeHaveCard from '@/utils/ok/makeHaveCard';
 
 export default function Index() {
   const [mode, setMode] = useState<string>('入力');

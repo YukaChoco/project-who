@@ -1,7 +1,7 @@
-import { CARD_TYPE, CardType } from '@/types/CardType';
-import addCardData from './addCardData';
-import addCardId from './addCardId';
+import addCardData from '@/repository/addCardData';
+import addCardId from '@/repository/addCardId';
 import type { GetCardData } from '@/types/CardData';
+import { CardType } from '@/types/CardType';
 
 export default async function createCard(userId: string, cardData: GetCardData, cardType: CardType) {
   const newCardId = await addCardData(cardData);

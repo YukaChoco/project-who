@@ -1,6 +1,6 @@
-import { CARD_TYPE } from '@/types/CardType';
-import type { MakeOthersCardData } from '@/types/CardData';
 import createCard from './createCard';
+import type { MakeOthersCardData } from '@/types/CardData';
+import { CARD_TYPE } from '@/types/CardType';
 
 export default async function makeHaveCard(userId: string, docData: MakeOthersCardData) {
   const cardData = {

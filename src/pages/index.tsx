@@ -3,8 +3,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
+import firebaseLogin from '@/firebase/firebaseLogin';
 import styles from '@/styles/Index.module.css';
-import firebaseLogin from '@/utils/ok/firebaseLogin';
 
 export default function Index() {
   const router = useRouter();

@@ -1,4 +1,4 @@
-import { doc, addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import { db } from '@/firebase';
 import type { GetCardData } from '@/types/CardData';
 

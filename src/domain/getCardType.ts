@@ -1,5 +1,5 @@
+import getCardIdsByUserId from '@/repository/getCardIdsByUserId';
 import { CardType, CARD_TYPE } from '@/types/CardType';
-import getCardIdsByUserId from './getCardIdsByUserId';
 
 const getCardType = async (userId: string, cardId: string): Promise<CardType> => {
   const myCardIds = await getCardIdsByUserId(userId, CARD_TYPE.My);

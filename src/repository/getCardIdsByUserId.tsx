@@ -1,5 +1,5 @@
-import { db } from '@/firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/firebase';
 import { CARD_TYPE, CardType } from '@/types/CardType';
 import type { UserFields } from '@/types/UserFields';
 
