@@ -7,12 +7,11 @@ import DisplayText from '@/components/DisplayText';
 import Header from '@/components/Header';
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
+import useSingleCard from '@/hooks/useSingleCard';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardDetail.module.css';
-import type { CardData } from '@/types/CardData';
 import { CARD_TYPE, CardType } from '@/types/CardType';
 import addCardId from '@/utils/ok/addCardId';
-import getCardFields from '@/utils/ok/getCardFields';
 import getCardType from '@/utils/ok/getCardType';
 import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
 
@@ -20,7 +19,7 @@ export default function Index() {
   const router = useRouter();
   const cardId = router.query.cardid as string;
 
-  const [cardData, setCardData] = useState<CardData | null>(null);
+  const [cardData] = useSingleCard(cardId);
   const [cardType, setCardType] = useState<CardType>(CARD_TYPE.None);
   const [isRegisterLoading, setRegistertLoading] = useState<boolean>(false);
 
@@ -30,15 +29,11 @@ export default function Index() {
 
   useEffect(() => {
     const fetchCardData = async () => {
-      if (cardId) {
-        const fetchCardData = await getCardFields(cardId);
-        setCardData(fetchCardData);
-        if (userId) {
-          const fetchCardType = await getCardType(userId, cardId);
-          setCardType(fetchCardType);
-        }
-        //loading false
+      if (userId) {
+        const fetchCardType = await getCardType(userId, cardId);
+        setCardType(fetchCardType);
       }
+      //loading false
     };
     fetchCardData();
   }, [cardId, userId]);
