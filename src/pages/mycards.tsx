@@ -1,29 +1,19 @@
 import Head from 'next/head';
 import router from 'next/router';
-import { useEffect, useState } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
 import NewCard from '@/components/NewCard';
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
 import ShareButton from '@/components/ShareButton';
+import useCardDataList from '@/hooks/useCardDataList';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/Mycards.module.css';
-import { CardData } from '@/types/CardData';
-import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId';
+import { CARD_TYPE } from '@/types/CardType';
 
 export default function Index() {
-  const [cardData, setCardDatas] = useState<CardData[] | null>([]);
+  const cardDatas = useCardDataList(CARD_TYPE.My);
   const { userId, loading } = useUser();
-  useEffect(() => {
-    const fetchCards = async () => {
-      if (userId) {
-        const cardData = await getMyCardDetailsByUserId(userId);
-        setCardDatas(cardData);
-      }
-    };
-    fetchCards();
-  }, [userId]);
 
   if (loading) {
     return (
@@ -61,8 +51,8 @@ export default function Index() {
       <main className={styles.main}>
         <Header useMenuIcon />
         <div className={styles.cardlist}>
-          {cardData &&
-            cardData.map((data) => {
+          {cardDatas &&
+            cardDatas.map((data) => {
               return <DisplayCard key={data.id} {...data} urlEnabled={false} link={`/card/${data.id}`} />;
             })}
         </div>

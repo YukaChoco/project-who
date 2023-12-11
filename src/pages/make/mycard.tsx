@@ -7,9 +7,9 @@ import EditTexts from '@/components/EditTexts';
 import Header from '@/components/Header';
 import PrimaryButton from '@/components/PrimaryButton';
 import SwitchButton from '@/components/SwitchButton';
+import makemycard from '@/domain/makeMyCard';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/MycardCreatePage.module.css';
-import makemycard from '@/utils/ok/makeMyCard';
 
 export default function Input() {
   const [name, setName] = useState<string>('');
