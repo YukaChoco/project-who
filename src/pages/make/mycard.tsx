@@ -16,8 +16,8 @@ export default function Input() {
   const [x, setX] = useState<string>('');
   const [instagram, setInstagram] = useState<string>('');
   const [organization, setOrganization] = useState<string>('');
-  const [textColor, setTextColor] = useState<string>('');
-  const [bgColor, setBgColor] = useState<string>('');
+  const [textColor, setTextColor] = useState<string>('#000000');
+  const [bgColor, setBgColor] = useState<string>('#ffffff');
 
   const router = useRouter();
   const { userId, loading } = useUser();
