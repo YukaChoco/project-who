@@ -10,7 +10,8 @@ import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/Mycards.module.css';
 import { CardData } from '@/types/CardData';
-import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId';
+import { CARD_TYPE } from '@/types/CardType';
+import getCardDatasByUserId from '@/utils/ok/getCardDatasByUserId';
 
 export default function Index() {
   const [cardData, setCardDatas] = useState<CardData[] | null>([]);
@@ -18,8 +19,8 @@ export default function Index() {
   useEffect(() => {
     const fetchCards = async () => {
       if (userId) {
-        const cardData = await getMyCardDetailsByUserId(userId);
-        setCardDatas(cardData);
+        const fetchedCardDatas = await getCardDatasByUserId(userId, CARD_TYPE.My);
+        setCardDatas(fetchedCardDatas);
       }
     };
     fetchCards();

@@ -8,7 +8,8 @@ import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/AllCards.module.css';
 import type { CardData } from '@/types/CardData';
-import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId';
+import { CARD_TYPE } from '@/types/CardType';
+import getCardDatasByUserId from '@/utils/ok/getCardDatasByUserId';
 
 export default function Index() {
   const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
@@ -20,8 +21,8 @@ export default function Index() {
   useEffect(() => {
     const fetchUsers = async () => {
       if (userId) {
-        const haveCardDetails = await getHaveCardDetailsByUserId(userId);
-        setCardDatas(haveCardDetails);
+        const fetchedCardDatas = await getCardDatasByUserId(userId, CARD_TYPE.Have);
+        setCardDatas(fetchedCardDatas);
       }
     };
     fetchUsers();

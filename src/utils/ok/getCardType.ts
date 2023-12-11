@@ -1,14 +1,13 @@
 import { CardType, CARD_TYPE } from '@/types/CardType';
-import getHaveCardIdsByUserId from './getHaveCardIdsByUserId';
-import getMyCardIdsByUserId from './getMyCardIdsByUserId';
+import getCardIdsByUserId from './getCardIdsByUserId';
 
 const getCardType = async (userId: string, cardId: string): Promise<CardType> => {
-  const myCardIds = await getMyCardIdsByUserId(userId);
+  const myCardIds = await getCardIdsByUserId(userId, CARD_TYPE.My);
   if (myCardIds?.includes(cardId)) {
     return CARD_TYPE.My;
   }
 
-  const haveCardIds = await getHaveCardIdsByUserId(userId);
+  const haveCardIds = await getCardIdsByUserId(userId, CARD_TYPE.Have);
   if (haveCardIds?.includes(cardId)) {
     return CARD_TYPE.Have;
   }

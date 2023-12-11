@@ -11,8 +11,8 @@ import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardDetail.module.css';
 import type { CardData } from '@/types/CardData';
 import { CARD_TYPE, CardType } from '@/types/CardType';
-import addHaveCardId from '@/utils/ok/addHaveCardId';
-import getCardDetils from '@/utils/ok/getCardDetils';
+import addCardId from '@/utils/ok/addCardId';
+import getCardFields from '@/utils/ok/getCardFields';
 import getCardType from '@/utils/ok/getCardType';
 import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
 
@@ -29,9 +29,9 @@ export default function Index() {
   const isLoginUser = userId !== null;
 
   useEffect(() => {
-    const fetchCardDetails = async () => {
+    const fetchCardData = async () => {
       if (cardId) {
-        const fetchCardData = await getCardDetils(cardId);
+        const fetchCardData = await getCardFields(cardId);
         setCardData(fetchCardData);
         if (userId) {
           const fetchCardType = await getCardType(userId, cardId);
@@ -40,13 +40,13 @@ export default function Index() {
         //loading false
       }
     };
-    fetchCardDetails();
+    fetchCardData();
   }, [cardId, userId]);
 
   const handleRegisterButton = async () => {
     if (userId) {
       setRegistertLoading(true);
-      const result = await addHaveCardId(userId, cardId);
+      const result = await addCardId(userId, cardId, CARD_TYPE.Have);
       if (result) {
         setCardType(CARD_TYPE.My);
         setRegistertLoading(false);
