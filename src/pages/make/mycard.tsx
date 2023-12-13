@@ -9,10 +9,11 @@ import PrimaryButton from '@/components/PrimaryButton';
 import SwitchButton from '@/components/SwitchButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/MycardCreatePage.module.css';
+import { CardData } from '@/types/CardData';
 import makemycard from '@/utils/ok/makeMyCard';
 
 export default function Input() {
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<CardData['name']>('');
   const [x, setX] = useState<string>('');
   const [instagram, setInstagram] = useState<string>('');
   const [organization, setOrganization] = useState<string>('');

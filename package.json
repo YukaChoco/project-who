@@ -14,7 +14,10 @@
     "export": "next export",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
     "format:ci": "prettier -l './**/*.{js,jsx,ts,tsx,json,css}'",
-    "lint:ci": "eslint './**/*.{ts,tsx}' --ignore-pattern 'src/utils/**'"
+    "lint:ci": "eslint './**/*.{ts,tsx}' --ignore-pattern 'src/utils/**'",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "plop": "plop"
   },
   "husky": {
     "hooks": {
@@ -44,10 +47,21 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.3",
+    "@storybook/addon-interactions": "^7.6.3",
+    "@storybook/addon-links": "^7.6.3",
+    "@storybook/addon-onboarding": "^1.0.9",
+    "@storybook/blocks": "^7.6.3",
+    "@storybook/nextjs": "^7.6.3",
+    "@storybook/react": "^7.6.3",
+    "@storybook/test": "^7.6.3",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-storybook": "^0.6.15",
     "husky": "^8.0.3",
-    "lint-staged": "^15.1.0"
+    "lint-staged": "^15.1.0",
+    "plop": "^4.0.0",
+    "storybook": "^7.6.3"
   }
 }

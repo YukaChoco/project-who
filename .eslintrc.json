@@ -6,7 +6,8 @@
     "plugin:import/typescript",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
@@ -19,5 +20,5 @@
       }
     ]
   },
-  "ignorePatterns": ["src/utils/**"]
+  "ignorePatterns": ["src/utils/**", "src/stories/**"]
 }
