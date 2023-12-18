@@ -6,7 +6,7 @@
   "start_url": "/cards",
   "name": "Who!",
   "short_name": "Who!",
-  "description": "大学生に向けた名刺管理Webアプリケーション「Who!」です。SNSのアカウントや",
+  "description": "大学生に向けたオンライン名刺交換アプリケーション「Who!」です。SNSのアカウントなどのプロフィール情報を、名刺で交換することができます。",
   "icons": [
     {
       "src": "/icon-192x192.png",
