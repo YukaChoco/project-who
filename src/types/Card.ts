@@ -10,7 +10,7 @@ export interface CardFields {
 }
 
 export interface CardData extends CardFields {
-  id: string;
+  id?: string;
 }
 
 export interface CreateMyCardData extends Pick<CardFields, 'name' | 'organization' | 'x' | 'instagram' | 'textColor' | 'bgColor'> {}
