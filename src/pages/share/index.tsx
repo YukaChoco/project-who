@@ -63,21 +63,32 @@ export default function Detail() {
     );
 
   const display = cardData.map((data) => {
-    return <DisplayCard key={data.id} {...data} urlEnabled />;
+    if (data.id == router.query.selectedCardId) {
+      return (
+        <div className={styles.card} key={data.id}>
+          <DisplayCard {...data} urlEnabled />
+        </div>
+      );
+    }
   });
 
   return (
     <>
+      6olp
       <Head>
         <title>名刺交換画面 - Who!</title>
       </Head>
       <main className={styles.main}>
-        <div className={styles.list}>
+        <div className={styles.container}>
           <Header useMenuIcon />
           <div className={styles.qrcode}>
-            <QRCode url={`${window.location.origin}/card/${cardData[0].id}`} />
+            <QRCode url={`${window.location.origin}/card/${router.query.selectedCardId}`} />
           </div>
           <Box sx={{ width: '100%' }}>{display}</Box>
+        </div>
+
+        <div className={styles.settingbutton}>
+          <PrimaryButton text={'共有する名刺を変更'} onClick={() => router.push('/share/selecting')} />
         </div>
 
         <div className={styles.returnbutton}>
