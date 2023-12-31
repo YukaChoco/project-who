@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import InputTexts from '@/components/EditTexts';
 import PrimaryButton from '@/components/PrimaryButton';
 import useUser from '@/hooks/useUser';
+import getCardDetails from '@/utils/ok/getCardDetils';
 import updateData from '@/utils/ok/updateData';
 
 export default function Index() {
@@ -17,13 +18,35 @@ export default function Index() {
   const router = useRouter();
   const cardId = router.query.cardId as string;
 
+  const cardData = {
+    name,
+    organization,
+    x,
+    instagram,
+  };
+
+  useEffect(() => {
+    async function getEarlierCardData() {
+      try {
+        const cardDetails = await getCardDetails(cardId);
+
+        if (cardDetails) {
+          setName(cardDetails.name);
+          setX(cardDetails.x);
+          setInstagram(cardDetails.instagram);
+          setOrganization(cardDetails.organization);
+        } else {
+          console.log(`not found`);
+        }
+      } catch (error) {
+        console.error('Error', error);
+      }
+    }
+
+    getEarlierCardData();
+  }, [cardId]);
+
   const handleCompleted = async () => {
-    const cardData = {
-      name,
-      organization,
-      x,
-      instagram,
-    };
     console.log(userId);
     updateData(cardId, cardData);
     router.push('/cards');
