@@ -14,3 +14,4 @@ export default function Index() {
     </>
   );
 }
+//関数作成とページ作成のプッシュを分ける
