@@ -5,7 +5,7 @@ import * as React from 'react';
 
 export default function ShareButton() {
   return (
-    <Link href={'/share/selecting'}>
+    <Link href={'/share'}>
       <IconButton
         size='large'
         sx={{

@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 import Head from 'next/head';
-import router from 'next/router';
+// import router from 'next/router';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
@@ -13,7 +14,14 @@ import { CardData } from '@/types/CardData';
 import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId';
 
 export default function Detail() {
+  const router = useRouter();
   const [cardData, setCardDatas] = useState<CardData[] | null>([]);
+  const query = router.query.selectedCardId || null;
+  //console.log(query);
+  const queryCardID = typeof query === 'string' ? query : null;
+  console.log(queryCardID);
+  const [shareCardID, setShareCardID] = useState<string | null>(queryCardID);
+  //console.log(shareCardID);
   const { userId, loading } = useUser();
   const isSettingCard = cardData?.length === 0;
   useEffect(() => {
@@ -63,38 +71,49 @@ export default function Detail() {
     );
 
   const display = cardData.map((data) => {
-    if (data.id == router.query.selectedCardId) {
-      return (
-        <div className={styles.card} key={data.id}>
-          <DisplayCard {...data} urlEnabled />
-        </div>
-      );
-    }
+    return (
+      <div
+        className={styles.card}
+        key={data.id}
+        onClick={() => {
+          handleOnClick(data.id);
+        }}
+      >
+        <DisplayCard {...data} urlEnabled={false} />
+      </div>
+    );
   });
 
-  return (
-    <>
-      6olp
-      <Head>
-        <title>名刺交換画面 - Who!</title>
-      </Head>
-      <main className={styles.main}>
-        <div className={styles.container}>
-          <Header useMenuIcon />
-          <div className={styles.qrcode}>
-            <QRCode url={`${window.location.origin}/card/${router.query.selectedCardId}`} />
+  const handleOnClick = (selectId: string) => {
+    setShareCardID(selectId);
+  };
+
+  if (!shareCardID) {
+    return (
+      <>
+        <Head>
+          <title>名刺交換画面 - Who!</title>
+        </Head>
+        <main className={styles.main}>
+          <div className={styles.container}>
+            <Header useMenuIcon />
+
+            <Box sx={{ width: '100%' }}>{display}</Box>
           </div>
-          <Box sx={{ width: '100%' }}>{display}</Box>
-        </div>
 
-        <div className={styles.settingbutton}>
-          <PrimaryButton text={'共有する名刺を変更'} onClick={() => router.push('/share/selecting')} />
-        </div>
+          <div className={styles.settingbutton}>
+            <PrimaryButton text={'共有する名刺を変更'} onClick={() => router.push('/share/selecting')} />
+          </div>
 
-        <div className={styles.returnbutton}>
-          <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
-        </div>
-      </main>
-    </>
-  );
+          <div className={styles.returnbutton}>
+            <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
+          </div>
+        </main>
+      </>
+    );
+  } else {
+    <div className={styles.qrcode}>
+      <QRCode url={`${window.location.origin}/card/${shareCardID}`} />
+    </div>;
+  }
 }
