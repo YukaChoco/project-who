@@ -9,7 +9,7 @@ import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL
 
 interface CardProps extends Pick<CardData, 'organization' | 'name' | 'x' | 'instagram' | 'bgColor' | 'textColor'> {
   urlEnabled: boolean;
-  onClickHandler?: () => void; //後に削除
+  onClickHandler?: () => void;
   link?: string;
 }
 
