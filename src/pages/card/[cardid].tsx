@@ -69,7 +69,7 @@ export default function Index() {
           </Box>
           {cardType === CARD_TYPE.My && (
             <Box sx={{ margin: '15px 0px' }}>
-              <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
+              <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?initialCardID=${cardId}`)} />
             </Box>
           )}
         </>
