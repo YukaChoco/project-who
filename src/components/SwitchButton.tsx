@@ -1,5 +1,6 @@
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import type { ToggleButtonProps } from '@mui/material/ToggleButton';
+import { useState } from 'react';
 import * as React from 'react';
 
 interface SwitchButtonProps {
@@ -10,6 +11,8 @@ interface SwitchButtonProps {
 }
 
 export default function SwitchButton({ leftName = '', rightName = '', value = '', onChange = () => {} }: SwitchButtonProps) {
+  const [selected, setSelected] = useState<boolean>(false);
+
   return (
     <>
       <ToggleButtonGroup
@@ -24,8 +27,24 @@ export default function SwitchButton({ leftName = '', rightName = '', value = ''
           margin: '20px 0',
         }}
       >
-        <ToggleButton value={leftName}>{leftName}</ToggleButton>
-        <ToggleButton value={rightName}>{rightName}</ToggleButton>
+        <ToggleButton
+          value={leftName}
+          selected={!selected}
+          onClick={() => {
+            setSelected(false);
+          }}
+        >
+          {leftName}
+        </ToggleButton>
+        <ToggleButton
+          value={rightName}
+          onClick={() => {
+            setSelected(true);
+          }}
+          selected={selected}
+        >
+          {rightName}
+        </ToggleButton>
       </ToggleButtonGroup>
     </>
   );
