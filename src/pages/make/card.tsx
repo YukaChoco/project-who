@@ -17,6 +17,8 @@ export default function Index() {
   const [instagram, setInstagram] = useState<string>('');
   const [organization, setOrganization] = useState<string>('');
 
+  const previewName = name || 'sample';
+
   const { userId, loading } = useUser();
 
   if (loading) {
@@ -40,7 +42,7 @@ export default function Index() {
   const Preview = () => (
     <div className={styles.preview}>
       <p>プレビュー</p>
-      <DisplayCard name={name} organization={organization} x={x} instagram={instagram} urlEnabled={false} textColor='#000' bgColor='#FFF' />
+      <DisplayCard name={previewName} organization={organization} x={x} instagram={instagram} urlEnabled={false} textColor='#000' bgColor='#FFF' />
     </div>
   );
 
