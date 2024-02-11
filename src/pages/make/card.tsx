@@ -8,10 +8,12 @@ import Header from '@/components/Header';
 import PrimaryButton from '@/components/PrimaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardCreatePage.module.css';
+import { FORM_MODE, type FormMode } from '@/types/FormMode';
 import makeHaveCard from '@/utils/ok/makeHaveCard';
 
 export default function Index() {
-  const [mode, setMode] = useState<string>('入力');
+  const [mode, setMode] = useState<FormMode>(FORM_MODE.Texts);
+
   const [name, setName] = useState<string>('');
   const [x, setX] = useState<string>('');
   const [instagram, setInstagram] = useState<string>('');
@@ -57,7 +59,7 @@ export default function Index() {
     router.push('/cards');
   };
 
-  if (mode === '入力') {
+  if (mode === FORM_MODE.Texts) {
     return (
       <>
         <Head>
@@ -65,7 +67,7 @@ export default function Index() {
         </Head>
 
         <main>
-          <Header onClick_edit={() => setMode('完了')} />
+          <Header onClick_edit={() => setMode(FORM_MODE.Complete)} />
 
           <Preview />
 
@@ -94,7 +96,7 @@ export default function Index() {
 
           <Preview />
 
-          <EditComplete handleReturned={() => setMode('入力')} handleCompleted={handleCompleted} />
+          <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
         </main>
       </>
     );

@@ -9,9 +9,11 @@ import PrimaryButton from '@/components/PrimaryButton';
 import SwitchButton from '@/components/SwitchButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/MycardCreatePage.module.css';
+import { FORM_MODE, type FormMode } from '@/types/FormMode';
 import makemycard from '@/utils/ok/makeMyCard';
 
 export default function Input() {
+  const [mode, setMode] = useState<FormMode>(FORM_MODE.Texts);
   const [name, setName] = useState<string>('');
   const [x, setX] = useState<string>('');
   const [instagram, setInstagram] = useState<string>('');
@@ -21,7 +23,6 @@ export default function Input() {
 
   const router = useRouter();
   const { userId, loading } = useUser();
-  const [mode, setMode] = useState<string>('入力');
 
   const previewName = name || 'sample';
 
@@ -61,7 +62,7 @@ export default function Input() {
     makemycard(userId, cardData);
   };
 
-  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
+  const handleSwitch = (event: React.MouseEvent<HTMLElement>, newAlignment: FormMode | null) => {
     if (newAlignment !== null) {
       setMode(newAlignment);
     }
@@ -69,7 +70,7 @@ export default function Input() {
 
   return (
     <>
-      <Header onClick_edit={mode === '完了' ? undefined : () => setMode('完了')} />
+      <Header onClick_edit={mode === FORM_MODE.Complete ? undefined : () => setMode(FORM_MODE.Complete)} />
 
       <main className={styles.main}>
         <div className={styles.preview}>
@@ -90,11 +91,11 @@ export default function Input() {
 
         <div className={styles.change}>
           {(() => {
-            if (mode == 'デザイン') {
+            if (mode === FORM_MODE.Colors) {
               return (
                 <div>
                   <div className={styles.swith}>
-                    <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} />
+                    <SwitchButton leftName={FORM_MODE.Texts} rightName={FORM_MODE.Colors} value={mode} onChange={handleSwitch} />
                   </div>
 
                   <EditColors
@@ -105,11 +106,11 @@ export default function Input() {
                   />
                 </div>
               );
-            } else if (mode == '入力') {
+            } else if (mode === FORM_MODE.Texts) {
               return (
                 <div>
                   <div className={styles.swith}>
-                    <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} />
+                    <SwitchButton leftName={FORM_MODE.Texts} rightName={FORM_MODE.Colors} value={mode} onChange={handleSwitch} />
                   </div>
                   <EditTexts
                     name={name}
@@ -126,7 +127,7 @@ export default function Input() {
             } else {
               return (
                 <div className={styles.editBtn}>
-                  <EditComplete handleReturned={() => setMode('入力')} handleCompleted={hundleOnClickEdit} />
+                  <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={hundleOnClickEdit} />
                 </div>
               );
             }
