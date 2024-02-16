@@ -3,6 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import Drawer from '@/components/Drawer';
 
@@ -31,6 +32,7 @@ export default function Header({ useSearchIcon = false, useMenuIcon = false, onC
   const iconStyle = {
     margin: '0 3px 0 0',
   };
+  const router = useRouter();
 
   return (
     <div>
@@ -66,6 +68,36 @@ export default function Header({ useSearchIcon = false, useMenuIcon = false, onC
               登録
             </Button>
           )}
+
+          <Button
+            color='inherit'
+            onClick={() => router.push('/mycards')}
+            sx={{
+              fontSize: '12px',
+              fontFamily: "'Lemon'",
+            }}
+          >
+            <div style={{ lineHeight: 'initial' }}>
+              {/*borderBottom:'1.5px solid white' */}
+              自分の名刺
+              <br />
+              <span style={{ fontSize: '8px', textTransform: 'lowercase' }}>my card</span>
+            </div>
+          </Button>
+          <Button
+            color='inherit'
+            onClick={() => router.push('/cards')}
+            sx={{
+              fontSize: '12px',
+              fontFamily: "'Lemon'",
+            }}
+          >
+            <div style={{ lineHeight: 'initial' }}>
+              他人の名刺
+              <br />
+              <span style={{ fontSize: '8px', textTransform: 'lowercase' }}>friend card</span>
+            </div>
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
