@@ -1,20 +1,18 @@
 /* eslint-disable @next/next/no-page-custom-font */
-import SearchIcon from '@mui/icons-material/Search';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import Drawer from '@/components/Drawer';
 
 interface HeaderProps {
-  useSearchIcon?: boolean;
-  useMenuIcon?: boolean;
+  myCard?: boolean;
+  friendCard?: boolean;
   onClick_edit?: () => void;
   onClick_register?: () => void;
 }
 
-export default function Header({ useSearchIcon = false, useMenuIcon = false, onClick_edit = undefined, onClick_register = undefined }: HeaderProps) {
+export default function Header({ myCard = false, friendCard = false }: HeaderProps) {
   const barStyle = {
     width: '100%',
     position: 'fixed',
@@ -29,9 +27,7 @@ export default function Header({ useSearchIcon = false, useMenuIcon = false, onC
     fontFamily: "'Lemon', serif",
     flexGrow: 1,
   };
-  const iconStyle = {
-    margin: '0 3px 0 0',
-  };
+
   const router = useRouter();
 
   return (
@@ -47,27 +43,6 @@ export default function Header({ useSearchIcon = false, useMenuIcon = false, onC
           <Typography variant='h6' component='div' sx={titleStyle}>
             <Link href='/cards'>Who!</Link>
           </Typography>
-          {useSearchIcon && (
-            <IconButton size='large' color='inherit' sx={iconStyle}>
-              <Link href='/upgrade'>
-                <SearchIcon />
-              </Link>
-            </IconButton>
-          )}
-
-          {useMenuIcon && <Drawer />}
-
-          {onClick_edit !== undefined && (
-            <Button color='inherit' onClick={onClick_edit}>
-              編集完了
-            </Button>
-          )}
-
-          {onClick_register !== undefined && (
-            <Button color='inherit' onClick={onClick_register}>
-              登録
-            </Button>
-          )}
 
           <Button
             color='inherit'
@@ -77,13 +52,13 @@ export default function Header({ useSearchIcon = false, useMenuIcon = false, onC
               fontFamily: "'Lemon'",
             }}
           >
-            <div style={{ lineHeight: 'initial' }}>
-              {/*borderBottom:'1.5px solid white' */}
+            <div style={{ lineHeight: 'initial', borderBottom: myCard ? '1.5px solid white' : 'none' }}>
               自分の名刺
               <br />
               <span style={{ fontSize: '8px', textTransform: 'lowercase' }}>my card</span>
             </div>
           </Button>
+
           <Button
             color='inherit'
             onClick={() => router.push('/cards')}
@@ -92,7 +67,7 @@ export default function Header({ useSearchIcon = false, useMenuIcon = false, onC
               fontFamily: "'Lemon'",
             }}
           >
-            <div style={{ lineHeight: 'initial' }}>
+            <div style={{ lineHeight: 'initial', borderBottom: friendCard ? '1.5px solid white' : 'none' }}>
               他人の名刺
               <br />
               <span style={{ fontSize: '8px', textTransform: 'lowercase' }}>friend card</span>

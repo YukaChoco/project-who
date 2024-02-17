@@ -65,7 +65,7 @@ export default function Index() {
         </Head>
 
         <main>
-          <Header onClick_edit={() => setMode('完了')} />
+          <Header friendCard />
 
           <Preview />
 

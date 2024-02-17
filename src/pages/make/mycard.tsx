@@ -69,7 +69,7 @@ export default function Input() {
 
   return (
     <>
-      <Header onClick_edit={mode === '完了' ? undefined : () => setMode('完了')} />
+      <Header myCard />
 
       <main className={styles.main}>
         <div className={styles.preview}>

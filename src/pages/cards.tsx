@@ -58,7 +58,7 @@ export default function Index() {
       </Head>
 
       <main>
-        <Header useMenuIcon />
+        <Header friendCard />
         {cardDatas ? (
           // 名刺が存在する時
           <div className={styles.cardlist}>
