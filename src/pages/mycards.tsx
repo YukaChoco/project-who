@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import Head from 'next/head';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
@@ -5,6 +6,7 @@ import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
 import NewCard from '@/components/NewCard';
 import PrimaryButton from '@/components/PrimaryButton';
+import QRCode from '@/components/QRCode';
 import SecondaryButton from '@/components/SecondaryButton';
 import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
@@ -12,9 +14,10 @@ import styles from '@/styles/Mycards.module.css';
 import { CardData } from '@/types/CardData';
 import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId';
 
-export default function Index() {
+export default function Detail() {
   const [cardData, setCardDatas] = useState<CardData[] | null>([]);
   const { userId, loading } = useUser();
+  const isSettingCard = cardData?.length === 0;
   useEffect(() => {
     const fetchCards = async () => {
       if (userId) {
@@ -25,7 +28,7 @@ export default function Index() {
     fetchCards();
   }, [userId]);
 
-  if (loading) {
+  if (loading || isSettingCard) {
     return (
       <>
         <Head>
@@ -39,19 +42,36 @@ export default function Index() {
     );
   }
 
-  if (!userId) {
+  if (!userId)
     return (
       <main>
         <>
-          <Head>
-            <title>自分の名刺 - Who!</title>
-          </Head>
+          <Header useMenuIcon />
           <h1>ログインされていません</h1>
-          <SecondaryButton text='ログインしてください' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
+          <SecondaryButton text='ログイン画面へ' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
         </>
       </main>
     );
-  }
+
+  if (!cardData)
+    return (
+      <>
+        <Head>
+          <title>自分の名刺 - Who!</title>
+        </Head>
+        <main className={styles.main}>
+          <Header useMenuIcon />
+          <h1>自分の名刺がありません</h1>
+          <NewCard />
+          <div className={styles.returnbutton}>
+            <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
+          </div>
+          <ShareButton />
+        </main>
+      </>
+    );
+
+  const display = <DisplayCard key={cardData[0].id} {...cardData[0]} urlEnabled />;
 
   return (
     <>
@@ -59,19 +79,19 @@ export default function Index() {
         <title>自分の名刺 - Who!</title>
       </Head>
       <main className={styles.main}>
-        <Header useMenuIcon />
         <div className={styles.cardlist}>
-          {cardData &&
-            cardData.map((data) => {
-              return <DisplayCard key={data.id} {...data} urlEnabled={false} link={`/card/${data.id}`} />;
-            })}
+          <Header useMenuIcon />
+          <div className={styles.qrcode}>
+            <QRCode url={`${window.location.origin}/card/${cardData[0].id}`} />
+          </div>
+          <Box sx={{ width: '100%' }}>{display}</Box>
         </div>
-        <NewCard />
-
-        <div className={styles.returnHomeButton}>
+        <div className={styles.returnbutton}>
+          <PrimaryButton text={'名刺の詳細へ'} onClick={() => router.push('/card/' + cardData[0].id)} />
+        </div>
+        <div className={styles.returnbutton}>
           <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
         </div>
-
         <ShareButton />
       </main>
     </>

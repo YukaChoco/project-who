@@ -15,6 +15,15 @@
 }
 
 .returnHomeButton {
-  width: 100%;
-  margin-top: 60px;
+  width: 90%;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.qrcode {
+  display: flex;
+  font-size: 300px;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }

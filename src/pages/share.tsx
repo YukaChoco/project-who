@@ -79,7 +79,6 @@ export default function Detail() {
           </div>
           <Box sx={{ width: '100%' }}>{display}</Box>
         </div>
-
         <div className={styles.returnbutton}>
           <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
         </div>
