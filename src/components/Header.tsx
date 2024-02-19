@@ -8,11 +8,10 @@ import * as React from 'react';
 interface HeaderProps {
   myCard?: boolean;
   friendCard?: boolean;
-  onClick_edit?: () => void;
-  onClick_register?: () => void;
+  confirmPageChange?: boolean;
 }
 
-export default function Header({ myCard = false, friendCard = false }: HeaderProps) {
+export default function Header({ myCard = false, friendCard = false, confirmPageChange = false }: HeaderProps) {
   const barStyle = {
     width: '100%',
     position: 'fixed',
@@ -30,6 +29,26 @@ export default function Header({ myCard = false, friendCard = false }: HeaderPro
 
   const router = useRouter();
 
+  const onClickMyCardPageChange = () => {
+    if (confirmPageChange) {
+      if (window.confirm('編集を破棄して画面を移動しますか?')) {
+        router.push('/mycards');
+      }
+    } else {
+      router.push('/mycards');
+    }
+  };
+
+  const onClickCardPageChange = () => {
+    if (confirmPageChange) {
+      if (window.confirm('編集を破棄して画面を移動しますか?')) {
+        router.push('/cards');
+      }
+    } else {
+      router.push('/cards');
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -46,7 +65,7 @@ export default function Header({ myCard = false, friendCard = false }: HeaderPro
 
           <Button
             color='inherit'
-            onClick={() => router.push('/mycards')}
+            onClick={onClickMyCardPageChange}
             sx={{
               fontSize: '12px',
               fontFamily: "'Lemon'",
@@ -61,7 +80,7 @@ export default function Header({ myCard = false, friendCard = false }: HeaderPro
 
           <Button
             color='inherit'
-            onClick={() => router.push('/cards')}
+            onClick={onClickCardPageChange}
             sx={{
               fontSize: '12px',
               fontFamily: "'Lemon'",
