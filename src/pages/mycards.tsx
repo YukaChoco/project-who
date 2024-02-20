@@ -63,7 +63,7 @@ export default function Detail() {
           <Header useMenuIcon />
           <h1>自分の名刺がありません</h1>
           <NewCard />
-          <div className={styles.returnbutton}>
+          <div className={styles.returnHomeButton}>
             <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
           </div>
           <ShareButton />
