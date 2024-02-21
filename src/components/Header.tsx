@@ -71,7 +71,13 @@ export default function Header({ myCard = false, friendCard = false, confirmPage
               fontFamily: "'Lemon'",
             }}
           >
-            <div style={{ lineHeight: 'initial', borderBottom: myCard ? '1.5px solid white' : 'none' }}>
+            <div
+              style={{
+                lineHeight: 'initial',
+                boxShadow: myCard ? '0px 4px 5px -5px white' : 'none',
+                borderBottom: myCard ? '1.5px solid white' : 'none',
+              }}
+            >
               自分の名刺
               <br />
               <span style={{ fontSize: '8px', textTransform: 'lowercase' }}>my card</span>
@@ -86,7 +92,13 @@ export default function Header({ myCard = false, friendCard = false, confirmPage
               fontFamily: "'Lemon'",
             }}
           >
-            <div style={{ lineHeight: 'initial', borderBottom: friendCard ? '1.5px solid white' : 'none' }}>
+            <div
+              style={{
+                lineHeight: 'initial',
+                boxShadow: friendCard ? '0px 4px 5px -5px white' : 'none',
+                borderBottom: friendCard ? '1.5px solid white' : 'none',
+              }}
+            >
               他人の名刺
               <br />
               <span style={{ fontSize: '8px', textTransform: 'lowercase' }}>friend card</span>
