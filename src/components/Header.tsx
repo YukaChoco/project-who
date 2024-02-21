@@ -67,13 +67,13 @@ export default function Header({ myCard = false, friendCard = false, confirmPage
             color='inherit'
             onClick={onClickMyCardPageChange}
             sx={{
-              fontSize: '12px',
+              fontSize: '13px',
               fontFamily: "'Lemon'",
             }}
           >
             <div
               style={{
-                lineHeight: 'initial',
+                lineHeight: '13px',
                 boxShadow: myCard ? '0px 4px 5px -5px white' : 'none',
                 borderBottom: myCard ? '1.5px solid white' : 'none',
               }}
@@ -88,13 +88,13 @@ export default function Header({ myCard = false, friendCard = false, confirmPage
             color='inherit'
             onClick={onClickCardPageChange}
             sx={{
-              fontSize: '12px',
+              fontSize: '13px',
               fontFamily: "'Lemon'",
             }}
           >
             <div
               style={{
-                lineHeight: 'initial',
+                lineHeight: '13px',
                 boxShadow: friendCard ? '0px 4px 5px -5px white' : 'none',
                 borderBottom: friendCard ? '1.5px solid white' : 'none',
               }}
