@@ -4,14 +4,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
+import { CardType } from '@/types/CardType';
 
 interface HeaderProps {
-  myCard?: boolean;
-  friendCard?: boolean;
+  cardType?: CardType;
   confirmPageChange?: boolean;
 }
 
-export default function Header({ myCard = false, friendCard = false, confirmPageChange = false }: HeaderProps) {
+export default function Header({ cardType = 'none', confirmPageChange = false }: HeaderProps) {
   const barStyle = {
     width: '100%',
     position: 'fixed',
@@ -74,8 +74,8 @@ export default function Header({ myCard = false, friendCard = false, confirmPage
             <div
               style={{
                 lineHeight: '13px',
-                boxShadow: myCard ? '0px 4px 5px -5px white' : 'none',
-                borderBottom: myCard ? '1.5px solid white' : 'none',
+                boxShadow: cardType == 'mycard' ? '0px 4px 5px -5px white' : 'none',
+                borderBottom: cardType == 'mycard' ? '1.5px solid white' : 'none',
               }}
             >
               自分の名刺
@@ -95,8 +95,8 @@ export default function Header({ myCard = false, friendCard = false, confirmPage
             <div
               style={{
                 lineHeight: '13px',
-                boxShadow: friendCard ? '0px 4px 5px -5px white' : 'none',
-                borderBottom: friendCard ? '1.5px solid white' : 'none',
+                boxShadow: cardType == 'card' ? '0px 4px 5px -5px white' : 'none',
+                borderBottom: cardType == 'card' ? '1.5px solid white' : 'none',
               }}
             >
               他人の名刺

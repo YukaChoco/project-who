@@ -69,7 +69,7 @@ export default function Input() {
 
   return (
     <>
-      <Header myCard />
+      <Header cardType='mycard' />
 
       <main className={styles.main}>
         <div className={styles.preview}>

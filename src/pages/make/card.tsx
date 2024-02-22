@@ -65,7 +65,7 @@ export default function Index() {
         </Head>
 
         <main>
-          <Header friendCard />
+          <Header cardType='card' />
 
           <Preview />
 
