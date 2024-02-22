@@ -63,11 +63,7 @@ export default function Detail() {
     );
 
   const display = cardData.map((data) => {
-    return (
-      <div className={styles.card} key={data.id}>
-        <DisplayCard {...data} urlEnabled />
-      </div>
-    );
+    return <DisplayCard key={data.id} {...data} urlEnabled />;
   });
 
   return (
@@ -76,7 +72,7 @@ export default function Detail() {
         <title>名刺交換画面 - Who!</title>
       </Head>
       <main className={styles.main}>
-        <div className={styles.container}>
+        <div className={styles.list}>
           <Header useMenuIcon />
           <div className={styles.qrcode}>
             <QRCode url={`${window.location.origin}/card/${cardData[0].id}`} />
