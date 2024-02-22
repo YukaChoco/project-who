@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import PrimaryButton from '@/components/PrimaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardCreatePage.module.css';
+import { CARD_TYPE } from '@/types/CardType';
 import { FORM_MODE, type FormMode } from '@/types/FormMode';
 import makeHaveCard from '@/utils/ok/makeHaveCard';
 
@@ -67,7 +68,7 @@ export default function Index() {
         </Head>
 
         <main>
-          <Header onClick_edit={() => setMode(FORM_MODE.Complete)} />
+          <Header cardType={CARD_TYPE.Have} confirmPageChange />
 
           <Preview />
 

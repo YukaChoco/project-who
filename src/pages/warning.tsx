@@ -13,7 +13,7 @@ export default function Index() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className={styles.main}>
-        <Header useSearchIcon useMenuIcon onClick_edit={() => {}} onClick_register={() => {}} />
+        <Header />
         <div className={styles.alldisplay} onClick={() => router.push('/cards')}>
           <h2 className={styles.text}>¥500/月 わーい</h2>
         </div>

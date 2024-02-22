@@ -11,6 +11,7 @@ import SecondaryButton from '@/components/SecondaryButton';
 import SwitchButton from '@/components/SwitchButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/MycardCreatePage.module.css';
+import { CARD_TYPE } from '@/types/CardType';
 import { FORM_MODE, type FormMode } from '@/types/FormMode';
 import makemycard from '@/utils/ok/makeMyCard';
 
@@ -94,7 +95,7 @@ export default function Input() {
 
   return (
     <>
-      <Header onClick_edit={mode === FORM_MODE.Complete ? undefined : () => setMode(FORM_MODE.Complete)} />
+      <Header cardType={CARD_TYPE.My} confirmPageChange />
 
       <main className={styles.main}>
         <div className={styles.preview}>
