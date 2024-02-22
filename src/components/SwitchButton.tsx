@@ -24,10 +24,10 @@ export default function SwitchButton({ leftName = '', rightName = '', value = ''
           margin: '20px 0',
         }}
       >
-        <ToggleButton value={leftName} selected={value == '入力' ? true : false}>
+        <ToggleButton value={leftName} selected={value === leftName ? true : false}>
           {leftName}
         </ToggleButton>
-        <ToggleButton value={rightName} selected={value == 'デザイン' ? true : false}>
+        <ToggleButton value={rightName} selected={value === rightName ? true : false}>
           {rightName}
         </ToggleButton>
       </ToggleButtonGroup>
