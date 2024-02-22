@@ -80,7 +80,7 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
             >
               自分の名刺
               <br />
-              <span style={{ fontSize: '8px', textTransform: 'lowercase' }}>my card</span>
+              <span style={{ fontSize: '0.5rem', textTransform: 'lowercase' }}>my card</span>
             </div>
           </Button>
 
@@ -101,7 +101,7 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
             >
               他人の名刺
               <br />
-              <span style={{ fontSize: '8px', textTransform: 'lowercase' }}>friend card</span>
+              <span style={{ fontSize: '0.5rem', textTransform: 'lowercase' }}>friend card</span>
             </div>
           </Button>
         </Toolbar>
