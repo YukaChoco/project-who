@@ -4,9 +4,10 @@ interface SecondaryButtonProps {
   text: string;
   disabled?: boolean;
   onClick?: () => void;
+  isSubmit?: boolean;
 }
 
-export default function SecondaryButton({ text = '', disabled = false, onClick = () => {} }: SecondaryButtonProps) {
+export default function SecondaryButton({ text = '', disabled = false, onClick = () => {}, isSubmit = false }: SecondaryButtonProps) {
   const buttonStyle = {
     display: 'inline-block',
     width: '100%',
@@ -26,7 +27,7 @@ export default function SecondaryButton({ text = '', disabled = false, onClick =
     },
   };
   return (
-    <Button variant='outlined' sx={buttonStyle} disabled={disabled} onClick={onClick}>
+    <Button variant='outlined' sx={buttonStyle} disabled={disabled} onClick={onClick} type={isSubmit ? 'submit' : 'button'}>
       {text}
     </Button>
   );
