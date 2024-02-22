@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-page-custom-font */
+import { Box } from '@mui/material';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -71,8 +72,8 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
               fontFamily: "'Lemon'",
             }}
           >
-            <div
-              style={{
+            <Box
+              sx={{
                 lineHeight: '0.8125rem',
                 boxShadow: cardType == 'mycard' ? '0px 4px 5px -5px white' : 'none',
                 borderBottom: cardType == 'mycard' ? '1.5px solid white' : 'none',
@@ -81,7 +82,7 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
               自分の名刺
               <br />
               <span style={{ fontSize: '0.5rem', textTransform: 'lowercase' }}>my card</span>
-            </div>
+            </Box>
           </Button>
 
           <Button
@@ -92,8 +93,8 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
               fontFamily: "'Lemon'",
             }}
           >
-            <div
-              style={{
+            <Box
+              sx={{
                 lineHeight: '0.8125rem',
                 boxShadow: cardType == 'card' ? '0px 4px 5px -5px white' : 'none',
                 borderBottom: cardType == 'card' ? '1.5px solid white' : 'none',
@@ -102,7 +103,7 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
               他人の名刺
               <br />
               <span style={{ fontSize: '0.5rem', textTransform: 'lowercase' }}>friend card</span>
-            </div>
+            </Box>
           </Button>
         </Toolbar>
       </AppBar>
