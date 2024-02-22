@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import PrimaryButton from '@/components/PrimaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardCreatePage.module.css';
+import { CARD_TYPE } from '@/types/CardType';
 import getCardDetails from '@/utils/ok/getCardDetails';
 import updateData from '@/utils/ok/updateData';
 
@@ -87,7 +88,7 @@ export default function Index() {
           <title>他人の名刺修正 - Who!</title>
         </Head>
         <main>
-          <Header onClick_edit={() => setMode('完了')} />
+          <Header cardType={CARD_TYPE.Have} confirmPageChange />
 
           <Preview />
 

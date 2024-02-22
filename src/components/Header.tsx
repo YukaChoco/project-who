@@ -5,7 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
-import { CardType } from '@/types/CardType';
+import { CARD_TYPE, CardType } from '@/types/CardType';
 
 interface HeaderProps {
   cardType?: CardType;
@@ -75,8 +75,8 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
             <Box
               sx={{
                 lineHeight: '0.8125rem',
-                boxShadow: cardType == 'mycard' ? '0px 4px 5px -5px white' : 'none',
-                borderBottom: cardType == 'mycard' ? '1.5px solid white' : 'none',
+                boxShadow: cardType == CARD_TYPE.My ? '0px 4px 5px -5px white' : 'none',
+                borderBottom: cardType == CARD_TYPE.My ? '1.5px solid white' : 'none',
               }}
             >
               自分の名刺
@@ -96,8 +96,8 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
             <Box
               sx={{
                 lineHeight: '0.8125rem',
-                boxShadow: cardType == 'card' ? '0px 4px 5px -5px white' : 'none',
-                borderBottom: cardType == 'card' ? '1.5px solid white' : 'none',
+                boxShadow: cardType == CARD_TYPE.Have ? '0px 4px 5px -5px white' : 'none',
+                borderBottom: cardType == CARD_TYPE.Have ? '1.5px solid white' : 'none',
               }}
             >
               他人の名刺

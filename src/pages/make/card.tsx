@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import PrimaryButton from '@/components/PrimaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardCreatePage.module.css';
+import { CARD_TYPE } from '@/types/CardType';
 import makeHaveCard from '@/utils/ok/makeHaveCard';
 
 export default function Index() {
@@ -65,7 +66,7 @@ export default function Index() {
         </Head>
 
         <main>
-          <Header cardType='card' />
+          <Header cardType={CARD_TYPE.Have} confirmPageChange />
 
           <Preview />
 

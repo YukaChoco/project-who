@@ -109,7 +109,7 @@ export default function Index() {
     if (cardData.protected && cardData.authorId !== userId) {
       return (
         <main className='error'>
-          <Header cardType='card' />
+          <Header cardType={CARD_TYPE.Have} />
           <div>
             <h1>この名刺は閲覧できません</h1>
             <p>※この名刺は本人が作成した名刺ではないため、作成者しか閲覧できません。</p>
@@ -124,7 +124,7 @@ export default function Index() {
         </Head>
 
         <main>
-          <Header cardType='card' />
+          <Header cardType={CARD_TYPE.Have} />
 
           <div className={styles.container}>
             <Card {...cardData} urlEnabled />
@@ -148,7 +148,7 @@ export default function Index() {
   } else {
     return (
       <main className='error'>
-        <Header cardType='card' />
+        <Header cardType={CARD_TYPE.Have} />
         <h1>存在しない名刺です</h1>
       </main>
     );
