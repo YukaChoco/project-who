@@ -1,5 +1,5 @@
 import getMyCardIdsByUserId from './getMyCardIdsByUserId';
-import getCardDetils from './getCardDetils';
+import getCardDetails from './getCardDetails';
 import type { CardData } from '@/types/CardData';
 
 export default async function getMyCardDetailsByUserId(userId: string) {
@@ -9,7 +9,7 @@ export default async function getMyCardDetailsByUserId(userId: string) {
 
   const fetchedDetails: (CardData | undefined)[] = await Promise.all(
     myCardIds.map(async (id) => {
-      const fetchedDetail: CardData | null = await getCardDetils(id);
+      const fetchedDetail: CardData | null = await getCardDetails(id);
       if (fetchedDetail) return fetchedDetail;
     }),
   );
