@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-page-custom-font */
-import { Box } from '@mui/material';
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
