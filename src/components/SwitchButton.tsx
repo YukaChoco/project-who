@@ -24,12 +24,8 @@ export default function SwitchButton({ leftName = '', rightName = '', value = ''
           margin: '20px 0',
         }}
       >
-        <ToggleButton value={leftName} selected={value === leftName ? true : false}>
-          {leftName}
-        </ToggleButton>
-        <ToggleButton value={rightName} selected={value === rightName ? true : false}>
-          {rightName}
-        </ToggleButton>
+        <ToggleButton value={leftName}>{leftName}</ToggleButton>
+        <ToggleButton value={rightName}>{rightName}</ToggleButton>
       </ToggleButtonGroup>
     </>
   );
