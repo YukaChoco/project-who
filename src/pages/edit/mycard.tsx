@@ -10,6 +10,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 import SwitchButton from '@/components/SwitchButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/MycardCreatePage.module.css';
+import { CARD_TYPE } from '@/types/CardType';
 import getCardDetails from '@/utils/ok/getCardDetails';
 import updateData from '@/utils/ok/updateData';
 
@@ -105,7 +106,7 @@ export default function Input() {
       </Head>
 
       <main className={styles.main}>
-        <Header onClick_edit={() => setMode('完了')} />
+        <Header cardType={CARD_TYPE.My} confirmPageChange />
 
         <Preview />
 
