@@ -67,13 +67,13 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
             color='inherit'
             onClick={onClickMyCardPageChange}
             sx={{
-              fontSize: '13px',
+              fontSize: '0.8125rem',
               fontFamily: "'Lemon'",
             }}
           >
             <div
               style={{
-                lineHeight: '13px',
+                lineHeight: '0.8125rem',
                 boxShadow: cardType == 'mycard' ? '0px 4px 5px -5px white' : 'none',
                 borderBottom: cardType == 'mycard' ? '1.5px solid white' : 'none',
               }}
@@ -88,13 +88,13 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
             color='inherit'
             onClick={onClickCardPageChange}
             sx={{
-              fontSize: '13px',
+              fontSize: '0.8125rem',
               fontFamily: "'Lemon'",
             }}
           >
             <div
               style={{
-                lineHeight: '13px',
+                lineHeight: '0.8125rem',
                 boxShadow: cardType == 'card' ? '0px 4px 5px -5px white' : 'none',
                 borderBottom: cardType == 'card' ? '1.5px solid white' : 'none',
               }}
