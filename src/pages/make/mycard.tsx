@@ -92,7 +92,7 @@ export default function Input() {
               return (
                 <div>
                   <div className={styles.swith}>
-                    <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} selected={true} />
+                    <SwitchButton leftName={'入力'} rightName={'デザイン'} value={mode} onChange={handleAlignment} />
                   </div>
 
                   <EditColors
@@ -107,7 +107,7 @@ export default function Input() {
               return (
                 <div>
                   <div className={styles.swith}>
-                    <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} selected={false} />
+                    <SwitchButton leftName={'入力'} rightName={'デザイン'} value={mode} onChange={handleAlignment} />
                   </div>
                   <EditTexts
                     name={name}

@@ -6,11 +6,10 @@ interface SwitchButtonProps {
   leftName: string;
   rightName: string;
   value: string;
-  selected: boolean;
   onChange?: ToggleButtonProps['onChange'];
 }
 
-export default function SwitchButton({ leftName = '', rightName = '', value = '', onChange = () => {}, selected = false }: SwitchButtonProps) {
+export default function SwitchButton({ leftName = '', rightName = '', value = '', onChange = () => {} }: SwitchButtonProps) {
   return (
     <>
       <ToggleButtonGroup
@@ -25,10 +24,10 @@ export default function SwitchButton({ leftName = '', rightName = '', value = ''
           margin: '20px 0',
         }}
       >
-        <ToggleButton value={leftName} selected={!selected}>
+        <ToggleButton value={leftName} selected={value == '入力' ? true : false}>
           {leftName}
         </ToggleButton>
-        <ToggleButton value={rightName} selected={selected}>
+        <ToggleButton value={rightName} selected={value == 'デザイン' ? true : false}>
           {rightName}
         </ToggleButton>
       </ToggleButtonGroup>
