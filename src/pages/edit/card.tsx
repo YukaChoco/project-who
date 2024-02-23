@@ -19,6 +19,8 @@ export default function Index() {
   const [mode, setMode] = useState<string>('入力');
   const tabIndex = mode === FORM_MODE.Texts ? 0 : 2;
 
+  const [defaultCardName, setDefaultCardName] = useState<string>('');
+
   const [name, setName] = useState<string>('');
   const [x, setX] = useState<string>('');
   const [instagram, setInstagram] = useState<string>('');
@@ -39,6 +41,7 @@ export default function Index() {
           setX(cardDetails.x);
           setInstagram(cardDetails.instagram);
           setOrganization(cardDetails.organization);
+          setDefaultCardName(cardDetails.name);
         } else {
           console.log(`not found`);
         }
@@ -101,7 +104,7 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>他人の名刺作成 - Who!</title>
+        <title>{defaultCardName} さんの名刺修正 - Who!</title>
       </Head>
 
       <main>

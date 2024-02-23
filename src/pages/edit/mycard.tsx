@@ -126,7 +126,7 @@ export default function Input() {
   return (
     <>
       <Head>
-        <title>他人の名刺修正 - Who!</title>
+        <title>自分の名刺修正 - Who!</title>
       </Head>
 
       <main className={styles.main}>

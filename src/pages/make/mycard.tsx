@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { FormEvent, useState } from 'react';
 import DisplayCard from '@/components/Card';
@@ -94,6 +95,10 @@ export default function Input() {
 
   return (
     <>
+      <Head>
+        <title>自分の名刺作成 - Who!</title>
+      </Head>
+
       <Header cardType={CARD_TYPE.My} confirmPageChange />
 
       <main className={styles.main}>
