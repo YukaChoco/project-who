@@ -5,6 +5,7 @@ import DisplayCard from '@/components/Card';
 import EditComplete from '@/components/EditComplete';
 import InputTexts from '@/components/EditTexts';
 import Header from '@/components/Header';
+import Loading from '@/components/Loading';
 import PrimaryButton from '@/components/PrimaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardCreatePage.module.css';
@@ -54,7 +55,7 @@ export default function Index() {
   if (loading) {
     return (
       <main>
-        <h1>Loading...</h1>
+        <Loading />
       </main>
     );
   }

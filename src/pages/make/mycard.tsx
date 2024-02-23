@@ -5,6 +5,7 @@ import EditColors from '@/components/EditColors';
 import EditComplete from '@/components/EditComplete';
 import EditTexts from '@/components/EditTexts';
 import Header from '@/components/Header';
+import Loading from '@/components/Loading';
 import PrimaryButton from '@/components/PrimaryButton';
 import SwitchButton from '@/components/SwitchButton';
 import useUser from '@/hooks/useUser';
@@ -29,7 +30,7 @@ export default function Input() {
     return (
       <>
         <main>
-          <h1>Loading...</h1>
+          <Loading />
         </main>
       </>
     );

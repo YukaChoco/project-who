@@ -3,6 +3,7 @@ import router from 'next/router';
 import { useEffect, useState } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
+import Loading from '@/components/Loading';
 import NewCard from '@/components/NewCard';
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
@@ -33,7 +34,7 @@ export default function Index() {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <main>
-          <h1>Loading...</h1>
+          <Loading />
         </main>
       </>
     );
