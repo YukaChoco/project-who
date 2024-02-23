@@ -23,6 +23,8 @@ export default function Input() {
   const { userId, loading } = useUser();
   const [mode, setMode] = useState<string>('入力');
 
+  const previewName = name || 'sample';
+
   if (loading) {
     return (
       <>
@@ -76,7 +78,7 @@ export default function Input() {
 
         <div className={styles.card}>
           <DisplayCard
-            name={name}
+            name={previewName}
             organization={organization}
             x={x}
             instagram={instagram}

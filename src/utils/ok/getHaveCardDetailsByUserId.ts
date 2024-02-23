@@ -1,5 +1,5 @@
 import getHaveCardIdsByUserId from './getHaveCardIdsByUserId';
-import getCardDetils from './getCardDetils';
+import getCardDetils from './getCardDetails';
 import type { CardData } from '@/types/CardData';
 
 export default async function getHaveCardDetailsByUserId(userId: string) {
