@@ -12,6 +12,7 @@ import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId';
 
 export default function Index() {
   const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
+  const [exampleCardDatas, setExampleCardDatas] = useState<CardData[] | null>([]);
 
   const router = useRouter();
 
@@ -21,8 +22,12 @@ export default function Index() {
     const fetchUsers = async () => {
       if (userId) {
         const haveCardDetails = await getHaveCardDetailsByUserId(userId);
-        setCardDatas(haveCardDetails);
+        if (haveCardDetails) {
+          setCardDatas(haveCardDetails);
+        }
       }
+      const exampleCardDetails = await getHaveCardDetailsByUserId('exampleDocument');
+      setExampleCardDatas(exampleCardDetails);
     };
     fetchUsers();
   }, [userId]);
@@ -42,11 +47,23 @@ export default function Index() {
   if (!userId) {
     return (
       <main>
-        <>
-          <Header />
-          <h1>ログインされていません</h1>
+        <Header />
+
+        <div className={styles.buttonWrapper}>
           <SecondaryButton text='ログイン画面へ' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
-        </>
+        </div>
+
+        <div className={styles.text}>
+          <div>ログインしていません。</div>
+          <div>ログインして実際に機能を使ってみましょう！</div>
+        </div>
+
+        <div className={styles.cardlist}>
+          {exampleCardDatas &&
+            exampleCardDatas.map((data) => {
+              return <DisplayCard urlEnabled={false} key={data.id} {...data} link={`/card/${data.id}`} />;
+            })}
+        </div>
       </main>
     );
   }
@@ -59,6 +76,11 @@ export default function Index() {
 
       <main>
         <Header cardType='card' />
+
+        <div className={styles.buttonWrapper}>
+          <SecondaryButton text='+アカウントメモの追加' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
+        </div>
+
         {cardDatas ? (
           // 名刺が存在する時
           <div className={styles.cardlist}>
@@ -68,7 +90,18 @@ export default function Index() {
           </div>
         ) : (
           // 名刺が存在しない時
-          <h1>登録された名刺がありません</h1>
+          <>
+            <div className={styles.text}>
+              <div>データが存在しません。</div>
+              <div>新たな友人の名刺を獲得しましょう！</div>
+            </div>
+            <div className={styles.cardlist}>
+              {exampleCardDatas &&
+                exampleCardDatas.map((data) => {
+                  return <DisplayCard urlEnabled={false} key={data.id} {...data} link={`/card/${data.id}`} />;
+                })}
+            </div>
+          </>
         )}
 
         <ShareButton />
