@@ -93,7 +93,7 @@ export default function Input() {
       bgColor: bgColor,
     };
 
-    updateData(cardId, cardData);
+    await updateData(cardId, cardData);
     router.push('/mycards');
   };
 
