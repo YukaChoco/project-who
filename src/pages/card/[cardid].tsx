@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Card from '@/components/Card';
 import DisplayText from '@/components/DisplayText';
 import Header from '@/components/Header';
+import Loading from '@/components/Loading';
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
 import useUser from '@/hooks/useUser';
@@ -99,7 +100,7 @@ export default function Index() {
     return (
       <>
         <main>
-          <h1>Loading...</h1>
+          <Loading />
         </main>
       </>
     );
