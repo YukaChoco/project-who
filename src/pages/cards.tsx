@@ -13,7 +13,8 @@ import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId';
 
 export default function Index() {
   const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
-  const [exampleCardDatas, setExampleCardDatas] = useState<CardData[] | null>([]);
+  const [exampleCardDatas, setExampleCardDatas] = useState<CardData[] | null>(null);
+  const [fetching, setFetching] = useState<boolean>(true);
 
   const router = useRouter();
 
@@ -25,15 +26,17 @@ export default function Index() {
         const haveCardDetails = await getHaveCardDetailsByUserId(userId);
         if (haveCardDetails) {
           setCardDatas(haveCardDetails);
+          setFetching(false);
         }
       }
       const exampleCardDetails = await getHaveCardDetailsByUserId('exampleDocument');
       setExampleCardDatas(exampleCardDetails);
+      setFetching(false);
     };
     fetchUsers();
   }, [userId]);
 
-  if (loading) {
+  if (loading && fetching) {
     return (
       <>
         <Head>
