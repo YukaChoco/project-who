@@ -1,6 +1,6 @@
 {
   "theme_color": "#6F80BF",
-  "background_color": "#6F80BF",
+  "background_color": "#FFF",
   "display": "standalone",
   "scope": "/project-who/",
   "start_url": "/cards",
