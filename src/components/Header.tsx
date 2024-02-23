@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { CARD_TYPE, CardType } from '@/types/CardType';
@@ -49,6 +48,16 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
     }
   };
 
+  const onClickIconPageChange = () => {
+    if (confirmPageChange) {
+      if (window.confirm('編集を破棄して画面を移動しますか?')) {
+        router.push('/cards');
+      }
+    } else {
+      router.push('/cards');
+    }
+  };
+
   return (
     <div>
       <Head>
@@ -59,8 +68,8 @@ export default function Header({ cardType = 'none', confirmPageChange = false }:
 
       <AppBar position='static' sx={barStyle}>
         <Toolbar>
-          <Typography variant='h6' component='div' sx={titleStyle}>
-            <Link href='/cards'>Who!</Link>
+          <Typography variant='h6' component='div' sx={titleStyle} onClick={onClickIconPageChange}>
+            Who!
           </Typography>
 
           <Button
