@@ -1,18 +1,23 @@
 import Head from 'next/head';
 import router from 'next/router';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import DisplayCard from '@/components/Card';
+import CustomTabPanel from '@/components/CustomTabPanel';
 import EditComplete from '@/components/EditComplete';
 import InputTexts from '@/components/EditTexts';
 import Header from '@/components/Header';
 import PrimaryButton from '@/components/PrimaryButton';
+import SecondaryButton from '@/components/SecondaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardCreatePage.module.css';
 import { CARD_TYPE } from '@/types/CardType';
+import { FORM_MODE, type FormMode } from '@/types/FormMode';
 import makeHaveCard from '@/utils/ok/makeHaveCard';
 
 export default function Index() {
-  const [mode, setMode] = useState<string>('入力');
+  const [mode, setMode] = useState<FormMode>(FORM_MODE.Texts);
+  const tabIndex = mode === FORM_MODE.Texts ? 0 : 2;
+
   const [name, setName] = useState<string>('');
   const [x, setX] = useState<string>('');
   const [instagram, setInstagram] = useState<string>('');
@@ -54,50 +59,58 @@ export default function Index() {
       x,
       instagram,
     };
-    await makeHaveCard(userId, cardData);
-    router.push('/cards');
+
+    const newCardId = await makeHaveCard(userId, cardData);
+    router.push(`/card/${newCardId}`);
   };
 
-  if (mode === '入力') {
-    return (
-      <>
-        <Head>
-          <title>他人の名刺作成 - Who!</title>
-        </Head>
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-        <main>
-          <Header cardType={CARD_TYPE.Have} confirmPageChange />
+    if (!name) {
+      alert('名前を入力して下さい');
+      return;
+    }
 
-          <Preview />
+    setMode(FORM_MODE.Complete);
+  };
 
-          <InputTexts
-            name={name}
-            handleName={(event) => setName(event.target.value)}
-            instagram={instagram}
-            handleInstagram={(event) => setInstagram(event.target.value)}
-            x={x}
-            handleX={(event) => setX(event.target.value)}
-            organization={organization}
-            handleOrganization={(event) => setOrganization(event.target.value)}
-          />
-        </main>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Head>
-          <title>他人の名刺作成 - Who!</title>
-        </Head>
+  return (
+    <>
+      <Head>
+        <title>他人の名刺作成 - Who!</title>
+      </Head>
 
-        <main>
-          <Header />
+      <main>
+        <Header cardType={CARD_TYPE.Have} confirmPageChange />
 
-          <Preview />
+        <Preview />
 
-          <EditComplete handleReturned={() => setMode('入力')} handleCompleted={handleCompleted} />
-        </main>
-      </>
-    );
-  }
+        {/* texts */}
+        <CustomTabPanel value={tabIndex} index={0}>
+          <form action='submit' onSubmit={handleSubmit}>
+            <InputTexts
+              name={name}
+              handleName={(event) => setName(event.target.value)}
+              instagram={instagram}
+              handleInstagram={(event) => setInstagram(event.target.value)}
+              x={x}
+              handleX={(event) => setX(event.target.value)}
+              organization={organization}
+              handleOrganization={(event) => setOrganization(event.target.value)}
+            />
+
+            <div className={styles.completeButton}>
+              <SecondaryButton text='保存して終了' isSubmit />
+            </div>
+          </form>
+        </CustomTabPanel>
+
+        {/* complete */}
+        <CustomTabPanel value={tabIndex} index={2}>
+          <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
+        </CustomTabPanel>
+      </main>
+    </>
+  );
 }
