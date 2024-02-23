@@ -3,8 +3,9 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
+import Loading from '@/components/Loading';
+import PageTopBackButton from '@/components/PageTopBackButton';
 import SecondaryButton from '@/components/SecondaryButton';
-import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/AllCards.module.css';
 import type { CardData } from '@/types/CardData';
@@ -33,15 +34,17 @@ export default function Index() {
   }, [userId]);
 
   if (loading) {
-    <>
-      <Head>
-        <title>Who!</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      <main>
-        <h1>Loading...</h1>
-      </main>
-    </>;
+    return (
+      <>
+        <Head>
+          <title>Who!</title>
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
+        <main>
+          <Loading />
+        </main>
+      </>
+    );
   }
 
   if (!userId) {
@@ -103,8 +106,7 @@ export default function Index() {
             </div>
           </>
         )}
-
-        <ShareButton />
+        <PageTopBackButton />
       </main>
     </>
   );

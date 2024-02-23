@@ -6,6 +6,7 @@ import CustomTabPanel from '@/components/CustomTabPanel';
 import EditComplete from '@/components/EditComplete';
 import InputTexts from '@/components/EditTexts';
 import Header from '@/components/Header';
+import Loading from '@/components/Loading';
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
 import useUser from '@/hooks/useUser';
@@ -30,7 +31,7 @@ export default function Index() {
   if (loading) {
     return (
       <main>
-        <h1>Loading...</h1>
+        <Loading />
       </main>
     );
   }
