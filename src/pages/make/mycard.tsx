@@ -52,7 +52,7 @@ export default function Input() {
     );
   }
 
-  const hundleOnClickEdit = () => {
+  const hundleOnClickEdit = async () => {
     const cardData = {
       name: name,
       x: x,
@@ -61,10 +61,9 @@ export default function Input() {
       textColor: textColor,
       bgColor: bgColor,
     };
-    console.log(cardData);
-    router.push('/mycards');
 
-    makemycard(userId, cardData);
+    const newCardId = await makemycard(userId, cardData);
+    router.push(`/card/${newCardId}`);
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {

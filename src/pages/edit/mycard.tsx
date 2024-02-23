@@ -94,7 +94,7 @@ export default function Input() {
     };
 
     await updateData(cardId, cardData);
-    router.push('/mycards');
+    router.push(`/card/${cardId}`);
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {

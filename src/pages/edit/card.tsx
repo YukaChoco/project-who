@@ -82,8 +82,9 @@ export default function Index() {
       x,
       instagram,
     };
+
     await updateData(cardId, cardData);
-    router.push('/cards');
+    router.push(`/card/${cardId}`);
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {

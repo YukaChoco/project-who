@@ -59,8 +59,9 @@ export default function Index() {
       x,
       instagram,
     };
-    await makeHaveCard(userId, cardData);
-    router.push('/cards');
+
+    const newCardId = await makeHaveCard(userId, cardData);
+    router.push(`/card/${newCardId}`);
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
