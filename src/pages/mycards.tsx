@@ -60,7 +60,7 @@ export default function Index() {
         <title>自分の名刺 - Who!</title>
       </Head>
       <main className={styles.main}>
-        <Header useMenuIcon />
+        <Header cardType='mycard' />
         <div className={styles.cardlist}>
           {cardData &&
             cardData.map((data) => {

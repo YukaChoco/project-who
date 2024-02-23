@@ -1,19 +1,27 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import DisplayCard from '@/components/Card';
+import CustomTabPanel from '@/components/CustomTabPanel';
 import EditComplete from '@/components/EditComplete';
 import InputTexts from '@/components/EditTexts';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
 import PrimaryButton from '@/components/PrimaryButton';
+import SecondaryButton from '@/components/SecondaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardCreatePage.module.css';
+import { CARD_TYPE } from '@/types/CardType';
+import { FORM_MODE } from '@/types/FormMode';
 import getCardDetails from '@/utils/ok/getCardDetails';
 import updateData from '@/utils/ok/updateData';
 
 export default function Index() {
   const [mode, setMode] = useState<string>('入力');
+  const tabIndex = mode === FORM_MODE.Texts ? 0 : 2;
+
+  const [defaultCardName, setDefaultCardName] = useState<string>('');
+
   const [name, setName] = useState<string>('');
   const [x, setX] = useState<string>('');
   const [instagram, setInstagram] = useState<string>('');
@@ -23,13 +31,6 @@ export default function Index() {
 
   const router = useRouter();
   const cardId = router.query.cardId as string;
-
-  const cardData = {
-    name,
-    organization,
-    x,
-    instagram,
-  };
 
   useEffect(() => {
     async function getEarlierCardData() {
@@ -41,6 +42,7 @@ export default function Index() {
           setX(cardDetails.x);
           setInstagram(cardDetails.instagram);
           setOrganization(cardDetails.organization);
+          setDefaultCardName(cardDetails.name);
         } else {
           console.log(`not found`);
         }
@@ -78,48 +80,64 @@ export default function Index() {
   );
 
   const handleCompleted = async () => {
-    updateData(cardId, cardData);
-    router.push('/cards');
+    const cardData = {
+      name,
+      organization,
+      x,
+      instagram,
+    };
+
+    await updateData(cardId, cardData);
+    router.push(`/card/${cardId}`);
   };
-  if (mode === '入力') {
-    return (
-      <>
-        <Head>
-          <title>他人の名刺修正 - Who!</title>
-        </Head>
-        <main>
-          <Header onClick_edit={() => setMode('完了')} />
 
-          <Preview />
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-          <InputTexts
-            name={name}
-            handleName={(event) => setName(event.target.value)}
-            instagram={instagram}
-            handleInstagram={(event) => setInstagram(event.target.value)}
-            x={x}
-            handleX={(event) => setX(event.target.value)}
-            organization={organization}
-            handleOrganization={(event) => setOrganization(event.target.value)}
-          />
-        </main>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Head>
-          <title>他人の名刺修正 - Who!</title>
-        </Head>
+    if (!name) {
+      alert('名前を入力して下さい');
+      return;
+    }
 
-        <main>
-          <Header />
+    setMode(FORM_MODE.Complete);
+  };
 
-          <Preview />
+  return (
+    <>
+      <Head>
+        <title>{defaultCardName} さんの名刺修正 - Who!</title>
+      </Head>
 
-          <EditComplete handleReturned={() => setMode('入力')} handleCompleted={handleCompleted} />
-        </main>
-      </>
-    );
-  }
+      <main>
+        <Header cardType={CARD_TYPE.Have} confirmPageChange />
+
+        <Preview />
+
+        {/* texts */}
+        <CustomTabPanel value={tabIndex} index={0}>
+          <form action='submit' onSubmit={handleSubmit}>
+            <InputTexts
+              name={name}
+              handleName={(event) => setName(event.target.value)}
+              instagram={instagram}
+              handleInstagram={(event) => setInstagram(event.target.value)}
+              x={x}
+              handleX={(event) => setX(event.target.value)}
+              organization={organization}
+              handleOrganization={(event) => setOrganization(event.target.value)}
+            />
+
+            <div className={styles.completeButton}>
+              <SecondaryButton text='保存して終了' isSubmit />
+            </div>
+          </form>
+        </CustomTabPanel>
+
+        {/* complete */}
+        <CustomTabPanel value={tabIndex} index={2}>
+          <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
+        </CustomTabPanel>
+      </main>
+    </>
+  );
 }

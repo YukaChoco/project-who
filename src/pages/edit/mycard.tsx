@@ -1,16 +1,20 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import DisplayCard from '@/components/Card';
+import CustomTabPanel from '@/components/CustomTabPanel';
 import EditColors from '@/components/EditColors';
 import EditComplete from '@/components/EditComplete';
 import EditTexts from '@/components/EditTexts';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
 import PrimaryButton from '@/components/PrimaryButton';
+import SecondaryButton from '@/components/SecondaryButton';
 import SwitchButton from '@/components/SwitchButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/MycardCreatePage.module.css';
+import { CARD_TYPE } from '@/types/CardType';
+import { FORM_MODE, FormMode } from '@/types/FormMode';
 import getCardDetails from '@/utils/ok/getCardDetails';
 import updateData from '@/utils/ok/updateData';
 
@@ -25,17 +29,9 @@ export default function Input() {
   const router = useRouter();
   const { userId, loading } = useUser();
   const [mode, setMode] = useState<string>('入力');
+  const tabIndex = mode === FORM_MODE.Texts ? 0 : mode === FORM_MODE.Colors ? 1 : 2;
 
   const cardId = router.query.cardId as string;
-
-  const cardData = {
-    name,
-    organization,
-    x,
-    instagram,
-    textColor,
-    bgColor,
-  };
 
   useEffect(() => {
     async function getEarlierCardData() {
@@ -81,12 +77,6 @@ export default function Input() {
     );
   }
 
-  const handleAlignment = (event: React.MouseEvent<HTMLElement>, newAlignment: string | null) => {
-    if (newAlignment !== null) {
-      setMode(newAlignment);
-    }
-  };
-
   const Preview = () => (
     <div className={styles.preview}>
       <p>プレビュー</p>
@@ -95,65 +85,96 @@ export default function Input() {
   );
 
   const handleCompleted = async () => {
-    updateData(cardId, cardData);
-    router.push('/mycards');
+    const cardData = {
+      name: name,
+      x: x,
+      instagram: instagram,
+      organization: organization,
+      textColor: textColor,
+      bgColor: bgColor,
+    };
+
+    await updateData(cardId, cardData);
+    router.push(`/card/${cardId}`);
   };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!name) {
+      alert('名前を入力して下さい');
+      return;
+    } else if (bgColor === textColor) {
+      alert('文字色と背景色には異なる色を指定してください。');
+      return;
+    }
+
+    setMode(FORM_MODE.Complete);
+  };
+
+  const handleSwitch = (event: React.MouseEvent<HTMLElement>, newAlignment: FormMode | null) => {
+    if (newAlignment !== null) {
+      setMode(newAlignment);
+    }
+  };
+
+  const ShowSwitchButton = () => (
+    <div className={styles.swith}>
+      <SwitchButton leftName={FORM_MODE.Texts} rightName={FORM_MODE.Colors} value={mode} onChange={handleSwitch} />
+    </div>
+  );
 
   return (
     <>
       <Head>
-        <title>他人の名刺修正 - Who!</title>
+        <title>自分の名刺修正 - Who!</title>
       </Head>
 
       <main className={styles.main}>
-        <Header onClick_edit={() => setMode('完了')} />
+        <Header cardType={CARD_TYPE.My} confirmPageChange />
 
         <Preview />
 
-        <div className={styles.change}>
-          {(() => {
-            if (mode == 'デザイン') {
-              return (
-                <div>
-                  <div className={styles.swith}>
-                    <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} />
-                  </div>
+        <form className={styles.change} onSubmit={handleSubmit}>
+          {/* texts */}
+          <CustomTabPanel value={tabIndex} index={0}>
+            <ShowSwitchButton />
+            <EditTexts
+              name={name}
+              handleName={(event) => setName(event.target.value)}
+              instagram={instagram}
+              handleInstagram={(event) => setInstagram(event.target.value)}
+              x={x}
+              handleX={(event) => setX(event.target.value)}
+              organization={organization}
+              handleOrganization={(event) => setOrganization(event.target.value)}
+            />
+          </CustomTabPanel>
 
-                  <EditColors
-                    textColor={textColor}
-                    handleTextColor={(event) => setTextColor(event.target.value)}
-                    bgColor={bgColor}
-                    handleBgColor={(event) => setBgColor(event.target.value)}
-                  />
-                </div>
-              );
-            } else if (mode == '入力') {
-              return (
-                <div>
-                  <div className={styles.swith}>
-                    <SwitchButton leftName={'入力'} rightName={'デザイン'} value={''} onChange={handleAlignment} />
-                  </div>
-                  <EditTexts
-                    name={name}
-                    handleName={(event) => setName(event.target.value)}
-                    instagram={instagram}
-                    handleInstagram={(event) => setInstagram(event.target.value)}
-                    x={x}
-                    handleX={(event) => setX(event.target.value)}
-                    organization={organization}
-                    handleOrganization={(event) => setOrganization(event.target.value)}
-                  />
-                </div>
-              );
-            } else {
-              return (
-                <div className={styles.editBtn}>
-                  <EditComplete handleReturned={() => setMode('入力')} handleCompleted={handleCompleted} />
-                </div>
-              );
-            }
-          })()}
-        </div>
+          {/* colors */}
+          <CustomTabPanel value={tabIndex} index={1}>
+            <ShowSwitchButton />
+            <EditColors
+              textColor={textColor}
+              handleTextColor={(event) => setTextColor(event.target.value)}
+              bgColor={bgColor}
+              handleBgColor={(event) => setBgColor(event.target.value)}
+            />
+          </CustomTabPanel>
+
+          {/* complete */}
+          <CustomTabPanel value={tabIndex} index={2}>
+            <div className={styles.editButton}>
+              <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
+            </div>
+          </CustomTabPanel>
+
+          {mode !== FORM_MODE.Complete ? (
+            <div className={styles.completeButton}>
+              <SecondaryButton text='保存して終了' isSubmit />
+            </div>
+          ) : null}
+        </form>
       </main>
     </>
   );

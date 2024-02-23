@@ -11,7 +11,6 @@ export interface CardData {
 }
 
 export interface MakeMyCardData extends Pick<CardData, 'name' | 'organization' | 'x' | 'instagram' | 'textColor' | 'bgColor'> {}
-export interface EditMyCardData extends Pick<CardData, 'name' | 'organization' | 'x' | 'instagram'> {}
 export interface MakeOthersCardData extends Pick<CardData, 'name' | 'organization' | 'x' | 'instagram'> {}
 
 export interface GetCardData extends Omit<CardData, 'id'> {}
