@@ -5,6 +5,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
 import styles from '@/styles/Index.module.css';
 import firebaseLogin from '@/utils/ok/firebaseLogin';
+import firebaseSignOut from '@/utils/ok/firebaseSignOut';
 
 export default function Index() {
   const router = useRouter();
@@ -34,9 +35,9 @@ export default function Index() {
 
           <div className={styles.button}>
             <PrimaryButton
-              text='新規登録'
+              text='ログインせずに始める'
               onClick={async () => {
-                await firebaseLogin();
+                await firebaseSignOut();
                 router.push(nextUrl);
               }}
             />
