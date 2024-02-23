@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
+import PageTopBackButton from '@/components/PageTopBackButton';
 import SecondaryButton from '@/components/SecondaryButton';
-import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/AllCards.module.css';
 import type { CardData } from '@/types/CardData';
@@ -70,8 +70,7 @@ export default function Index() {
           // 名刺が存在しない時
           <h1>登録された名刺がありません</h1>
         )}
-
-        <ShareButton />
+        <PageTopBackButton />
       </main>
     </>
   );
