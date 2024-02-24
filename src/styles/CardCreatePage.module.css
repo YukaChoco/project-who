@@ -13,3 +13,12 @@
   padding-left: 1em;
   font-size: small;
 }
+
+.completeButton {
+  width: 100%;
+  z-index: 5;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  padding: 20px;
+}
