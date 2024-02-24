@@ -27,8 +27,6 @@ export default function Index() {
 
   const { userId, loading } = useUser();
 
-  const isLoginUser = userId !== null;
-
   useEffect(() => {
     const fetchCardDetails = async () => {
       if (cardId) {
@@ -75,7 +73,7 @@ export default function Index() {
     } else if (cardType === CARD_TYPE.Have) {
       // カード登録済みのユーザ
       return <SecondaryButton text='登録済み' disabled />;
-    } else if (isLoginUser) {
+    } else if (userId) {
       //ログインユーザ
       return (
         <SecondaryButton
