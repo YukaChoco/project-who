@@ -56,25 +56,26 @@ export default function Index() {
   };
 
   const showButtons = () => {
-    if (cardData?.authorId === userId) {
-      // 名刺作成者
-      return (
-        <>
-          <Box sx={{ margin: '15px 0px' }}>
-            <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
-          </Box>
-          {cardType === CARD_TYPE.My && (
+    if (userId) {
+      if (cardData?.authorId === userId) {
+        // 名刺作成者
+        return (
+          <>
             <Box sx={{ margin: '15px 0px' }}>
-              <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
+              <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
             </Box>
-          )}
-        </>
-      );
-    } else if (cardType === CARD_TYPE.Have) {
-      // カード登録済みのユーザ
-      return <SecondaryButton text='登録済み' disabled />;
-    } else if (userId) {
-      //ログインユーザ
+            {cardType === CARD_TYPE.My && (
+              <Box sx={{ margin: '15px 0px' }}>
+                <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
+              </Box>
+            )}
+          </>
+        );
+      } else if (cardType === CARD_TYPE.Have) {
+        // カード登録済みのユーザ
+        return <SecondaryButton text='登録済み' disabled />;
+      }
+      // その他のログインユーザ
       return (
         <SecondaryButton
           text='この名刺を登録する'
