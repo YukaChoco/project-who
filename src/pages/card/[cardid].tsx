@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Card from '@/components/Card';
+import DeleteButton from '@/components/DeleteButton';
 import DisplayText from '@/components/DisplayText';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
@@ -73,11 +74,17 @@ export default function Index() {
               <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
             </Box>
           )}
+          <DeleteButton text='この名刺を削除する' onClick={() => console.log('削除')} />
         </>
       );
     } else if (cardType === CARD_TYPE.Have) {
       // カード登録済みのユーザ
-      return <SecondaryButton text='登録済み' disabled />;
+      return (
+        <>
+          <SecondaryButton text='登録済み' disabled />
+          <DeleteButton text='この名刺を未登録に戻す' onClick={() => console.log('登録削除')} />
+        </>
+      );
     } else if (isLoginUser) {
       //ログインユーザ
       return <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} />;
@@ -142,7 +149,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className={styles.container}>{showButtons()}</div>
+          <div className={styles.button_container}>{showButtons()}</div>
         </main>
       </>
     );
