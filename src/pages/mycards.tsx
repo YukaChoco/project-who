@@ -4,6 +4,7 @@ import router from 'next/router';
 import { useEffect, useState } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
+import Loading from '@/components/Loading';
 import NewCard from '@/components/NewCard';
 import PrimaryButton from '@/components/PrimaryButton';
 import QRCode from '@/components/QRCode';
@@ -36,7 +37,7 @@ export default function Detail() {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <main>
-          <h1>Loading...</h1>
+          <Loading />
         </main>
       </>
     );
@@ -46,7 +47,7 @@ export default function Detail() {
     return (
       <main>
         <>
-          <Header useMenuIcon />
+          <Header cardType='mycard' />
           <h1>ログインされていません</h1>
           <SecondaryButton text='ログイン画面へ' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
         </>
@@ -60,7 +61,7 @@ export default function Detail() {
           <title>自分の名刺 - Who!</title>
         </Head>
         <main className={styles.main}>
-          <Header useMenuIcon />
+          <Header cardType='mycard' />
           <div className={styles.maintext}>あなたの名刺</div>
           <NewCard />
           <div className={styles.maintext1}>
@@ -83,8 +84,8 @@ export default function Detail() {
         <title>自分の名刺 - Who!</title>
       </Head>
       <main className={styles.main}>
+        <Header cardType='mycard' />
         <div className={styles.cardlist}>
-          <Header useMenuIcon />
           <div className={styles.maintext}>あなたの名刺</div>
           <Box sx={{ width: '100%' }}>{display}</Box>
           <div className={styles.maintext1}>QRコードを読み込んで名刺を共有</div>

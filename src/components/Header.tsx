@@ -1,19 +1,16 @@
 /* eslint-disable @next/next/no-page-custom-font */
-import SearchIcon from '@mui/icons-material/Search';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import Head from 'next/head';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import * as React from 'react';
-import Drawer from '@/components/Drawer';
+import { CARD_TYPE, CardType } from '@/types/CardType';
 
 interface HeaderProps {
-  useSearchIcon?: boolean;
-  useMenuIcon?: boolean;
-  onClick_edit?: () => void;
-  onClick_register?: () => void;
+  cardType?: CardType;
+  confirmPageChange?: boolean;
 }
 
-export default function Header({ useSearchIcon = false, useMenuIcon = false, onClick_edit = undefined, onClick_register = undefined }: HeaderProps) {
+export default function Header({ cardType = 'none', confirmPageChange = false }: HeaderProps) {
   const barStyle = {
     width: '100%',
     position: 'fixed',
@@ -28,8 +25,37 @@ export default function Header({ useSearchIcon = false, useMenuIcon = false, onC
     fontFamily: "'Lemon', serif",
     flexGrow: 1,
   };
-  const iconStyle = {
-    margin: '0 3px 0 0',
+
+  const router = useRouter();
+
+  const onClickMyCardPageChange = () => {
+    if (confirmPageChange) {
+      if (window.confirm('編集を破棄して画面を移動しますか?')) {
+        router.push('/mycards');
+      }
+    } else {
+      router.push('/mycards');
+    }
+  };
+
+  const onClickCardPageChange = () => {
+    if (confirmPageChange) {
+      if (window.confirm('編集を破棄して画面を移動しますか?')) {
+        router.push('/cards');
+      }
+    } else {
+      router.push('/cards');
+    }
+  };
+
+  const onClickIconPageChange = () => {
+    if (confirmPageChange) {
+      if (window.confirm('編集を破棄して画面を移動しますか?')) {
+        router.push('/cards');
+      }
+    } else {
+      router.push('/cards');
+    }
   };
 
   return (
@@ -42,30 +68,51 @@ export default function Header({ useSearchIcon = false, useMenuIcon = false, onC
 
       <AppBar position='static' sx={barStyle}>
         <Toolbar>
-          <Typography variant='h6' component='div' sx={titleStyle}>
-            <Link href='/cards'>Who!</Link>
+          <Typography variant='h6' component='div' sx={titleStyle} onClick={onClickIconPageChange}>
+            Who!
           </Typography>
-          {useSearchIcon && (
-            <IconButton size='large' color='inherit' sx={iconStyle}>
-              <Link href='/upgrade'>
-                <SearchIcon />
-              </Link>
-            </IconButton>
-          )}
 
-          {useMenuIcon && <Drawer />}
+          <Button
+            color='inherit'
+            onClick={onClickMyCardPageChange}
+            sx={{
+              fontSize: '0.8125rem',
+              fontFamily: "'Lemon'",
+            }}
+          >
+            <Box
+              sx={{
+                lineHeight: '0.8125rem',
+                boxShadow: cardType == CARD_TYPE.My ? '0px 4px 5px -5px white' : 'none',
+                borderBottom: cardType == CARD_TYPE.My ? '1.5px solid white' : 'none',
+              }}
+            >
+              自分の名刺
+              <br />
+              <span style={{ fontSize: '0.5rem', textTransform: 'lowercase' }}>my card</span>
+            </Box>
+          </Button>
 
-          {onClick_edit !== undefined && (
-            <Button color='inherit' onClick={onClick_edit}>
-              編集完了
-            </Button>
-          )}
-
-          {onClick_register !== undefined && (
-            <Button color='inherit' onClick={onClick_register}>
-              登録
-            </Button>
-          )}
+          <Button
+            color='inherit'
+            onClick={onClickCardPageChange}
+            sx={{
+              fontSize: '0.8125rem',
+              fontFamily: "'Lemon'",
+            }}
+          >
+            <Box
+              sx={{
+                lineHeight: '0.8125rem',
+                boxShadow: cardType == CARD_TYPE.Have ? '0px 4px 5px -5px white' : 'none',
+                borderBottom: cardType == CARD_TYPE.Have ? '1.5px solid white' : 'none',
+              }}
+            >
+              他人の名刺
+              <br />
+              <span style={{ fontSize: '0.5rem', textTransform: 'lowercase' }}>friend card</span>
+            </Box>
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

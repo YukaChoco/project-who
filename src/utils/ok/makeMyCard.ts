@@ -8,6 +8,9 @@ export default async function makeMyCard(userId: string, docData: MakeMyCardData
     authorId: userId,
     protected: false,
   };
+
   const newCardId = await addCardData(cardData);
-  addMyCardId(userId, newCardId);
+  await addMyCardId(userId, newCardId);
+
+  return newCardId;
 }

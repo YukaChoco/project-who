@@ -4,6 +4,7 @@ import router from 'next/router';
 import { useEffect, useState } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
+import Loading from '@/components/Loading';
 import PrimaryButton from '@/components/PrimaryButton';
 import QRCode from '@/components/QRCode';
 import SecondaryButton from '@/components/SecondaryButton';
@@ -34,7 +35,7 @@ export default function Detail() {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <main>
-          <h1>Loading...</h1>
+          <Loading />
         </main>
       </>
     );
@@ -44,7 +45,7 @@ export default function Detail() {
     return (
       <main>
         <>
-          <Header useMenuIcon />
+          <Header />
           <h1>ログインされていません</h1>
           <SecondaryButton text='ログイン画面へ' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
         </>
@@ -55,7 +56,7 @@ export default function Detail() {
     return (
       <main>
         <>
-          <Header useMenuIcon />
+          <Header />
           <h1>自分の名刺がありません</h1>
           <SecondaryButton text='自分の名刺を作成する' onClick={() => router.push('/make/mycard')} />
         </>
@@ -73,7 +74,7 @@ export default function Detail() {
       </Head>
       <main className={styles.main}>
         <div className={styles.list}>
-          <Header useMenuIcon />
+          <Header />
           <div className={styles.qrcode}>
             <QRCode url={`${window.location.origin}/card/${cardData[0].id}`} />
           </div>

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Card from '@/components/Card';
 import DisplayText from '@/components/DisplayText';
 import Header from '@/components/Header';
+import Loading from '@/components/Loading';
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
 import useUser from '@/hooks/useUser';
@@ -12,7 +13,7 @@ import styles from '@/styles/CardDetail.module.css';
 import type { CardData } from '@/types/CardData';
 import { CARD_TYPE, CardType } from '@/types/CardType';
 import addHaveCardId from '@/utils/ok/addHaveCardId';
-import getCardDetils from '@/utils/ok/getCardDetils';
+import getCardDetils from '@/utils/ok/getCardDetails';
 import getCardType from '@/utils/ok/getCardType';
 import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
 
@@ -99,7 +100,7 @@ export default function Index() {
     return (
       <>
         <main>
-          <h1>Loading...</h1>
+          <Loading />
         </main>
       </>
     );
@@ -109,7 +110,7 @@ export default function Index() {
     if (cardData.protected && cardData.authorId !== userId) {
       return (
         <main className='error'>
-          <Header useSearchIcon useMenuIcon />
+          <Header cardType={CARD_TYPE.Have} />
           <div>
             <h1>この名刺は閲覧できません</h1>
             <p>※この名刺は本人が作成した名刺ではないため、作成者しか閲覧できません。</p>
@@ -124,7 +125,7 @@ export default function Index() {
         </Head>
 
         <main>
-          <Header useSearchIcon useMenuIcon />
+          <Header cardType={CARD_TYPE.Have} />
 
           <div className={styles.container}>
             <Card {...cardData} urlEnabled />
@@ -148,7 +149,7 @@ export default function Index() {
   } else {
     return (
       <main className='error'>
-        <Header useSearchIcon useMenuIcon />
+        <Header cardType={CARD_TYPE.Have} />
         <h1>存在しない名刺です</h1>
       </main>
     );

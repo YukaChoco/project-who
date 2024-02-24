@@ -10,6 +10,9 @@ export default async function makeHaveCard(userId: string, docData: MakeOthersCa
     bgColor: '#FFF',
     protected: true,
   };
+
   const newCardId = await addCardData(cardData);
-  addHaveCardId(userId, newCardId);
+  await addHaveCardId(userId, newCardId);
+
+  return newCardId;
 }

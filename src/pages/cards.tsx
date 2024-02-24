@@ -3,8 +3,9 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
+import Loading from '@/components/Loading';
+import PageTopBackButton from '@/components/PageTopBackButton';
 import SecondaryButton from '@/components/SecondaryButton';
-import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/AllCards.module.css';
 import type { CardData } from '@/types/CardData';
@@ -12,6 +13,8 @@ import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId';
 
 export default function Index() {
   const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
+  const [exampleCardDatas, setExampleCardDatas] = useState<CardData[] | null>(null);
+  const [fetching, setFetching] = useState<boolean>(true);
 
   const router = useRouter();
 
@@ -21,32 +24,52 @@ export default function Index() {
     const fetchUsers = async () => {
       if (userId) {
         const haveCardDetails = await getHaveCardDetailsByUserId(userId);
-        setCardDatas(haveCardDetails);
+        if (haveCardDetails) {
+          setCardDatas(haveCardDetails);
+          setFetching(false);
+        }
       }
+      const exampleCardDetails = await getHaveCardDetailsByUserId('exampleDocument');
+      setExampleCardDatas(exampleCardDetails);
+      setFetching(false);
     };
     fetchUsers();
   }, [userId]);
 
-  if (loading) {
-    <>
-      <Head>
-        <title>Who!</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      <main>
-        <h1>Loading...</h1>
-      </main>
-    </>;
+  if (loading && fetching) {
+    return (
+      <>
+        <Head>
+          <title>Who!</title>
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
+        <main>
+          <Loading />
+        </main>
+      </>
+    );
   }
 
   if (!userId) {
     return (
       <main>
-        <>
-          <Header />
-          <h1>ログインされていません</h1>
+        <Header />
+
+        <div className={styles.buttonWrapper}>
           <SecondaryButton text='ログイン画面へ' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
-        </>
+        </div>
+
+        <div className={styles.text}>
+          <div>ログインしていません。</div>
+          <div>ログインして実際に機能を使ってみましょう！</div>
+        </div>
+
+        <div className={styles.cardlist}>
+          {exampleCardDatas &&
+            exampleCardDatas.map((data) => {
+              return <DisplayCard urlEnabled={false} key={data.id} {...data} link={`/card/${data.id}`} />;
+            })}
+        </div>
       </main>
     );
   }
@@ -58,7 +81,12 @@ export default function Index() {
       </Head>
 
       <main>
-        <Header useMenuIcon />
+        <Header cardType='card' />
+
+        <div className={styles.buttonWrapper}>
+          <SecondaryButton text='+アカウントメモの追加' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
+        </div>
+
         {cardDatas ? (
           // 名刺が存在する時
           <div className={styles.cardlist}>
@@ -68,10 +96,20 @@ export default function Index() {
           </div>
         ) : (
           // 名刺が存在しない時
-          <h1>登録された名刺がありません</h1>
+          <>
+            <div className={styles.text}>
+              <div>データが存在しません。</div>
+              <div>新たな友人の名刺を獲得しましょう！</div>
+            </div>
+            <div className={styles.cardlist}>
+              {exampleCardDatas &&
+                exampleCardDatas.map((data) => {
+                  return <DisplayCard urlEnabled={false} key={data.id} {...data} link={`/card/${data.id}`} />;
+                })}
+            </div>
+          </>
         )}
-
-        <ShareButton />
+        <PageTopBackButton />
       </main>
     </>
   );
