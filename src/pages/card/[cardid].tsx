@@ -23,7 +23,7 @@ export default function Index() {
 
   const [cardData, setCardData] = useState<CardData | null>(null);
   const [cardType, setCardType] = useState<CardType>(CARD_TYPE.None);
-  const [isRegisterLoading, setRegistertLoading] = useState<boolean>(false);
+  const [isFirebaseLoading, setFirebaseLoading] = useState<boolean>(true);
 
   const { userId, loading } = useUser();
 
@@ -38,21 +38,18 @@ export default function Index() {
           const fetchCardType = await getCardType(userId, cardId);
           setCardType(fetchCardType);
         }
-        //loading false
       }
+      setFirebaseLoading(false);
     };
     fetchCardDetails();
   }, [cardId, userId]);
 
   const handleRegisterButton = async () => {
     if (userId) {
-      setRegistertLoading(true);
       const result = await addHaveCardId(userId, cardId);
       if (result) {
         setCardType(CARD_TYPE.My);
-        setRegistertLoading(false);
       } else {
-        setRegistertLoading(false);
         console.error('登録に失敗しました');
       }
     } else {
@@ -80,7 +77,16 @@ export default function Index() {
       return <SecondaryButton text='登録済み' disabled />;
     } else if (isLoginUser) {
       //ログインユーザ
-      return <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} />;
+      return (
+        <SecondaryButton
+          text='この名刺を登録する'
+          onClick={async () => {
+            setFirebaseLoading(true);
+            await handleRegisterButton();
+            window.location.reload();
+          }}
+        />
+      );
     }
     return (
       //非ログインユーザ
@@ -96,7 +102,7 @@ export default function Index() {
     );
   };
 
-  if (loading || isRegisterLoading) {
+  if (loading || isFirebaseLoading) {
     return (
       <>
         <main>
