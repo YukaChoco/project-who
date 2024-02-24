@@ -1,9 +1,9 @@
 {
   "theme_color": "#6F80BF",
-  "background_color": "#6F80BF",
+  "background_color": "#FFF",
   "display": "standalone",
   "scope": "/project-who/",
-  "start_url": "/cards",
+  "start_url": "/mycards",
   "name": "Who!",
   "short_name": "Who!",
   "description": "大学生に向けたオンライン名刺交換アプリケーション「Who!」です。SNSのアカウントなどのプロフィール情報を、名刺で交換することができます。",
