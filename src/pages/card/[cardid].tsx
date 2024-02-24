@@ -66,9 +66,9 @@ export default function Index() {
       // 名刺作成者
       return (
         <>
-          <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
-          {cardType === CARD_TYPE.My && <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />}
-          <DeleteButton text='この名刺を削除する' onClick={() => console.log('削除')} />
+          <PrimaryButton text='編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
+          {cardType === CARD_TYPE.My && <SecondaryButton text='共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />}
+          <DeleteButton text='削除する' onClick={() => console.log('削除')} />
         </>
       );
     } else if (cardType === CARD_TYPE.Have) {
@@ -76,17 +76,17 @@ export default function Index() {
       return (
         <>
           <SecondaryButton text='登録済み' disabled />
-          <DeleteButton text='この名刺を未登録に戻す' onClick={() => console.log('登録削除')} />
+          <DeleteButton text='未登録に戻す' onClick={() => console.log('登録削除')} />
         </>
       );
     } else if (isLoginUser) {
       //ログインユーザ
-      return <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} />;
+      return <SecondaryButton text='登録する' onClick={handleRegisterButton} />;
     }
     return (
       //非ログインユーザ
       <>
-        <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} disabled />
+        <SecondaryButton text='登録する' onClick={handleRegisterButton} disabled />
         <Box>
           <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
           <Typography sx={{ textAlign: 'center' }}>※名刺の登録にはログインが必要です</Typography>
