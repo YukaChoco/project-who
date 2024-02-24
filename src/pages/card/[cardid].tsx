@@ -63,11 +63,11 @@ export default function Index() {
         return (
           <>
             <Box sx={{ margin: '15px 0px' }}>
-              <PrimaryButton text='編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
+              <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
             </Box>
             {cardType === CARD_TYPE.My && (
               <Box sx={{ margin: '15px 0px' }}>
-                <SecondaryButton text='共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
+                <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
               </Box>
             )}
           </>
@@ -79,7 +79,7 @@ export default function Index() {
       // その他のログインユーザ
       return (
         <SecondaryButton
-          text='登録する'
+          text='この名刺を登録する'
           onClick={async () => {
             setFirebaseLoading(true);
             await handleRegisterButton();
@@ -92,7 +92,7 @@ export default function Index() {
       //非ログインユーザ
       <>
         <Box sx={{ margin: '15px 0px' }}>
-          <SecondaryButton text='登録する' disabled />
+          <SecondaryButton text='この名刺を登録する' disabled />
         </Box>
         <Box sx={{ margin: '15px 0px' }}>
           <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
