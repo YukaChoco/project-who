@@ -91,7 +91,7 @@ export default function Index() {
       //非ログインユーザ
       <>
         <Box sx={{ margin: '15px 0px' }}>
-          <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} disabled />
+          <SecondaryButton text='この名刺を登録する' disabled />
         </Box>
         <Box sx={{ margin: '15px 0px' }}>
           <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
@@ -103,11 +103,9 @@ export default function Index() {
 
   if (loading || isFirebaseLoading) {
     return (
-      <>
-        <main>
-          <Loading />
-        </main>
-      </>
+      <main>
+        <Loading />
+      </main>
     );
   }
 
