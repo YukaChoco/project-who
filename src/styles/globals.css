@@ -56,7 +56,8 @@ body {
 }
 
 main {
-  padding: 80px 22px 0px 22px;
+  padding: 80px 22px 10px 22px;
+  min-height: 100vh;
 }
 
 main.error {
