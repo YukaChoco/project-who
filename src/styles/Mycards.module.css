@@ -27,3 +27,11 @@
   margin-top: 10%;
   margin-bottom: 10%;
 }
+.maintext {
+  font-size: 18px;
+}
+.maintext1 {
+  font-size: 15px;
+  align-items: center;
+  text-align: center;
+}

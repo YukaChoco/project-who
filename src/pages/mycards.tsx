@@ -61,8 +61,12 @@ export default function Detail() {
         </Head>
         <main className={styles.main}>
           <Header useMenuIcon />
-          <h1>自分の名刺がありません</h1>
+          <div className={styles.maintext}>あなたの名刺</div>
           <NewCard />
+          <div className={styles.maintext1}>
+            共有する名刺が存在しません！<br></br>
+            名刺を作成してあなたの名刺を共有しましょう
+          </div>
           <div className={styles.returnHomeButton}>
             <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
           </div>
@@ -81,16 +85,18 @@ export default function Detail() {
       <main className={styles.main}>
         <div className={styles.cardlist}>
           <Header useMenuIcon />
+          <div className={styles.maintext}>あなたの名刺</div>
+          <Box sx={{ width: '100%' }}>{display}</Box>
+          <div className={styles.maintext1}>QRコードを読み込んで名刺を共有</div>
           <div className={styles.qrcode}>
             <QRCode url={`${window.location.origin}/card/${cardData[0].id}`} />
           </div>
-          <Box sx={{ width: '100%' }}>{display}</Box>
         </div>
         <div className={styles.returnbutton}>
           <PrimaryButton text={'名刺の詳細へ'} onClick={() => router.push('/card/' + cardData[0].id)} />
         </div>
         <div className={styles.returnbutton}>
-          <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
+          <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData[0].id)} />
         </div>
         <ShareButton />
       </main>
