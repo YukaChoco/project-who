@@ -21,7 +21,7 @@ export default function Index() {
   const { userId, loading } = useUser();
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchCards = async () => {
       if (userId) {
         const haveCardDetails = await getHaveCardDetailsByUserId(userId);
         if (haveCardDetails) {
@@ -33,8 +33,10 @@ export default function Index() {
       setExampleCardDatas(exampleCardDetails);
       setFetching(false);
     };
-    fetchUsers();
-  }, [userId]);
+    if (!loading) {
+      fetchCards();
+    }
+  }, [loading, userId]);
 
   if (loading && fetching) {
     return (

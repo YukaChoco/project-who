@@ -23,8 +23,10 @@ export default function Index() {
         setCardDatas(cardData);
       }
     };
-    fetchCards();
-  }, [userId]);
+    if (!loading) {
+      fetchCards();
+    }
+  }, [loading, userId]);
 
   if (loading) {
     return (
