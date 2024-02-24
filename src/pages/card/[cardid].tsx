@@ -66,14 +66,8 @@ export default function Index() {
       // 名刺作成者
       return (
         <>
-          <Box sx={{ margin: '15px 0px' }}>
-            <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
-          </Box>
-          {cardType === CARD_TYPE.My && (
-            <Box sx={{ margin: '15px 0px' }}>
-              <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
-            </Box>
-          )}
+          <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
+          {cardType === CARD_TYPE.My && <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />}
           <DeleteButton text='この名刺を削除する' onClick={() => console.log('削除')} />
         </>
       );
@@ -92,10 +86,8 @@ export default function Index() {
     return (
       //非ログインユーザ
       <>
-        <Box sx={{ margin: '15px 0px' }}>
-          <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} disabled />
-        </Box>
-        <Box sx={{ margin: '15px 0px' }}>
+        <SecondaryButton text='この名刺を登録する' onClick={handleRegisterButton} disabled />
+        <Box>
           <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
           <Typography sx={{ textAlign: 'center' }}>※名刺の登録にはログインが必要です</Typography>
         </Box>
@@ -131,7 +123,7 @@ export default function Index() {
           <title>{cardData.name}さんの名刺-Who!</title>
         </Head>
 
-        <main>
+        <main className={styles.wrapper}>
           <Header cardType={CARD_TYPE.Have} />
 
           <div className={styles.container}>
@@ -148,6 +140,8 @@ export default function Index() {
               <DisplayText title='Instagram' detail={cardData.instagram} url={toInstagramProfileURL(cardData.instagram)} isSNSId />
             </div>
           </div>
+
+          <div className={styles.space} />
 
           <div className={styles.button_container}>{showButtons()}</div>
         </main>
