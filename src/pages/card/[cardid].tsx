@@ -23,11 +23,12 @@ export default function Index() {
 
   const [cardData, setCardData] = useState<CardData | null>(null);
   const [cardType, setCardType] = useState<CardType>(CARD_TYPE.None);
-  const [isFirebaseLoading, setFirebaseLoading] = useState<boolean>(true);
+  const [isFirebaseLoading, setFirebaseLoading] = useState<boolean>(false);
 
   const { userId, loading } = useUser();
 
   useEffect(() => {
+    setFirebaseLoading(true);
     const fetchCardDetails = async () => {
       if (cardId) {
         const fetchCardData = await getCardDetils(cardId);
@@ -101,7 +102,7 @@ export default function Index() {
     );
   };
 
-  if (loading || isFirebaseLoading) {
+  if (loading || isFirebaseLoading || cardId === undefined) {
     return (
       <main>
         <Loading />
