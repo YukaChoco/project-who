@@ -84,7 +84,7 @@ export default function Index() {
         <Header cardType='card' />
 
         <div className={styles.buttonWrapper}>
-          <SecondaryButton text='+アカウントメモの追加' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
+          <SecondaryButton text='+アカウントメモの追加' onClick={() => router.push(`/make/card`)} />
         </div>
 
         {cardDatas ? (
