@@ -76,7 +76,7 @@ export default function Detail() {
       </>
     );
 
-  const display = <DisplayCard key={cardData[0].id} {...cardData[0]} urlEnabled />;
+  const display = <DisplayCard key={cardData[0].id} {...cardData[0]} urlEnabled link={'/edit/mycard?cardId=' + cardData[0].id} />;
 
   return (
     <>
@@ -93,13 +93,12 @@ export default function Detail() {
             <QRCode url={`${window.location.origin}/card/${cardData[0].id}`} />
           </div>
         </div>
-        <div className={styles.returnbutton}>
-          <PrimaryButton text={'名刺の詳細へ'} onClick={() => router.push('/card/' + cardData[0].id)} />
-        </div>
-        <div className={styles.returnbutton}>
+        <Box sx={{ margin: '15px 0px' }}>
           <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData[0].id)} />
-        </div>
-        <ShareButton />
+        </Box>
+        <Box sx={{ margin: '15px 0px' }}>
+          <SecondaryButton text={'SNSで名刺を共有する'} onClick={() => console.log('share')} />
+        </Box>
       </main>
     </>
   );
