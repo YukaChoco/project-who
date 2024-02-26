@@ -30,8 +30,6 @@ export default function Detail() {
   const [showPopup, setShowPopup] = useState(false);
   const [fetching, setFetching] = useState<boolean>(false);
 
-  console.log(fetching);
-
   useEffect(() => {
     const fetchCards = async () => {
       if (userId) {
