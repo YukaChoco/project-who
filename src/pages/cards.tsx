@@ -12,7 +12,7 @@ import type { CardData } from '@/types/CardData';
 import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId';
 
 export default function Index() {
-  const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
+  const [cardDatas, setCardDatas] = useState<CardData[] | null>(null);
   const [exampleCardDatas, setExampleCardDatas] = useState<CardData[] | null>(null);
   const [fetching, setFetching] = useState<boolean>(true);
 
@@ -21,7 +21,7 @@ export default function Index() {
   const { userId, loading } = useUser();
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchCards = async () => {
       if (userId) {
         const haveCardDetails = await getHaveCardDetailsByUserId(userId);
         if (haveCardDetails) {
@@ -33,8 +33,10 @@ export default function Index() {
       setExampleCardDatas(exampleCardDetails);
       setFetching(false);
     };
-    fetchUsers();
-  }, [userId]);
+    if (!loading) {
+      fetchCards();
+    }
+  }, [loading, userId]);
 
   if (loading && fetching) {
     return (
