@@ -116,6 +116,7 @@ export default function Detail() {
     display: 'flex',
     justifyContent: 'space-evenly',
   };
+  const shareURL = `${window.location.origin}/card/${cardData.id}`;
 
   return (
     <>
@@ -133,7 +134,7 @@ export default function Detail() {
         <div className={styles.with_data}>
           <div className={styles.helper_text}>QRコードを読み込んで名刺を共有</div>
           <div className={styles.qrcode}>
-            <QRCode url={`${window.location.origin}/card/${cardData.id}`} />
+            <QRCode url={shareURL} />
           </div>
         </div>
 
@@ -148,16 +149,16 @@ export default function Detail() {
                     &times;
                   </span>
                   <Box sx={snsContainer}>
-                    <FacebookShareButton url={`${window.location.origin}/card/${cardData.id}`}>
+                    <FacebookShareButton url={shareURL}>
                       <FacebookIcon size={64} round />
                     </FacebookShareButton>
-                    <TwitterShareButton url={`${window.location.origin}/card/${cardData.id}`}>
+                    <TwitterShareButton url={shareURL}>
                       <TwitterIcon size={64} round />
                     </TwitterShareButton>
-                    <LineShareButton url={`${window.location.origin}/card/${cardData.id}`}>
+                    <LineShareButton url={shareURL}>
                       <LineIcon size={64} round />
                     </LineShareButton>
-                    <EmailShareButton url={`${window.location.origin}/card/${cardData.id}`}>
+                    <EmailShareButton url={shareURL}>
                       <EmailIcon size={64} round />
                     </EmailShareButton>
                   </Box>
