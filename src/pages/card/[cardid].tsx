@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Card from '@/components/Card';
-// import DeleteButton from '@/components/DeleteButton';
+import DeleteButton from '@/components/DeleteButton';
 import DisplayText from '@/components/DisplayText';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
@@ -63,19 +63,19 @@ export default function Index() {
         // 名刺作成者
         return (
           <>
-            <Box sx={{ margin: '15px 0px' }}>
-              <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
-            </Box>
-            {cardType === CARD_TYPE.My && (
-              <Box sx={{ margin: '15px 0px' }}>
-                <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
-              </Box>
-            )}
+            <PrimaryButton text='編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
+            {cardType === CARD_TYPE.My && <SecondaryButton text='共有する' onClick={() => router.push('/mycards')} />}
+            <DeleteButton text='削除する' onClick={() => console.log('削除')} />
           </>
         );
       } else if (cardType === CARD_TYPE.Have) {
         // カード登録済みのユーザ
-        return <SecondaryButton text='登録済み' disabled />;
+        return (
+          <>
+            <SecondaryButton text='登録済み' disabled />
+            <DeleteButton text='未登録に戻す' onClick={() => console.log('登録削除')} />
+          </>
+        );
       }
       // その他のログインユーザ
       return (
@@ -92,10 +92,8 @@ export default function Index() {
     return (
       //非ログインユーザ
       <>
-        <Box sx={{ margin: '15px 0px' }}>
-          <SecondaryButton text='この名刺を登録する' disabled />
-        </Box>
-        <Box sx={{ margin: '15px 0px' }}>
+        <SecondaryButton text='登録する' onClick={handleRegisterButton} disabled />
+        <Box>
           <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
           <Typography sx={{ textAlign: 'center' }}>※名刺の登録にはログインが必要です</Typography>
         </Box>
@@ -129,7 +127,7 @@ export default function Index() {
           <title>{cardData.name}さんの名刺-Who!</title>
         </Head>
 
-        <main>
+        <main className={styles.wrapper}>
           <Header cardType={CARD_TYPE.None} />
 
           <div className={styles.container}>
