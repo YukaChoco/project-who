@@ -2,6 +2,16 @@ import { Box } from '@mui/material';
 import Head from 'next/head';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  EmailShareButton,
+  LineShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  EmailIcon,
+  LineIcon,
+} from 'react-share';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
@@ -19,6 +29,7 @@ export default function Detail() {
   const [cardData, setCardDatas] = useState<CardData[] | null>([]);
   const { userId, loading } = useUser();
   const isSettingCard = cardData?.length === 0;
+  const [showPopup, setShowPopup] = useState(false);
   useEffect(() => {
     const fetchCards = async () => {
       if (userId) {
@@ -80,7 +91,16 @@ export default function Detail() {
     );
 
   const display = <DisplayCard key={cardData[0].id} {...cardData[0]} urlEnabled link={'/edit/mycard?cardId=' + cardData[0].id} />;
+  const handleShareButtonClick = () => {
+    setShowPopup(true);
+    // ここで実際のSNS共有処理を実装することもできます
+    // 例えば、シェア用のAPIを呼び出すなど
+  };
 
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+  if (!cardData) return;
   return (
     <>
       <Head>
@@ -104,6 +124,33 @@ export default function Detail() {
             <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData[0].id)} />
             <SecondaryButton text={'SNSで名刺を共有する'} onClick={() => console.log('share')} />
           </div>
+        </div>
+
+        <div className={styles.returnHomeButton}>
+          <SecondaryButton text={'名刺を共有する'} onClick={handleShareButtonClick} />
+          {showPopup && (
+            <div className='popup'>
+              <div className='popup-content'>
+                <span className='close' onClick={closePopup}>
+                  &times;
+                </span>
+                <div>
+                  <FacebookShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                    <FacebookIcon size={32} round />
+                  </FacebookShareButton>
+                  <TwitterShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                    <TwitterIcon size={32} round />
+                  </TwitterShareButton>
+                  <LineShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                    <LineIcon size={32} round />
+                  </LineShareButton>
+                  <EmailShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                    <EmailIcon size={32} round />
+                  </EmailShareButton>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </>
