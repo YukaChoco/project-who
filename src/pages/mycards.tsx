@@ -60,13 +60,16 @@ export default function Detail() {
         <Head>
           <title>自分の名刺 - Who!</title>
         </Head>
+
         <main className={styles.main}>
           <Header cardType='mycard' />
           <div className={styles.maintext}>あなたの名刺</div>
           <NewCard />
-          <div className={styles.maintext1}>
-            共有する名刺が存在しません！<br></br>
-            名刺を作成してあなたの名刺を共有しましょう
+          <div className={styles.with_data}>
+            <div className={styles.helper_text}>
+              共有する名刺が存在しません！<br></br>
+              名刺を作成してあなたの名刺を共有しましょう
+            </div>
           </div>
           <div className={styles.returnHomeButton}>
             <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
@@ -85,20 +88,23 @@ export default function Detail() {
       </Head>
       <main className={styles.main}>
         <Header cardType='mycard' />
-        <div className={styles.cardlist}>
-          <div className={styles.maintext}>あなたの名刺</div>
-          <Box sx={{ width: '100%' }}>{display}</Box>
-          <div className={styles.maintext1}>QRコードを読み込んで名刺を共有</div>
+
+        <div className={styles.maintext}>あなたの名刺</div>
+        <Box sx={{ width: '100%' }}>{display}</Box>
+
+        <div className={styles.with_data}>
+          <div className={styles.helper_text}>QRコードを読み込んで名刺を共有</div>
           <div className={styles.qrcode}>
             <QRCode url={`${window.location.origin}/card/${cardData[0].id}`} />
           </div>
         </div>
-        <Box sx={{ margin: '15px 0px' }}>
-          <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData[0].id)} />
-        </Box>
-        <Box sx={{ margin: '15px 0px' }}>
-          <SecondaryButton text={'SNSで名刺を共有する'} onClick={() => console.log('share')} />
-        </Box>
+
+        <div className={styles.wrapper}>
+          <div className={styles.button_container}>
+            <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData[0].id)} />
+            <SecondaryButton text={'SNSで名刺を共有する'} onClick={() => console.log('share')} />
+          </div>
+        </div>
       </main>
     </>
   );
