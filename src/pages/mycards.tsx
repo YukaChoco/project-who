@@ -30,10 +30,12 @@ export default function Detail() {
   const [showPopup, setShowPopup] = useState(false);
   const [fetching, setFetching] = useState<boolean>(false);
 
+  console.log(fetching);
+
   useEffect(() => {
     const fetchCards = async () => {
-      setFetching(true);
       if (userId) {
+        setFetching(true);
         const cardData = await getMyCardDetailsByUserId(userId);
         setCardDatas(cardData);
         setFetching(false);
@@ -58,12 +60,15 @@ export default function Detail() {
 
   if (!userId)
     return (
-      <main>
-        <>
-          <Header cardType='mycard' />
-          <h1>ログインされていません</h1>
+      <main className='error'>
+        <Header cardType={'none'} />
+        <div>
+          <div className={styles.text}>
+            <p>ログインしていません。</p>
+            <p>ログインして実際に機能を使ってみましょう！</p>
+          </div>
           <SecondaryButton text='ログイン画面へ' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
-        </>
+        </div>
       </main>
     );
 
