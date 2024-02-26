@@ -12,14 +12,14 @@ export default function SecondaryButton({ text = '', disabled = false, onClick =
     display: 'inline-block',
     width: '100%',
     fontSize: '1.125rem',
-    border: '1.5px solid #fff',
+    border: '1.5px solid #969696',
     borderRadius: '45px',
     color: '#fff',
     backgroundColor: '#6F80BF',
     textDecoration: 'none',
     ':hover': {
-      border: '1.5px solid #fff',
-      backgroundColor: 'rgba(255,255,255,0.2)',
+      border: '1.5px solid #969696',
+      backgroundColor: '#505D8B',
     },
     ':disabled': {
       color: '#FFF',

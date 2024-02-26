@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Card from '@/components/Card';
-import DeleteButton from '@/components/DeleteButton';
+// import DeleteButton from '@/components/DeleteButton';
 import DisplayText from '@/components/DisplayText';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
@@ -24,13 +24,12 @@ export default function Index() {
 
   const [cardData, setCardData] = useState<CardData | null>(null);
   const [cardType, setCardType] = useState<CardType>(CARD_TYPE.None);
-  const [isRegisterLoading, setRegistertLoading] = useState<boolean>(false);
+  const [isFirebaseLoading, setFirebaseLoading] = useState<boolean>(false);
 
   const { userId, loading } = useUser();
 
-  const isLoginUser = userId !== null;
-
   useEffect(() => {
+    setFirebaseLoading(true);
     const fetchCardDetails = async () => {
       if (cardId) {
         const fetchCardData = await getCardDetils(cardId);
@@ -39,21 +38,18 @@ export default function Index() {
           const fetchCardType = await getCardType(userId, cardId);
           setCardType(fetchCardType);
         }
-        //loading false
       }
+      setFirebaseLoading(false);
     };
     fetchCardDetails();
   }, [cardId, userId]);
 
   const handleRegisterButton = async () => {
     if (userId) {
-      setRegistertLoading(true);
       const result = await addHaveCardId(userId, cardId);
       if (result) {
         setCardType(CARD_TYPE.My);
-        setRegistertLoading(false);
       } else {
-        setRegistertLoading(false);
         console.error('登録に失敗しました');
       }
     } else {
@@ -62,32 +58,44 @@ export default function Index() {
   };
 
   const showButtons = () => {
-    if (cardData?.authorId === userId) {
-      // 名刺作成者
+    if (userId) {
+      if (cardData?.authorId === userId) {
+        // 名刺作成者
+        return (
+          <>
+            <Box sx={{ margin: '15px 0px' }}>
+              <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
+            </Box>
+            {cardType === CARD_TYPE.My && (
+              <Box sx={{ margin: '15px 0px' }}>
+                <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
+              </Box>
+            )}
+          </>
+        );
+      } else if (cardType === CARD_TYPE.Have) {
+        // カード登録済みのユーザ
+        return <SecondaryButton text='登録済み' disabled />;
+      }
+      // その他のログインユーザ
       return (
-        <>
-          <PrimaryButton text='編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
-          {cardType === CARD_TYPE.My && <SecondaryButton text='共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />}
-          <DeleteButton text='削除する' onClick={() => console.log('削除')} />
-        </>
+        <SecondaryButton
+          text='この名刺を登録する'
+          onClick={async () => {
+            setFirebaseLoading(true);
+            await handleRegisterButton();
+            window.location.reload();
+          }}
+        />
       );
-    } else if (cardType === CARD_TYPE.Have) {
-      // カード登録済みのユーザ
-      return (
-        <>
-          <SecondaryButton text='登録済み' disabled />
-          <DeleteButton text='未登録に戻す' onClick={() => console.log('登録削除')} />
-        </>
-      );
-    } else if (isLoginUser) {
-      //ログインユーザ
-      return <SecondaryButton text='登録する' onClick={handleRegisterButton} />;
     }
     return (
       //非ログインユーザ
       <>
-        <SecondaryButton text='登録する' onClick={handleRegisterButton} disabled />
-        <Box>
+        <Box sx={{ margin: '15px 0px' }}>
+          <SecondaryButton text='この名刺を登録する' disabled />
+        </Box>
+        <Box sx={{ margin: '15px 0px' }}>
           <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
           <Typography sx={{ textAlign: 'center' }}>※名刺の登録にはログインが必要です</Typography>
         </Box>
@@ -95,13 +103,11 @@ export default function Index() {
     );
   };
 
-  if (loading || isRegisterLoading) {
+  if (loading || isFirebaseLoading || cardId === undefined) {
     return (
-      <>
-        <main>
-          <Loading />
-        </main>
-      </>
+      <main>
+        <Loading />
+      </main>
     );
   }
 
@@ -109,7 +115,7 @@ export default function Index() {
     if (cardData.protected && cardData.authorId !== userId) {
       return (
         <main className='error'>
-          <Header cardType={CARD_TYPE.Have} />
+          <Header cardType={CARD_TYPE.None} />
           <div>
             <h1>この名刺は閲覧できません</h1>
             <p>※この名刺は本人が作成した名刺ではないため、作成者しか閲覧できません。</p>
@@ -123,8 +129,8 @@ export default function Index() {
           <title>{cardData.name}さんの名刺-Who!</title>
         </Head>
 
-        <main className={styles.wrapper}>
-          <Header cardType={CARD_TYPE.Have} />
+        <main>
+          <Header cardType={CARD_TYPE.None} />
 
           <div className={styles.container}>
             <Card {...cardData} urlEnabled />
@@ -150,7 +156,7 @@ export default function Index() {
   } else {
     return (
       <main className='error'>
-        <Header cardType={CARD_TYPE.Have} />
+        <Header cardType={CARD_TYPE.None} />
         <h1>存在しない名刺です</h1>
       </main>
     );
