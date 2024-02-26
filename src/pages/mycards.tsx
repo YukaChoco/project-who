@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Modal } from '@mui/material';
 import Head from 'next/head';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
@@ -30,6 +30,7 @@ export default function Detail() {
   const { userId, loading } = useUser();
   const isSettingCard = cardData?.length === 0;
   const [showPopup, setShowPopup] = useState(false);
+
   useEffect(() => {
     const fetchCards = async () => {
       if (userId) {
@@ -93,14 +94,30 @@ export default function Detail() {
   const display = <DisplayCard key={cardData[0].id} {...cardData[0]} urlEnabled link={'/edit/mycard?cardId=' + cardData[0].id} />;
   const handleShareButtonClick = () => {
     setShowPopup(true);
-    // ここで実際のSNS共有処理を実装することもできます
-    // 例えば、シェア用のAPIを呼び出すなど
   };
 
   const closePopup = () => {
     setShowPopup(false);
   };
-  if (!cardData) return;
+
+  const modalStyle = {
+    backgroundColor: 'white',
+    width: '100vw',
+    height: 'fit-content',
+    position: 'fixed',
+    bottom: 0,
+    padding: '20px',
+    paddingBottom: '40px',
+    fontSize: '2rem',
+    color: 'gray',
+    fontWeight: 700,
+    borderRadius: '20px 20px 0 0',
+  };
+  const snsContainer = {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  };
+
   return (
     <>
       <Head>
@@ -122,35 +139,33 @@ export default function Detail() {
         <div className={styles.wrapper}>
           <div className={styles.button_container}>
             <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData[0].id)} />
-            <SecondaryButton text={'SNSで名刺を共有する'} onClick={() => console.log('share')} />
-          </div>
-        </div>
-
-        <div className={styles.returnHomeButton}>
-          <SecondaryButton text={'名刺を共有する'} onClick={handleShareButtonClick} />
-          {showPopup && (
-            <div className='popup'>
-              <div className='popup-content'>
-                <span className='close' onClick={closePopup}>
-                  &times;
-                </span>
-                <div>
-                  <FacebookShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                    <FacebookIcon size={32} round />
-                  </FacebookShareButton>
-                  <TwitterShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                    <TwitterIcon size={32} round />
-                  </TwitterShareButton>
-                  <LineShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                    <LineIcon size={32} round />
-                  </LineShareButton>
-                  <EmailShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                    <EmailIcon size={32} round />
-                  </EmailShareButton>
+            <SecondaryButton text={'SNSで名刺を共有する'} onClick={handleShareButtonClick} />
+            <Modal open={showPopup} onClose={closePopup} aria-labelledby='parent-modal-title' aria-describedby='parent-modal-description'>
+              <Box sx={modalStyle}>
+                <div className='popup'>
+                  <div className='popup-content'>
+                    <span className='close' onClick={closePopup}>
+                      &times;
+                    </span>
+                    <Box sx={snsContainer}>
+                      <FacebookShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                        <FacebookIcon size={64} round />
+                      </FacebookShareButton>
+                      <TwitterShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                        <TwitterIcon size={64} round />
+                      </TwitterShareButton>
+                      <LineShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                        <LineIcon size={64} round />
+                      </LineShareButton>
+                      <EmailShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                        <EmailIcon size={64} round />
+                      </EmailShareButton>
+                    </Box>
+                  </div>
                 </div>
-              </div>
-            </div>
-          )}
+              </Box>
+            </Modal>
+          </div>
         </div>
       </main>
     </>
