@@ -73,6 +73,7 @@ export default function Index() {
   const closePopup = () => {
     setShowPopup(false);
   };
+  if (!cardData) return;
   return (
     <>
       <Head>
@@ -101,16 +102,16 @@ export default function Index() {
                   &times;
                 </span>
                 <div>
-                  <FacebookShareButton url={document.location.href}>
+                  <FacebookShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
                     <FacebookIcon size={32} round />
                   </FacebookShareButton>
-                  <TwitterShareButton url={document.location.href}>
+                  <TwitterShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
                     <TwitterIcon size={32} round />
                   </TwitterShareButton>
-                  <LineShareButton url={document.location.href}>
+                  <LineShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
                     <LineIcon size={32} round />
                   </LineShareButton>
-                  <EmailShareButton url={document.location.href}>
+                  <EmailShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
                     <EmailIcon size={32} round />
                   </EmailShareButton>
                 </div>
