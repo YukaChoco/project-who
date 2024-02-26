@@ -21,7 +21,7 @@
 .no_data {
   .helper_text {
     font-size: 1rem;
-    padding-top: 24px;
+    margin-top: 64px;
     text-align: center;
     color: #575757;
   }

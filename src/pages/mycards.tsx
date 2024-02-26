@@ -19,7 +19,6 @@ import NewCard from '@/components/NewCard';
 import PrimaryButton from '@/components/PrimaryButton';
 import QRCode from '@/components/QRCode';
 import SecondaryButton from '@/components/SecondaryButton';
-import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/Mycards.module.css';
 import { CardData } from '@/types/CardData';
@@ -77,16 +76,15 @@ export default function Detail() {
           <Header cardType='mycard' />
           <div className={styles.maintext}>あなたの名刺</div>
           <NewCard />
-          <div className={styles.with_data}>
+          <div className={styles.no_data}>
             <div className={styles.helper_text}>
               共有する名刺が存在しません！<br></br>
               名刺を作成してあなたの名刺を共有しましょう
             </div>
           </div>
-          <div className={styles.returnHomeButton}>
+          <div className={styles.button_container}>
             <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
           </div>
-          <ShareButton />
         </main>
       </>
     );
@@ -136,36 +134,34 @@ export default function Detail() {
           </div>
         </div>
 
-        <div className={styles.wrapper}>
-          <div className={styles.button_container}>
-            <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData[0].id)} />
-            <SecondaryButton text={'SNSで名刺を共有する'} onClick={handleShareButtonClick} />
-            <Modal open={showPopup} onClose={closePopup} aria-labelledby='parent-modal-title' aria-describedby='parent-modal-description'>
-              <Box sx={modalStyle}>
-                <div className='popup'>
-                  <div className='popup-content'>
-                    <span className='close' onClick={closePopup}>
-                      &times;
-                    </span>
-                    <Box sx={snsContainer}>
-                      <FacebookShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                        <FacebookIcon size={64} round />
-                      </FacebookShareButton>
-                      <TwitterShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                        <TwitterIcon size={64} round />
-                      </TwitterShareButton>
-                      <LineShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                        <LineIcon size={64} round />
-                      </LineShareButton>
-                      <EmailShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                        <EmailIcon size={64} round />
-                      </EmailShareButton>
-                    </Box>
-                  </div>
+        <div className={styles.button_container}>
+          <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData[0].id)} />
+          <SecondaryButton text={'SNSで名刺を共有する'} onClick={handleShareButtonClick} />
+          <Modal open={showPopup} onClose={closePopup} aria-labelledby='parent-modal-title' aria-describedby='parent-modal-description'>
+            <Box sx={modalStyle}>
+              <div className='popup'>
+                <div className='popup-content'>
+                  <span className='close' onClick={closePopup}>
+                    &times;
+                  </span>
+                  <Box sx={snsContainer}>
+                    <FacebookShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                      <FacebookIcon size={64} round />
+                    </FacebookShareButton>
+                    <TwitterShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                      <TwitterIcon size={64} round />
+                    </TwitterShareButton>
+                    <LineShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                      <LineIcon size={64} round />
+                    </LineShareButton>
+                    <EmailShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                      <EmailIcon size={64} round />
+                    </EmailShareButton>
+                  </Box>
                 </div>
-              </Box>
-            </Modal>
-          </div>
+              </div>
+            </Box>
+          </Modal>
         </div>
       </main>
     </>
