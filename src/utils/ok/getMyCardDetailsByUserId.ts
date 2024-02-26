@@ -7,14 +7,7 @@ export default async function getMyCardDetailsByUserId(userId: string) {
 
   if (!myCardIds) return null;
 
-  const fetchedDetails: (CardData | undefined)[] = await Promise.all(
-    myCardIds.map(async (id) => {
-      const fetchedDetail: CardData | null = await getCardDetails(id);
-      if (fetchedDetail) return fetchedDetail;
-    }),
-  );
+  const fetchedDetails = await getCardDetails(myCardIds[0]);
 
-  const fetchedCardDetails: CardData[] = fetchedDetails.filter((detail): detail is CardData => detail !== undefined);
-
-  return fetchedCardDetails.length > 0 ? fetchedCardDetails : null;
+  return fetchedDetails;
 }

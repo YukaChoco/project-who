@@ -25,22 +25,24 @@ import { CardData } from '@/types/CardData';
 import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId';
 
 export default function Detail() {
-  const [cardData, setCardDatas] = useState<CardData[] | null>([]);
+  const [cardData, setCardDatas] = useState<CardData | null>(null);
   const { userId, loading } = useUser();
-  const isSettingCard = cardData?.length === 0;
   const [showPopup, setShowPopup] = useState(false);
+  const [fetching, setFetching] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCards = async () => {
+      setFetching(true);
       if (userId) {
         const cardData = await getMyCardDetailsByUserId(userId);
         setCardDatas(cardData);
+        setFetching(false);
       }
     };
     fetchCards();
   }, [userId]);
 
-  if (loading || isSettingCard) {
+  if (loading || fetching) {
     return (
       <>
         <Head>
@@ -89,7 +91,6 @@ export default function Detail() {
       </>
     );
 
-  const display = <DisplayCard key={cardData[0].id} {...cardData[0]} urlEnabled link={'/edit/mycard?cardId=' + cardData[0].id} />;
   const handleShareButtonClick = () => {
     setShowPopup(true);
   };
@@ -125,17 +126,19 @@ export default function Detail() {
         <Header cardType='mycard' />
 
         <div className={styles.maintext}>あなたの名刺</div>
-        <Box sx={{ width: '100%' }}>{display}</Box>
+        <Box sx={{ width: '100%' }}>
+          <DisplayCard {...cardData} urlEnabled link={'/edit/mycard?cardId=' + cardData.id} />
+        </Box>
 
         <div className={styles.with_data}>
           <div className={styles.helper_text}>QRコードを読み込んで名刺を共有</div>
           <div className={styles.qrcode}>
-            <QRCode url={`${window.location.origin}/card/${cardData[0].id}`} />
+            <QRCode url={`${window.location.origin}/card/${cardData.id}`} />
           </div>
         </div>
 
         <div className={styles.button_container}>
-          <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData[0].id)} />
+          <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData.id)} />
           <SecondaryButton text={'SNSで名刺を共有する'} onClick={handleShareButtonClick} />
           <Modal open={showPopup} onClose={closePopup} aria-labelledby='parent-modal-title' aria-describedby='parent-modal-description'>
             <Box sx={modalStyle}>
@@ -145,16 +148,16 @@ export default function Detail() {
                     &times;
                   </span>
                   <Box sx={snsContainer}>
-                    <FacebookShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                    <FacebookShareButton url={`${window.location.origin}/card/${cardData.id}`}>
                       <FacebookIcon size={64} round />
                     </FacebookShareButton>
-                    <TwitterShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                    <TwitterShareButton url={`${window.location.origin}/card/${cardData.id}`}>
                       <TwitterIcon size={64} round />
                     </TwitterShareButton>
-                    <LineShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                    <LineShareButton url={`${window.location.origin}/card/${cardData.id}`}>
                       <LineIcon size={64} round />
                     </LineShareButton>
-                    <EmailShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
+                    <EmailShareButton url={`${window.location.origin}/card/${cardData.id}`}>
                       <EmailIcon size={64} round />
                     </EmailShareButton>
                   </Box>
