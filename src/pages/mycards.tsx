@@ -82,10 +82,8 @@ export default function Detail() {
           <div className={styles.maintext}>あなたの名刺</div>
           <NewCard />
           <div className={styles.no_data}>
-            <div className={styles.helper_text}>
-              共有する名刺が存在しません！<br></br>
-              名刺を作成してあなたの名刺を共有しましょう
-            </div>
+            共有する名刺が存在しません！<br></br>
+            名刺を作成してあなたの名刺を共有しましょう
           </div>
           <div className={styles.button_container}>
             <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
@@ -134,7 +132,7 @@ export default function Detail() {
           <DisplayCard {...cardData} urlEnabled link={'/edit/mycard?cardId=' + cardData.id} />
         </Box>
 
-        <div className={styles.with_data}>
+        <div>
           <div className={styles.helper_text}>QRコードを読み込んで名刺を共有</div>
           <div className={styles.qrcode}>
             <QRCode url={shareURL} />
@@ -144,32 +142,32 @@ export default function Detail() {
         <div className={styles.button_container}>
           <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData.id)} />
           <SecondaryButton text={'SNSで名刺を共有する'} onClick={handleShareButtonClick} />
-          <Modal open={showPopup} onClose={closePopup} aria-labelledby='parent-modal-title' aria-describedby='parent-modal-description'>
-            <Box sx={modalStyle}>
-              <div className='popup'>
-                <div className='popup-content'>
-                  <span className='close' onClick={closePopup}>
-                    &times;
-                  </span>
-                  <Box sx={snsContainer}>
-                    <FacebookShareButton url={shareURL}>
-                      <FacebookIcon size={64} round />
-                    </FacebookShareButton>
-                    <TwitterShareButton url={shareURL}>
-                      <TwitterIcon size={64} round />
-                    </TwitterShareButton>
-                    <LineShareButton url={shareURL}>
-                      <LineIcon size={64} round />
-                    </LineShareButton>
-                    <EmailShareButton url={shareURL}>
-                      <EmailIcon size={64} round />
-                    </EmailShareButton>
-                  </Box>
-                </div>
-              </div>
-            </Box>
-          </Modal>
         </div>
+        <Modal open={showPopup} onClose={closePopup} aria-labelledby='parent-modal-title' aria-describedby='parent-modal-description'>
+          <Box sx={modalStyle}>
+            <div className='popup'>
+              <div className='popup-content'>
+                <span className='close' onClick={closePopup}>
+                  &times;
+                </span>
+                <Box sx={snsContainer}>
+                  <FacebookShareButton url={shareURL}>
+                    <FacebookIcon size={64} round />
+                  </FacebookShareButton>
+                  <TwitterShareButton url={shareURL}>
+                    <TwitterIcon size={64} round />
+                  </TwitterShareButton>
+                  <LineShareButton url={shareURL}>
+                    <LineIcon size={64} round />
+                  </LineShareButton>
+                  <EmailShareButton url={shareURL}>
+                    <EmailIcon size={64} round />
+                  </EmailShareButton>
+                </Box>
+              </div>
+            </div>
+          </Box>
+        </Modal>
       </main>
     </>
   );

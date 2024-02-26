@@ -11,29 +11,28 @@
 }
 
 .no_data {
-  .helper_text {
-    font-size: 1rem;
-    margin-top: 64px;
-    text-align: center;
-    color: #575757;
-  }
+  font-size: 1rem;
+  margin-top: 64px;
+  text-align: center;
+  color: #575757;
 }
 
 .with_data {
   width: 100%;
+}
 
-  .qrcode {
-    display: flex;
-    justify-content: center;
-    padding: 40px;
-  }
+.qrcode {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
 
-  .helper_text {
-    font-size: 1rem;
-    padding-top: 24px;
-    text-align: center;
-    color: #575757;
-  }
+.helper_text {
+  font-size: 1rem;
+  padding-top: 24px;
+  text-align: center;
+  color: #575757;
 }
 
 .button_container {
