@@ -14,6 +14,8 @@ import styles from '@/styles/CardDetail.module.css';
 import type { CardData } from '@/types/CardData';
 import { CARD_TYPE, CardType } from '@/types/CardType';
 import addHaveCardId from '@/utils/ok/addHaveCardId';
+import deleteCard from '@/utils/ok/deleteCard';
+import deleteCardId from '@/utils/ok/deleteCardId';
 import getCardDetils from '@/utils/ok/getCardDetails';
 import getCardType from '@/utils/ok/getCardType';
 import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
@@ -65,7 +67,13 @@ export default function Index() {
           <>
             <PrimaryButton text='編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
             {cardType === CARD_TYPE.My && <SecondaryButton text='共有する' onClick={() => router.push('/mycards')} />}
-            <DeleteButton text='削除する' onClick={() => console.log('削除')} />
+            <DeleteButton
+              text='削除する'
+              onClick={async () => {
+                await deleteCard(userId, cardId);
+                router.push(`/${cardType}`);
+              }}
+            />
           </>
         );
       } else if (cardType === CARD_TYPE.Have) {
@@ -73,7 +81,13 @@ export default function Index() {
         return (
           <>
             <SecondaryButton text='登録済み' disabled />
-            <DeleteButton text='未登録に戻す' onClick={() => console.log('登録削除')} />
+            <DeleteButton
+              text='未登録に戻す'
+              onClick={async () => {
+                await deleteCardId(userId, cardId);
+                window.location.reload();
+              }}
+            />
           </>
         );
       }
