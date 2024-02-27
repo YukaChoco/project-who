@@ -1,3 +1,4 @@
+import { Box, Modal } from '@mui/material';
 import Head from 'next/head';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
@@ -16,28 +17,32 @@ import Header from '@/components/Header';
 import Loading from '@/components/Loading';
 import NewCard from '@/components/NewCard';
 import PrimaryButton from '@/components/PrimaryButton';
+import QRCode from '@/components/QRCode';
 import SecondaryButton from '@/components/SecondaryButton';
-import ShareButton from '@/components/ShareButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/Mycards.module.css';
 import { CardData } from '@/types/CardData';
 import getMyCardDetailsByUserId from '@/utils/ok/getMyCardDetailsByUserId';
 
-export default function Index() {
-  const [cardData, setCardDatas] = useState<CardData[] | null>([]);
+export default function Detail() {
+  const [cardData, setCardDatas] = useState<CardData | null>(null);
   const { userId, loading } = useUser();
   const [showPopup, setShowPopup] = useState(false);
+  const [fetching, setFetching] = useState<boolean>(false);
+
   useEffect(() => {
     const fetchCards = async () => {
       if (userId) {
+        setFetching(true);
         const cardData = await getMyCardDetailsByUserId(userId);
         setCardDatas(cardData);
+        setFetching(false);
       }
     };
     fetchCards();
   }, [userId]);
 
-  if (loading) {
+  if (loading || fetching) {
     return (
       <>
         <Head>
@@ -51,29 +56,69 @@ export default function Index() {
     );
   }
 
-  if (!userId) {
+  if (!userId)
     return (
-      <main>
-        <>
-          <Head>
-            <title>自分の名刺 - Who!</title>
-          </Head>
-          <h1>ログインされていません</h1>
-          <SecondaryButton text='ログインしてください' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
-        </>
+      <main className='error'>
+        <Header cardType={'none'} />
+        <div>
+          <div className={styles.text}>
+            <p>ログインしていません。</p>
+            <p>ログインして実際に機能を使ってみましょう！</p>
+          </div>
+          <SecondaryButton text='ログイン画面へ' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
+        </div>
       </main>
     );
-  }
+
+  if (!cardData)
+    return (
+      <>
+        <Head>
+          <title>自分の名刺 - Who!</title>
+        </Head>
+
+        <main className={styles.main}>
+          <Header cardType='mycard' />
+          <div className={styles.maintext}>あなたの名刺</div>
+          <NewCard />
+          <div className={styles.no_data}>
+            共有する名刺が存在しません！<br></br>
+            名刺を作成してあなたの名刺を共有しましょう
+          </div>
+          <div className={styles.button_container}>
+            <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
+          </div>
+        </main>
+      </>
+    );
+
   const handleShareButtonClick = () => {
     setShowPopup(true);
-    // ここで実際のSNS共有処理を実装することもできます
-    // 例えば、シェア用のAPIを呼び出すなど
   };
 
   const closePopup = () => {
     setShowPopup(false);
   };
-  if (!cardData) return;
+
+  const modalStyle = {
+    backgroundColor: 'white',
+    width: '100vw',
+    height: 'fit-content',
+    position: 'fixed',
+    bottom: 0,
+    padding: '20px',
+    paddingBottom: '40px',
+    fontSize: '2rem',
+    color: 'gray',
+    fontWeight: 700,
+    borderRadius: '20px 20px 0 0',
+  };
+  const snsContainer = {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  };
+  const shareURL = `${window.location.origin}/card/${cardData.id}`;
+
   return (
     <>
       <Head>
@@ -81,46 +126,48 @@ export default function Index() {
       </Head>
       <main className={styles.main}>
         <Header cardType='mycard' />
-        <div className={styles.cardlist}>
-          {cardData &&
-            cardData.map((data) => {
-              return <DisplayCard key={data.id} {...data} urlEnabled={false} link={`/card/${data.id}`} />;
-            })}
-        </div>
-        <NewCard />
 
-        <div className={styles.returnHomeButton}>
-          <PrimaryButton text={'ホームに戻る'} onClick={() => router.push('/cards')} />
+        <div className={styles.maintext}>あなたの名刺</div>
+        <Box sx={{ width: '100%' }}>
+          <DisplayCard {...cardData} urlEnabled link={'/edit/mycard?cardId=' + cardData.id} />
+        </Box>
+
+        <div>
+          <div className={styles.helper_text}>QRコードを読み込んで名刺を共有</div>
+          <div className={styles.qrcode}>
+            <QRCode url={shareURL} />
+          </div>
         </div>
 
-        <div className={styles.returnHomeButton}>
-          <SecondaryButton text={'名刺を共有する'} onClick={handleShareButtonClick} />
-          {showPopup && (
+        <div className={styles.button_container}>
+          <PrimaryButton text={'名刺を編集する'} onClick={() => router.push('/edit/mycard?cardId=' + cardData.id)} />
+          <SecondaryButton text={'SNSで名刺を共有する'} onClick={handleShareButtonClick} />
+        </div>
+        <Modal open={showPopup} onClose={closePopup} aria-labelledby='parent-modal-title' aria-describedby='parent-modal-description'>
+          <Box sx={modalStyle}>
             <div className='popup'>
               <div className='popup-content'>
                 <span className='close' onClick={closePopup}>
                   &times;
                 </span>
-                <div>
-                  <FacebookShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                    <FacebookIcon size={32} round />
+                <Box sx={snsContainer}>
+                  <FacebookShareButton url={shareURL}>
+                    <FacebookIcon size={64} round />
                   </FacebookShareButton>
-                  <TwitterShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                    <TwitterIcon size={32} round />
+                  <TwitterShareButton url={shareURL}>
+                    <TwitterIcon size={64} round />
                   </TwitterShareButton>
-                  <LineShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                    <LineIcon size={32} round />
+                  <LineShareButton url={shareURL}>
+                    <LineIcon size={64} round />
                   </LineShareButton>
-                  <EmailShareButton url={`${window.location.origin}/card/${cardData[0].id}`}>
-                    <EmailIcon size={32} round />
+                  <EmailShareButton url={shareURL}>
+                    <EmailIcon size={64} round />
                   </EmailShareButton>
-                </div>
+                </Box>
               </div>
             </div>
-          )}
-        </div>
-
-        <ShareButton />
+          </Box>
+        </Modal>
       </main>
     </>
   );

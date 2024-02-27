@@ -16,5 +16,5 @@ export default async function getMyCardDetailsByUserId(userId: string) {
 
   const fetchedCardDetails: CardData[] = fetchedDetails.filter((detail): detail is CardData => detail !== undefined);
 
-  return fetchedCardDetails.length > 0 ? fetchedCardDetails : null;
+  return fetchedCardDetails[0];
 }
