@@ -26,11 +26,13 @@ export default function Index() {
       if (userId) {
         const haveCardDetails = await getHaveCardDetailsByUserId(userId);
         if (haveCardDetails) {
-          setCardDatas(haveCardDetails);
+          setCardDatas([...haveCardDetails]);
         }
       }
       const exampleCardDetails = await getHaveCardDetailsByUserId('exampleDocument');
-      setExampleCardDatas(exampleCardDetails);
+      if (exampleCardDetails) {
+        setExampleCardDatas([...exampleCardDetails]);
+      }
       setFetching(false);
     };
     if (!loading) {
