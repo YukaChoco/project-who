@@ -20,26 +20,27 @@ export default function DisplayText({ title = '', detail = '', url = '', isSNSId
     alignItems: 'center',
     gap: '0.2rem',
   };
-
-  return (
-    <Box sx={containerStyle}>
-      <p style={{ fontSize: '0.7rem' }}>{title}</p>
-      <Box sx={detailContainerStyle}>
-        {url ? (
-          <Box sx={urlStyle}>
-            <Link href={url}>
+  if (detail) {
+    return (
+      <Box sx={containerStyle}>
+        <p style={{ fontSize: '0.7rem' }}>{title}</p>
+        <Box sx={detailContainerStyle}>
+          {url ? (
+            <Box sx={urlStyle}>
+              <Link href={url}>
+                {isSNSId && '@'}
+                {detail}
+              </Link>
+              <LaunchIcon sx={{ fontSize: '1rem', height: '100%' }} />
+            </Box>
+          ) : (
+            <span>
               {isSNSId && '@'}
               {detail}
-            </Link>
-            <LaunchIcon sx={{ fontSize: '1rem', height: '100%' }} />
-          </Box>
-        ) : (
-          <span>
-            {isSNSId && '@'}
-            {detail}
-          </span>
-        )}
+            </span>
+          )}
+        </Box>
       </Box>
-    </Box>
-  );
+    );
+  }
 }
