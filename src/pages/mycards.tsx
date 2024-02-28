@@ -131,7 +131,7 @@ export default function Detail() {
 
         <div className={styles.maintext}>あなたの名刺</div>
         <Box sx={{ width: '100%' }}>
-          <DisplayCard {...cardData} urlEnabled link={'/card?cardId=' + cardData.id} />
+          <DisplayCard {...cardData} urlEnabled link={'/card/' + cardData.id} />
         </Box>
 
         <div>
