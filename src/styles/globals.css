@@ -57,7 +57,7 @@ body {
 
 main {
   padding: 80px 22px 0px 22px;
-  font-family: 'Kiwi Maru';
+  font-family: Calibri, sans-serif;
 }
 
 main.error {
