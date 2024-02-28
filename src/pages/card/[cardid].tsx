@@ -70,8 +70,10 @@ export default function Index() {
             <DeleteButton
               text='削除する'
               onClick={async () => {
-                await deleteCardByCardId(userId, cardId, cardType);
-                router.push(`/${cardType}s`);
+                if (window.confirm('この名刺を完全に削除してもよろしいですか?')) {
+                  await deleteCardByCardId(userId, cardId, cardType);
+                  router.push(`/${cardType}s`);
+                }
               }}
             />
           </>
@@ -84,8 +86,10 @@ export default function Index() {
             <DeleteButton
               text='未登録に戻す'
               onClick={async () => {
-                await deleteCardIdByCardId(userId, cardId, CARD_TYPE.Have);
-                window.location.reload();
+                if (window.confirm('この名刺を削除してもよろしいですか?')) {
+                  await deleteCardIdByCardId(userId, cardId, CARD_TYPE.Have);
+                  window.location.reload();
+                }
               }}
             />
           </>
