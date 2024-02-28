@@ -38,7 +38,7 @@ export default function Index() {
     }
   }, [loading, userId]);
 
-  if (loading && fetching) {
+  if (loading || fetching) {
     return (
       <>
         <Head>
