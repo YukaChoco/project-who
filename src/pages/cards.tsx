@@ -22,6 +22,7 @@ export default function Index() {
 
   useEffect(() => {
     const fetchCards = async () => {
+      setFetching(true);
       if (userId) {
         const haveCardDetails = await getHaveCardDetailsByUserId(userId);
         if (haveCardDetails) {
@@ -30,11 +31,10 @@ export default function Index() {
       }
       const exampleCardDetails = await getHaveCardDetailsByUserId('exampleDocument');
       setExampleCardDatas(exampleCardDetails);
+      setFetching(false);
     };
     if (!loading) {
-      setFetching(true);
       fetchCards();
-      setFetching(false);
     }
   }, [loading, userId]);
 
