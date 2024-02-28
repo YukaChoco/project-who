@@ -14,8 +14,8 @@ import styles from '@/styles/CardDetail.module.css';
 import type { CardData } from '@/types/CardData';
 import { CARD_TYPE, CardType } from '@/types/CardType';
 import addHaveCardId from '@/utils/ok/addHaveCardId';
-import deleteCard from '@/utils/ok/deleteCard';
-import deleteCardId from '@/utils/ok/deleteCardId';
+import deleteCardByCardId from '@/utils/ok/deleteCardByCardId';
+import deleteCardIdByCardId from '@/utils/ok/deleteCardIdByCardId';
 import getCardDetils from '@/utils/ok/getCardDetails';
 import getCardType from '@/utils/ok/getCardType';
 import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
@@ -70,8 +70,8 @@ export default function Index() {
             <DeleteButton
               text='削除する'
               onClick={async () => {
-                await deleteCard(userId, cardId);
-                router.push(`/${cardType}`);
+                await deleteCardByCardId(userId, cardId, cardType);
+                router.push(`/${cardType}s`);
               }}
             />
           </>
@@ -84,7 +84,7 @@ export default function Index() {
             <DeleteButton
               text='未登録に戻す'
               onClick={async () => {
-                await deleteCardId(userId, cardId);
+                await deleteCardIdByCardId(userId, cardId, CARD_TYPE.Have);
                 window.location.reload();
               }}
             />
