@@ -90,7 +90,7 @@ export default function Index() {
               onClick={async () => {
                 if (window.confirm('この名刺を削除してもよろしいですか?')) {
                   await deleteCardIdByCardId(userId, cardId, CARD_TYPE.Have);
-                  window.location.reload();
+                  router.push(`/cards`);
                 }
               }}
             />
