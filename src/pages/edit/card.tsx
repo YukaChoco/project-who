@@ -26,6 +26,7 @@ export default function Index() {
   const [x, setX] = useState<string>('');
   const [instagram, setInstagram] = useState<string>('');
   const [organization, setOrganization] = useState<string>('');
+  const [fetching, setFetching] = useState<boolean>(false);
 
   const { userId, loading } = useUser();
 
@@ -34,6 +35,7 @@ export default function Index() {
 
   useEffect(() => {
     async function getEarlierCardData() {
+      setFetching(true);
       try {
         const cardDetails = await getCardDetails(cardId);
 
@@ -48,13 +50,16 @@ export default function Index() {
         }
       } catch (error) {
         console.error('Error', error);
+      } finally {
+        setFetching(false);
       }
     }
+    if (loading && cardId !== undefined) {
+      getEarlierCardData();
+    }
+  }, [cardId, loading]);
 
-    getEarlierCardData();
-  }, [cardId]);
-
-  if (loading) {
+  if (loading || fetching || cardId === undefined) {
     return (
       <main>
         <Loading />
