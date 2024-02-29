@@ -15,8 +15,8 @@ class MyDocument extends Document {
             content='大学生に向けたオンライン名刺交換アプリケーション「Who!」です。SNSのアカウントなどのプロフィール情報を、名刺で交換することができます。'
           />
           <meta property='og:site_name' content='Who!' />
-          <meta property='og:image' content='/ogp.png' />
-          <meta name='twitter:card' content='/ogp.png' />
+          <meta property='og:image' content='https://project-who.vercel.app/ogp.png' />
+          <meta name='twitter:card' content='https://project-who.vercel.app/ogp.png' />
         </Head>
         <body>
           <Main />
