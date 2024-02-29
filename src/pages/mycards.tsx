@@ -39,8 +39,10 @@ export default function Detail() {
         setFetching(false);
       }
     };
-    fetchCards();
-  }, [userId]);
+    if (!loading) {
+      fetchCards();
+    }
+  }, [loading, userId]);
 
   if (loading || fetching) {
     return (
@@ -129,7 +131,7 @@ export default function Detail() {
 
         <div className={styles.maintext}>あなたの名刺</div>
         <Box sx={{ width: '100%' }}>
-          <DisplayCard {...cardData} urlEnabled link={'/edit/mycard?cardId=' + cardData.id} />
+          <DisplayCard {...cardData} urlEnabled link={'/card/' + cardData.id} />
         </Box>
 
         <div>
