@@ -26,6 +26,7 @@ export default function Index() {
   const [x, setX] = useState<string>('');
   const [instagram, setInstagram] = useState<string>('');
   const [organization, setOrganization] = useState<string>('');
+  const [fetching, setFetching] = useState<boolean>(false);
 
   const { userId, loading } = useUser();
 
@@ -34,6 +35,7 @@ export default function Index() {
 
   useEffect(() => {
     async function getEarlierCardData() {
+      setFetching(true);
       try {
         const cardDetails = await getCardDetails(cardId);
 
@@ -48,14 +50,16 @@ export default function Index() {
         }
       } catch (error) {
         console.error('Error', error);
+      } finally {
+        setFetching(false);
       }
     }
-    if (!loading) {
+    if (cardId !== undefined) {
       getEarlierCardData();
     }
-  }, [cardId, loading]);
+  }, [cardId]);
 
-  if (loading) {
+  if (loading || fetching || cardId === undefined) {
     return (
       <main>
         <Loading />
@@ -109,7 +113,7 @@ export default function Index() {
         <title>{defaultCardName} さんの名刺修正 - Who!</title>
       </Head>
 
-      <main>
+      <main className={styles.main}>
         <Header cardType={CARD_TYPE.Have} confirmPageChange />
 
         <Preview />
@@ -127,10 +131,6 @@ export default function Index() {
               organization={organization}
               handleOrganization={(event) => setOrganization(event.target.value)}
             />
-
-            <div className={styles.completeButton}>
-              <SecondaryButton text='保存して終了' isSubmit />
-            </div>
           </form>
         </CustomTabPanel>
 
@@ -138,6 +138,12 @@ export default function Index() {
         <CustomTabPanel value={tabIndex} index={2}>
           <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
         </CustomTabPanel>
+
+        {mode !== FORM_MODE.Complete ? (
+          <div className={styles.completeButton}>
+            <SecondaryButton text='保存して終了' isSubmit />
+          </div>
+        ) : null}
       </main>
     </>
   );
