@@ -3,12 +3,12 @@
   justify-items: center;
   min-height: 100vh;
   background-color: #fff;
-  /* padding-top: 58px; */
 }
 
 .change {
   text-align: center;
-  width: 100vw;
+  width: 100%;
+  padding-bottom: 5rem;
 }
 
 .preview {
@@ -16,8 +16,7 @@
 }
 
 .preview p {
-  font-size: 14px;
-  padding: 10px 0;
+  padding-bottom: 10px;
 }
 
 .card {
@@ -27,12 +26,17 @@
   align-items: center;
 }
 
-.change {
-  width: 100%;
+.editButton {
+  margin-top: 10px;
 }
 
-.editBtn {
-  margin-top: 10px;
+.completeButton {
+  width: 100%;
+  z-index: 5;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  padding: 20px;
 }
 
 .space {

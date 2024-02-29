@@ -9,12 +9,12 @@
     "prepare": "npx husky install",
     "lint": "next lint",
     "lint-fix": "next lint --fix",
-    "lint:precommit": "eslint \"./**/*.{ts,tsx}\" --ignore-pattern \"src/utils/**\" --max-warnings 0",
+    "lint:precommit": "eslint \"./**/*.{ts,tsx}\" --ignore-pattern \"src/utils/**\"",
     "fmt:precommit": "prettier -l './**/*.{js,jsx,ts,tsx,json,css}'",
     "export": "next export",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
     "format:ci": "prettier -l './**/*.{js,jsx,ts,tsx,json,css}'",
-    "lint:ci": "eslint './**/*.{ts,tsx}' --ignore-pattern 'src/utils/**' --max-warnings 0"
+    "lint:ci": "eslint './**/*.{ts,tsx}' --ignore-pattern 'src/utils/**'"
   },
   "husky": {
     "hooks": {
@@ -37,10 +37,12 @@
     "eslint-config-next": "13.4.19",
     "firebase": "^10.4.0",
     "next": "13.4.19",
+    "next-pwa": "^5.6.0",
     "prettier": "^3.0.3",
     "qrcode.react": "^3.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-share": "^5.1.0",
     "typescript": "5.2.2"
   },
   "devDependencies": {
@@ -49,5 +51,6 @@
     "eslint-plugin-react": "^7.33.2",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0"
-  }
+  },
+  "type": "module"
 }

@@ -1,6 +1,18 @@
 .cardlist {
+  margin-top: 12px;
   margin-bottom: 90px;
   display: flex;
   flex-flow: column;
   gap: 10px;
+}
+
+.text {
+  font-size: 1rem;
+  padding: 24px 0px;
+  text-align: center;
+  color: #575757;
+}
+
+.buttonWrapper {
+  padding: 12px 0px;
 }
