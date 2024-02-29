@@ -22,23 +22,25 @@ export default function Index() {
 
   useEffect(() => {
     const fetchCards = async () => {
+      setFetching(true);
       if (userId) {
         const haveCardDetails = await getHaveCardDetailsByUserId(userId);
         if (haveCardDetails) {
-          setCardDatas(haveCardDetails);
+          setCardDatas([...haveCardDetails]);
         }
       }
       const exampleCardDetails = await getHaveCardDetailsByUserId('exampleDocument');
-      setExampleCardDatas(exampleCardDetails);
+      if (exampleCardDetails) {
+        setExampleCardDatas([...exampleCardDetails]);
+      }
+      setFetching(false);
     };
     if (!loading) {
-      setFetching(true);
       fetchCards();
-      setFetching(false);
     }
   }, [loading, userId]);
 
-  if (loading && fetching) {
+  if (loading || fetching) {
     return (
       <>
         <Head>

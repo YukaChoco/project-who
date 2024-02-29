@@ -27,6 +27,7 @@ export default function Index() {
   const [x, setX] = useState<string>('');
   const [instagram, setInstagram] = useState<string>('');
   const [organization, setOrganization] = useState<string>('');
+  const [fetching, setFetching] = useState<boolean>(false);
 
   const { userId, loading } = useUser();
 
@@ -37,6 +38,7 @@ export default function Index() {
 
   useEffect(() => {
     async function getEarlierCardData() {
+      setFetching(true);
       try {
         const cardDetails = await getCardDetails(cardId);
         setCardData(cardDetails);
@@ -52,13 +54,16 @@ export default function Index() {
         }
       } catch (error) {
         console.error('Error', error);
+      } finally {
+        setFetching(false);
       }
     }
-
-    getEarlierCardData();
+    if (cardId !== undefined) {
+      getEarlierCardData();
+    }
   }, [cardId]);
 
-  if (loading) {
+  if (loading || fetching || cardId === undefined) {
     return (
       <main>
         <Loading />
@@ -113,14 +118,14 @@ export default function Index() {
           <title>{defaultCardName} さんの名刺修正 - Who!</title>
         </Head>
 
-        <main>
+        <main className={styles.main}>
           <Header cardType={CARD_TYPE.Have} confirmPageChange />
 
           <Preview />
 
-          {/* texts */}
-          <CustomTabPanel value={tabIndex} index={0}>
-            <form action='submit' onSubmit={handleSubmit}>
+          <form action='submit' onSubmit={handleSubmit}>
+            {/* texts */}
+            <CustomTabPanel value={tabIndex} index={0}>
               <InputTexts
                 name={name}
                 handleName={(event) => setName(event.target.value)}
@@ -131,17 +136,18 @@ export default function Index() {
                 organization={organization}
                 handleOrganization={(event) => setOrganization(event.target.value)}
               />
+            </CustomTabPanel>
 
+            {/* complete */}
+            <CustomTabPanel value={tabIndex} index={2}>
+              <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
+            </CustomTabPanel>
+            {mode !== FORM_MODE.Complete ? (
               <div className={styles.completeButton}>
                 <SecondaryButton text='保存して終了' isSubmit />
               </div>
-            </form>
-          </CustomTabPanel>
-
-          {/* complete */}
-          <CustomTabPanel value={tabIndex} index={2}>
-            <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
-          </CustomTabPanel>
+            ) : null}
+          </form>
         </main>
       </>
     );

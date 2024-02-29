@@ -82,14 +82,14 @@ export default function Index() {
         <title>他人の名刺作成 - Who!</title>
       </Head>
 
-      <main>
+      <main className={styles.main}>
         <Header cardType={CARD_TYPE.Have} confirmPageChange />
 
         <Preview />
 
-        {/* texts */}
-        <CustomTabPanel value={tabIndex} index={0}>
-          <form action='submit' onSubmit={handleSubmit}>
+        <form action='submit' onSubmit={handleSubmit}>
+          {/* texts */}
+          <CustomTabPanel value={tabIndex} index={0}>
             <InputTexts
               name={name}
               handleName={(event) => setName(event.target.value)}
@@ -100,17 +100,19 @@ export default function Index() {
               organization={organization}
               handleOrganization={(event) => setOrganization(event.target.value)}
             />
+          </CustomTabPanel>
 
+          {/* complete */}
+          <CustomTabPanel value={tabIndex} index={2}>
+            <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
+          </CustomTabPanel>
+
+          {mode !== FORM_MODE.Complete ? (
             <div className={styles.completeButton}>
               <SecondaryButton text='保存して終了' isSubmit />
             </div>
-          </form>
-        </CustomTabPanel>
-
-        {/* complete */}
-        <CustomTabPanel value={tabIndex} index={2}>
-          <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
-        </CustomTabPanel>
+          ) : null}
+        </form>
       </main>
     </>
   );

@@ -31,6 +31,7 @@ export default function Input() {
   const { userId, loading } = useUser();
   const [mode, setMode] = useState<string>('入力');
   const tabIndex = mode === FORM_MODE.Texts ? 0 : mode === FORM_MODE.Colors ? 1 : 2;
+  const [fetching, setFetching] = useState<boolean>(false);
 
   const cardId = router.query.cardId as string;
 
@@ -38,6 +39,7 @@ export default function Input() {
 
   useEffect(() => {
     async function getEarlierCardData() {
+      setFetching(true);
       try {
         const cardDetails = await getCardDetails(cardId);
         setCardData(cardDetails);
@@ -54,13 +56,16 @@ export default function Input() {
         }
       } catch (error) {
         console.error('Error', error);
+      } finally {
+        setFetching(false);
       }
     }
-
-    getEarlierCardData();
+    if (cardId !== undefined) {
+      getEarlierCardData();
+    }
   }, [cardId]);
 
-  if (loading) {
+  if (loading || fetching || cardId === undefined) {
     return (
       <>
         <main>

@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Card from '@/components/Card';
+import DeleteButton from '@/components/DeleteButton';
 import DisplayText from '@/components/DisplayText';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
@@ -13,6 +14,8 @@ import styles from '@/styles/CardDetail.module.css';
 import type { CardData } from '@/types/CardData';
 import { CARD_TYPE, CardType } from '@/types/CardType';
 import addHaveCardId from '@/utils/ok/addHaveCardId';
+import deleteCardByCardId from '@/utils/ok/deleteCardByCardId';
+import deleteCardIdByCardId from '@/utils/ok/deleteCardIdByCardId';
 import getCardDetils from '@/utils/ok/getCardDetails';
 import getCardType from '@/utils/ok/getCardType';
 import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
@@ -40,8 +43,10 @@ export default function Index() {
       }
       setFirebaseLoading(false);
     };
-    fetchCardDetails();
-  }, [cardId, userId]);
+    if (!loading) {
+      fetchCardDetails();
+    }
+  }, [cardId, loading, userId]);
 
   const handleRegisterButton = async () => {
     if (userId) {
@@ -62,19 +67,35 @@ export default function Index() {
         // 名刺作成者
         return (
           <>
-            <Box sx={{ margin: '15px 0px' }}>
-              <PrimaryButton text='この名刺を編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
-            </Box>
-            {cardType === CARD_TYPE.My && (
-              <Box sx={{ margin: '15px 0px' }}>
-                <SecondaryButton text='この名刺を共有する' onClick={() => router.push(`/share?cardId=${cardId}`)} />
-              </Box>
-            )}
+            <PrimaryButton text='編集する' onClick={() => router.push(`/edit/${cardType}?cardId=${cardId}`)} />
+            {cardType === CARD_TYPE.My && <SecondaryButton text='共有する' onClick={() => router.push('/mycards')} />}
+            <DeleteButton
+              text='削除する'
+              onClick={async () => {
+                if (window.confirm('この名刺を完全に削除してもよろしいですか?')) {
+                  await deleteCardByCardId(userId, cardId, cardType);
+                  router.push(`/${cardType}s`);
+                }
+              }}
+            />
           </>
         );
       } else if (cardType === CARD_TYPE.Have) {
         // カード登録済みのユーザ
-        return <SecondaryButton text='登録済み' disabled />;
+        return (
+          <>
+            <SecondaryButton text='登録済み' disabled />
+            <DeleteButton
+              text='未登録に戻す'
+              onClick={async () => {
+                if (window.confirm('この名刺を削除してもよろしいですか?')) {
+                  await deleteCardIdByCardId(userId, cardId, CARD_TYPE.Have);
+                  router.push(`/cards`);
+                }
+              }}
+            />
+          </>
+        );
       }
       // その他のログインユーザ
       return (
@@ -91,10 +112,8 @@ export default function Index() {
     return (
       //非ログインユーザ
       <>
-        <Box sx={{ margin: '15px 0px' }}>
-          <SecondaryButton text='この名刺を登録する' disabled />
-        </Box>
-        <Box sx={{ margin: '15px 0px' }}>
+        <SecondaryButton text='登録する' onClick={handleRegisterButton} disabled />
+        <Box>
           <SecondaryButton text='ログインする' onClick={() => router.push(`/?nextPage=${router.asPath}`)} />
           <Typography sx={{ textAlign: 'center' }}>※名刺の登録にはログインが必要です</Typography>
         </Box>
@@ -128,7 +147,7 @@ export default function Index() {
           <title>{cardData.name}さんの名刺-Who!</title>
         </Head>
 
-        <main>
+        <main className={styles.wrapper}>
           <Header cardType={CARD_TYPE.None} />
 
           <div className={styles.container}>
@@ -146,7 +165,9 @@ export default function Index() {
             </div>
           </div>
 
-          <div className={styles.container}>{showButtons()}</div>
+          <div className={styles.space} />
+
+          <div className={styles.button_container}>{showButtons()}</div>
         </main>
       </>
     );
