@@ -87,9 +87,9 @@ export default function Index() {
 
         <Preview />
 
-        {/* texts */}
-        <CustomTabPanel value={tabIndex} index={0}>
-          <form action='submit' onSubmit={handleSubmit}>
+        <form action='submit' onSubmit={handleSubmit}>
+          {/* texts */}
+          <CustomTabPanel value={tabIndex} index={0}>
             <InputTexts
               name={name}
               handleName={(event) => setName(event.target.value)}
@@ -100,17 +100,19 @@ export default function Index() {
               organization={organization}
               handleOrganization={(event) => setOrganization(event.target.value)}
             />
-          </form>
-        </CustomTabPanel>
+          </CustomTabPanel>
 
-        {/* complete */}
-        <CustomTabPanel value={tabIndex} index={2}>
-          <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
-        </CustomTabPanel>
+          {/* complete */}
+          <CustomTabPanel value={tabIndex} index={2}>
+            <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
+          </CustomTabPanel>
 
-        <div className={styles.completeButton}>
-          <SecondaryButton text='保存して終了' isSubmit />
-        </div>
+          {mode !== FORM_MODE.Complete ? (
+            <div className={styles.completeButton}>
+              <SecondaryButton text='保存して終了' isSubmit />
+            </div>
+          ) : null}
+        </form>
       </main>
     </>
   );
