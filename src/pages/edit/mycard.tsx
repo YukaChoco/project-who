@@ -52,9 +52,10 @@ export default function Input() {
         console.error('Error', error);
       }
     }
-
-    getEarlierCardData();
-  }, [cardId]);
+    if (!loading) {
+      getEarlierCardData();
+    }
+  }, [cardId, loading]);
 
   if (loading) {
     return (

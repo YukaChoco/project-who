@@ -43,8 +43,10 @@ export default function Index() {
       }
       setFirebaseLoading(false);
     };
-    fetchCardDetails();
-  }, [cardId, userId]);
+    if (!loading) {
+      fetchCardDetails();
+    }
+  }, [cardId, loading, userId]);
 
   const handleRegisterButton = async () => {
     if (userId) {
