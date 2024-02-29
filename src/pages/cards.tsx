@@ -12,31 +12,35 @@ import type { CardData } from '@/types/CardData';
 import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId';
 
 export default function Index() {
-  const [cardDatas, setCardDatas] = useState<CardData[] | null>([]);
+  const [cardDatas, setCardDatas] = useState<CardData[] | null>(null);
   const [exampleCardDatas, setExampleCardDatas] = useState<CardData[] | null>(null);
-  const [fetching, setFetching] = useState<boolean>(true);
+  const [fetching, setFetching] = useState<boolean>(false);
 
   const router = useRouter();
 
   const { userId, loading } = useUser();
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchCards = async () => {
+      setFetching(true);
       if (userId) {
         const haveCardDetails = await getHaveCardDetailsByUserId(userId);
         if (haveCardDetails) {
-          setCardDatas(haveCardDetails);
-          setFetching(false);
+          setCardDatas([...haveCardDetails]);
         }
       }
       const exampleCardDetails = await getHaveCardDetailsByUserId('exampleDocument');
-      setExampleCardDatas(exampleCardDetails);
+      if (exampleCardDetails) {
+        setExampleCardDatas([...exampleCardDetails]);
+      }
       setFetching(false);
     };
-    fetchUsers();
-  }, [userId]);
+    if (!loading) {
+      fetchCards();
+    }
+  }, [loading, userId]);
 
-  if (loading && fetching) {
+  if (loading || fetching) {
     return (
       <>
         <Head>

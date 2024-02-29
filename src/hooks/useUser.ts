@@ -3,18 +3,16 @@ import { useEffect, useState } from 'react';
 import { auth } from '@/firebase';
 
 export default function useUser() {
-  const [userId, setUserId] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [userId, setUserId] = useState<string | null | undefined>(undefined);
+  const loading = userId === undefined;
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         const uid = user.uid;
         setUserId(uid);
-        setLoading(false);
       } else {
         setUserId(null);
-        setLoading(false);
       }
     });
   }, []);
