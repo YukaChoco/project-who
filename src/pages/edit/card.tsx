@@ -11,6 +11,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/CardCreatePage.module.css';
+import type { CardData } from '@/types/CardData';
 import { CARD_TYPE } from '@/types/CardType';
 import { FORM_MODE } from '@/types/FormMode';
 import getCardDetails from '@/utils/ok/getCardDetails';
@@ -32,10 +33,13 @@ export default function Index() {
   const router = useRouter();
   const cardId = router.query.cardId as string;
 
+  const [cardData, setCardData] = useState<CardData | null>(null);
+
   useEffect(() => {
     async function getEarlierCardData() {
       try {
         const cardDetails = await getCardDetails(cardId);
+        setCardData(cardDetails);
 
         if (cardDetails) {
           setName(cardDetails.name);
@@ -102,42 +106,52 @@ export default function Index() {
     setMode(FORM_MODE.Complete);
   };
 
-  return (
-    <>
-      <Head>
-        <title>{defaultCardName} さんの名刺修正 - Who!</title>
-      </Head>
+  if (cardData?.authorId === userId) {
+    return (
+      <>
+        <Head>
+          <title>{defaultCardName} さんの名刺修正 - Who!</title>
+        </Head>
 
+        <main>
+          <Header cardType={CARD_TYPE.Have} confirmPageChange />
+
+          <Preview />
+
+          {/* texts */}
+          <CustomTabPanel value={tabIndex} index={0}>
+            <form action='submit' onSubmit={handleSubmit}>
+              <InputTexts
+                name={name}
+                handleName={(event) => setName(event.target.value)}
+                instagram={instagram}
+                handleInstagram={(event) => setInstagram(event.target.value)}
+                x={x}
+                handleX={(event) => setX(event.target.value)}
+                organization={organization}
+                handleOrganization={(event) => setOrganization(event.target.value)}
+              />
+
+              <div className={styles.completeButton}>
+                <SecondaryButton text='保存して終了' isSubmit />
+              </div>
+            </form>
+          </CustomTabPanel>
+
+          {/* complete */}
+          <CustomTabPanel value={tabIndex} index={2}>
+            <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
+          </CustomTabPanel>
+        </main>
+      </>
+    );
+  } else {
+    return (
       <main>
-        <Header cardType={CARD_TYPE.Have} confirmPageChange />
-
-        <Preview />
-
-        {/* texts */}
-        <CustomTabPanel value={tabIndex} index={0}>
-          <form action='submit' onSubmit={handleSubmit}>
-            <InputTexts
-              name={name}
-              handleName={(event) => setName(event.target.value)}
-              instagram={instagram}
-              handleInstagram={(event) => setInstagram(event.target.value)}
-              x={x}
-              handleX={(event) => setX(event.target.value)}
-              organization={organization}
-              handleOrganization={(event) => setOrganization(event.target.value)}
-            />
-
-            <div className={styles.completeButton}>
-              <SecondaryButton text='保存して終了' isSubmit />
-            </div>
-          </form>
-        </CustomTabPanel>
-
-        {/* complete */}
-        <CustomTabPanel value={tabIndex} index={2}>
-          <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
-        </CustomTabPanel>
+        <Header />
+        <h2>他人の名刺は編集できません</h2>
+        <PrimaryButton text='名刺一覧に戻る' onClick={() => router.push(`/cards`)} />
       </main>
-    </>
-  );
+    );
+  }
 }

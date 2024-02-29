@@ -13,6 +13,7 @@ import SecondaryButton from '@/components/SecondaryButton';
 import SwitchButton from '@/components/SwitchButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/MycardCreatePage.module.css';
+import type { CardData } from '@/types/CardData';
 import { CARD_TYPE } from '@/types/CardType';
 import { FORM_MODE, FormMode } from '@/types/FormMode';
 import getCardDetails from '@/utils/ok/getCardDetails';
@@ -33,10 +34,13 @@ export default function Input() {
 
   const cardId = router.query.cardId as string;
 
+  const [cardData, setCardData] = useState<CardData | null>(null);
+
   useEffect(() => {
     async function getEarlierCardData() {
       try {
         const cardDetails = await getCardDetails(cardId);
+        setCardData(cardDetails);
 
         if (cardDetails) {
           setName(cardDetails.name);
@@ -123,59 +127,68 @@ export default function Input() {
       <SwitchButton leftName={FORM_MODE.Texts} rightName={FORM_MODE.Colors} value={mode} onChange={handleSwitch} />
     </div>
   );
+  if (cardData?.authorId === userId) {
+    return (
+      <>
+        <Head>
+          <title>自分の名刺修正 - Who!</title>
+        </Head>
 
-  return (
-    <>
-      <Head>
-        <title>自分の名刺修正 - Who!</title>
-      </Head>
+        <main className={styles.main}>
+          <Header cardType={CARD_TYPE.My} confirmPageChange />
 
-      <main className={styles.main}>
-        <Header cardType={CARD_TYPE.My} confirmPageChange />
+          <Preview />
 
-        <Preview />
+          <form className={styles.change} onSubmit={handleSubmit}>
+            {/* texts */}
+            <CustomTabPanel value={tabIndex} index={0}>
+              <ShowSwitchButton />
+              <EditTexts
+                name={name}
+                handleName={(event) => setName(event.target.value)}
+                instagram={instagram}
+                handleInstagram={(event) => setInstagram(event.target.value)}
+                x={x}
+                handleX={(event) => setX(event.target.value)}
+                organization={organization}
+                handleOrganization={(event) => setOrganization(event.target.value)}
+              />
+            </CustomTabPanel>
 
-        <form className={styles.change} onSubmit={handleSubmit}>
-          {/* texts */}
-          <CustomTabPanel value={tabIndex} index={0}>
-            <ShowSwitchButton />
-            <EditTexts
-              name={name}
-              handleName={(event) => setName(event.target.value)}
-              instagram={instagram}
-              handleInstagram={(event) => setInstagram(event.target.value)}
-              x={x}
-              handleX={(event) => setX(event.target.value)}
-              organization={organization}
-              handleOrganization={(event) => setOrganization(event.target.value)}
-            />
-          </CustomTabPanel>
+            {/* colors */}
+            <CustomTabPanel value={tabIndex} index={1}>
+              <ShowSwitchButton />
+              <EditColors
+                textColor={textColor}
+                handleTextColor={(event) => setTextColor(event.target.value)}
+                bgColor={bgColor}
+                handleBgColor={(event) => setBgColor(event.target.value)}
+              />
+            </CustomTabPanel>
 
-          {/* colors */}
-          <CustomTabPanel value={tabIndex} index={1}>
-            <ShowSwitchButton />
-            <EditColors
-              textColor={textColor}
-              handleTextColor={(event) => setTextColor(event.target.value)}
-              bgColor={bgColor}
-              handleBgColor={(event) => setBgColor(event.target.value)}
-            />
-          </CustomTabPanel>
+            {/* complete */}
+            <CustomTabPanel value={tabIndex} index={2}>
+              <div className={styles.editButton}>
+                <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
+              </div>
+            </CustomTabPanel>
 
-          {/* complete */}
-          <CustomTabPanel value={tabIndex} index={2}>
-            <div className={styles.editButton}>
-              <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
-            </div>
-          </CustomTabPanel>
-
-          {mode !== FORM_MODE.Complete ? (
-            <div className={styles.completeButton}>
-              <SecondaryButton text='保存して終了' isSubmit />
-            </div>
-          ) : null}
-        </form>
+            {mode !== FORM_MODE.Complete ? (
+              <div className={styles.completeButton}>
+                <SecondaryButton text='保存して終了' isSubmit />
+              </div>
+            ) : null}
+          </form>
+        </main>
+      </>
+    );
+  } else {
+    return (
+      <main>
+        <Header />
+        <h2>他人の名刺は編集できません</h2>
+        <PrimaryButton text='名刺一覧に戻る' onClick={() => router.push(`/cards`)} />
       </main>
-    </>
-  );
+    );
+  }
 }
