@@ -56,10 +56,10 @@ export default function Input() {
         setFetching(false);
       }
     }
-    if (loading && cardId !== undefined) {
+    if (cardId !== undefined) {
       getEarlierCardData();
     }
-  }, [cardId, loading]);
+  }, [cardId]);
 
   if (loading || fetching || cardId === undefined) {
     return (
