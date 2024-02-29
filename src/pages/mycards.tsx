@@ -1,4 +1,4 @@
-import { Box, Modal } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 import Head from 'next/head';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
@@ -121,6 +121,14 @@ export default function Detail() {
   };
   const shareURL = `${window.location.origin}/card/${cardData.id}`;
 
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(shareURL);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -165,6 +173,11 @@ export default function Detail() {
                   <EmailShareButton url={shareURL}>
                     <EmailIcon size={64} round />
                   </EmailShareButton>
+                </Box>
+                <Box sx={snsContainer}>
+                  <Button onClick={copy} type='button' sx={{ borderBottom: '1px' }}>
+                    リンクをコピーする
+                  </Button>
                 </Box>
               </div>
             </div>
