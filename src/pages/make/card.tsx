@@ -82,7 +82,7 @@ export default function Index() {
         <title>他人の名刺作成 - Who!</title>
       </Head>
 
-      <main>
+      <main className={styles.main}>
         <Header cardType={CARD_TYPE.Have} confirmPageChange />
 
         <Preview />
@@ -100,10 +100,6 @@ export default function Index() {
               organization={organization}
               handleOrganization={(event) => setOrganization(event.target.value)}
             />
-
-            <div className={styles.completeButton}>
-              <SecondaryButton text='保存して終了' isSubmit />
-            </div>
           </form>
         </CustomTabPanel>
 
@@ -111,6 +107,10 @@ export default function Index() {
         <CustomTabPanel value={tabIndex} index={2}>
           <EditComplete handleReturned={() => setMode(FORM_MODE.Texts)} handleCompleted={handleCompleted} />
         </CustomTabPanel>
+
+        <div className={styles.completeButton}>
+          <SecondaryButton text='保存して終了' isSubmit />
+        </div>
       </main>
     </>
   );
