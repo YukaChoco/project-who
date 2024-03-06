@@ -1,7 +1,13 @@
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
+import type { TextFieldProps } from '@mui/material/TextField';
 import { styled, alpha } from '@mui/material/styles';
 import * as React from 'react';
+
+interface SearchBarProps {
+  value: string;
+  onChange: TextFieldProps['onChange'];
+}
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -43,7 +49,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchBar() {
+export default function SearchBar({ value = '', onChange = () => {} }: SearchBarProps) {
   return (
     <Search>
       <SearchIconWrapper>
@@ -53,7 +59,7 @@ export default function SearchBar() {
           }}
         />
       </SearchIconWrapper>
-      <StyledInputBase placeholder='検索' inputProps={{ 'aria-label': 'search' }} />
+      <StyledInputBase placeholder='検索' inputProps={{ 'aria-label': 'search' }} value={value} onChange={onChange} />
     </Search>
   );
 }
