@@ -16,7 +16,7 @@ import { CARD_TYPE, CardType } from '@/types/CardType';
 import addHaveCardId from '@/utils/ok/addHaveCardId';
 import deleteCardByCardId from '@/utils/ok/deleteCardByCardId';
 import deleteCardIdByCardId from '@/utils/ok/deleteCardIdByCardId';
-import getCardDetils from '@/utils/ok/getCardDetails';
+import getCardDetails from '@/utils/ok/getCardDetails';
 import getCardType from '@/utils/ok/getCardType';
 import { toXProfileURL, toInstagramProfileURL } from '@/utils/ok/toSNSProfileURL';
 
@@ -34,7 +34,7 @@ export default function Index() {
     setFirebaseLoading(true);
     const fetchCardDetails = async () => {
       if (cardId) {
-        const fetchCardData = await getCardDetils(cardId);
+        const fetchCardData = await getCardDetails(cardId);
         setCardData(fetchCardData);
         if (userId) {
           const fetchCardType = await getCardType(userId, cardId);
