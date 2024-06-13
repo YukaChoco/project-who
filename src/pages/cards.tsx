@@ -12,7 +12,7 @@ import type { CardData } from '@/types/CardData';
 import getHaveCardDetailsByUserId from '@/utils/ok/getHaveCardDetailsByUserId';
 
 export default function Index() {
-  const [cardDatas, setCardDatas] = useState<CardData[] | null>(null);
+  const [cardDatas, setCardDatas] = useState<CardData[] | null | undefined>(undefined);
   const [exampleCardDatas, setExampleCardDatas] = useState<CardData[] | null>(null);
   const [fetching, setFetching] = useState<boolean>(false);
 
@@ -40,7 +40,7 @@ export default function Index() {
     }
   }, [loading, userId]);
 
-  if (loading || fetching) {
+  if (loading || fetching || cardDatas === undefined) {
     return (
       <>
         <Head>
