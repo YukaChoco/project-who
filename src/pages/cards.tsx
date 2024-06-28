@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, SetStateAction } from 'react';
 import DisplayCard from '@/components/Card';
 import Header from '@/components/Header';
 import Loading from '@/components/Loading';
 import PageTopBackButton from '@/components/PageTopBackButton';
+import SearchBar from '@/components/SearchBar';
 import SecondaryButton from '@/components/SecondaryButton';
 import useUser from '@/hooks/useUser';
 import styles from '@/styles/AllCards.module.css';
@@ -19,6 +20,11 @@ export default function Index() {
   const router = useRouter();
 
   const { userId, loading } = useUser();
+
+  const [inputText, setInputText] = useState<string>('');
+  const handleChange = (event: { target: { value: SetStateAction<string> } }) => {
+    setInputText(event.target.value);
+  };
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -90,12 +96,17 @@ export default function Index() {
         <div className={styles.buttonWrapper}>
           <SecondaryButton text='+アカウントメモの追加' onClick={() => router.push(`/make/card`)} />
         </div>
+        <SearchBar value={inputText} onChange={handleChange} />
 
         {cardDatas ? (
           // 名刺が存在する時
           <div className={styles.cardlist}>
             {cardDatas.map((data) => {
-              return <DisplayCard urlEnabled={false} key={data.id} {...data} link={`/card/${data.id}`} />;
+              if (data.name.includes(inputText)) {
+                return <DisplayCard urlEnabled={false} key={data.id} {...data} link={`/card/${data.id}`} />;
+              } else if (inputText === '') {
+                return <DisplayCard urlEnabled={false} key={data.id} {...data} link={`/card/${data.id}`} />;
+              }
             })}
           </div>
         ) : (
